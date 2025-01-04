@@ -1,0 +1,19 @@
+@mixin hover {
+	@media (hover: hover) {
+		&:hover:not(:disabled) {
+			@content;
+		}
+	}
+
+	@media (hover: none) {
+		&:active:not(:disabled) {
+			@content;
+		}
+	}
+}
+
+@mixin active {
+	&:active:not(:disabled) {
+		@content;
+	}
+}

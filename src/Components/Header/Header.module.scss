@@ -1,0 +1,19 @@
+.root {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+
+	.content {
+		margin: 0 auto;
+		padding: 27px 39px 10px 61px;
+		max-width: 924px;
+
+		.separator {
+			width: 2px;
+			height: 34px;
+			background-color: #6BD1C3;
+		}
+	}
+}
