@@ -1,4 +1,5 @@
-import { FC } from "react"
+import clsx from "clsx"
+import { FC, useState } from "react"
 
 import { Flex } from "~/shared/ui"
 
@@ -8,6 +9,8 @@ import { Socials } from "../Socials"
 import classes from './Header.module.scss'
 
 export const Header: FC = () => {
+  const [isVisibleMenu, setIsVisibleMenu] = useState(false)
+
   return (
     <div className={classes.root}>
       <Flex
@@ -17,9 +20,19 @@ export const Header: FC = () => {
       >
         <Logo />
         <Flex gap={35} alignItems='center'>
-          <Navigation />
+          <div
+            className={clsx(classes.hamburger, {
+              [classes.isActive]: isVisibleMenu,
+            })}
+            onClick={() => setIsVisibleMenu(!isVisibleMenu)}
+          />
+          <Navigation
+            className={clsx(classes.navigation, {
+              [classes.isVisible]: isVisibleMenu,
+            })}
+          />
           <div className={classes.separator} />
-          <Socials />
+          <Socials className={classes.socials} />
         </Flex>
       </Flex>
     </div>

@@ -14,7 +14,7 @@ const benefitsList = [
 ] as { iconName: IconName, label: string }[]
 
 export interface HeroBenefitsProps {
-  className: string
+  className?: string
 }
 
 export const HeroBenefits: FC<HeroBenefitsProps> = ({ className }) => {

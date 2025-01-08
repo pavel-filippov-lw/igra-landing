@@ -2,14 +2,14 @@ import { FC } from "react"
 
 import { HeroBenefits } from "../HeroBenefits"
 import { HeroContent } from "../HeroContent"
+import heroVideo from './assets/hero.webm'
 import classes from './Hero.module.scss'
-import heroVideo from './hero.webm'
 
 export const Hero: FC = () => {
   return (
     <div className={classes.root}>
       <HeroContent className={classes.content} />
-      <HeroBenefits className={classes.benefits} />
+      <HeroBenefits />
       <video
         autoPlay
         muted

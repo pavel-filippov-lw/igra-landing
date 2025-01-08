@@ -1,5 +1,9 @@
 .root {
 	margin: 0 auto;
-	padding: $header_h 20px 20px;
-	max-width: 924px;
+	padding: $header_h 39px 20px 57px;
+	max-width: 1020px;
+
+	@media screen and (max-width: $mobile) {
+		padding: $header_h 20px 100px;
+	}
 }
