@@ -6,4 +6,10 @@
 	@media screen and (max-width: $mobile) {
 		padding: $header_h 20px 100px;
 	}
+
+	.copyright {
+		margin: 20px 0;
+		text-align: center;
+		color: #4d4d4d;
+	}
 }
