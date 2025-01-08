@@ -4,6 +4,10 @@
 	width: fit-content;
 	border: 1px solid #CB9D4B;
 
+	@media screen and (max-width: $mobile) {
+		width: 100%;
+	}
+
 	.label {
 		font-size: 20px;
 	}

@@ -1,6 +1,10 @@
 .root {
 	max-width: 528px;
 
+	@media screen and (max-width: $mobile) {
+		max-width: none;
+	}
+
 	.title {
 		font-size: 44px;
 		line-height: 48px;
@@ -28,6 +32,7 @@
 		}
 
 		@media screen and (max-width: $mobile) {
+			margin-left: 0;
 			width: 100%;
 		}
 	}
