@@ -11,7 +11,10 @@ export const Hero: FC = () => {
   return (
     <div className={classes.root}>
       <Flex className={classes.layout}>
-        <HeroContent className={classes.content} />
+        <div className={classes.leftSide}>
+          <HeroContent className={classes.content} />
+          <HeroBenefits />
+        </div>
         <video
           autoPlay
           muted
@@ -21,7 +24,6 @@ export const Hero: FC = () => {
           <source src={heroVideo} type="video/webm" />
         </video>
       </Flex>
-      <HeroBenefits />
     </div>
   )
 }
