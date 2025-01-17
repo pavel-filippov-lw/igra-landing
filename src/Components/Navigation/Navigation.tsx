@@ -6,7 +6,7 @@ import { Flex } from "~/shared/ui"
 import classes from './Navigation.module.scss'
 
 const links = [
-  { label: 'Litepaper', to: '' },
+//  { label: 'Litepaper', to: '' },
   { label: 'Contact', to: 'mailto:team@igra.network' },
 ]
 

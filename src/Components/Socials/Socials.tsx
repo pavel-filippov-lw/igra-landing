@@ -4,9 +4,9 @@ import { Flex, Icon } from "~/shared/ui"
 import { IconName } from "~/shared/ui/Icon/assets"
 
 const links = [
-  { iconName: 'telegram', to: '' },
-  { iconName: 'twitter', to: 'https://x.com/IgraNetworks' },
-  { iconName: 'github', to: '' },
+  // { iconName: 'telegram', to: '' },
+  { iconName: 'twitter', to: 'https://x.com/Igra_Labs' },
+  { iconName: 'github', to: 'https://github.com/IGRALABS' },
 ] as { iconName: IconName, to: string }[]
 
 export interface SocialsProps {
