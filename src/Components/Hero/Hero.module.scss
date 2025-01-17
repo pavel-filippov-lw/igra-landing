@@ -3,6 +3,7 @@
 
 	.layout {
 		gap: 15px;
+		background-color: transparent;
 
 		.leftSide {
 			flex: 1 0 auto;
@@ -19,6 +20,11 @@
 			max-width: 500px;
 			transform: translateY(-10%);
 			background-color: transparent;
+			background-clip: padding-box;
+			backface-visibility: hidden;
+			-webkit-background-clip: padding-box;
+			-webkit-backface-visibility: hidden;
+			will-change: transform, opacity;
 		}
 
 		@media screen and (max-width: $mobile) {
