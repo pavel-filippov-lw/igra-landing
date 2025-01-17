@@ -5,6 +5,7 @@ import { Flex } from "~/shared/ui"
 import { HeroBenefits } from "../HeroBenefits"
 import { HeroContent } from "../HeroContent"
 import heroVideo from './assets/hero.webm'
+import heroImage from './assets/hero.png'
 import classes from './Hero.module.scss'
 
 export const Hero: FC = () => {
@@ -15,6 +16,7 @@ export const Hero: FC = () => {
           <HeroContent className={classes.content} />
           <HeroBenefits />
         </div>
+        <div className={classes.image} style={{ background: `center / contain no-repeat url(${heroImage})` }} />
         <video
           autoPlay
           muted
