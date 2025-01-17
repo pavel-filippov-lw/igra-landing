@@ -19,6 +19,7 @@ export const Hero: FC = () => {
           autoPlay
           muted
           loop
+          playsInline
           className={classes.video}
         >
           <source src={heroVideo} type="video/webm" />
