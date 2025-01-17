@@ -7,10 +7,10 @@ import { IconName } from "~/shared/ui/Icon/assets"
 import classes from './HeroBenefits.module.scss'
 
 const benefitsList = [
-  { iconName: 'cube_1', label: 'Insanely fast and secure Kaspa DAG as a decentralized sequencer' },
-  { iconName: 'cube_2', label: 'Base layer secured by 1.45 EH' },
-  { iconName: 'cube_3', label: 'EVM compatilble' },
-  { iconName: 'cube_4', label: 'zk validation' },
+  { iconName: 'cube_1', label: 'Based rollup with atomic composability' },
+  { iconName: 'cube_2', label: 'Insanely fast and secure Kaspa DAG as a decentralized sequencer' },
+  { iconName: 'cube_3', label: 'Secured by the 1.45 EH' },
+  { iconName: 'cube_4', label: 'EVM compatilble' },
 ] as { iconName: IconName, label: string }[]
 
 export interface HeroBenefitsProps {
