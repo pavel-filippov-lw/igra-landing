@@ -18,7 +18,7 @@ export const HeroContent: FC<HeroContentProps> = ({ className }) => {
     >
       <Flex flexDirection='column' gap={16}>
         <h1 className={classes.title}>
-          Realtime programmable layer on top of PoW
+          Realtime programmable layer on top of Kaspa PoW
         </h1>
         <h2 className={classes.subtitle}>
           Igra Network unlock use cases for both retail
