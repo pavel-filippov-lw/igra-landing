@@ -9,8 +9,8 @@ import classes from './HeroBenefits.module.scss'
 const benefitsList = [
   { iconName: 'cube_1', label: 'Based rollup with atomic composability' },
   { iconName: 'cube_2', label: 'Insanely fast and secure Kaspa DAG as a decentralized sequencer' },
-  { iconName: 'cube_3', label: 'Secured by the 1.45 EH' },
-  { iconName: 'cube_4', label: 'EVM compatilble' },
+  { iconName: 'cube_3', label: 'Secured by the 1.45 EH/s' },
+  { iconName: 'cube_4', label: 'EVM-compatible' },
 ] as { iconName: IconName, label: string }[]
 
 export interface HeroBenefitsProps {
