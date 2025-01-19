@@ -4,8 +4,8 @@ import { Flex } from "~/shared/ui"
 
 import { HeroBenefits } from "../HeroBenefits"
 import { HeroContent } from "../HeroContent"
-import heroVideo from './assets/hero.webm'
 import heroImage from './assets/hero.png'
+import heroVideo from './assets/hero.webm'
 import classes from './Hero.module.scss'
 
 export const Hero: FC = () => {
