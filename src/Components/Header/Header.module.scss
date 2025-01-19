@@ -102,7 +102,7 @@
 		transition: transform 0.3s ease-in-out;
 
 		&.isVisible {
-			transform: translate(-50%, calc(200vh - 54px - 30px));
+			transform: translate(-50%, calc(200dvh - 54px - 30px));
 		}
 	}
 }
