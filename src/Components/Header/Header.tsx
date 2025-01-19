@@ -32,7 +32,11 @@ export const Header: FC = () => {
             })}
           />
           <div className={classes.separator} />
-          <Socials className={classes.socials} />
+          <Socials
+            className={clsx(classes.socials, {
+              [classes.isVisible]: isVisibleMenu,
+            })}
+          />
         </Flex>
       </Flex>
     </div>
