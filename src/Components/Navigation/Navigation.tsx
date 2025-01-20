@@ -7,7 +7,7 @@ import classes from './Navigation.module.scss'
 
 const links = [
 //  { label: 'Litepaper', to: '' },
-  { label: 'Contact', to: 'mailto:team@igra.network' },
+  { label: 'Contact', to: 'mailto:team@igralabs.com' },
 ]
 
 export interface NavigationProps {
