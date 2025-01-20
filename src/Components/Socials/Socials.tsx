@@ -6,7 +6,7 @@ import { IconName } from "~/shared/ui/Icon/assets"
 const links = [
   // { iconName: 'telegram', to: '' },
   { iconName: 'twitter', to: 'https://x.com/Igra_Labs' },
-  { iconName: 'gitlab', to: 'https://gitlab.com/igra-labs' },
+  { iconName: 'github', to: 'https://github.com/IGRALABS' },
 ] as { iconName: IconName, to: string }[]
 
 export interface SocialsProps {
