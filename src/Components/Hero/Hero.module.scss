@@ -19,8 +19,12 @@
 			width: 100%;
 			max-width: 300px;
 			height: 300px;
-			margin: 5rem;
+			margin-top: 50px;
 			display: none;
+
+			&.isSafari {
+				display: block;
+			}
 		}
 
 		.video {
@@ -34,6 +38,10 @@
 			-webkit-background-clip: padding-box;
 			-webkit-backface-visibility: hidden;
 			will-change: transform, opacity;
+
+			&.isSafari {
+				display: none;
+			}
 		}
 
 		@media screen and (max-width: $mobile) {
@@ -57,6 +65,7 @@
 
 			.image {
 				display: block;
+				margin: 5rem;
 			}
 		}
 	}
