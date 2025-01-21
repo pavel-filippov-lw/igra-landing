@@ -5,9 +5,6 @@ import { Icon } from "~/shared/ui"
 
 import classes from './Team.module.scss'
 
-import img1 from './assets/pavel.png';
-import img2 from './assets/den.png';
-
 export const TeamPage: FC = () => {
   return (
     <div>

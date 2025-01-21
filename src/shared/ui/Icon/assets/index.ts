@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import Cube_1 from './cube_1.svg?react'
 import Cube_2 from './cube_2.svg?react'
 import Cube_3 from './cube_3.svg?react'
