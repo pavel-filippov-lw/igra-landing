@@ -3,15 +3,10 @@ import './fonts/fonts.scss'
 
 import { FC } from "react"
 
-import { Header, Hero, Layout } from '~/Components'
+import { AppRouter } from './router'
 
 export const App: FC = () => {
   return (
-    <div>
-      <Header />
-      <Layout>
-        <Hero />
-      </Layout>
-    </div>
+    <AppRouter />
   )
 }

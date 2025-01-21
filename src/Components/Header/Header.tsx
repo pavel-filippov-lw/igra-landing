@@ -1,6 +1,8 @@
 import clsx from "clsx"
 import { FC, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
+import { to } from "~/shared/lib"
 import { Flex } from "~/shared/ui"
 
 import { Logo } from "../Logo"
@@ -9,6 +11,7 @@ import { Socials } from "../Socials"
 import classes from './Header.module.scss'
 
 export const Header: FC = () => {
+  const navigate = useNavigate()
   const [isVisibleMenu, setIsVisibleMenu] = useState(false)
 
   return (
@@ -18,7 +21,7 @@ export const Header: FC = () => {
         alignItems='center'
         className={classes.content}
       >
-        <Logo />
+        <Logo onClick={() => navigate(to.hero())} />
         <Flex gap={35} alignItems='center'>
           <div
             className={clsx(classes.hamburger, {
