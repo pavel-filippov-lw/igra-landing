@@ -1,0 +1,17 @@
+.root {
+	margin-top: 60px;
+
+	.title {
+		margin-bottom: 30px;
+		font-size: 44px;
+		line-height: 48px;
+		font-weight: 400;
+	}
+
+	.content {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(49%, 1fr));
+		gap: 16px;
+		width: 100%;
+	}
+}
