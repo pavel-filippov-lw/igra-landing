@@ -3,6 +3,7 @@ import { FC, Fragment } from "react"
 import { TeamMemberCard } from "../TeamMemberCard"
 import denPhoto from './assets/den.png'
 import pavelPhoto from './assets/pavel.png'
+import romanPhoto from './assets/rom.png'
 import classes from './Team.module.scss'
 
 const teamMembers = [
@@ -22,31 +23,24 @@ const teamMembers = [
   },
   {
     photoUrl: denPhoto,
-    name: ['Denis Mashkevich', 'Superkargo'],
+    name: ['Denis Mashkevich', 'Supercargo'],
     role: 'Chief of Strategy, Devops',
-    description: 'Founder and engineer with 25+ years in software development, 18+ years leading teams, ex teamlead @ Kaspa/DAGlabs Linkedin',
-    linkedinUrl: '',
-  },
-  {
-    photoUrl: '',
-    name: ['Roman Melnikov', 'Passenger with a Map'],
-    role: 'Advisor',
-    description: 'Chief architect @ Kaspa/DAGlabs, chief architect for Kaspa smart contract integration; Crypto/ZKP software architect',
-    linkedinUrl: '',
+    description: 'Founder and engineer with 25 years in software development, 18 years leading teams, ex teamlead @ DAGlabs',
+    linkedinUrl: 'https://www.linkedin.com/in/denis-mashkevich-78b6aa/',
   },
   {
     photoUrl: '',
     name: ['Mike Zak', 'Sailor'],
     role: 'Software engineer',
-    description: 'Seasoned software developer and an OG Kasper - led development of Kaspa up to the release of mainnet, ex core teamlead at DAGlabs',
-    linkedinUrl: '',
+    description: 'Software developer, an OG Kasper, led development of Kaspa up to the release of mainnet, ex core teamlead @ DAGlabs',
+    linkedinUrl: 'https://www.linkedin.com/in/mike-zak-2721324b/',
   },
   {
     photoUrl: '',
     name: ['Ilya Arosov', 'Sailor'],
     role: 'Software engineer',
-    description: 'Ex-Intel, embedded, C++',
-    linkedinUrl: '',
+    description: 'Ex-Intel, embedded systems',
+    linkedinUrl: 'https://www.linkedin.com/in/arosov/',
   },
   {
     photoUrl: '',
@@ -62,6 +56,14 @@ const teamMembers = [
     description: 'To be disclosed',
     linkedinUrl: '',
   },
+  {
+    photoUrl: romanPhoto,
+    name: ['Roman Melnikov', 'Passenger with a Map'],
+    role: 'Advisor',
+    description: 'Chief architect @ Kaspa/DAGlabs, chief architect for Kaspa smart contract integration; Crypto/ZKP software architect',
+    linkedinUrl: 'https://www.linkedin.com/in/romanmelnikov/',
+  },
+
 ]
 
 export const Team: FC = () => {

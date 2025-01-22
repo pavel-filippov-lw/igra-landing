@@ -7,6 +7,7 @@
 		flex: 0 0 auto;
 		width: 100px;
 		height: 100px;
+		margin-top: 15px;
 
 		@media screen and (max-width: 426px) {
 			width: 60px;
@@ -19,6 +20,10 @@
 		line-height: 40px;
 		font-weight: 400;
 		color: #CB9D4B;
+
+		> span:first-of-type {
+			font-size: 21px;
+		}
 	}
 
 	.description {
@@ -26,6 +31,7 @@
 
 		.role {
 			font-weight: 700;
+			font-size: 1.2em;
 		}
 	}
 

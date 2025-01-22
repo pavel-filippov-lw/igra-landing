@@ -31,7 +31,7 @@ export const TeamMemberCard: FC<TeamMemberCardProps> = ({ photoUrl, name, role, 
         <div className={classes.name}>
           {name.map((text, index) => (
             <Fragment key={index}>
-              {text}
+              <span>{text}</span>
               {index !== name.length - 1 && (
                 <br />
               )}
@@ -40,8 +40,8 @@ export const TeamMemberCard: FC<TeamMemberCardProps> = ({ photoUrl, name, role, 
         </div>
       </Flex>
       <div className={classes.description}>
-        <span className={classes.role}>{role}</span>
-        {` / ${description}`}
+        <div className={classes.role}>{role}</div>
+        {`${description}`}
       </div>
       <a
         className={classes.link}
