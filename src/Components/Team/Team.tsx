@@ -28,7 +28,7 @@ const teamMembers = [
   {
     photoUrl: denPhoto,
     name: ['Denis Mashkevich', 'Supercargo and Cabin Boy'],
-    role: 'Chief of Strategy, Devops',
+    role: 'IT, Devops',
     description: 'Founder and engineer with 25 years in software development, 18 years leading teams, ex teamlead @ DAGlabs',
     linkedinUrl: 'https://www.linkedin.com/in/denis-mashkevich-78b6aa/',
   },
@@ -64,7 +64,7 @@ const teamMembers = [
     photoUrl: romanPhoto,
     name: ['Roman Melnikov', 'Passenger with a Map'],
     role: 'Advisor',
-    description: 'Chief architect @ Kaspa/DAGlabs, chief architect for Kaspa smart contract integration; Crypto/ZKP software architect',
+    description: 'Chief Architect @ Kaspa/DAGlabs, Chief Architect for Kaspa smart contract integration; Crypto/ZKP software architect',
     linkedinUrl: 'https://www.linkedin.com/in/romanmelnikov/',
   },
 
