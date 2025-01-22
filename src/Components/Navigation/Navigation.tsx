@@ -1,12 +1,15 @@
 import clsx from "clsx"
 import { FC, Fragment } from "react"
+import { Link } from "react-router-dom"
 
+import { to } from "~/shared/lib"
 import { Flex } from "~/shared/ui"
 
 import classes from './Navigation.module.scss'
 
 const links = [
 //  { label: 'Litepaper', to: '' },
+  { label: 'Team', to: to.team(), isPage: true },
   { label: 'Contact', to: 'mailto:team@igralabs.com' },
 ]
 
@@ -23,11 +26,17 @@ export const Navigation: FC<NavigationProps> = ({ className }) => {
     >
       {links.map((link, index) => (
         <Fragment key={index}>
-          <a href={link.to}>
-            <div>
+          {!!link.isPage ? (
+            <Link to={link.to}>
               {link.label}
-            </div>
-          </a>
+            </Link>
+          ) : (
+            <a href={link.to}>
+              <div>
+                {link.label}
+              </div>
+            </a>
+          )}
           {index !== links.length - 1 && (
             <div className={classes.separator} />
           )}

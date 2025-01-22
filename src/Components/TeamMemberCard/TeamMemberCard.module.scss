@@ -1,0 +1,50 @@
+.root {
+	padding: 16px;
+	border-radius: 11px;
+	border: 1px solid #CB9D4B;
+
+	.photo {
+		flex: 0 0 auto;
+		width: 100px;
+		height: 100px;
+		margin-top: 15px;
+
+		@media screen and (max-width: 426px) {
+			width: 60px;
+			height: 60px;
+		}
+	}
+
+	.name {
+		font-size: 25px;
+		line-height: 40px;
+		font-weight: 400;
+		color: #CB9D4B;
+
+		> span:first-of-type {
+			font-size: 19px;
+		}
+	}
+
+	.description {
+		flex: 1 0 auto;
+
+		.role {
+			font-weight: 700;
+			font-size: 1.2em;
+		}
+	}
+
+	.link {
+		width: fit-content;
+	}
+
+	.description,
+	.link {
+		margin-left: 110px;
+
+		@media screen and (max-width: 426px) {
+			margin-left: 70px;
+		}
+	}
+}
