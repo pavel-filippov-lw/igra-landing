@@ -4,6 +4,7 @@ import { TeamMemberCard } from "../TeamMemberCard"
 import denPhoto from './assets/den.png'
 import pavelPhoto from './assets/pavel.png'
 import romanPhoto from './assets/rom.png'
+import mikePhoto from './assets/mike.png'
 import classes from './Team.module.scss'
 
 const teamMembers = [
@@ -29,7 +30,7 @@ const teamMembers = [
     linkedinUrl: 'https://www.linkedin.com/in/denis-mashkevich-78b6aa/',
   },
   {
-    photoUrl: '',
+    photoUrl: mikePhoto,
     name: ['Mike Zak', 'Sailor'],
     role: 'Software engineer',
     description: 'Software developer, an OG Kasper, led development of Kaspa up to the release of mainnet, ex core teamlead @ DAGlabs',
