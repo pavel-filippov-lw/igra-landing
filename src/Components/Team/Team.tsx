@@ -35,15 +35,15 @@ const teamMembers = [
   {
     photoUrl: mikePhoto,
     name: ['Mike Zak', 'Sailor'],
-    role: 'Software engineer',
+    role: 'Blockchain Developer',
     description: 'Software developer, an OG Kasper, led development of Kaspa up to the release of mainnet, ex core teamlead @ DAGlabs',
     linkedinUrl: 'https://www.linkedin.com/in/mike-zak-2721324b/',
   },
   {
     photoUrl: ilyaPhoto,
     name: ['Ilya Arosov', 'Sailor'],
-    role: 'Software engineer',
-    description: 'Ex-Intel, embedded systems',
+    role: 'Blockchain Developer',
+    description: 'Ex-Intel, embedded systems, Rust, C++',
     linkedinUrl: 'https://www.linkedin.com/in/arosov/',
   },
   {
