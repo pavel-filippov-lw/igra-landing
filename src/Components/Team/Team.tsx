@@ -28,7 +28,7 @@ const teamMembers = [
   {
     photoUrl: denPhoto,
     name: ['Denis Mashkevich', 'Supercargo and Cabin Boy'],
-    role: 'IT, Devops',
+    role: 'Chief of Strategy, IT/Devops',
     description: 'Founder and engineer with 25 years in software development, 18 years leading teams, ex teamlead @ DAGlabs',
     linkedinUrl: 'https://www.linkedin.com/in/denis-mashkevich-78b6aa/',
   },
