@@ -1,17 +1,18 @@
 import clsx from "clsx"
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 
 import { Flex, Icon } from "~/shared/ui"
 import { IconName } from "~/shared/ui/Icon/assets"
 
+import { DifficultyLabel } from "./DifficultyLabel"
 import classes from './HeroBenefits.module.scss'
 
 const benefitsList = [
   { iconName: 'cube_1', label: 'Based ZK rollup with atomic composability' },
   { iconName: 'cube_2', label: 'Insanely fast and secure Kaspa DAG as a decentralized sequencer' },
-  { iconName: 'cube_3', label: 'Secured by the 1.45 EH/s hash power' },
+  { iconName: 'cube_3', label: <DifficultyLabel /> },
   { iconName: 'cube_4', label: 'EVM-compatible, enabling seamless use of existing Ethereum tools' },
-] as { iconName: IconName, label: string }[]
+] as { iconName: IconName, label: ReactNode }[]
 
 export interface HeroBenefitsProps {
   className?: string
