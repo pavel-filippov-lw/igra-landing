@@ -1,25 +1,40 @@
 import axios from "axios"
-import { FC, useEffect, useState } from "react"
-import Skeleton from "react-loading-skeleton"
+import { FC, useEffect } from "react"
+import useSWR from "swr"
 
-const formatDifficulty = (value: number): number => {
-  return +(value / 1e18).toFixed(2)
+const LS_KEY = 'difficulty'
+const DEFAULT_DIFFICULTY = 1.45e+18
+
+const formatDifficulty = (value: number): number => +(value / 1e18).toFixed(2)
+
+const fetcher = (url: string) => axios.get(url).then(({ data }) => data[0].difficulty)
+
+const getStoredDifficulty = (): number => {
+  const stored = localStorage.getItem(LS_KEY)
+
+  return stored ? parseFloat(stored) : DEFAULT_DIFFICULTY
 }
 
 export const DifficultyLabel: FC = () => {
-  const [difficulty, setDifficulty] = useState<number | undefined>(undefined)
+  const { data } = useSWR(
+    'https://api.minerstat.com/v2/coins?list=KAS',
+    fetcher,
+    {
+      refreshInterval: 60000,
+      fallbackData: getStoredDifficulty(),
+    },
+  )
 
   useEffect(() => {
-    axios.get('https://api.minerstat.com/v2/coins?list=KAS')
-      .then(({ data }) => setDifficulty(formatDifficulty(data[0].difficulty)))
-  }, [])
+    if (data) {
+      localStorage.setItem(LS_KEY, data.toString())
+    }
+  }, [data])
 
   return (
     <>
       Secured by the
-      {' '}
-      {difficulty || <Skeleton inline width={40} />}
-      {' '}
+      {` ${formatDifficulty(data)} `}
       EH/s hash power
     </>
   )
