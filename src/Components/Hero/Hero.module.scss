@@ -73,34 +73,28 @@
 	&::after {
 		content: '';
 		position: absolute;
-		top: 0;
-		left: 0;
-		transform: translate(-15%, -15%);
-		width: 100%;
-		height: 100%;
+		top: -100px;
+		left: -100px;
+		width: 942px;
+		height: 1119px;
 		filter: blur(50px);
-		background: top / cover no-repeat url('/src/Components/Hero/assets/radialBg_1.svg');
+		background: top / contain no-repeat url('/src/Components/Hero/assets/radialBg_1.svg');
 		z-index: -1;
 
 		@media screen and (max-width: $mobile) {
-			transform: translate(40%, 10%);
+			display: none;
 		}
 	}
 
 	&::before {
 		content: '';
 		position: absolute;
-		top: 0;
-		right: 0;
-		transform: translate(10%, -30%);
-		width: 100%;
-		height: 100%;
+		top: -350px;
+		right: -175px;
+		width: 1181px;
+		height: 1119px;
 		filter: blur(50px);
-		background: top / cover no-repeat url('/src/Components/Hero/assets/radialBg_2.svg');
+		background: top / contain no-repeat url('/src/Components/Hero/assets/radialBg_2.svg');
 		z-index: -1;
-
-		@media screen and (max-width: $mobile) {
-			display: none;
-		}
 	}
 }

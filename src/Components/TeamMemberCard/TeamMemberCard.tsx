@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import { FC, Fragment } from "react"
 
 import { Flex, Icon } from "~/shared/ui"
@@ -10,24 +11,27 @@ export interface TeamMemberCardProps {
   role: string
   description: string
   linkedinUrl: string
+  className?: string
 }
 
-export const TeamMemberCard: FC<TeamMemberCardProps> = ({ photoUrl, name, role, description, linkedinUrl }) => {
+export const TeamMemberCard: FC<TeamMemberCardProps> = ({
+  photoUrl,
+  name,
+  role,
+  description,
+  linkedinUrl,
+  className,
+}) => {
   return (
     <Flex
-      flexDirection='column'
-      gap={20}
-      className={classes.root}
+      gap={17}
+      className={clsx(classes.root, className)}
     >
-      <Flex
-        alignItems='center'
-        gap={10}
-        className={classes.header}
-      >
-        <div
-          className={classes.photo}
-          style={{ background: `center / contain no-repeat url(${photoUrl})` }}
-        />
+      <div
+        className={classes.photo}
+        style={{ background: `center / contain no-repeat url(${photoUrl})` }}
+      />
+      <Flex flexDirection='column' gap={11}>
         <div className={classes.name}>
           {name.map((text, index) => (
             <Fragment key={index}>
@@ -38,18 +42,20 @@ export const TeamMemberCard: FC<TeamMemberCardProps> = ({ photoUrl, name, role, 
             </Fragment>
           ))}
         </div>
+        <div className={classes.description}>
+          <div className={classes.role}>{role}</div>
+          {`${description}`}
+        </div>
+        {!!linkedinUrl && (
+          <a
+            className={classes.link}
+            href={linkedinUrl}
+            target='_blank'
+          >
+            <Icon name='linkedin' size={30} />
+          </a>
+        )}
       </Flex>
-      <div className={classes.description}>
-        <div className={classes.role}>{role}</div>
-        {`${description}`}
-      </div>
-      <a
-        className={classes.link}
-        href={linkedinUrl}
-        target='_blank'
-      >
-        <Icon name='linkedin' size={29} />
-      </a>
     </Flex>
   )
 }
