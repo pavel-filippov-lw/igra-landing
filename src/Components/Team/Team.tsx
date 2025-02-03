@@ -1,13 +1,15 @@
 import { FC, Fragment } from "react"
 
+import { Flex } from "~/shared/ui"
+
 import { TeamMemberCard } from "../TeamMemberCard"
+import boatswainPhoto from './assets/boatswain.png'
 import denPhoto from './assets/den.png'
+import ilyaPhoto from './assets/ilya.png'
+import mikePhoto from './assets/mike.png'
 import pavelPhoto from './assets/pavel.png'
 import romanPhoto from './assets/rom.png'
-import mikePhoto from './assets/mike.png'
-import ilyaPhoto from './assets/ilya.png'
-import anonPhoto from './assets/anon.png'
-
+import sailorPhoto from './assets/sailor.png'
 import classes from './Team.module.scss'
 
 const teamMembers = [
@@ -19,7 +21,7 @@ const teamMembers = [
     linkedinUrl: 'https://www.linkedin.com/in/emdin/',
   },
   {
-    photoUrl: anonPhoto,
+    photoUrl: boatswainPhoto,
     name: ['***** ********', 'Navigator and Boatswain'],
     role: 'CTO, VP R&D',
     description: 'To be disclosed',
@@ -47,14 +49,14 @@ const teamMembers = [
     linkedinUrl: 'https://www.linkedin.com/in/arosov/',
   },
   {
-    photoUrl: anonPhoto,
+    photoUrl: sailorPhoto,
     name: ['**** ********', 'Sailor'],
     role: 'Software engineer',
     description: 'To be disclosed',
     linkedinUrl: '',
   },
   {
-    photoUrl: anonPhoto,
+    photoUrl: sailorPhoto,
     name: ['****** *****', 'Sailor'],
     role: 'Software engineer',
     description: 'To be disclosed',
@@ -67,17 +69,17 @@ const teamMembers = [
     description: 'Chief Architect @ Kaspa/DAGlabs, Chief Architect for Kaspa smart contract integration; Crypto/ZKP software architect',
     linkedinUrl: 'https://www.linkedin.com/in/romanmelnikov/',
   },
-
 ]
 
 export const Team: FC = () => {
   return (
     <div className={classes.root}>
       <h1 className={classes.title}>Team</h1>
-      <div className={classes.content}>
+      <Flex flexWrap='wrap' className={classes.content}>
         {teamMembers.map((member, index) => (
           <Fragment key={index}>
             <TeamMemberCard
+              className={classes.card}
               photoUrl={member.photoUrl}
               name={member.name}
               role={member.role}
@@ -86,7 +88,8 @@ export const Team: FC = () => {
             />
           </Fragment>
         ))}
-      </div>
+      </Flex>
+      <div className={classes.shipBg} />
     </div>
   )
 }
