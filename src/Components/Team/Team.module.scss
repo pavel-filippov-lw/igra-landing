@@ -18,34 +18,6 @@
 		}
 	}
 
-	&::after {
-		content: '';
-		position: absolute;
-		top: -100px;
-		left: -100px;
-		width: 942px;
-		height: 1119px;
-		filter: blur(50px);
-		background: top / contain no-repeat url('/src/Components/Hero/assets/radialBg_1.svg');
-		z-index: -1;
-
-		@media screen and (max-width: $mobile) {
-			display: none;
-		}
-	}
-
-	&::before {
-		content: '';
-		position: absolute;
-		top: -350px;
-		right: -175px;
-		width: 1181px;
-		height: 1119px;
-		filter: blur(50px);
-		background: top / contain no-repeat url('/src/Components/Hero/assets/radialBg_2.svg');
-		z-index: -1;
-	}
-
 	.shipBg {
 		position: absolute;
 		top: 150px;

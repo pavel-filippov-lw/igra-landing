@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { FC, ReactNode } from "react"
 
 import { Flex, Icon } from "~/shared/ui"
@@ -14,16 +13,12 @@ const benefitsList = [
   { iconName: 'cube_4', label: 'EVM-compatible, enabling seamless use of existing Ethereum tools' },
 ] as { iconName: IconName, label: ReactNode }[]
 
-export interface HeroBenefitsProps {
-  className?: string
-}
-
-export const HeroBenefits: FC<HeroBenefitsProps> = ({ className }) => {
+export const HeroBenefits: FC = () => {
   return (
     <Flex
       flexDirection='column'
       gap={21}
-      className={clsx(classes.root, className)}
+      className={classes.root}
     >
       {benefitsList.map((benefit, index) => (
         <Flex
