@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import { FC, Fragment, ReactNode } from "react"
 
 import { Flex, Icon } from "~/shared/ui"
@@ -10,14 +11,9 @@ const benefitsList = [
     iconName: 'cube_1',
     label: [
       <>
-        Although existing blockchain programmability layers have achieved significant adoption,
-        we see they are
-        <span style={{ color: '#6BD1C3' }}> deadlocked by compromises </span>
-        made in terms of scalability, decentralization, and security.
-        We believe this is an inevitable consequence of choosing PoS as the core consensus principle and settling for
-        a technical roadmap that promotes endless fragmentation.
-        This approach merely produces variations of the same technological stack,offering little
-        to no benefit for users, institutions, or retail participants alike.
+        {'Although existing blockchain programmability layers have achieved significant adoption, we see they are '}
+        <span style={{ color: '#6BD1C3' }}>deadlocked by compromises</span>
+        {' made in terms of scalability, decentralization, and security. We believe this is an inevitable consequence of choosing PoS as the core consensus principle and settling for a technical roadmap that promotes endless fragmentation. This approach merely produces variations of the same technological stack, offering little to no benefit for users, institutions, or retail participants alike.'}
       </>,
     ],
   },
@@ -25,18 +21,14 @@ const benefitsList = [
     iconName: 'cube_2',
     label: [
       <>
-        Until recently, technological limitations prevented integrating modern VMs with PoW-based systems.
-        While BitVM and zkVMs have made Bitcoin ZK rollups possible,
-        native ZK verification on Bitcoin lacks a clear timeline. Even when implemented,
-        these rollups can only use Bitcoin's base layer for settlement,
-        <span style={{ fontWeight: 700 }}> lacking data availability and sequencing capabilities.</span>
+        {'Until recently, technological limitations prevented integrating modern VMs with PoW-based systems. While BitVM and zkVMs have made Bitcoin ZK rollups possible, native ZK verification on Bitcoin lacks a clear timeline. Even when implemented, these rollups can only use Bitcoin\'s base layer for settlement, '}
+        <span style={{ fontWeight: 700 }}>lacking data availability and sequencing capabilities.</span>
       </>,
       <>
         <span style={{ fontWeight: 700 }}>
           Ethereum's rollup-centric model has trapped its ecosystem in iterative prisoner's dilemma games
         </span>
-        , resulting in fragmented liquidity, limited scaling,
-        and distorted economic incentives for base layer development.
+        {', resulting in fragmented liquidity, limited scaling, and distorted economic incentives for base layer development.'}
       </>,
     ],
   },
@@ -47,9 +39,7 @@ const benefitsList = [
         <span style={{ fontWeight: 700 }}>
           Kaspa BlockDAG represents an attempt to surpass the limits of Nakamoto consensus
         </span>
-        . It prioritizes rapid transaction inclusion and control over transaction ordering in the ledger.
-        Kaspa's vision is to create a ledger that operates at network speed limits, with an architecture supporting
-        a programmability layers that inherits both the speed and security of its base layer.
+        {'. It prioritizes rapid transaction inclusion and control over transaction ordering in the ledger. Kaspa\'s vision is to create a ledger that operates at network speed limits, with an architecture supporting a programmability layers that inherits both the speed and security of its base layer.'}
       </>,
     ],
   },
@@ -57,11 +47,9 @@ const benefitsList = [
     iconName: 'cube_5',
     label: [
       <>
-        By establishing transaction ordering at L1 and deterministically derive the L2 state directly from
-        the base layer, it eliminates the need for additional consensus mechanisms.
-        <span style={{ fontWeight: 700 }}> This approach combines the best of all existing architectures</span>
-        : Bitcoin, Ethereum (rollup-centric roadmap), an Internet-speed version of Nakamoto base layer,
-        a zk-based computation layer, and a Solana-like unified defragmented state.
+        {'By establishing transaction ordering at L1 and deterministically derive the L2 state directly from the base layer, it eliminates the need for additional consensus mechanisms. '}
+        <span style={{ fontWeight: 700 }}>This approach combines the best of all existing architectures</span>
+        {': Bitcoin, Ethereum (rollup-centric roadmap), an Internet-speed version of Nakamoto base layer, a zk-based computation layer, and a Solana-like unified defragmented state.'}
       </>,
     ],
   },
@@ -69,14 +57,11 @@ const benefitsList = [
     iconName: 'cube_4',
     label: [
       <>
-        We see this as a unique opportunity to build a new type of programmable system,
-        one that transcends the limitations of its predecessors. Like its Aramaic meaning of "Rooftop",
+        {'We see this as a unique opportunity to build a new type of programmable system, one that transcends the limitations of its predecessors. Like its Aramaic meaning of "Rooftop", '}
         <span style={{ fontWeight: 700 }}>
-          {' '}
-          Igra aims to be the unifying layer under which different
-          decentralized virtual machines can thrive
+          Igra aims to be the unifying layer under which different decentralized virtual machines can thrive
         </span>
-        .
+        {'.'}
       </>,
     ],
   },
@@ -84,12 +69,11 @@ const benefitsList = [
     iconName: 'cube_6',
     label: [
       <>
-        First, we plan to build an
-        <span style={{ fontWeight: 700 }}> L2 on top of Kaspa</span>
-        , with a canonical bridge between L1 and L2, supporting up to 3,000 TPS with sub-second finality.
-        It will be
-        <span style={{ fontWeight: 700 }}> EVM-compatible</span>
-        , enabling seamless use of existing Ethereum tools.
+        {'First, we plan to build an '}
+        <span style={{ fontWeight: 700 }}>L2 on top of Kaspa</span>
+        {', with a canonical bridge between L1 and L2, supporting up to 3,000 TPS with sub-second finality. It will be '}
+        <span style={{ fontWeight: 700 }}>EVM-compatible</span>
+        {', enabling seamless use of existing Ethereum tools.'}
       </>,
     ],
   },
