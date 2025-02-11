@@ -32,7 +32,7 @@ html {
 	color: #FFFFFF;
 	background-color: #000000;
 
-	@media screen and (min-width: $mobile) {
+	@media screen and (min-width: 769px) {
 		&::-webkit-scrollbar {
 			width: 8px;
 		}

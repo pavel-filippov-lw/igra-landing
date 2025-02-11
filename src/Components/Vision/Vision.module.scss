@@ -1,11 +1,11 @@
 .root {
 	.content {
 		margin-top: 63px;
-		margin-bottom: 40px;
+		margin-bottom: 60px;
 		gap: 15px;
 
 		.leftSide {
-			flex: 1 0 55%;
+			flex: 1 0 50%;
 
 			.title {
 				margin-bottom: 26px;
@@ -18,14 +18,15 @@
 				font-size: 18px;
 				font-weight: 400;
 				line-height: 30px;
+				min-height: 220px;
 			}
 		}
 
 		.image {
-			flex: 0 1 45%;
+			flex: 0 1 50%;
 			width: 100%;
-			background: center / contain no-repeat url('/src/Components/Manifesto/assets/pyramid.png');
-			transform: scale(1.4);
+			background: center / contain no-repeat url('/src/Components/Vision/assets/pyramid.png');
+			transform: scale(1.3);
 		}
 
 		@media screen and (max-width: $mobile) {

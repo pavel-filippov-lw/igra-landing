@@ -3,7 +3,6 @@ import { FC } from "react"
 import { Flex } from "~/shared/ui"
 
 import { ManifestoBenefits } from "../ManifestoBenefits"
-import { ManifestoVision } from "../ManifestoVision"
 import classes from './Manifesto.module.scss'
 
 export const Manifesto: FC = () => {
@@ -22,8 +21,7 @@ export const Manifesto: FC = () => {
         </div>
         <div className={classes.image} />
       </Flex>
-      <ManifestoBenefits className={classes.benefits} />
-      <ManifestoVision />
+      <ManifestoBenefits />
     </div>
   )
 }

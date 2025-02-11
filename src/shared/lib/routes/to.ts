@@ -6,6 +6,8 @@ class To {
   team = () => `/${Routes.team}`
 
   manifesto = () => `/${Routes.manifesto}`
+
+  vision = () => `/${Routes.vision}`
 }
 
 export const to = new To()

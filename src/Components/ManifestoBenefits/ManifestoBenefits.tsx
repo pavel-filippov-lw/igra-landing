@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { FC, Fragment } from "react"
 
 import { Flex, Icon } from "~/shared/ui"
@@ -37,16 +36,12 @@ const benefitsList = [
   },
 ] as { iconName: IconName, title: string, label: string[] }[]
 
-export interface ManifestoBenefitsProps {
-  className: string
-}
-
-export const ManifestoBenefits: FC<ManifestoBenefitsProps> = ({ className }) => {
+export const ManifestoBenefits: FC = () => {
   return (
     <Flex
       flexDirection='column'
       gap={21}
-      className={clsx(classes.root, className)}
+      className={classes.root}
     >
       {benefitsList.map((benefit, index) => (
         <Flex
