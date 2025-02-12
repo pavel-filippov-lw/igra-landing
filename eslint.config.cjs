@@ -175,7 +175,7 @@ module.exports = [{
     'max-len': [
       'warn',
       {
-        code: 120,
+        code: 140,
         ignoreStrings: true,
         ignorePattern: '^\\s*var\\s.+=\\s*require\\s*\\(',
         ignoreUrls: true,

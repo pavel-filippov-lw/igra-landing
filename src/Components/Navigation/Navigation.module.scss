@@ -5,6 +5,28 @@
 	text-transform: uppercase;
 	color: #6BD1C3;
 
+	.route {
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			bottom: -1px;
+			width: 0;
+			height: 2px;
+			background-color: #6BD1C3;
+			transition: width 0.3s ease, left 0.3s ease;
+		}
+
+		@include hover {
+			&::after {
+				width: 100%;
+				left: 0;
+			}
+		}
+	}
+
 	.separator {
 		width: 1px;
 		height: 14px;

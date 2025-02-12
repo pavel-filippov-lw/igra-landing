@@ -1,0 +1,46 @@
+.root {
+	.content {
+		margin-top: 63px;
+		margin-bottom: 40px;
+		gap: 15px;
+
+		.leftSide {
+			flex: 1 0 55%;
+
+			.title {
+				margin-bottom: 26px;
+				font-size: 44px;
+				font-weight: 400;
+				line-height: 48px;
+			}
+
+			.description {
+				font-size: 21px;
+				font-weight: 400;
+				line-height: 30px;
+			}
+		}
+
+		.image {
+			flex: 0 1 45%;
+			width: 100%;
+			background: center / contain no-repeat url('/src/Components/Manifesto/assets/pyramid.png');
+			transform: scale(1.4);
+		}
+
+		@media screen and (max-width: $mobile) {
+			flex-direction: column-reverse;
+			gap: 0;
+
+			.leftSide {
+				flex: 0 0 auto;
+			}
+
+			.image {
+				flex: 0 0 auto;
+				height: 300px;
+				transform: scale(1);
+			}
+		}
+	}
+}
