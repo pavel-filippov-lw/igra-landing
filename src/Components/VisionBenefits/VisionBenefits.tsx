@@ -12,7 +12,7 @@ const benefitsList = [
     label: [
       <>
         {'Although existing blockchain programmability layers have achieved significant adoption, we see they are '}
-        <span style={{ color: '#6BD1C3' }}>deadlocked by compromises</span>
+        <span sstyle={{ color: '#6BD1C3' }}>deadlocked by compromises</span>
         {' made in terms of scalability, decentralization, and security. We believe this is an inevitable consequence of choosing PoS as the core consensus principle and settling for a technical roadmap that promotes endless fragmentation. This approach merely produces variations of the same technological stack, offering little to no benefit for users, institutions, or retail participants alike.'}
       </>,
     ],
@@ -22,10 +22,10 @@ const benefitsList = [
     label: [
       <>
         {'Until recently, technological limitations prevented integrating modern VMs with PoW-based systems. While BitVM and zkVMs have made Bitcoin ZK rollups possible, native ZK verification on Bitcoin lacks a clear timeline. Even when implemented, these rollups can only use Bitcoin\'s base layer for settlement, '}
-        <span style={{ fontWeight: 700 }}>lacking data availability and sequencing capabilities.</span>
+        <span sstyle={{ color: '#6BD1C3' }}>lacking data availability and sequencing capabilities.</span>
       </>,
       <>
-        <span style={{ fontWeight: 700 }}>
+        <span sstyle={{ color: '#6BD1C3' }}>
           Ethereum's rollup-centric model has trapped its ecosystem in iterative prisoner's dilemma games
         </span>
         {', resulting in fragmented liquidity, limited scaling, and distorted economic incentives for base layer development.'}
@@ -36,7 +36,7 @@ const benefitsList = [
     iconName: 'cube_3',
     label: [
       <>
-        <span style={{ fontWeight: 700 }}>
+        <span sstyle={{ color: '#6BD1C3' }}>
           Kaspa BlockDAG represents an attempt to surpass the limits of Nakamoto consensus
         </span>
         {'. It prioritizes rapid transaction inclusion and control over transaction ordering in the ledger. Kaspa\'s vision is to create a ledger that operates at network speed limits, with an architecture supporting a programmability layers that inherits both the speed and security of its base layer.'}
@@ -48,7 +48,7 @@ const benefitsList = [
     label: [
       <>
         {'By establishing transaction ordering at L1 and deterministically derive the L2 state directly from the base layer, it eliminates the need for additional consensus mechanisms. '}
-        <span style={{ fontWeight: 700 }}>This approach combines the best of all existing architectures</span>
+        <span sstyle={{ color: '#6BD1C3' }}>This approach combines the best of all existing architectures</span>
         {': Bitcoin, Ethereum (rollup-centric roadmap), an Internet-speed version of Nakamoto base layer, a zk-based computation layer, and a Solana-like unified defragmented state.'}
       </>,
     ],
@@ -58,7 +58,7 @@ const benefitsList = [
     label: [
       <>
         {'We see this as a unique opportunity to build a new type of programmable system, one that transcends the limitations of its predecessors. Like its Aramaic meaning of "Rooftop", '}
-        <span style={{ fontWeight: 700 }}>
+        <span sstyle={{ color: '#6BD1C3' }}>
           Igra aims to be the unifying layer under which different decentralized virtual machines can thrive
         </span>
         {'.'}
@@ -70,9 +70,9 @@ const benefitsList = [
     label: [
       <>
         {'First, we plan to build an '}
-        <span style={{ fontWeight: 700 }}>L2 on top of Kaspa</span>
+        <span sstyle={{ color: '#6BD1C3' }}>L2 on top of Kaspa</span>
         {', with a canonical bridge between L1 and L2, supporting up to 3,000 TPS with sub-second finality. It will be '}
-        <span style={{ fontWeight: 700 }}>EVM-compatible</span>
+        <span sstyle={{ color: '#6BD1C3' }}>EVM-compatible</span>
         {', enabling seamless use of existing Ethereum tools.'}
       </>,
     ],
