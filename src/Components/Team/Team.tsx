@@ -72,7 +72,7 @@ const teamMembers = [
   },
   {
     photoUrl: deuelPhoto,
-    name: ['Deuel Horowitz', 'Ship\'s Counselor'],
+    name: ['Deuel Horowitz', 'Jurisconsultus'],
     role: 'Legal counsel',
     description: 'International lawyer and litigator ; ex-MOJ ; emerging technologies regulation',
     linkedinUrl: 'https://www.linkedin.com/in/deuel-horowitz-41840b20a/',
