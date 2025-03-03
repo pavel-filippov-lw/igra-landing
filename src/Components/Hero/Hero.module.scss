@@ -19,10 +19,6 @@
 		margin-top: 50px;
 		background: center / contain no-repeat url('/src/Components/Hero/assets/cube.png');
 		display: none;
-
-		&.isSafari {
-			display: block;
-		}
 	}
 
 	.video {
@@ -36,10 +32,6 @@
 		-webkit-background-clip: padding-box;
 		-webkit-backface-visibility: hidden;
 		will-change: transform, opacity;
-
-		&.isSafari {
-			display: none;
-		}
 	}
 
 	@media screen and (max-width: $mobile) {
