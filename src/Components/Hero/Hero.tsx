@@ -4,7 +4,8 @@ import { Flex } from "~/shared/ui"
 
 import { HeroBenefits } from "../HeroBenefits"
 import { HeroContent } from "../HeroContent"
-import cubeVideoSafari from './assets/cube.mov'
+import cubeVideoSafari from './assets/cube.hevc.mov'
+import cubeVideo from './assets/cube.webm'
 import classes from './Hero.module.scss'
 
 export const Hero: FC = () => {
@@ -24,8 +25,8 @@ export const Hero: FC = () => {
         playsInline
         className={classes.video}
       >
-        {/* <source src={cubeVideo} type="video/webm" /> */}
         <source src={cubeVideoSafari} type="video/mp4; codecs=hevc" />
+        <source src={cubeVideo} type="video/webm" />
       </video>
     </Flex>
   )
