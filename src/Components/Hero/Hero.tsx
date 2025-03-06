@@ -20,6 +20,7 @@ export const Hero: FC = () => {
         muted
         loop
         playsInline
+        preload='auto'
         className={classes.video}
       >
         <source src={cubeVideoSafari} type="video/mp4; codecs=&quot;hvc1&quot;" />
