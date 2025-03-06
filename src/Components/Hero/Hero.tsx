@@ -4,8 +4,8 @@ import { Flex } from "~/shared/ui"
 
 import { HeroBenefits } from "../HeroBenefits"
 import { HeroContent } from "../HeroContent"
-import cubeVideo from './assets/cube.webm'
 import cubeVideoSafari from './assets/cube.mov'
+import cubeVideo from './assets/cube.webm'
 import classes from './Hero.module.scss'
 
 export const Hero: FC = () => {
@@ -15,9 +15,6 @@ export const Hero: FC = () => {
         <HeroContent className={classes.content} />
         <HeroBenefits />
       </div>
-      <div
-        className={classes.image}
-      />
       <video
         autoPlay
         muted
