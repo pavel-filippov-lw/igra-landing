@@ -2,6 +2,8 @@ import axios from "axios"
 import { FC, useEffect } from "react"
 import useSWR from "swr"
 
+import classes from './Difficulty.module.scss'
+
 const LS_KEY = 'difficulty'
 const DEFAULT_DIFFICULTY = 1.45e+18
 
@@ -15,7 +17,7 @@ const getStoredDifficulty = (): number => {
   return stored ? parseFloat(stored) : DEFAULT_DIFFICULTY
 }
 
-export const DifficultyLabel: FC = () => {
+export const Difficulty: FC = () => {
   const { data } = useSWR(
     'https://api.minerstat.com/v2/coins?list=KAS',
     fetcher,
@@ -32,10 +34,12 @@ export const DifficultyLabel: FC = () => {
   }, [data])
 
   return (
-    <>
+    <div className={classes.root}>
       Secured by the
-      {` ${formatDifficulty(data)} `}
-      EH/s hash power
-    </>
+      <span className={classes.value}>
+        {` ${formatDifficulty(data)} `}
+      </span>
+      EH hash power
+    </div>
   )
 }

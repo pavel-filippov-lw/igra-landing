@@ -1,8 +1,8 @@
 import { FC } from "react"
 
-import { Flex } from "~/shared/ui"
+import { Button, Flex } from "~/shared/ui"
 
-import { HeroBenefits } from "../HeroBenefits"
+import { Difficulty } from "../Difficulty"
 import { HeroContent } from "../HeroContent"
 import cubeVideoSafari from './assets/cube.mov'
 import cubeVideo from './assets/cube.webm'
@@ -12,8 +12,21 @@ export const Hero: FC = () => {
   return (
     <Flex className={classes.root}>
       <div className={classes.leftSide}>
-        <HeroContent className={classes.content} />
-        <HeroBenefits />
+        <HeroContent
+          className={classes.content}
+        />
+        <Flex
+          gap={16}
+          className={classes.buttons}
+        >
+          <Button>
+            Build on IGRA
+          </Button>
+          <Button variant='secondary'>
+            Documentation
+          </Button>
+        </Flex>
+        <Difficulty />
       </div>
       <video
         autoPlay

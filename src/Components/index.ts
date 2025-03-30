@@ -1,6 +1,6 @@
+export * from './Difficulty'
 export * from './Header'
 export * from './Hero'
-export * from './HeroBenefits'
 export * from './HeroContent'
 export * from './Logo'
 export * from './Manifesto'

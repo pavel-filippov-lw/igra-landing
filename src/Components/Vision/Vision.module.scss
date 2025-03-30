@@ -29,7 +29,7 @@
 			transform: scale(1.3);
 		}
 
-		@media screen and (max-width: $mobile) {
+		@media screen and (max-width: $laptop) {
 			flex-direction: column-reverse;
 			gap: 0;
 

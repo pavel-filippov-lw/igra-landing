@@ -16,7 +16,7 @@
 			flex: 0 1 47%;
 			width: 100%;
 
-			@media screen and (max-width: $mobile) {
+			@media screen and (max-width: $laptop) {
 				flex-grow: 1;
 			}
 		}

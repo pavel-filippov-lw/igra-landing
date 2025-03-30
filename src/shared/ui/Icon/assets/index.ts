@@ -1,3 +1,4 @@
+import ArrowRight from './arrowRight.svg?react'
 import Cube_1 from './cube_1.svg?react'
 import Cube_2 from './cube_2.svg?react'
 import Cube_3 from './cube_3.svg?react'
@@ -11,6 +12,7 @@ import Telegram from './telegram.svg?react'
 import Twitter from './twitter.svg?react'
 
 export const icons = {
+  arrowRight: { Component: ArrowRight },
   github: { Component: Github },
   gitlab: { Component: Gitlab },
   telegram: { Component: Telegram },

@@ -16,14 +16,16 @@ export const HeroContent: FC<HeroContentProps> = ({ className }) => {
       gap={34}
       className={clsx(classes.root, className)}
     >
-      <Flex flexDirection='column' gap={16}>
+      <Flex flexDirection='column' gap={24}>
         <h1 className={classes.title}>
-          Real-time programmable layer on top of Kaspa PoW
+          Defy DeFi limitations
         </h1>
         <h2 className={classes.subtitle}>
-          Igra Network unlocks use cases for both retail
-          and institutional users that weren&rsquo;t feasible until now
+          Atomic programmability on a based rollup leveraging Kaspa BlockDAG.
         </h2>
+        <div className={classes.description}>
+          A chain for builders who want to build without limitations
+        </div>
       </Flex>
     </Flex>
   )

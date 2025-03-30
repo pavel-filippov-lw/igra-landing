@@ -11,6 +11,7 @@ const links = [
   { label: 'Manifesto', to: to.manifesto(), isPage: true },
   { label: 'Vision', to: to.vision(), isPage: true },
   { label: 'Team', to: to.team(), isPage: true },
+  { label: 'Documentation' },
   { label: 'Contact', to: 'mailto:team@igralabs.com' },
 ]
 

@@ -1,0 +1,56 @@
+.root {
+	width: fit-content;
+	user-select: none;
+	border: none;
+	cursor: pointer;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	padding: 0 30px;
+	border-radius: 21px;
+
+	font-family: $font;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 42px;
+	text-wrap: nowrap;
+
+	&.fullWidth {
+		width: 100%;
+	}
+
+	&:disabled {
+		pointer-events: none;
+		opacity: 0.25;
+	}
+
+	&.primary {
+		background-color: #6BD1C3;
+		color: #000000;
+
+		svg path {
+			fill: #000000;
+		}
+	}
+
+	&.secondary {
+		background-color: rgba(113, 159, 161, 0.3);
+		color: #FFFFFF;
+
+		svg path {
+			fill: #FFFFFF;
+		}
+	}
+
+	&.gold {
+		background-color: inherit;
+		border: 2px solid #CB9D4B;
+		color: #CB9D4B;
+
+		svg path {
+			fill: #CB9D4B;
+		}
+	}
+}
