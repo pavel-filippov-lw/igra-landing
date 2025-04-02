@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { FC } from "react"
 
-import { Flex } from "~/shared/ui"
+import { Button, Flex } from "~/shared/ui"
 
 import { Description } from "./Description"
 import classes from './HeroContent.module.scss'
@@ -18,6 +18,9 @@ export const HeroContent: FC<HeroContentProps> = ({ className }) => {
       className={clsx(classes.root, className)}
     >
       <Flex flexDirection='column' gap={24}>
+        <Button variant='gold'>
+          DEVNET IS LIVE!
+        </Button>
         <h1 className={classes.title}>
           Defy DeFi limitations
         </h1>
