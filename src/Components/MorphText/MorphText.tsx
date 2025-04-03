@@ -1,20 +1,11 @@
 import gsap from "gsap"
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
 
-const lines = [
-  'A chain for builders who want to build without limitations',
-  'A chain where applications can run seamlessly across different chains',
-  'A chain that is fast enough to avoid MEV headaches',
-  'A chain that’s as secure as Bitcoin',
-  'A chain that unleashes endless new possibilities for composable smart contracts',
-  'A chain that lets builders manage risk in real time',
-]
-
-export interface DescriptionProps {
-  className?: string
+export interface MorphTextProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ref'> {
+  lines: string[]
 }
 
-export const Description: FC<DescriptionProps> = ({ className }) => {
+export const MorphText: FC<MorphTextProps> = ({ lines, className, ...props }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [index, setIndex] = useState(0)
 
@@ -68,7 +59,11 @@ export const Description: FC<DescriptionProps> = ({ className }) => {
   }, [index])
 
   return (
-    <div ref={ref} className={className}>
+    <div
+      ref={ref}
+      {...props}
+      className={className}
+    >
       {lines[index]}
     </div>
   )

@@ -1,7 +1,6 @@
 .root {
 	.content {
-		padding-top: 57px;
-		margin-bottom: 77px;
+		padding-top: 120px;
 
 		.title {
 			font-family: $font-secondary;
@@ -11,38 +10,19 @@
 			color: #6BD1C3;
 		}
 
-		.subtitle {
-			margin-left: 3px;
-			font-family: $font-secondary;
-			font-size: 26px;
-			line-height: 40px;
-			font-weight: 400;
-			color: #6BD1C3;
-		}
-
 		.description {
-			font-size: 18px;
-			line-height: 36px;
-			color: #C7C7C7;
+			margin-left: 3px;
+			margin-bottom: 3px;
+			font-family: $font-secondary;
+			font-size: 20px;
+			line-height: 40px;
 		}
-	}
-
-	.buttons {
-		margin-bottom: 64px;
 	}
 
 	@media screen and (max-width: $tablet) {
 		.content {
 			margin-top: -80px;
 			margin-bottom: 43px;
-		}
-
-		.buttons {
-			flex-direction: column;
-
-			>button {
-				width: 100%;
-			}
 		}
 	}
 

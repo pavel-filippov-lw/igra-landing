@@ -8,6 +8,7 @@ import { Flex } from "~/shared/ui"
 import classes from './Navigation.module.scss'
 
 const links = [
+  { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
   { label: 'Manifesto', to: to.manifesto(), isPage: true },
   { label: 'Vision', to: to.vision(), isPage: true },
   { label: 'Team', to: to.team(), isPage: true },

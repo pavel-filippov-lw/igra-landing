@@ -8,6 +8,8 @@ class To {
   manifesto = () => `/${Routes.manifesto}`
 
   vision = () => `/${Routes.vision}`
+
+  ecosystem = () => `/${Routes.ecosystem}`
 }
 
 export const to = new To()
