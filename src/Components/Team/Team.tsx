@@ -3,7 +3,6 @@ import { FC, Fragment } from "react"
 import { Flex } from "~/shared/ui"
 
 import { TeamMemberCard } from "../TeamMemberCard"
-import boatswainPhoto from './assets/boatswain.png'
 import denPhoto from './assets/den.png'
 import deuelPhoto from './assets/deuel.png'
 import ilyaPhoto from './assets/ilya.png'
@@ -13,7 +12,6 @@ import romanPhoto from './assets/rom.png'
 import igorPhoto from './assets/new1.png'
 import behzadPhoto from './assets/new2.png'
 import vadimPhoto from './assets/new3.png'
-import sailorPhoto from './assets/sailor.png'
 
 import classes from './Team.module.scss'
 
