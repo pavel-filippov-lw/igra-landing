@@ -20,6 +20,8 @@
 			width: calc((100% - 80px) / 3);
 			min-width: 400px;
 			min-height: 265px;
+			opacity: 0;
+			transform: translateY(15%);
 		}
 	}
 
@@ -30,6 +32,8 @@
 
 		.card {
 			max-width: 400px;
+			opacity: 0;
+			transform: translateY(15%);
 		}
 	}
 

@@ -33,7 +33,10 @@ export const Hero: FC = () => {
         <h2 className={classes.subtitle}>
           Atomic programmability on a based rollup leveraging Kaspa BlockDAG.
         </h2>
-        <MorphText lines={descriptionLines} className={classes.description} />
+        <MorphText
+          lines={descriptionLines}
+          className={classes.description}
+        />
       </Flex>
       <Flex
         gap={16}

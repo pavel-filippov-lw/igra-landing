@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { FC, ReactNode } from "react"
+import { forwardRef, ReactNode } from "react"
 
 import { Flex, FlexProps, Icon } from "~/shared/ui"
 import { IconName } from "~/shared/ui/Icon/assets"
@@ -19,9 +19,16 @@ export interface CardProps extends Benefit, FlexProps {
   className?: string
 }
 
-export const Card: FC<CardProps> = ({ icon, title, description, className, ...props }) => {
+export const Card = forwardRef<HTMLDivElement, CardProps>(({
+  icon,
+  title,
+  description,
+  className,
+  ...props
+}, ref) => {
   return (
     <Flex
+      ref={ref}
       flexDirection='column'
       alignItems='center'
       gap={15}
@@ -50,4 +57,4 @@ export const Card: FC<CardProps> = ({ icon, title, description, className, ...pr
       </Flex>
     </Flex>
   )
-}
+})

@@ -1,4 +1,5 @@
-import { FC, Fragment } from "react"
+import gsap from "gsap"
+import { FC, Fragment, useEffect, useRef } from "react"
 
 import { Flex } from "~/shared/ui"
 
@@ -107,6 +108,33 @@ const unlocksDeFiBenefits: Benefit[] = [
 ]
 
 export const HeroBenefits: FC = () => {
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        gsap.to(entry.target, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+        })
+      }
+    })
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.3,
+    })
+
+    cardRefs.current.forEach(card => {
+      if (card) observer.observe(card)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <Flex
       flexDirection='column'
@@ -118,7 +146,9 @@ export const HeroBenefits: FC = () => {
         alignItems='center'
         gap={40}
       >
-        <h3 className={classes.title}>Igra will unlock next generation of dApps and protocols</h3>
+        <h3 className={classes.title}>
+          Igra will unlock next generation of dApps and protocols
+        </h3>
         <Flex
           justifyContent='center'
           gap={40}
@@ -128,6 +158,7 @@ export const HeroBenefits: FC = () => {
           {nextGenBenefits.map((benefit, index) => (
             <Fragment key={index}>
               <Card
+                ref={(el) => cardRefs.current.push(el)}
                 {...benefit}
                 className={classes.card}
               />
@@ -144,17 +175,22 @@ export const HeroBenefits: FC = () => {
           flexDirection='column'
           alignItems='center'
         >
-          <h3 className={classes.title}>Atomic Synchronous Composability</h3>
+          <h3 className={classes.title}>
+            Atomic Synchronous Composability
+          </h3>
           <div className={classes.composability}>
             The ability to execute multiple operations across separate smart contracts in a single transaction,
             without the risk of a partial failure
           </div>
         </Flex>
-        <h3 className={classes.title}>Unlocks DeFi Apps that were impossible till now</h3>
+        <h3 className={classes.title}>
+          Unlocks DeFi Apps that were impossible till now
+        </h3>
         <div className={classes.unlocksDeFi}>
           {unlocksDeFiBenefits.map((benefit, index) => (
             <Fragment key={index}>
               <Card
+                ref={(el) => cardRefs.current.push(el)}
                 {...benefit}
                 className={classes.card}
               />
