@@ -17,6 +17,7 @@ const projects: Project[] = [
   {
     logoUrl: kspr,
     name: 'KSPR',
+    to: 'https://kspr-bot.xyz/'
   },
   {
     logoUrl: kaspa,
@@ -26,34 +27,42 @@ const projects: Project[] = [
   {
     logoUrl: zealous,
     name: 'Zealous Swap',
+    to: 'https://www.zealousswap.com/'
   },
   {
     logoUrl: nacho,
     name: 'Nacho the Kat',
+    to: 'https://www.nachowyborski.xyz/'
   },
   {
     logoUrl: crestdev,
-    name: 'Crest Development Studio',
+    name: 'Crest Development',
+    to: 'http://crestdev.pro/'
   },
   {
     logoUrl: kastle,
     name: 'Kastle',
+    to: 'https://kastle.cc/'
   },
   {
     logoUrl: kasunder,
     name: 'Kasunder',
+    to: 'https://kasunder.com'
   },
   {
     logoUrl: sea,
     name: 'Sea Swap',
+    to: 'https://x.com/SeaSwapIO'
   },
   {
     logoUrl: kasplore,
     name: 'Kasplore',
+    to: 'https://kasplore.com'
   },
   {
     logoUrl: candy,
     name: 'Candy Swap',
+    to: 'https://candyswap.gg/'
   },
 ]
 

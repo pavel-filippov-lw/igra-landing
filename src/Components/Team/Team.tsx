@@ -10,8 +10,13 @@ import ilyaPhoto from './assets/ilya.png'
 import mikePhoto from './assets/mike.png'
 import pavelPhoto from './assets/pavel.png'
 import romanPhoto from './assets/rom.png'
+import igorPhoto from './assets/new1.png'
+import behzadPhoto from './assets/new2.png'
+import vadimPhoto from './assets/new3.png'
 import sailorPhoto from './assets/sailor.png'
+
 import classes from './Team.module.scss'
+
 
 const teamMembers = [
   {
@@ -22,10 +27,10 @@ const teamMembers = [
     linkedinUrl: 'https://www.linkedin.com/in/emdin/',
   },
   {
-    photoUrl: boatswainPhoto,
-    name: ['***** ********', 'Navigator and Boatswain'],
+    photoUrl: vadimPhoto,
+    name: ['Vadim Melnikov', 'Navigator and Boatswain'],
     role: 'CTO, VP R&D',
-    description: 'To be disclosed',
+    description: 'ex chief architect @ Panther protocol, experienced engineering leader and blockchain architect ',
     linkedinUrl: '',
   },
   {
@@ -50,18 +55,18 @@ const teamMembers = [
     linkedinUrl: 'https://www.linkedin.com/in/arosov/',
   },
   {
-    photoUrl: sailorPhoto,
-    name: ['**** ********', 'Sailor'],
+    photoUrl: igorPhoto,
+    name: ['Igor Markelov', 'Sailor'],
     role: 'Software engineer',
-    description: 'To be disclosed',
+    description: 'Ph.D. in Computational Sciences, ex Architect/Tech Lead @ Panther Protocol, DevCon speaker, ETHGlobal hackathon winner',
     linkedinUrl: '',
   },
   {
-    photoUrl: sailorPhoto,
-    name: ['****** *****', 'Sailor'],
+    photoUrl: behzadPhoto,
+    name: ['Behzad Pournouri', 'Sailor'],
     role: 'Software engineer',
-    description: 'To be disclosed',
-    linkedinUrl: '',
+    description: 'Hyperledger Fabric, Solidity, Rust, Cairo, JavaScript',
+    linkedinUrl: 'https://www.linkedin.com/in/bitnician/',
   },
   {
     photoUrl: romanPhoto,
