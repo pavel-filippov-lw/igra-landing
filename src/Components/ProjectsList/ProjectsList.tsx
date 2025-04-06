@@ -21,6 +21,7 @@ const projects: Project[] = [
   {
     logoUrl: kaspa,
     name: 'Kaspa.com',
+    to: 'https://kaspa.com',
   },
   {
     logoUrl: zealous,
@@ -61,7 +62,9 @@ export const ProjectsList: FC = () => {
     <div className={classes.root}>
       {projects.map((project, index) => (
         <Fragment key={index}>
-          <Card {...project} />
+          <a href={project.to}>
+            <Card {...project} />
+          </a>
         </Fragment>
       ))}
     </div>
