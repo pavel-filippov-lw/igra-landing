@@ -1,0 +1,57 @@
+.root {
+	text-align: center;
+
+	.title {
+		font-family: $font-secondary;
+		font-size: 42px;
+		line-height: 72px;
+		font-weight: 400;
+		color: #6BD1C3;
+	}
+
+	.composability {
+		font-size: 24px;
+		line-height: 32px;
+		color: #6BD1C3;
+	}
+
+	.nextGen {
+		.card {
+			width: calc((100% - 80px) / 3);
+			min-width: 400px;
+			min-height: 265px;
+		}
+	}
+
+	.unlocksDeFi {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 40px;
+
+		.card {
+			max-width: 400px;
+		}
+	}
+
+	@media screen and (max-width: $tablet) {
+		.title {
+			font-size: 36px;
+			line-height: 58px;
+		}
+
+		.nextGen {
+			.card {
+				width: 100%;
+				min-width: 0;
+			}
+		}
+
+		.unlocksDeFi {
+			grid-template-columns: 1fr;
+
+			.card {
+				max-width: 100%;
+			}
+		}
+	}
+}

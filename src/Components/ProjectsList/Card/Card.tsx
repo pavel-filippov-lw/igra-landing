@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Flex } from "~/shared/ui"
+import { Flex, FlexProps } from "~/shared/ui"
 
 import classes from './Card.module.scss'
 
@@ -9,7 +9,7 @@ export interface Project {
   name: string
 }
 
-export interface CardProps extends Project {}
+export interface CardProps extends Project, FlexProps {}
 
 export const Card: FC<CardProps> = ({ logoUrl, name, ...props }) => {
   return (
