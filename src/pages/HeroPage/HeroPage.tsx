@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Hero, HeroBenefits, PageLayout } from "~/Components"
+import { Hero, HeroBenefits, PageLayout, Roadmap } from "~/Components"
 import { Flex } from "~/shared/ui"
 
 export const HeroPage: FC = () => {
@@ -12,6 +12,7 @@ export const HeroPage: FC = () => {
       >
         <Hero />
         <HeroBenefits />
+        <Roadmap />
       </Flex>
     </PageLayout>
   )
