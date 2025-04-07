@@ -24,7 +24,7 @@ const nextGenBenefits: Benefit[] = [
       height: 49,
     },
     title: 'Protected by Bitcoin-grade security',
-    description: 'Validity of Igra state is secured by 1.5 Exahash / s',
+    description: 'Validity of Igra state is secured by 1.1 Exahash',
   },
   {
     icon: {

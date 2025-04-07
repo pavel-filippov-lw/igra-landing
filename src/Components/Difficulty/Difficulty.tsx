@@ -14,7 +14,7 @@ const fetcher = (url: string) => axios.get(url).then(({ data }) => data[0].diffi
 const getStoredDifficulty = (): number => {
   const stored = localStorage.getItem(LS_KEY)
 
-  return stored ? parseFloat(stored) : DEFAULT_DIFFICULTY
+  return stored ? 0.98 : DEFAULT_DIFFICULTY
 }
 
 export const Difficulty: FC = () => {
