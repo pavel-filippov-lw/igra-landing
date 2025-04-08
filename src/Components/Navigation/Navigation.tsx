@@ -9,10 +9,10 @@ import classes from './Navigation.module.scss'
 
 const links = [
   { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
+  { label: 'Documentation', to: 'https://docs.igralabs.com' },
+  { label: 'Team', to: to.team(), isPage: true },
   { label: 'Manifesto', to: to.manifesto(), isPage: true },
   { label: 'Vision', to: to.vision(), isPage: true },
-  { label: 'Team', to: to.team(), isPage: true },
-  { label: 'Documentation' },
   { label: 'Contact', to: 'mailto:team@igralabs.com' },
 ]
 

@@ -24,9 +24,6 @@ export const Hero: FC = () => {
         gap={24}
         className={classes.content}
       >
-        <Button variant='gold'>
-          DEVNET IS LIVE!
-        </Button>
         <h1 className={classes.title}>
           Defy DeFi limitations
         </h1>
@@ -42,12 +39,16 @@ export const Hero: FC = () => {
         gap={16}
         className={classes.buttons}
       >
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeASfHT6R398RivDiM7qgtYDiih1rYk4b4kDOskyLeiXWRsuw/viewform">
         <Button>
           Build on IGRA
         </Button>
+        </a>
+        <a href="https://docs.igralabs.com/">
         <Button variant='secondary'>
           Documentation
         </Button>
+        </a>
       </Flex>
       <Difficulty />
     </CubeSection>

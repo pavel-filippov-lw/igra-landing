@@ -36,7 +36,7 @@ export const Roadmap: FC = () => {
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 Q3</h5>
                 <div className={classes.description}>
-                  Incentivized mainnetToken launch
+                  Incentivized mainnet Token launch
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
@@ -50,7 +50,7 @@ export const Roadmap: FC = () => {
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2026 Q3</h5>
+                <h5 className={classes.title}>2027</h5>
                 <div className={classes.description}>
                   VM-agnostic, scalable sync atomic composability
                 </div>
@@ -67,7 +67,9 @@ export const Roadmap: FC = () => {
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 Q2</h5>
                 <div className={classes.description}>
-                  ncentivized testnet on Kaspa TN10, up to 3,000 TPSPre-liquid token
+                  Incentivized testnet on Kaspa TN10<br/>
+                  Pre-liquid token<br/>
+                  Audit by the core team 
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
