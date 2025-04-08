@@ -1,1 +1,0 @@
-export * from './DifficultyLabel.tsx'

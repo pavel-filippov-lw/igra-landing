@@ -1,0 +1,37 @@
+.root {
+	.content {
+		padding-top: 120px;
+
+		.title {
+			font-family: $font-secondary;
+			font-size: 78px;
+			line-height: 86px;
+			font-weight: 400;
+			color: #6BD1C3;
+		}
+
+		.description {
+			margin-left: 3px;
+			margin-bottom: 3px;
+			font-family: $font-secondary;
+			font-size: 20px;
+			line-height: 40px;
+		}
+	}
+
+	@media screen and (max-width: $tablet) {
+		.content {
+			margin-top: -80px;
+			margin-bottom: 43px;
+		}
+	}
+
+	@media screen and (max-width: $mobile) {
+		.content {
+			.title {
+				font-size: 56px;
+				line-height: 68px;
+			}
+		}
+	}
+}

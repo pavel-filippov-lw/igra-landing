@@ -1,0 +1,40 @@
+.root {
+	&.isClickable {
+		cursor: pointer;
+
+		.name {
+			position: relative;
+
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -6px;
+				width: 0;
+				height: 2px;
+				background-color: #6BD1C3;
+				transition: width 0.3s ease;
+			}
+		}
+
+		@include hover {
+			.name {
+				&::after {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	.logo {
+		width: 64px;
+		aspect-ratio: 1/1;
+	}
+
+	.name {
+		font-family: $font-secondary;
+		font-size: 20px;
+		color: #6BD1C3;
+		text-align: center;
+	}
+}
