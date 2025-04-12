@@ -1,6 +1,6 @@
 import { FC, Fragment } from "react"
 
-import candy from './assets/candy.png'
+import candy from './assets/candyswap.png'
 import crestdev from './assets/crestdev.png'
 import kaspa from './assets/kaspa.png'
 import kasplore from './assets/kasplore.png'
