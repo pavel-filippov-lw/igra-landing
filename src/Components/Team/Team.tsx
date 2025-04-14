@@ -39,6 +39,13 @@ const teamMembers = [
     linkedinUrl: 'https://www.linkedin.com/in/denis-mashkevich-78b6aa/',
   },
   {
+    photoUrl: igorPhoto,
+    name: ['Igor Markelov', 'Bowman'],
+    role: 'Head of Engineering',
+    description: 'Ph.D. in Computational Sciences, ex Architect/Tech Lead @ Panther Protocol, DevCon speaker, ETHGlobal hackathon winner',
+    linkedinUrl: '',
+  },
+  {
     photoUrl: mikePhoto,
     name: ['Mike Zak', 'Sailor'],
     role: 'Blockchain Developer',
@@ -51,13 +58,6 @@ const teamMembers = [
     role: 'Blockchain Developer',
     description: 'Ex-Intel, embedded systems, Rust, C++',
     linkedinUrl: 'https://www.linkedin.com/in/arosov/',
-  },
-  {
-    photoUrl: igorPhoto,
-    name: ['Igor Markelov', 'Bowman'],
-    role: 'Software engineer',
-    description: 'Ph.D. in Computational Sciences, ex Architect/Tech Lead @ Panther Protocol, DevCon speaker, ETHGlobal hackathon winner',
-    linkedinUrl: '',
   },
   {
     photoUrl: behzadPhoto,
