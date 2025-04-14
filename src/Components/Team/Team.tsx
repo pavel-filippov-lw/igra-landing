@@ -54,7 +54,7 @@ const teamMembers = [
   },
   {
     photoUrl: igorPhoto,
-    name: ['Igor Markelov', 'Sailor'],
+    name: ['Igor Markelov', 'Bowman'],
     role: 'Software engineer',
     description: 'Ph.D. in Computational Sciences, ex Architect/Tech Lead @ Panther Protocol, DevCon speaker, ETHGlobal hackathon winner',
     linkedinUrl: '',
