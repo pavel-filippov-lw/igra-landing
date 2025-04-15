@@ -26,7 +26,7 @@ const teamMembers = [
   },
   {
     photoUrl: vadimPhoto,
-    name: ['Vadim Melnikov', 'Navigator and Boatswain'],
+    name: ['Vadim Konstantinov', 'Navigator and Boatswain'],
     role: 'CTO, VP R&D',
     description: 'ex chief architect @ Panther protocol, experienced engineering leader and blockchain architect ',
     linkedinUrl: '',
