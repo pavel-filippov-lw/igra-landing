@@ -1,0 +1,141 @@
+.root {
+	.title {
+		font-family: $font-secondary;
+		font-size: 42px;
+		line-height: 72px;
+		font-weight: 400;
+		color: #6BD1C3;
+		text-align: center;
+	}
+
+	.positioner {
+		position: relative;
+		padding-bottom: 400px;
+
+		.bg {
+			width: 100vw;
+			height: 950px;
+			background: center / 100% 100% no-repeat url('./assets/bg.png');
+
+			position: absolute;
+			top: 0;
+			z-index: -2;
+		}
+
+		.wrapper {
+			width: 100vw;
+
+			.roadmap {
+				position: relative;
+				width: 100vw;
+				height: 500px;
+
+				&::after {
+					content: '';
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					width: 90%;
+					height: 2px;
+					background-color: #6BD1C3;
+				}
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					width: 95%;
+					height: 80px;
+					background: radial-gradient(ellipse at center, #0F7584 0%, rgba(10, 123, 140, 0.6) 31%, rgba(40, 26, 24, 0) 100%);
+					filter: blur(30px);
+				}
+
+				.content {
+					position: relative;
+					width: 90%;
+					height: 50%;
+					margin: 0 auto;
+
+					.card {
+						position: relative;
+						max-width: 210px;
+						height: 100%;
+
+						.title {
+							font-family: $font-secondary;
+							font-size: 28px;
+							font-weight: 600;
+							color: #6BD1C3;
+							margin-right: auto;
+						}
+
+						.description {
+							font-family: $font-secondary;
+							font-size: 20px;
+							line-height: 26px;
+						}
+
+						.dot {
+							position: absolute;
+							top: 100%;
+							left: 0;
+							transform: translateY(-50%);
+							width: 28px;
+							height: 28px;
+							border-radius: 50%;
+							background-color: #6BD1C3;
+						}
+
+						.stick {
+							position: absolute;
+							top: calc(100% - 25px);
+							left: 14px;
+							transform: translateY(-100%);
+							width: 1px;
+							height: 45px;
+							background-color: #979797;
+							z-index: -1;
+						}
+					}
+
+					&.bottom {
+						width: 70%;
+
+						.card {
+							justify-content: end;
+
+							.dot {
+								top: 0;
+							}
+
+							.stick {
+								top: 25px;
+								transform: translateY(0);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $laptop) {
+		.positioner {
+			.wrapper {
+				overflow-x: auto;
+
+				&::-webkit-scrollbar {
+					display: none;
+				}
+
+				.roadmap {
+					min-width: 950px;
+					width: auto;
+				}
+			}
+		}
+	}
+}

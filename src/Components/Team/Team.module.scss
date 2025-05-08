@@ -3,10 +3,12 @@
 	margin-top: 63px;
 
 	.title {
+		font-family: $font-secondary;
 		margin-bottom: 67px;
-		font-size: 44px;
-		line-height: 48px;
+		font-size: 78px;
+		line-height: 86px;
 		font-weight: 400;
+		color: #6BD1C3;
 	}
 
 	.content {
@@ -16,7 +18,7 @@
 			flex: 0 1 47%;
 			width: 100%;
 
-			@media screen and (max-width: $mobile) {
+			@media screen and (max-width: $laptop) {
 				flex-grow: 1;
 			}
 		}

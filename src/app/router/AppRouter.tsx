@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { BrowserRouter, Navigate, Outlet, Route, Routes as ReactRoutes } from 'react-router-dom'
 
-import { HeroPage, ManifestoPage, TeamPage, VisionPage } from '~/pages'
+import { EcosystemPage, HeroPage, ManifestoPage, TeamPage, VisionPage } from '~/pages'
 import { Routes, to } from '~/shared/lib'
 
 export const AppRouter: FC = () => {
@@ -14,6 +14,7 @@ export const AppRouter: FC = () => {
           <Route path={Routes.team} element={<TeamPage />} />
           <Route path={Routes.manifesto} element={<ManifestoPage />} />
           <Route path={Routes.vision} element={<VisionPage />} />
+          <Route path={Routes.ecosystem} element={<EcosystemPage />} />
           <Route path="*" element={<Navigate to={to.hero()} />} />
         </Route>
       </ReactRoutes>

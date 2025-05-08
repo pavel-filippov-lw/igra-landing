@@ -3,4 +3,5 @@ export const Routes = {
   team: 'team',
   manifesto: 'manifesto',
   vision: 'vision',
+  ecosystem: 'ecosystem',
 }

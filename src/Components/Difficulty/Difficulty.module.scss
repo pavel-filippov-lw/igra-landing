@@ -1,0 +1,31 @@
+.root {
+	font-family: $font-secondary;
+	font-size: 24px;
+	line-height: 40px;
+	color: #A2A2A2;
+
+	.value {
+		background: linear-gradient(120deg, #CB9D4B, #6BD1C3, #A2A2A2);
+		background-size: 300% 300%;
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		animation: gradientMove 4s infinite ease-in-out;
+		text-shadow: 0px 0px 20px rgba(75, 180, 160, 0.6), 0px 0px 30px rgba(107, 209, 195, 0.5);
+		font-weight: 600;
+	}
+}
+
+@keyframes gradientMove {
+	0% {
+		background-position: 0% 0%;
+	}
+
+	50% {
+		background-position: 100% 100%;
+	}
+
+	100% {
+		background-position: 0% 0%;
+	}
+}

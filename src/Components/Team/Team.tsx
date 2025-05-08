@@ -3,15 +3,18 @@ import { FC, Fragment } from "react"
 import { Flex } from "~/shared/ui"
 
 import { TeamMemberCard } from "../TeamMemberCard"
-import boatswainPhoto from './assets/boatswain.png'
 import denPhoto from './assets/den.png'
 import deuelPhoto from './assets/deuel.png'
 import ilyaPhoto from './assets/ilya.png'
 import mikePhoto from './assets/mike.png'
 import pavelPhoto from './assets/pavel.png'
 import romanPhoto from './assets/rom.png'
-import sailorPhoto from './assets/sailor.png'
+import igorPhoto from './assets/new1.png'
+import behzadPhoto from './assets/new2.png'
+import vadimPhoto from './assets/new3.png'
+
 import classes from './Team.module.scss'
+
 
 const teamMembers = [
   {
@@ -22,10 +25,10 @@ const teamMembers = [
     linkedinUrl: 'https://www.linkedin.com/in/emdin/',
   },
   {
-    photoUrl: boatswainPhoto,
-    name: ['***** ********', 'Navigator and Boatswain'],
+    photoUrl: vadimPhoto,
+    name: ['Vadim Konstantinov', 'Navigator and Boatswain'],
     role: 'CTO, VP R&D',
-    description: 'To be disclosed',
+    description: 'ex chief architect @ Panther protocol, experienced engineering leader and blockchain architect ',
     linkedinUrl: '',
   },
   {
@@ -34,6 +37,13 @@ const teamMembers = [
     role: 'Chief of Strategy, IT/Devops',
     description: 'Founder and engineer with 25 years in software development, 18 years leading teams, ex teamlead @ DAGlabs',
     linkedinUrl: 'https://www.linkedin.com/in/denis-mashkevich-78b6aa/',
+  },
+  {
+    photoUrl: igorPhoto,
+    name: ['Igor Markelov', 'Bowman'],
+    role: 'Head of Engineering',
+    description: 'Ph.D. in Computational Sciences, ex Architect/Tech Lead @ Panther Protocol, DevCon speaker, ETHGlobal hackathon winner',
+    linkedinUrl: '',
   },
   {
     photoUrl: mikePhoto,
@@ -50,18 +60,11 @@ const teamMembers = [
     linkedinUrl: 'https://www.linkedin.com/in/arosov/',
   },
   {
-    photoUrl: sailorPhoto,
-    name: ['**** ********', 'Sailor'],
+    photoUrl: behzadPhoto,
+    name: ['Behzad Pournouri', 'Sailor'],
     role: 'Software engineer',
-    description: 'To be disclosed',
-    linkedinUrl: '',
-  },
-  {
-    photoUrl: sailorPhoto,
-    name: ['****** *****', 'Sailor'],
-    role: 'Software engineer',
-    description: 'To be disclosed',
-    linkedinUrl: '',
+    description: 'Hyperledger Fabric, Solidity, Rust, Cairo, JavaScript',
+    linkedinUrl: 'https://www.linkedin.com/in/bitnician/',
   },
   {
     photoUrl: romanPhoto,

@@ -1,36 +1,57 @@
 .root {
-	gap: 15px;
-	background-color: transparent;
-
-	.leftSide {
-		flex: 1 0 auto;
-	}
-
 	.content {
 		padding-top: 57px;
-		margin-bottom: 43px;
+		margin-bottom: 77px;
+
+		.title {
+			font-family: $font-secondary;
+			font-size: 78px;
+			line-height: 86px;
+			font-weight: 400;
+			color: #6BD1C3;
+		}
+
+		.subtitle {
+			margin-left: 3px;
+			font-family: $font-secondary;
+			font-size: 26px;
+			line-height: 40px;
+			font-weight: 400;
+			color: #6BD1C3;
+		}
+
+		.description {
+			font-size: 18px;
+			line-height: 36px;
+			color: #C7C7C7;
+		}
 	}
 
-	.video {
-		flex: 0 1 auto;
-		width: 100%;
-		max-width: 500px;
-		transform: translateY(-10%);
-		background: transparent;
+	.buttons {
+		margin-bottom: 64px;
 	}
 
-	@media screen and (max-width: $mobile) {
-		flex-direction: column-reverse;
-		gap: 0;
-
+	@media screen and (max-width: $tablet) {
 		.content {
 			margin-top: -80px;
 			margin-bottom: 43px;
 		}
 
-		.video {
-			align-self: center;
-			transform: translateY(0);
+		.buttons {
+			flex-direction: column;
+
+			>button {
+				width: 100%;
+			}
+		}
+	}
+
+	@media screen and (max-width: $mobile) {
+		.content {
+			.title {
+				font-size: 56px;
+				line-height: 68px;
+			}
 		}
 	}
 }
