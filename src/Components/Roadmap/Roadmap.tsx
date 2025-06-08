@@ -28,7 +28,7 @@ export const Roadmap: FC = () => {
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 Q1</h5>
                 <div className={classes.description}>
-                  Invite-only devnet with core development infrastructure
+                  <b>Dromon:</b> Invite-only devnet with core development infrastructure
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
@@ -36,7 +36,7 @@ export const Roadmap: FC = () => {
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 Q3</h5>
                 <div className={classes.description}>
-                  Incentivized mainnet Token launch
+                  <b>Carrack:</b> Incentivized mainnet<br/>Token launch
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
@@ -65,11 +65,10 @@ export const Roadmap: FC = () => {
               <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.bottom)}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2025 Q2</h5>
+                <h5 className={classes.title}>2025 Q4</h5>
                 <div className={classes.description}>
-                  Incentivized testnet on Kaspa TN10<br/>
+                  <b>Caravel:</b> Incentivized testnet on Kaspa TN10<br/>
                   Pre-liquid token<br/>
-                  Audit by the core team 
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
@@ -77,7 +76,7 @@ export const Roadmap: FC = () => {
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 Q4</h5>
                 <div className={classes.description}>
-                  Mainnet up to 3,000 TPS, core DeFi infrastructure
+                  <b>Galleon:</b> Mainnet up to 3,000 TPS, core DeFi infrastructure
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
@@ -85,7 +84,7 @@ export const Roadmap: FC = () => {
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2026 Q2</h5>
                 <div className={classes.description}>
-                  Mainnet with ZKVM support, settlement on Ethereum
+                  Mainnet with ZKVM support
                 </div>
               </Flex>
             </Flex>
