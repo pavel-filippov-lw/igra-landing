@@ -65,7 +65,7 @@ export const Roadmap: FC = () => {
               <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.bottom)}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2025 Q4</h5>
+                <h5 className={classes.title}>2025 July</h5>
                 <div className={classes.description}>
                   <b>Caravel:</b> Incentivized testnet on Kaspa TN10<br/>
                   Pre-liquid token<br/>
