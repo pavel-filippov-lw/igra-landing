@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Button, Flex } from "~/shared/ui"
+import { Button, Flex, Icon } from "~/shared/ui"
 
 import { CubeSection } from "../CubeSection"
 import { Difficulty } from "../Difficulty"
@@ -30,6 +30,24 @@ export const Hero: FC = () => {
         <h2 className={classes.subtitle}>
           Atomic programmability on a based rollup leveraging Kaspa BlockDAG.
         </h2>
+        <Flex alignItems='center' gap={20} flexWrap='wrap'>
+          <Icon name='cube_5' size={40} />
+          <div className={classes.testnetText}>
+            Caravel testnet launch underway!
+          </div>
+          <a
+            href="https://x.com/igra_labs/status/1946279111346819436?s=46&t=orsNfFppjKLweCyxLsiajQ"
+            target='_blank'
+            rel='noreferrer'
+          >
+            <Button variant='gold'>
+              <Flex gap={8} alignItems='center'>
+                <Icon name='cube_2' size={16} />
+                Learn more
+              </Flex>
+            </Button>
+          </a>
+        </Flex>
         <MorphText
           lines={descriptionLines}
           className={classes.description}
