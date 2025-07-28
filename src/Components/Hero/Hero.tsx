@@ -42,7 +42,7 @@ export const Hero: FC = () => {
           >
             <Button variant='gold'>
               <Flex gap={8} alignItems='center'>
-                <Icon name='cube_2' size={16} />
+                {/* <Icon name='cube_2' size={16} /> */}
                 Learn more
               </Flex>
             </Button>
