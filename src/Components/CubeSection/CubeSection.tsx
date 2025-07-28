@@ -3,8 +3,8 @@ import { FC, PropsWithChildren } from "react"
 
 import { Flex, FlexProps } from "~/shared/ui"
 
-import cubeVideoSafari from './assets/cube.mov'
-import cubeVideo from './assets/cube.webm'
+import cubeVideoSafari from './assets/caravel.mov'
+import cubeVideo from './assets/caravel.webm'
 import classes from './CubeSection.module.scss'
 
 export interface CubeSectionProps extends PropsWithChildren, FlexProps {}
