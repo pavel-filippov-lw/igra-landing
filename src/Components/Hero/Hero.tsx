@@ -31,7 +31,7 @@ export const Hero: FC = () => {
           Atomic programmability on a based rollup leveraging Kaspa BlockDAG.
         </h2>
         <Flex alignItems='center' gap={20} flexWrap='wrap'>
-          <Icon name='cube_5' size={40} />
+          <Icon name='caravel' size={60} />
           <div className={classes.testnetText}>
             Caravel testnet launch underway!
           </div>

@@ -19,6 +19,7 @@ import TaxTheft from './taxTheft.svg?react'
 import Telegram from './telegram.svg?react'
 import Twitter from './twitter.svg?react'
 import ZkChains from './zkChains.svg?react'
+import Caravel from './caravel.svg?react'
 
 export const icons = {
   arrowRight: { Component: ArrowRight },
@@ -42,6 +43,7 @@ export const icons = {
   dex: { Component: Dex },
   infinity: { Component: InfinityIcon },
   stablecoin: { Component: Stablecoin },
+  caravel: { Component: Caravel }
 } as const
 
 export type IconName = keyof typeof icons
