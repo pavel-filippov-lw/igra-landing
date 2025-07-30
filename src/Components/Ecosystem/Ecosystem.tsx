@@ -33,9 +33,9 @@ export const Ecosystem: FC = () => {
               Are you building something exciting? Connect with our team to explore how Igra Network can power your project:
             </div>
           </Flex>
-          <Button>
+          {/* <Button>
             Apply Now
-          </Button>
+          </Button> */}
         </Flex>
       </CubeSection>
       <ProjectsList />
