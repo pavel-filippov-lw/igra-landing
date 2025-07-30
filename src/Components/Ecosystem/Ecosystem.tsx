@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Button, Flex } from "~/shared/ui"
+import { Flex } from "~/shared/ui"
 
 import { CubeSection } from "../CubeSection"
 import { ProjectsList } from "../ProjectsList"
