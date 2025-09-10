@@ -16,7 +16,7 @@ const projects: Project[] = [
   {
     logoUrl: kspr,
     name: 'KSPR',
-    description: 'KSPR is a Bitcoin prediction market where you forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for.. KSPR is a Bitcoin prediction market where you forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for.. KSPR is a Bitcoin prediction market where you forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for..',
+    description: 'KSPR is a Bitcoin prediction market where you forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for..',
     to: 'https://kspr-bot.xyz/',
     type: 'Application',
   },

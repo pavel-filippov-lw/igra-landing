@@ -23,22 +23,26 @@ export const Card: FC<CardProps> = ({ type, logoUrl, name, to, description }) =>
   const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
-    if (!ref.current || !hiddenRef.current) return
+    if (!ref.current) return
 
     const observer = new ResizeObserver(() => {
       setHeight(ref.current?.scrollHeight || 0)
     })
+    observer.observe(ref.current)
+
+    return () => observer.disconnect()
+  }, [ref.current])
+
+  useEffect(() => {
+    if (!hiddenRef.current) return
+
     const hiddenObserver = new ResizeObserver(() => {
       setMinHeight(hiddenRef.current?.scrollHeight || 0)
     })
-    observer.observe(ref.current)
     hiddenObserver.observe(hiddenRef.current)
 
-    return () => {
-      observer.disconnect()
-      hiddenObserver.disconnect()
-    }
-  }, [ref.current, hiddenRef.current])
+    return () => hiddenObserver.disconnect()
+  }, [hiddenRef.current])
 
   return (
     <Flex
@@ -61,7 +65,6 @@ export const Card: FC<CardProps> = ({ type, logoUrl, name, to, description }) =>
         {name}
       </div>
       <div
-        ref={ref}
         className={classes.description}
         style={{
           maxHeight: expanded ? `${height}px` : `${minHeight}px`,
