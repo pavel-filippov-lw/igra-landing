@@ -2,7 +2,6 @@ import { FC } from "react"
 
 import { Flex } from "~/shared/ui"
 
-import { CubeSection } from "../CubeSection"
 import { ProjectsList } from "../ProjectsList"
 import classes from './Ecosystem.module.scss'
 
@@ -10,12 +9,14 @@ export const Ecosystem: FC = () => {
   return (
     <Flex
       flexDirection='column'
+      gap={65}
+      className={classes.root}
     >
-      <CubeSection className={classes.root}>
+      <Flex className={classes.content}>
         <Flex
           flexDirection='column'
           gap={24}
-          className={classes.content}
+          className={classes.leftSide}
         >
           <h1 className={classes.title}>
             Ecosystem
@@ -32,7 +33,11 @@ export const Ecosystem: FC = () => {
             </a>
           </div>
         </Flex>
-      </CubeSection>
+        <div className={classes.images}>
+          <div className={classes.image} />
+          <div className={classes.bg} />
+        </div>
+      </Flex>
       <ProjectsList />
     </Flex>
   )
