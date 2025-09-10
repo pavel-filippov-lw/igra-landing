@@ -1,6 +1,5 @@
 import { FC, Fragment } from "react"
 
-import candy from './assets/candyswap.png'
 import crestdev from './assets/crestdev.png'
 import kaspa from './assets/kaspa.png'
 import kasplore from './assets/kasplore.png'
@@ -17,52 +16,65 @@ const projects: Project[] = [
   {
     logoUrl: kspr,
     name: 'KSPR',
-    to: 'https://kspr-bot.xyz/'
+    description: 'KSPR is a Bitcoin prediction market where you forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for.. KSPR is a Bitcoin prediction market where you forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for.. KSPR is a Bitcoin prediction market where you forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for..',
+    to: 'https://kspr-bot.xyz/',
+    type: 'Application',
   },
   {
     logoUrl: kaspa,
     name: 'Kaspa.com',
+    description: 'Kaspa.com is a market where you forecast a price range instead of answering  Yes or No. It runs on our custom CLMSRYes or No. It runs on our custom CLMSR model, built for..',
     to: 'https://kaspa.com',
+    type: 'Wallet',
   },
   {
     logoUrl: zealous,
     name: 'Zealous Swap',
-    to: 'https://www.zealousswap.com/'
+    description: 'Zealous Swap is your forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for..',
+    to: 'https://www.zealousswap.com/',
+    type: 'Application',
   },
   {
     logoUrl: nacho,
-    name: 'Nacho the Kat',
-    to: 'https://www.nachowyborski.xyz/'
+    name: '*Nacho the Kat*',
+    description: 'Nacho the Kat is a Bitcoin prediction market where you range instead of answering Yes or No. It runs on our custom CLMSR model, built for..',
+    to: 'https://www.nachowyborski.xyz/',
+    type: 'Application',
   },
   {
     logoUrl: crestdev,
-    name: 'Crest Development',
-    to: 'http://crestdev.pro/'
+    name: '*Crest Development*',
+    description: 'Crest Development Studio where you forecast a price range instead. It runs on our custom CLMSR model, built for..',
+    to: 'http://crestdev.pro/',
+    type: 'Application',
   },
   {
     logoUrl: kastle,
-    name: 'Kastle',
-    to: 'https://kastle.cc/'
+    name: '*Kastle*',
+    description: 'Kastle is your forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for..',
+    to: 'https://kastle.cc/',
+    type: 'Application',
   },
   {
     logoUrl: kasunder,
-    name: 'Kasunder',
-    to: 'https://kasunder.com'
+    name: '*Kasunder*',
+    description: 'Kasunder is a Bitcoin prediction market where you forecast a price range instead of Yes or No. It runs on our custom CLMSR model, built for..',
+    to: 'https://kasunder.com',
+    type: 'Application',
   },
   {
     logoUrl: sea,
-    name: 'Sea Swap',
-    to: 'https://x.com/SeaSwapIO'
+    name: '*Sea Swap*',
+    description: 'Sea Swap is a Bitcoin prediction market where you forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for..',
+    to: 'https://x.com/SeaSwapIO',
+    type: 'Application',
   },
   {
     logoUrl: kasplore,
-    name: 'Kasplore',
-    to: 'https://kasplore.com'
-  },
-  {
-    logoUrl: candy,
-    name: 'Candy Swap',
-    to: 'https://candyswap.gg/'
+    name: '*Kasplore*',
+    description: 'Kasplore Swap is your forecast a price range instead of answering Yes or No. It runs on our custom CLMSR model, built for..',
+    to: 'https://kasplore.com',
+    type: 'Application',
   },
 ]
 
@@ -71,7 +83,7 @@ export const ProjectsList: FC = () => {
     <div className={classes.root}>
       {projects.map((project, index) => (
         <Fragment key={index}>
-          <a href={project.to}>
+          <a href={project.to} target='_blank' rel='noreferrer'>
             <Card {...project} />
           </a>
         </Fragment>

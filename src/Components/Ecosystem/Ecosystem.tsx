@@ -10,7 +10,6 @@ export const Ecosystem: FC = () => {
   return (
     <Flex
       flexDirection='column'
-      gap={45}
     >
       <CubeSection className={classes.root}>
         <Flex
@@ -21,21 +20,17 @@ export const Ecosystem: FC = () => {
           <h1 className={classes.title}>
             Ecosystem
           </h1>
-          <Flex
-            gap={26}
-            flexDirection='column'
-            className={classes.description}
-          >
-            <div>
-              These early adopters are testing our devnet and developing the applications that will shape Igra Network future.
-            </div>
-            <div>
-              Are you building something exciting? Connect with our team to explore how Igra Network can power your project:
-            </div>
-          </Flex>
-          {/* <Button>
-            Apply Now
-          </Button> */}
+          <div className={classes.description}>
+            These early adopters are testing our devnet and developing the applications that will shape Igra Network future.
+            <a
+              href='#'
+              target='_blank'
+              rel='noreferrer'
+              className={classes.link}
+            >
+              Learn more
+            </a>
+          </div>
         </Flex>
       </CubeSection>
       <ProjectsList />
