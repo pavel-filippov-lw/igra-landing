@@ -46,15 +46,10 @@
 		font-size: 14px;
 		font-weight: 500;
 		color: #383841;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
 		overflow: hidden;
 		transition: max-height 0.3s ease-in-out;
-	}
-
-	.hiddenDescription {
-		visibility: hidden;
-		position: absolute;
-		top: 0;
-		left: 0;
 	}
 
 	.link {

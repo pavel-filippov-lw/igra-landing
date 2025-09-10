@@ -17,32 +17,16 @@ export interface CardProps extends Project {}
 
 export const Card: FC<CardProps> = ({ type, logoUrl, name, to, description }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const hiddenRef = useRef<HTMLDivElement>(null)
-  const [height, setHeight] = useState(0)
-  const [minHeight, setMinHeight] = useState(0)
+  const [clamped, setClamped] = useState(false)
   const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
-    if (!ref.current) return
+    const el = ref.current
+    if (!el) return
 
-    const observer = new ResizeObserver(() => {
-      setHeight(ref.current?.scrollHeight || 0)
-    })
-    observer.observe(ref.current)
-
-    return () => observer.disconnect()
+    const check = () => setClamped(el.scrollHeight > el.clientHeight)
+    requestAnimationFrame(check)
   }, [ref.current])
-
-  useEffect(() => {
-    if (!hiddenRef.current) return
-
-    const hiddenObserver = new ResizeObserver(() => {
-      setMinHeight(hiddenRef.current?.scrollHeight || 0)
-    })
-    hiddenObserver.observe(hiddenRef.current)
-
-    return () => hiddenObserver.disconnect()
-  }, [hiddenRef.current])
 
   return (
     <Flex
@@ -65,20 +49,16 @@ export const Card: FC<CardProps> = ({ type, logoUrl, name, to, description }) =>
         {name}
       </div>
       <div
+        ref={ref}
         className={classes.description}
         style={{
-          maxHeight: expanded ? `${height}px` : `${minHeight}px`,
+          lineClamp: expanded ? 'unset' : 3,
+          WebkitLineClamp: expanded ? 'unset' : 3,
         }}
       >
-        {expanded ? description : `${description.slice(0, 130)}...`}
-      </div>
-      <div ref={hiddenRef} className={classes.hiddenDescription}>
-        {description.slice(0, 130)}
-      </div>
-      <div ref={ref} className={classes.hiddenDescription}>
         {description}
       </div>
-      {description.length > 130 && (
+      {clamped && (
         <div
           className={classes.link}
           onClick={(e) => {
