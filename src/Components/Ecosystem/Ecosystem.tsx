@@ -18,10 +18,10 @@ export const Ecosystem: FC = () => {
           gap={24}
           className={classes.leftSide}
         >
-            <h1 className={classes.title}>
+          <h1 className={classes.title}>
             Igra Fleet
-            </h1>
-            <div className={classes.description}>
+          </h1>
+          <div className={classes.description}>
             These vetted teams are already building real projects on Igra — from DeFi protocols to infrastructure tools. They’re shaping the future of Kaspa’s programmable layer. Join our ecosystem to build, collaborate, and shape the next wave of applications together.
             <br/>
             <a
@@ -29,10 +29,8 @@ export const Ecosystem: FC = () => {
               target='_blank'
               rel='noreferrer'
               className={classes.link}
-            >
-              Join the Fleet
-            </a>
-            </div>
+            >Join the Fleet</a>
+          </div>
         </Flex>
         <div className={classes.images}>
           <div className={classes.image} />

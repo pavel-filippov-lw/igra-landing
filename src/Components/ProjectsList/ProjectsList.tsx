@@ -48,7 +48,7 @@ const projects: Project[] = [
   {
     logoUrl: kaskad,
     name: 'Kaskad',
-    description: 'Fully decentralized lending protocol, tailored for Kaspa’s high-speed architecture',
+    description: 'Fully decentralized lending protocol, tailored for Kaspa’s high-speed architecture.',
     to: 'https://kaskad.app/',
     type: 'DeFi, Lending protocol',
   },
@@ -79,7 +79,7 @@ const projects: Project[] = [
     logoUrl: fervent,
     name: 'Fervent Finance',
     description: 'Fervent Finance - Kaspa’s decentralized lending and borrowing protocol with risk-isolated pools, dynamic interest rates, and sustainable yield.',
-    to: 'https://kaskad.app/',
+    to: 'https://www.fervent.finance/',
     type: 'DeFi, Lending protocol',
   },
 
@@ -119,14 +119,14 @@ const projects: Project[] = [
   {
     logoUrl: aporia,
     name: 'Aporia',
-    description: 'The first true CLOB DEX on Kaspa: MEV Resistant, trustless interoperability, atomically composable, fully on-chain',
+    description: 'The first true CLOB DEX on Kaspa: MEV Resistant, trustless interoperability, atomically composable, fully on-chain.',
     to: 'https://x.com/aporiaexchange',
     type: 'DeFi, CLOB DEX',
   },
   {
     logoUrl: kaspafinance,
     name: 'Kaspa Finance',
-    description: 'KaspaFinance.io is the first full-suite DeFi super protocol built on the Kaspa L2. From V3-style concentrated liquidity AMMs, Farming and LPs, borrowing and lending, token creator, to AI-powered trading bots and NLP trading, KFC (Kaspa Finance) brings Ethereum-grade DeFi infrastructure to the fastest proof-of-work blockchain in existence.',
+    description: 'KaspaFinance.io is the first full-suite DeFi super protocol built on the Kaspa L2. From V3-style concentrated liquidity AMMs, Farming and LPs, borrowing and lending, token creation, to AI-powered trading bots and NLP trading, KFC (Kaspa Finance) brings Ethereum-grade DeFi infrastructure to the fastest proof-of-work blockchain in existence.',
     to: 'https://kaspafinance.io/',
     type: 'DeFi Platform',
   },
@@ -147,7 +147,7 @@ const projects: Project[] = [
   {
     logoUrl: kasway,
     name: 'Kasway',
-    description: 'Kasway is a project that aims to deliver real wold utilities, non-trading applications for the Kaspa ecosystem.',
+    description: 'Kasway is a project that aims to deliver real world utilities, non-trading applications for the Kaspa ecosystem.',
     to: 'https://kasway.xyz/',
     type: 'PoS',
   },
@@ -161,7 +161,7 @@ const projects: Project[] = [
   {
     logoUrl: seaswap,
     name: 'Sea Swap',
-    description: 'Description: We’re building SeaSwap to help users get the best swap rates across multiple DEXs on Kaspa L2s like Igra. By aggregating liquidity and routing trades through the most efficient paths, we’re aiming to make DeFi on Kaspa smooth and accessible.',
+    description: 'We’re building SeaSwap to help users get the best swap rates across multiple DEXs on Kaspa L2s like Igra. By aggregating liquidity and routing trades through the most efficient paths, we’re aiming to make DeFi on Kaspa smooth and accessible.',
     to: 'https://seaswap.xyz/',
     type: 'DeFi, DEX Aggregator',
   },
@@ -189,7 +189,7 @@ const projects: Project[] = [
     {
     logoUrl: nightshade,
     name: 'Nightshade',
-    description: 'The Order Book DEX',
+    description: 'The Order Book DEX.',
     to: 'https://nightshade.finance/',
     type: 'DeFi, CLOB DEX',
   },
