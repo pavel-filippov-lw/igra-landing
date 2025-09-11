@@ -2,7 +2,6 @@ import { FC } from "react"
 
 import { Flex } from "~/shared/ui"
 
-import { CubeSection } from "../CubeSection"
 import { ProjectsList } from "../ProjectsList"
 import classes from './Ecosystem.module.scss'
 
@@ -10,34 +9,34 @@ export const Ecosystem: FC = () => {
   return (
     <Flex
       flexDirection='column'
-      gap={45}
+      gap={65}
+      className={classes.root}
     >
-      <CubeSection className={classes.root}>
+      <Flex className={classes.content}>
         <Flex
           flexDirection='column'
           gap={24}
-          className={classes.content}
+          className={classes.leftSide}
         >
           <h1 className={classes.title}>
-            Ecosystem
+            Igra Fleet
           </h1>
-          <Flex
-            gap={26}
-            flexDirection='column'
-            className={classes.description}
-          >
-            <div>
-              These early adopters are testing our devnet and developing the applications that will shape Igra Network future.
-            </div>
-            <div>
-              Are you building something exciting? Connect with our team to explore how Igra Network can power your project:
-            </div>
-          </Flex>
-          {/* <Button>
-            Apply Now
-          </Button> */}
+          <div className={classes.description}>
+            These vetted teams are already building real projects on Igra — from DeFi protocols to infrastructure tools. They’re shaping the future of Kaspa’s programmable layer. Join our ecosystem to build, collaborate, and shape the next wave of applications together.
+            <br/>
+            <a
+              href='mailto:team@igralabs.com'
+              target='_blank'
+              rel='noreferrer'
+              className={classes.link}
+            >Join the Fleet</a>
+          </div>
         </Flex>
-      </CubeSection>
+        <div className={classes.images}>
+          <div className={classes.image} />
+          <div className={classes.bg} />
+        </div>
+      </Flex>
       <ProjectsList />
     </Flex>
   )

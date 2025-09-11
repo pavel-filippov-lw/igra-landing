@@ -1,14 +1,13 @@
 .root {
 	display: grid;
-	grid-template-columns: fit-content(64px) 1fr 1fr 1fr 200px;
-	grid-template-rows: repeat(2, 125px);
-	gap: 40px;
-	width: fit-content;
-	padding: 44px 0;
-	border-top: 1px solid #6BD1C3;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 30px 40px;
+
+	@media screen and (max-width: $laptop) {
+		grid-template-columns: 1fr 1fr;
+	}
 
 	@media screen and (max-width: $tablet) {
-		grid-template-columns: 1fr 1fr;
-		width: 100%;
+		grid-template-columns: 1fr;
 	}
 }

@@ -1,40 +1,83 @@
 .root {
+	height: 100%;
+	padding: 16px 25px 25px;
+	border-radius: 12px;
+	border: 3px solid #F1F1F1;
+	background-color: #F1F1F1;
+	box-shadow: 0px 0px 20px 20px #6BD1C310;
+	transform: translateY(0);
+	transition: transform 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
 	&.isClickable {
 		cursor: pointer;
-
-		.name {
-			position: relative;
-
-			&::after {
-				content: '';
-				position: absolute;
-				left: 0;
-				bottom: -6px;
-				width: 0;
-				height: 2px;
-				background-color: #6BD1C3;
-				transition: width 0.3s ease;
-			}
-		}
-
-		@include hover {
-			.name {
-				&::after {
-					width: 100%;
-				}
-			}
-		}
 	}
 
-	.logo {
-		width: 64px;
-		aspect-ratio: 1/1;
+	@include hover {
+		transform: translateY(-10px);
+		border: 3px solid #6BD1C3;
+		background-color: #FFFFFF;
+		box-shadow: 0px 0px 10px 10px #6BD1C359;
+	}
+
+	.header {
+		.logo {
+			width: 60px;
+			aspect-ratio: 1/1;
+			overflow: visible;
+		}
+
+		.type {
+			font-family: $font-secondary;
+			font-size: 16px;
+			font-weight: 700;
+			color: #CB9D4B;
+		}
 	}
 
 	.name {
 		font-family: $font-secondary;
 		font-size: 20px;
+		font-weight: 700;
+		color: #383841;
+	}
+
+	.description {
+		font-family: $font;
+		font-size: 14px;
+		font-weight: 500;
+		color: #383841;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.link {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		position: relative;
+		width: fit-content;
+		font-family: $font;
+		font-weight: 700;
 		color: #6BD1C3;
-		text-align: center;
+		cursor: pointer;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -6px;
+			width: 0;
+			height: 2px;
+			background-color: #6BD1C3;
+			transition: width 0.3s ease;
+		}
+
+		@include hover {
+			&::after {
+				width: 100%;
+			}
+		}
 	}
 }
