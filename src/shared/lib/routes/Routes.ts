@@ -4,4 +4,5 @@ export const Routes = {
   manifesto: 'manifesto',
   vision: 'vision',
   ecosystem: 'ecosystem',
+  privacy: 'privacy',
 }
