@@ -10,6 +10,8 @@ class To {
   vision = () => `/${Routes.vision}`
 
   ecosystem = () => `/${Routes.ecosystem}`
+
+  privacy = () => `/${Routes.privacy}`
 }
 
 export const to = new To()
