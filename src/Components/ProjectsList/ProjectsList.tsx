@@ -15,13 +15,14 @@ import kasway from './assets/kasway.png'
 import kyo from './assets/kyo.png'
 import moonbound from './assets/moonbound.png'
 import nacho from './assets/nacho.png'
-import nightshade from './assets/nightshade.png'
+import lightbeam from './assets/lightbeam.png'
 import quex from './assets/quex.png'
 import seaswap from './assets/seaswap.png'
 import slow from './assets/slow.png'
 import tbdai from './assets/tbdai.png'
 import zealous from './assets/zealous.png'
 import zelcore from './assets/zelcore.png'
+import igraway from './assets/igraway.png'
 
 import { Card, Project } from "./Card"
 import classes from './ProjectsList.module.scss'
@@ -130,6 +131,13 @@ const projects: Project[] = [
     to: 'https://kaspafinance.io/',
     type: 'DeFi Platform',
   },
+    {
+    logoUrl: igraway,
+    name: 'Igraway',
+    description: 'The gateway bringing stablecoins into the Igra ecosystem, empowering seamless cross-chain liquidity.',
+    to: 'https://igraway.com/',
+    type: 'EVM Bridge',
+  },
   {
     logoUrl: kaspulse,
     name: 'KaspaPulse',
@@ -187,11 +195,11 @@ const projects: Project[] = [
     type: 'dApp',
   },
     {
-    logoUrl: nightshade,
-    name: 'Nightshade',
-    description: 'The Order Book DEX.',
-    to: 'https://nightshade.finance/',
+    logoUrl: lightbeam,
+    name: 'Lightbeam',
+    description: 'Advanced Order Book DEX.',
     type: 'DeFi, CLOB DEX',
+    to: 'https://lightbeam.finance/',
   },
 
 
