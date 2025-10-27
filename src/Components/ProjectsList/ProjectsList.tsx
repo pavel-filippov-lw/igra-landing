@@ -24,6 +24,10 @@ import zealous from './assets/zealous.png'
 import zelcore from './assets/zelcore.png'
 import igraway from './assets/igraway.png'
 
+import tokify from './assets/tokify.png'
+import kasperia from './assets/kasperia.png'
+import knexous from './assets/knexous.png'
+
 import { Card, Project } from "./Card"
 import classes from './ProjectsList.module.scss'
 
@@ -99,6 +103,27 @@ const projects: Project[] = [
     type: 'Memecoin',
   },
 
+  {
+    logoUrl: knexous,
+    name: 'Knexous',
+    description: 'Knexous is pioneering the future of payments — where speed, decentralization, and zero fees converge. Powered by Kaspa and NFC technology, we make crypto payments faster and simpler than cash or cards. Join us in building the next global payment hub.',
+    to: 'https://x.com/Knexousnfc',
+    type: 'Tap2Pay payment platform',
+  },
+  {
+    logoUrl: kasperia,
+    name: 'Kasperia',
+    description: 'Kasperia — The Ultra-Light Kaspa Wallet for Speed, Simplicity & L2 Integration.',
+    to: 'https://x.com/KasperiaWallet',
+    type: 'Wallet',
+  },
+  {
+    logoUrl: tokify,
+    name: 'Tokify',
+    description: 'Tokify simplifies token creation and management. Create tokens, lock liquidity, set vesting, send airdrops, and run staking pools in one place. No code, no hassle. Built for Web3 builders',
+    to: 'https://tokify.pro/',
+    type: 'Token management',
+  },
 
     {
     logoUrl: crestdev,
