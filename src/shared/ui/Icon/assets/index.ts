@@ -6,6 +6,7 @@ import Cube_4 from './cube_4.svg?react'
 import Cube_5 from './cube_5.svg?react'
 import Cube_6 from './cube_6.svg?react'
 import Dex from './dex.svg?react'
+import Discord from './discord.svg?react'
 import Github from './github.svg?react'
 import Gitlab from './gitlab.svg?react'
 import InfinityIcon from './infinity.svg?react'
@@ -23,6 +24,7 @@ import Caravel from './caravel.svg?react'
 
 export const icons = {
   arrowRight: { Component: ArrowRight },
+  discord: { Component: Discord },
   github: { Component: Github },
   gitlab: { Component: Gitlab },
   telegram: { Component: Telegram },

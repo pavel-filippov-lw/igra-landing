@@ -6,6 +6,7 @@ import { IconName } from "~/shared/ui/Icon/assets"
 const links = [
   // { iconName: 'telegram', to: '' },
   { iconName: 'twitter', to: 'https://x.com/Igra_Labs' },
+  { iconName: 'discord', to: 'https://discord.gg/igralabs' },
   { iconName: 'github', to: 'https://github.com/IGRALABS' },
 ] as { iconName: IconName, to: string }[]
 
