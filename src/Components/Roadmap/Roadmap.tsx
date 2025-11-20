@@ -36,23 +36,23 @@ export const Roadmap: FC = () => {
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 Q3</h5>
                 <div className={classes.description}>
-                  <b>Carrack:</b> Incentivized mainnet<br/>Token launch
+                  <b>Public Nodes:</b> Caravel Testnet running on community operators hardware
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2026 Q1</h5>
+                <h5 className={classes.title}>2026 January</h5>
                 <div className={classes.description}>
-                  Testnet with ZKVM support, canonical exit bridge
+                  <b>Fluyt:</b> Open Mainnet with Attestors and TGE
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2027</h5>
+                <h5 className={classes.title}>2026 Mar</h5>
                 <div className={classes.description}>
-                  VM-agnostic, scalable sync atomic composability
+                  <b>Frigate:</b> Public Open Mainnet
                 </div>
               </Flex>
             </Flex>
@@ -68,23 +68,23 @@ export const Roadmap: FC = () => {
                 <h5 className={classes.title}>2025 July</h5>
                 <div className={classes.description}>
                   <b>Caravel:</b> Incentivized testnet on Kaspa TN10<br/>
-                  Pre-liquid token<br/>
+                  Pre-liquid token
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2025 Q4</h5>
+                <h5 className={classes.title}>2025 Dec</h5>
                 <div className={classes.description}>
-                  <b>Galleon:</b> Mainnet up to 3,000 TPS, core DeFi infrastructure
+                  <b>Galleon:</b> Closed Mainnet run by community node operators
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2026 Q2</h5>
+                <h5 className={classes.title}>2026 Feb</h5>
                 <div className={classes.description}>
-                  Mainnet with ZKVM support
+                  <b>Brigantine:</b> Whitelisted Mainnet with core DeFi
                 </div>
               </Flex>
             </Flex>
