@@ -8,6 +8,7 @@ import { Flex } from "~/shared/ui"
 import classes from './Navigation.module.scss'
 
 const links = [
+  { label: 'Litepaper', to: 'https://github.com/IgraLabs/research/blob/main/igra-litepaper-v1.0.pdf' },
   { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
   { label: 'Documentation', to: 'https://docs.igralabs.com' },
   { label: 'Team', to: to.team(), isPage: true },
