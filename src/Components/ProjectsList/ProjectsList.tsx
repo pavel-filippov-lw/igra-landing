@@ -23,6 +23,7 @@ import tbdai from './assets/tbdai.png'
 import zealous from './assets/zealous.png'
 import zelcore from './assets/zelcore.png'
 import igraway from './assets/igraway.png'
+import spectre from './assets/spectre.jpg'
 
 import tokify from './assets/tokify.png'
 import kasperia from './assets/kasperia.png'
@@ -162,6 +163,13 @@ const projects: Project[] = [
     description: 'The gateway bringing stablecoins into the Igra ecosystem, empowering seamless cross-chain liquidity.',
     to: 'https://igraway.com/',
     type: 'EVM Bridge',
+  },
+  {
+    logoUrl: spectre,
+    name: 'Spectre Market',
+    description: 'Spectre Market is Kaspa\'s premier NFT marketplace built on Igra L2, enabling you to deploy NFT collections, mint tokens, trade digital assets, and stake NFTs for rewards - all with the speed and security of Kaspa\'s BlockDAG technology.',
+    to: 'https://spectre.market/',
+    type: 'NFT Marketplace',
   },
   {
     logoUrl: kaspulse,
