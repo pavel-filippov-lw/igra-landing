@@ -42,8 +42,8 @@ export const Hero: FC = () => {
         preload='auto'
         className={classes.video}
       >
-        <source src={heroVideo} type="video/mp4; codecs=&quot;hvc1&quot;" />
-        <source src={heroVideoSafari} type="video/webm" />
+        <source src={heroVideoSafari} type="video/mp4; codecs=&quot;hvc1&quot;" />
+        <source src={heroVideo} type="video/webm" />
       </video>
     </div>
   )
