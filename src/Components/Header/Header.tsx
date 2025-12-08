@@ -22,7 +22,7 @@ export const Header: FC = () => {
         className={classes.content}
       >
         <Logo onClick={() => navigate(to.hero())} />
-        <Flex gap={35} alignItems='center'>
+        <Flex gap={50} alignItems='center'>
           <div
             className={clsx(classes.hamburger, {
               [classes.isActive]: isVisibleMenu,

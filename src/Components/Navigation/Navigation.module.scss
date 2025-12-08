@@ -1,9 +1,8 @@
 .root {
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: 500;
 	line-height: 28px;
-	text-transform: uppercase;
-	color: #6BD1C3;
+	color: #FFFFFF;
 
 	.route {
 		position: relative;
@@ -15,7 +14,7 @@
 			bottom: -1px;
 			width: 0;
 			height: 2px;
-			background-color: #6BD1C3;
+			background-color: #FFFFFF;
 			transition: width 0.3s ease, left 0.3s ease;
 		}
 
@@ -30,10 +29,24 @@
 	.separator {
 		width: 1px;
 		height: 14px;
-		background-color: #6BD1C3;
+		background-color: #FFFFFF;
 
 		@media screen and (max-width: $laptop) {
 			display: none;
+		}
+	}
+
+	&.secondary {
+		color: #878787;
+
+		.route {
+			&::after {
+				background-color: #878787;
+			}
+		}
+
+		.separator {
+			background-color: #878787;
 		}
 	}
 }

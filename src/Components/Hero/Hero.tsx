@@ -1,74 +1,50 @@
 import { FC } from "react"
 
-import { Button, Flex, Icon } from "~/shared/ui"
-
-import { CubeSection } from "../CubeSection"
-import { Difficulty } from "../Difficulty"
-import { MorphText } from "../MorphText"
+import { GlitchText } from "../GlitchText"
+import heroVideo from './assets/video.mov'
+import heroVideoSafari from './assets/video.webm'
 import classes from './Hero.module.scss'
 
-const descriptionLines = [
-  'A chain for builders who want to build without limitations',
-  'A chain where applications can run seamlessly across different chains',
-  'A chain that is fast enough to avoid MEV headaches',
-  'A chain that’s as secure as Bitcoin',
-  'A chain that unleashes endless new possibilities for composable smart contracts',
-  'A chain that lets builders manage risk in real time',
+const glitchTextLines = [
+  'fastest',
+  'fairest',
+  'most secure',
+  'most credibly neutral',
 ]
 
 export const Hero: FC = () => {
   return (
-    <CubeSection className={classes.root}>
-      <Flex
-        flexDirection='column'
-        gap={24}
+    <div className={classes.root}>
+      <div
         className={classes.content}
       >
-        <h1 className={classes.title}>
-          Defy DeFi limitations
-        </h1>
-        <h2 className={classes.subtitle}>
-          Atomic programmability on a based rollup leveraging Kaspa BlockDAG.
-        </h2>
-        <Flex alignItems='center' gap={20} flexWrap='wrap'>
-          <Icon name='caravel' size={60} />
-          <div className={classes.testnetText}>
-            Caravel testnet launch underway!
+        <div className={classes.title}>
+          {`The `}
+          <GlitchText
+            lines={glitchTextLines}
+            className={classes.glitchText}
+          />
+          {` programmable PoW chain.`}
+        </div>
+        <div className={classes.note}>
+          <div className={classes.date}>20 NOV 2025</div>
+          <div className={classes.noteTitle}>Come sail your ships around me</div>
+          <div className={classes.description}>
+            Ahoy! Our ship has crossed rough waters-reorgs, battles for storage, and a cold restart iceberg.
           </div>
-          <a
-            href="https://x.com/igra_labs/status/1946279111346819436?s=46&t=orsNfFppjKLweCyxLsiajQ"
-            target='_blank'
-            rel='noreferrer'
-          >
-            <Button variant='gold'>
-              <Flex gap={8} alignItems='center'>
-                {/* <Icon name='cube_2' size={16} /> */}
-                Learn more
-              </Flex>
-            </Button>
-          </a>
-        </Flex>
-        <MorphText
-          lines={descriptionLines}
-          className={classes.description}
-        />
-      </Flex>
-      <Flex
-        gap={16}
-        className={classes.buttons}
+        </div>
+      </div>
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload='auto'
+        className={classes.video}
       >
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeASfHT6R398RivDiM7qgtYDiih1rYk4b4kDOskyLeiXWRsuw/viewform">
-          <Button>
-            Build on IGRA
-          </Button>
-        </a>
-        <a href="https://docs.igralabs.com/">
-          <Button variant='secondary'>
-            Documentation
-          </Button>
-        </a>
-      </Flex>
-      <Difficulty />
-    </CubeSection>
+        <source src={heroVideo} type="video/mp4; codecs=&quot;hvc1&quot;" />
+        <source src={heroVideoSafari} type="video/webm" />
+      </video>
+    </div>
   )
 }

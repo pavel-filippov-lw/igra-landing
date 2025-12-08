@@ -2,6 +2,7 @@ import { FC, PropsWithChildren } from "react"
 
 import { Flex } from "~/shared/ui"
 
+import { Footer } from "../Footer"
 import { Header } from "../Header"
 import classes from './PageLayout.module.scss'
 
@@ -14,10 +15,8 @@ export const PageLayout: FC<PropsWithChildren> = ({ children }) => {
         <div className={classes.content}>
           {children}
         </div>
-        <div className={classes.copyright}>
-          &copy; 2024-2025 Igra Labs
-        </div>
       </Flex>
+      <Footer className={classes.footer} />
     </div>
   )
 }

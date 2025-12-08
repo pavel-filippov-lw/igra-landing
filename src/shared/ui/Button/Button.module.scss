@@ -9,7 +9,7 @@
 	align-items: center;
 	gap: 30px;
 	padding: 0 30px;
-	border-radius: 21px;
+	border-radius: 22px;
 
 	font-family: $font;
 	font-weight: 600;
@@ -42,6 +42,31 @@
 		svg path {
 			fill: #FFFFFF;
 		}
+	}
+
+	&.tertiary {
+		padding: 15px 30px;
+		gap: 20px;
+
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 36px;
+
+		background-color: #262626;
+		color: #6BD1C3;
+
+		svg path {
+			fill: #6BD1C3;
+		}
+	}
+
+	&.gradient {
+		padding: 5px 30px;
+		background: linear-gradient(45deg, #E1FFFD 0%, #4BABAB 48%, #EFFC66 100%);
+		color: #000000;
+
+		font-weight: 700;
+		line-height: 36px;
 	}
 
 	&.gold {

@@ -43,21 +43,19 @@
 		max-width: 1440px;
 		min-height: 100vh;
 		margin: 0 auto;
-		padding: $header_h 39px 30px 57px;
+		padding: $header_h 50px 300px;
 
 		@media screen and (max-width: $laptop) {
-			padding: $header_h 20px 30px;
+			padding: $header_h 20px 200px;
 		}
 
 		.content {
 			flex: 1 1 auto;
 		}
+	}
 
-		.copyright {
-			margin: 80px 0 0;
-			text-align: center;
-			color: #4d4d4d;
-		}
+	.footer {
+		margin-left: auto;
 	}
 }
 

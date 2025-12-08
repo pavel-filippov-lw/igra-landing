@@ -17,15 +17,17 @@ const links = [
 ]
 
 export interface NavigationProps {
+  variant?: 'primary' | 'secondary'
   className: string
 }
 
-export const Navigation: FC<NavigationProps> = ({ className }) => {
+export const Navigation: FC<NavigationProps> = ({ className, variant = 'primary' }) => {
   return (
     <Flex
       gap={12}
       alignItems='center'
-      className={clsx(classes.root, className)}
+      flexWrap='wrap'
+      className={clsx(classes.root, classes[variant], className )}
     >
       {links.map((link, index) => (
         <Fragment key={index}>

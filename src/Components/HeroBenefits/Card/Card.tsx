@@ -12,9 +12,10 @@ export interface Benefit {
     width: number
     height: number
   }
-  title?: string
-  description: ReactNode
+  title: () => ReactNode
+  to?: string
 }
+
 export interface CardProps extends Benefit, FlexProps {
   className?: string
 }
@@ -22,7 +23,7 @@ export interface CardProps extends Benefit, FlexProps {
 export const Card = forwardRef<HTMLDivElement, CardProps>(({
   icon,
   title,
-  description,
+  to,
   className,
   ...props
 }, ref) => {
@@ -31,7 +32,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       ref={ref}
       flexDirection='column'
       alignItems='center'
-      gap={15}
+      gap={20}
       {...props}
       className={clsx(classes.root, className)}
     >
@@ -43,17 +44,22 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       />
       <Flex
         flexDirection='column'
-        gap={5}
-        alignItems='center'
+        gap={10}
+        className={classes.content}
       >
-        {title && (
-          <h5 className={classes.title}>
-            {title}
-          </h5>
-        )}
-        <div className={classes.description}>
-          {description}
+        <div className={classes.title}>
+          {title()}
         </div>
+        {!!to && (
+          <a
+            href={to}
+            target='_blank'
+            rel='noreferrer'
+            className={classes.link}
+          >
+            Read more
+          </a>
+        )}
       </Flex>
     </Flex>
   )

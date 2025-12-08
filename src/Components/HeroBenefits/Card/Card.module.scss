@@ -1,30 +1,51 @@
 .root {
-	padding: 40px 64px;
-	border-radius: 16px;
-	background: linear-gradient(to top, #3A6560 0%, #222B35 37%, #1E222C 100%);
-
 	.icon {
 		flex: 1 0 auto;
 	}
 
-	.title {
-		flex: 1 1 64px;
-		font-family: $font-secondary;
-		font-size: 24px;
-		line-height: 30px;
-		font-weight: 600;
-		color: #6BD1C3;
-		text-align: center;
-	}
+	.content {
+		flex: 0 1 auto;
+		width: 100%;
+		min-height: 250px;
+		padding: 35px 25px 25px;
+		border-radius: 22px;
+		border: 1px solid #6BD1C3;
+		background: #000000;
 
-	.description {
-		font-family: $font-secondary;
-		font-size: 18px;
-		line-height: 22px;			
-		text-align: center;
-	}
+		.title {
+			flex: 1 0 auto;
+			font-size: 32px;
+			font-weight: 500;
+			line-height: 36px;
+			color: #6BD1C3;
+			text-align: center;
+		}
 
-	@media screen and (max-width: $tablet) {
-		padding: 40px 32px;
+		.link {
+			position: relative;
+			width: fit-content;
+			margin-left: auto;
+			margin-right: 30px;
+			font-size: 18px;
+			font-weight: 700;
+			color: #FFFFFF;
+
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -6px;
+				width: 0;
+				height: 2px;
+				background-color: #FFFFFF;
+				transition: width 0.3s ease;
+			}
+
+			@include hover {
+				&::after {
+					width: 100%;
+				}
+			}
+		}
 	}
 }

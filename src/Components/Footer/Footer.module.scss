@@ -1,0 +1,33 @@
+.root {
+    position: relative;
+    width: 90%;
+    max-width: 1270px;
+    padding: 80px 80px 118px 147px;
+    background-color: #262626;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 45px;
+        background: #000000;
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+
+    .navigation,
+    .copyright {
+        font-size: 20px;
+        font-weight: 800;
+        color: #878787;
+    }
+
+    .navigation {
+        margin-bottom: 30px;
+    }
+
+    @media screen and (max-width: $tablet) {
+        padding: 40px 40px 60px 80px;
+    }
+}
