@@ -1,8 +1,8 @@
 import { FC } from "react"
 
 import { GlitchText } from "../GlitchText"
-import heroVideo from './assets/video.mov'
-import heroVideoSafari from './assets/video.webm'
+import heroVideoSafari from './assets/video.mov'
+import heroVideo from './assets/video.webm'
 import classes from './Hero.module.scss'
 
 const glitchTextLines = [
