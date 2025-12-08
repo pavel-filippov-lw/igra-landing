@@ -55,7 +55,7 @@ export const GlitchText: FC<GlitchTextProps> = ({ lines, className, ...props }) 
         {
           duration: 0.15,
           onUpdate: () => {
-            chars.forEach((span, i) => {
+            chars.forEach((span) => {
               if (Math.random() < 0.2) {
                 span.innerHTML = randomChar()
               }
