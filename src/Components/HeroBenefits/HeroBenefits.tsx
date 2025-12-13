@@ -1,16 +1,14 @@
 import gsap from "gsap"
 import { FC, Fragment, useEffect, useRef } from "react"
 
+import { to } from "~/shared/lib"
+
 import { Benefit, Card } from "./Card"
 import classes from './HeroBenefits.module.scss'
 
 const benefitsList: Benefit[] = [
   {
-    icon: {
-      name: 'heroBenefitIcon_1',
-      width: 123,
-      height: 176,
-    },
+    iconName: 'stack',
     title: () => (
       <>
         <span className={classes.boldTitle}>Protected</span>
@@ -18,14 +16,10 @@ const benefitsList: Benefit[] = [
         {' by Bitcoin-grade security'}
       </>
     ),
-    to: 'example',
+    to: to.benefits('0'),
   },
   {
-    icon: {
-      name: 'heroBenefitIcon_2',
-      width: 125,
-      height: 125,
-    },
+    iconName: 'clock',
     title: () => (
       <>
         <span className={classes.boldTitle}>MEV</span>
@@ -33,13 +27,10 @@ const benefitsList: Benefit[] = [
         {' and censorship resistant'}
       </>
     ),
+    to: to.benefits('1'),
   },
   {
-    icon: {
-      name: 'heroBenefitIcon_3',
-      width: 119,
-      height: 75,
-    },
+    iconName: 'molecule',
     title: () => (
       <>
         <span className={classes.boldTitle}>Post Quantum</span>
@@ -47,45 +38,37 @@ const benefitsList: Benefit[] = [
         {' Cryptography resilient'}
       </>
     ),
+    to: to.benefits('2'),
   },
   {
-    icon: {
-      name: 'heroBenefitIcon_4',
-      width: 88,
-      height: 91,
-    },
+    iconName: 'blocks',
     title: () => (
       <>
         <span className={classes.boldTitle}>Independent</span>
         {' logical zones'}
       </>
     ),
+    to: to.benefits('3'),
   },
   {
-    icon: {
-      name: 'heroBenefitIcon_5',
-      width: 93,
-      height: 115,
-    },
+    iconName: 'lock',
     title: () => (
       <>
         {'Secure '}
         <span className={classes.boldTitle}>Privacy</span>
       </>
     ),
+    to: to.benefits('4'),
   },
   {
-    icon: {
-      name: 'heroBenefitIcon_6',
-      width: 106,
-      height: 118,
-    },
+    iconName: 'flag',
     title: () => (
       <>
         <span className={classes.boldTitle}>Swiss</span>
         {' registered company'}
       </>
     ),
+    to: to.benefits('5'),
   },
 ]
 

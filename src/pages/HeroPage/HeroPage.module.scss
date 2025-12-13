@@ -8,11 +8,15 @@
     .cards {
         .transactionSpeedCard {
             flex: 1;
+            opacity: 0;
+            transform: translateY(30%);
         }
 
         .heroCodeCard {
             flex: 1;
             max-width: 50%;
+            opacity: 0;
+            transform: translateY(30%);
         }
     }
 

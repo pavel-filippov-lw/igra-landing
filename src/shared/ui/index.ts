@@ -1,3 +1,5 @@
 export * from './Button'
+export * from './ClockIcon'
 export * from './Flex'
 export * from './Icon'
+export * from './StackIcon'

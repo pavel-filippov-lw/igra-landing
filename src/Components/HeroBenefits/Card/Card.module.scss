@@ -42,6 +42,8 @@
 			}
 
 			@include hover {
+				cursor: pointer;
+
 				&::after {
 					width: 100%;
 				}

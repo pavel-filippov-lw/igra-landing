@@ -12,6 +12,8 @@ class To {
   ecosystem = () => `/${Routes.ecosystem}`
 
   privacy = () => `/${Routes.privacy}`
+
+  benefits = (benefitId: string) => `/${Routes.benefits}?benefitId=${benefitId}`
 }
 
 export const to = new To()

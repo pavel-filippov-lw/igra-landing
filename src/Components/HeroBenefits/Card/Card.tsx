@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { forwardRef, ReactNode } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { Flex, FlexProps, Icon } from "~/shared/ui"
 import { IconName } from "~/shared/ui/Icon/assets"
@@ -7,13 +8,10 @@ import { IconName } from "~/shared/ui/Icon/assets"
 import classes from './Card.module.scss'
 
 export interface Benefit {
-  icon: {
-    name: IconName
-    width: number
-    height: number
-  }
+  iconName: IconName
   title: () => ReactNode
-  to?: string
+  description?: () => ReactNode
+  to: string
 }
 
 export interface CardProps extends Benefit, FlexProps {
@@ -21,12 +19,14 @@ export interface CardProps extends Benefit, FlexProps {
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(({
-  icon,
+  iconName,
   title,
   to,
   className,
   ...props
 }, ref) => {
+  const navigate = useNavigate()
+
   return (
     <Flex
       ref={ref}
@@ -37,9 +37,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       className={clsx(classes.root, className)}
     >
       <Icon
-        name={icon.name}
-        width={icon.width}
-        height={icon.height}
+        name={iconName}
+        size={150}
         className={classes.icon}
       />
       <Flex
@@ -50,16 +49,18 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
         <div className={classes.title}>
           {title()}
         </div>
-        {!!to && (
-          <a
-            href={to}
-            target='_blank'
-            rel='noreferrer'
-            className={classes.link}
-          >
-            Read more
-          </a>
-        )}
+        <div
+          className={classes.link}
+          onClick={() => {
+            document.getElementById('root')?.scrollTo({
+              top: 0,
+              behavior: 'instant',
+            })
+            navigate(to)
+          }}
+        >
+          Read more
+        </div>
       </Flex>
     </Flex>
   )

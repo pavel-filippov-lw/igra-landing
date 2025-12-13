@@ -4,6 +4,7 @@
     border-radius: 22px;
     border: 1px solid #6BD1C3;
     background: linear-gradient(to top, #062C32 0%, #081C1F 48%, #085662 100%);
+    overflow: hidden;
 
     .chart {
         position: relative;
@@ -16,12 +17,12 @@
             aspect-ratio: 2;
             transform: translate(-25%, 0);
 
+            svg {
+                outline: none;
+            }
+
             .chartPieSector {
                 outline: none;
-
-                &:focus {
-                    outline: none;
-                }
             }
         }
 

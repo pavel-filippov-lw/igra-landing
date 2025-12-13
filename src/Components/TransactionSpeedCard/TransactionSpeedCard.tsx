@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { FC } from "react"
+import { forwardRef } from "react"
 import { Pie, PieChart } from "recharts"
 
 import classes from './TransactionSpeedCard.module.scss'
@@ -10,9 +10,9 @@ export interface TransactionSpeedCardProps {
   className?: string
 }
 
-export const TransactionSpeedCard: FC<TransactionSpeedCardProps> = ({ value, isLoading, className }) => {
+export const TransactionSpeedCard = forwardRef<HTMLDivElement, TransactionSpeedCardProps>(({ value, isLoading, className }, ref) => {
   return (
-    <div className={clsx(classes.root, className)}>
+    <div ref={ref} className={clsx(classes.root, className)}>
       <div className={classes.chart}>
         <PieChart responsive className={classes.chartPieChart}>
           <defs>
@@ -79,4 +79,4 @@ export const TransactionSpeedCard: FC<TransactionSpeedCardProps> = ({ value, isL
       </div>
     </div>
   )
-}
+})

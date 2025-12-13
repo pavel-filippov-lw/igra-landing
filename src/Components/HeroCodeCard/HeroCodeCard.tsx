@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { FC } from "react"
+import { forwardRef } from "react"
 
 import { Button } from "~/shared/ui"
 
@@ -9,9 +9,9 @@ export interface HeroCodeCardProps {
   className?: string
 }
 
-export const HeroCodeCard: FC<HeroCodeCardProps> = ({ className }) => {
+export const HeroCodeCard = forwardRef<HTMLDivElement, HeroCodeCardProps>(({ className }, ref) => {
   return (
-    <div className={clsx(classes.root, className)}>
+    <div ref={ref} className={clsx(classes.root, className)}>
       <div className={classes.title}>
         10M blocks / 9M transactions
         <br />
@@ -43,4 +43,4 @@ layout.setVerticalGroup(
       </Button>
     </div>
   )
-}
+})
