@@ -13,7 +13,7 @@ class To {
 
   privacy = () => `/${Routes.privacy}`
 
-  benefits = (benefitId: string) => `/${Routes.benefits}?benefitId=${benefitId}`
+  benefits = (benefitId = '0') => `/${Routes.benefits}?benefitId=${benefitId}`
 }
 
 export const to = new To()

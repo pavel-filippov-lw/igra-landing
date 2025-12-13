@@ -10,6 +10,15 @@ import { Navigation } from "../Navigation"
 import { Socials } from "../Socials"
 import classes from './Header.module.scss'
 
+const links = [
+  { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
+  { label: 'Documentation', to: 'https://docs.igralabs.com' },
+  { label: 'Team', to: to.team(), isPage: true },
+  { label: 'Manifesto', to: to.manifesto(), isPage: true },
+  { label: 'Vision', to: to.vision(), isPage: true },
+  { label: 'Contact', to: 'mailto:team@igralabs.com' },
+]
+
 export const Header: FC = () => {
   const navigate = useNavigate()
   const [isVisibleMenu, setIsVisibleMenu] = useState(false)
@@ -30,6 +39,7 @@ export const Header: FC = () => {
             onClick={() => setIsVisibleMenu(!isVisibleMenu)}
           />
           <Navigation
+            links={links}
             className={clsx(classes.navigation, {
               [classes.isVisible]: isVisibleMenu,
             })}
