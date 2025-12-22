@@ -42,7 +42,7 @@ export const Roadmap: FC = () => {
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2026 January</h5>
+                <h5 className={classes.title}>2026 February</h5>
                 <div className={classes.description}>
                   <b>Fluyt:</b> Open Mainnet with Attestors and TGE
                 </div>
@@ -74,7 +74,7 @@ export const Roadmap: FC = () => {
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2025 Dec</h5>
+                <h5 className={classes.title}>2026 January</h5>
                 <div className={classes.description}>
                   <b>Galleon:</b> Closed Mainnet run by community node operators
                 </div>
