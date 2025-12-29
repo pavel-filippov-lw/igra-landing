@@ -1,35 +1,70 @@
 import clsx from "clsx"
-import { FC } from "react"
+import { FC, Fragment } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { to } from "~/shared/lib"
+import { Flex } from "~/shared/ui"
 
-import { Navigation } from "../Navigation"
+import { Link } from "../Navigation"
 import classes from './Footer.module.scss'
 
-const links = [
-  { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
-  { label: 'Features', to: to.benefits(), isPage: true },
-  { label: 'Documentation', to: 'https://docs.igralabs.com' },
-  { label: 'Team', to: to.team(), isPage: true },
-  { label: 'Manifesto', to: to.manifesto(), isPage: true },
-  { label: 'Vision', to: to.vision(), isPage: true },
-  { label: 'Contact', to: 'mailto:team@igralabs.com' },
-]
+const links: Record<string, Link[]> = {
+  'About': [
+    { label: 'About Igra', to: to.about(), isPage: true },
+    { label: 'Privacy policy', to: to.privacy(), isPage: true },
+    { label: 'Terms of use', to: '' },
+  ],
+  'Research': [
+    { label: 'Articles', to: '' },
+  ],
+  'Community': [
+    { label: 'Blog & News', to: '' },
+  ],
+}
 
 export interface FooterProps {
   className?: string
 }
 
 export const Footer: FC<FooterProps> = ({ className }) => {
+  const navigate = useNavigate()
+
+  const handleNavigation = (link: Link) => {
+    document.getElementById('root')?.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    })
+    navigate(link.to)
+  }
+
   return (
     <div className={clsx(classes.root, className)}>
-      <Navigation
-        variant="secondary"
-        links={links}
-        className={classes.navigation}
-      />
+      <Flex justifyContent='space-between' gap={30} className={classes.navigation}>
+        {Object.entries(links).map(([title, links], index) => (
+          <Flex key={index} flexDirection='column' gap={15}>
+            <div className={classes.title}>{title}</div>
+            <Flex flexDirection='column' gap={5}>
+              {links.map((link, i) => (
+                <Fragment key={`${index}-${i}`}>
+                  {!!link.isPage ? (
+                    <div className={classes.link} onClick={() => handleNavigation(link)}>
+                      {link.label}
+                    </div>
+                  ) : (
+                    <a href={link.to} target='_blank' rel='noopener noreferrer'>
+                      <div className={classes.link}>
+                        {link.label}
+                      </div>
+                    </a>
+                  )}
+                </Fragment>
+              ))}
+            </Flex>
+          </Flex>
+        ))}
+      </Flex>
       <div className={classes.copyright}>
-        &copy; 2024-2025 Igra Labs
+        Copy Igra 2025
       </div>
     </div>
   )

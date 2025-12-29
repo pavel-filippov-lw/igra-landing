@@ -1,3 +1,4 @@
+export * from './AboutPage'
 export * from './BenefitsPage'
 export * from './EcosystemPage'
 export * from './HeroPage'

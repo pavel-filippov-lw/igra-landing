@@ -1,3 +1,4 @@
+export * from './AboutBenefits'
 export * from './Difficulty'
 export * from './Ecosystem'
 export * from './Footer'

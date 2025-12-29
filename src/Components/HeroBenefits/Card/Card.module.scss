@@ -1,22 +1,17 @@
 .root {
-	.icon {
-		flex: 1 0 auto;
-	}
-
 	.content {
-		flex: 0 1 auto;
 		width: 100%;
-		min-height: 250px;
-		padding: 35px 25px 25px;
+		height: 100%;
+		padding: 25px 18px 10px;
 		border-radius: 22px;
 		border: 1px solid #6BD1C3;
 		background: #000000;
 
 		.title {
 			flex: 1 0 auto;
-			font-size: 32px;
-			font-weight: 500;
-			line-height: 36px;
+			font-size: 24px;
+			font-weight: 400;
+			line-height: 35px;
 			color: #6BD1C3;
 			text-align: center;
 		}
@@ -25,16 +20,16 @@
 			position: relative;
 			width: fit-content;
 			margin-left: auto;
-			margin-right: 30px;
-			font-size: 18px;
+			font-size: 14px;
 			font-weight: 700;
+			line-height: 28px;
 			color: #FFFFFF;
 
 			&::after {
 				content: '';
 				position: absolute;
 				left: 0;
-				bottom: -6px;
+				bottom: 0;
 				width: 0;
 				height: 2px;
 				background-color: #FFFFFF;
@@ -48,6 +43,13 @@
 					width: 100%;
 				}
 			}
+		}
+	}
+
+	@media screen and (max-width: $tablet) {
+		.title {
+			font-size: 16px;
+			line-height: 24px;
 		}
 	}
 }

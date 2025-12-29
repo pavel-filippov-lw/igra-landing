@@ -62,9 +62,10 @@
 
 	&.gradient {
 		padding: 5px 30px;
-		background: linear-gradient(45deg, #E1FFFD 0%, #4BABAB 48%, #EFFC66 100%);
+		background: linear-gradient(to right, #E1FFFD 0%, #4BABAB 51%, #EFFC66 100%);
 		color: #000000;
 
+		font-size: 14px;
 		font-weight: 700;
 		line-height: 36px;
 	}

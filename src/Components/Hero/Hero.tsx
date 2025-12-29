@@ -1,5 +1,7 @@
 import { FC } from "react"
 
+import { Button } from "~/shared/ui"
+
 import { GlitchText } from "../GlitchText"
 import heroVideoSafari from './assets/video.mov'
 import heroVideo from './assets/video.webm'
@@ -32,6 +34,9 @@ export const Hero: FC = () => {
           <div className={classes.description}>
             Ahoy! Our ship has crossed rough waters-reorgs, battles for storage, and a cold restart iceberg.
           </div>
+          <Button variant="gradient" className={classes.button}>
+            Read more
+          </Button>
         </div>
       </div>
       <video

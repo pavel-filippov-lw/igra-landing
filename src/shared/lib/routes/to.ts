@@ -14,6 +14,8 @@ class To {
   privacy = () => `/${Routes.privacy}`
 
   benefits = (benefitId = '0') => `/${Routes.benefits}?benefitId=${benefitId}`
+
+  about = () => `/${Routes.about}`
 }
 
 export const to = new To()

@@ -7,14 +7,12 @@ import denPhoto from './assets/den.png'
 import deuelPhoto from './assets/deuel.png'
 import ilyaPhoto from './assets/ilya.png'
 import mikePhoto from './assets/mike.png'
-import pavelPhoto from './assets/pavel.png'
-import romanPhoto from './assets/rom.png'
 import igorPhoto from './assets/new1.png'
 import behzadPhoto from './assets/new2.png'
 import vadimPhoto from './assets/new3.png'
-
+import pavelPhoto from './assets/pavel.png'
+import romanPhoto from './assets/rom.png'
 import classes from './Team.module.scss'
-
 
 const teamMembers = [
   {
@@ -85,22 +83,34 @@ const teamMembers = [
 export const Team: FC = () => {
   return (
     <div className={classes.root}>
-      <h1 className={classes.title}>Team</h1>
+      <h1 className={classes.title}>Igra Team</h1>
       <Flex flexWrap='wrap' className={classes.content}>
         {teamMembers.map((member, index) => (
           <Fragment key={index}>
-            <TeamMemberCard
-              className={classes.card}
-              photoUrl={member.photoUrl}
-              name={member.name}
-              role={member.role}
-              description={member.description}
-              linkedinUrl={member.linkedinUrl}
-            />
+            <div className={classes.card}>
+              {member.linkedinUrl ? (
+                <a href={member.linkedinUrl} target='_blank'>
+                  <TeamMemberCard
+                    photoUrl={member.photoUrl}
+                    name={member.name}
+                    role={member.role}
+                    description={member.description}
+                    linkedinUrl={member.linkedinUrl}
+                  />
+                </a>
+              ) : (
+                <TeamMemberCard
+                  linkedinUrl={member.linkedinUrl}
+                  photoUrl={member.photoUrl}
+                  name={member.name}
+                  role={member.role}
+                  description={member.description}
+                />
+              )}
+            </div>
           </Fragment>
         ))}
       </Flex>
-      <div className={classes.shipBg} />
     </div>
   )
 }

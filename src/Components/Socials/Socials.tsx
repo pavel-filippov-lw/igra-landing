@@ -3,6 +3,8 @@ import { FC } from "react"
 import { Flex, Icon } from "~/shared/ui"
 import { IconName } from "~/shared/ui/Icon/assets"
 
+import classes from './Socials.module.scss'
+
 const links = [
   // { iconName: 'telegram', to: '' },
   { iconName: 'twitter', to: 'https://x.com/Igra_Labs' },
@@ -19,7 +21,7 @@ export const Socials: FC<SocialsProps> = ({ className }) => {
     <Flex gap={19} className={className}>
       {links.map((link, index) => (
         <a key={index} href={link.to} target='_blank'>
-          <Icon name={link.iconName} size={29} />
+          <Icon className={classes.icon} name={link.iconName} size={24} />
         </a>
       ))}
     </Flex>

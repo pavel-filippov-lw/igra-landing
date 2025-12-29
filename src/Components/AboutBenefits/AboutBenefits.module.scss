@@ -1,0 +1,22 @@
+.root {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 90px 40px;
+
+    .boldTitle {
+        font-weight: 700;
+    }
+
+    .card {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+
+    @media screen and (max-width: $laptop) {
+        gap: 40px 20px;
+    }
+
+    @media screen and (max-width: $tablet) {
+        grid-template-columns: 1fr;
+    }
+}

@@ -31,13 +31,13 @@ layout.setVerticalGroup(
     layout.createSequentialGroup()
         .addGap(50, 50, 50)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(jLabel1)
-            .addComponent(jButton1))
-        .addGap(30, 30, 30);
 );
 `}
         </code>
       </pre>
+      <div className={classes.caption}>
+        Connect to Caravel testnet
+      </div>
       <Button variant='gradient' className={classes.button}>
         Learn more
       </Button>

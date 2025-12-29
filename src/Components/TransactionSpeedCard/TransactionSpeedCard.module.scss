@@ -10,7 +10,7 @@
         position: relative;
         width: 100%;
         aspect-ratio: 2/1;
-        transform: translate(0, -50%);
+        transform: translate(0, -35%);
 
         .chartPieChart {
             width: 200%;
@@ -33,20 +33,19 @@
             width: calc(100% + 30px);
             display: flex;
             justify-content: space-between;
-            font-size: 57px;
+            font-size: 36px;
             font-weight: 600;
             color: #FFFFFF;
         }
 
         .text {
             position: absolute;
-            top: calc(100% + 125px);
+            top: calc(100% + 100px);
             left: 0;
             width: 100%;
             text-align: center;
-            font-size: 32px;
+            font-size: 18px;
             font-weight: 600;
-            line-height: 43px;
             color: #FFFFFF;
         }
     }

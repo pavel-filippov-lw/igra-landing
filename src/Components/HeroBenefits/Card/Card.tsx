@@ -38,7 +38,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
     >
       <Icon
         name={iconName}
-        size={150}
+        size={120}
         className={classes.icon}
       />
       <Flex

@@ -13,56 +13,62 @@
 			left: 0;
 			font-size: 100px;
 			line-height: 120px;
-			font-weight: 600;
+			font-weight: 400;
 			color: #6BD1C3;
 
 			.glitchText {
 				display: inline;
 				font-size: 100px;
 				line-height: 120px;
-				font-weight: 600;
+				font-weight: 400;
 				color: #FFFFFF;
 			}
 		}
 
 		.note {
 			margin-top: 650px;
+			max-width: 548px;
 			min-height: 278px;
 			padding: 30px;
 			border-radius: 22px;
-			background: linear-gradient(to top right, #E1FFFD 0%, #4BABAB 48%, #EFFC66 100%);
-
-			.date,
-			.noteTitle {
-				font-size: 32px;
-				font-weight: 800;
-				line-height: 40px;
-			}
+			background: linear-gradient(to top right, #4AF8FF 0%, #4BABAB 48%, #EFFC66 100%);
 
 			.date {
 				margin-bottom: 9px;
+				font-size: 24px;
+				font-weight: 400;
+				line-height: 40px;
 				color: #EED58A;
 			}
 
 			.noteTitle {
 				margin-bottom: 9px;
+				font-size: 24px;
+				font-weight: 600;
+				line-height: 40px;
 				color: #FFFFFF;
 			}
 
 			.description {
-				font-size: 20px;
-				font-weight: 700;
+				margin-bottom: 30px;
+				font-size: 18px;
+				font-weight: 400;
 				line-height: 30px;
 				color: #FFFFFF;
+			}
+
+			.button {
+				margin-left: auto;
+				min-width: 170px;
 			}
 		}
 	}
 
 	.video {
 		position: absolute;
-		right: 0;
-		top: 0;
-		width: 60%;
+		right: -150px;
+		top: 50px;
+		width: 70%;
 		aspect-ratio: 1/1;
 		z-index: 1;
 	}
@@ -85,6 +91,11 @@
 			.note {
 				margin-top: 550px;
 			}
+		}
+
+		.video {
+			top: 0;
+			right: 0;
 		}
 	}
 

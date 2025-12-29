@@ -6,15 +6,15 @@
     background: #000000;
 
     .title {
-        margin-bottom: 27px;
-        font-size: 42px;
+        margin-bottom: 13px;
+        font-size: 30px;
         font-weight: 400;
-        line-height: 45px;
+        line-height: 36px;
         color: #FFFFFF;
     }
 
     .code {
-        margin-bottom: 50px;
+        margin-bottom: 8px;
         color: #6BD1C3;
         font-family: monospace;
         overflow-x: hidden;
@@ -22,8 +22,16 @@
         user-select: none;
     }
 
+    .caption {
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 28px;
+        color: #FFFFFF;
+    }
+
     .button {
-        min-width: 236px;
+        min-width: 170px;
         margin-left: auto;
     }
 

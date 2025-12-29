@@ -1,0 +1,48 @@
+.root {
+    margin-top: 100px;
+
+    .title {
+        margin-bottom: 30px;
+        font-family: $font-secondary;
+        font-size: 78px;
+        line-height: 86px;
+        font-weight: 400;
+        color: #6BD1C3;
+    }
+
+    .subtitle {
+        font-family: $font-secondary;
+        font-size: 48px;
+        line-height: 86px;
+        font-weight: 400;
+        color: #6BD1C3;
+    }
+
+    .description {
+        max-width: 710px;
+        font-size: 20px;
+        font-weight: 400;
+        color: #FFFFFF;
+
+        .boldText {
+            font-weight: 700;
+        }
+    }
+
+    @media screen and (max-width: $tablet) {
+        .title {
+            font-size: 48px;
+            line-height: 56px;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            line-height: 40px;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+}

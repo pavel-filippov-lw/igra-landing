@@ -1,76 +1,57 @@
 import gsap from "gsap"
 import { FC, Fragment, useEffect, useRef } from "react"
 
-import { to } from "~/shared/lib"
-
-import { Benefit, Card } from "./Card"
-import classes from './HeroBenefits.module.scss'
+import { Benefit, Card } from "../HeroBenefits/Card"
+import classes from './AboutBenefits.module.scss'
 
 const benefitsList: Benefit[] = [
   {
-    iconName: 'stack',
+    iconName: 'mark',
     title: () => (
       <>
-        <span className={classes.boldTitle}>Protected</span>
+        <span className={classes.boldTitle}>ATTesting</span>
         <br />
-        {' by Bitcoin-grade security'}
+        Attesters ensure Igra-to-Kaspa state consistency and receive protocol-level incentives and fee participation.
       </>
     ),
-    to: to.benefits('0'),
+    to: '',
   },
   {
-    iconName: 'clock',
+    iconName: 'governance',
     title: () => (
       <>
-        <span className={classes.boldTitle}>MEV</span>
+        <span className={classes.boldTitle}>Governance</span>
         <br />
-        {' and censorship resistant'}
+        {'IGRA governs Igra\'s security-critical parameters via Igra DAO, including attestation rules, rewards and penalties calibration, bridge configuration and updates, and allocation of ecosystem grants.'}
       </>
     ),
-    to: to.benefits('1'),
-  },
-  {
-    iconName: 'molecule',
-    title: () => (
-      <>
-        <span className={classes.boldTitle}>Post Quantum</span>
-        <br />
-        {' Cryptography resilient'}
-      </>
-    ),
-    to: to.benefits('2'),
-  },
-  {
-    iconName: 'blocks',
-    title: () => (
-      <>
-        {'Independent logical '}
-        <span className={classes.boldTitle}>zones</span>
-      </>
-    ),
-    to: to.benefits('3'),
-  },
-  {
-    iconName: 'lock',
-    title: () => (
-      <span className={classes.boldTitle}>Secure Privacy</span>
-    ),
-    to: to.benefits('4'),
+    to: '',
   },
   {
     iconName: 'flag',
     title: () => (
       <>
-        <span className={classes.boldTitle}>Swiss</span>
+        <span className={classes.boldTitle}>Swiss Compliance</span>
         <br />
-        {' registered company'}
+        Igra Association and the IGRA utility token are registered in Switzerland, Zug. MiCA paper submitted, ensuring clear legal responsibility and transparent management of funds.
       </>
     ),
-    to: to.benefits('5'),
+    to: '',
+  },
+  {
+    iconName: 'rocket',
+    title: () => (
+      <>
+        <span className={classes.boldTitle}>Future Utility</span>
+        <br />
+        IGRA extends to securing bridges, additional execution environments including ZK, and preferential access to network services.
+      </>
+    ),
+    to: '',
   },
 ]
 
-export const HeroBenefits: FC = () => {
+export const AboutBenefits: FC = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {

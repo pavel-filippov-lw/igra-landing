@@ -6,4 +6,5 @@ export const Routes = {
   ecosystem: 'ecosystem',
   privacy: 'privacy',
   benefits: 'benefits',
+  about: 'about',
 }
