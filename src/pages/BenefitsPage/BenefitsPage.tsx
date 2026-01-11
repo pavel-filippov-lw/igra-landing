@@ -5,13 +5,14 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import { PageLayout } from "~/Components"
 import { Benefit } from "~/Components/HeroBenefits/Card"
 import { to } from "~/shared/lib"
-import { AnimatedIcon, Icon } from "~/shared/ui"
+import { AnimatedIcon, AnimatedIconVariant, Icon } from "~/shared/ui"
 
 import classes from './BenefitsPage.module.scss'
 
-const benefitsList: (Benefit & { iconLabel?: string })[] = [
+const benefitsList: (Benefit & { animatedIconVariant?: AnimatedIconVariant, iconLabel?: string })[] = [
   {
     iconName: 'stack',
+    animatedIconVariant: 'stack',
     iconLabel: 'Security',
     title: () => 'Bitcoin-grade security',
     description: () => (
@@ -33,6 +34,7 @@ const benefitsList: (Benefit & { iconLabel?: string })[] = [
   {
     iconName: 'clock',
     iconLabel: 'MEV Protection',
+    animatedIconVariant: 'clock',
     title: () => 'MEV and censorship resistant',
     description: () => (
       <>
@@ -71,24 +73,28 @@ const benefitsList: (Benefit & { iconLabel?: string })[] = [
   {
     iconName: 'molecule',
     iconLabel: 'Quantum Safe',
+    animatedIconVariant: 'molecule',
     title: () => 'Post Quantum Cryptography resilient',
     to: to.benefits('2'),
   },
   {
     iconName: 'blocks',
     iconLabel: 'Zone Architecture',
+    animatedIconVariant: 'blocks',
     title: () => 'Independent logical zones',
     to: to.benefits('3'),
   },
   {
     iconName: 'lock',
     iconLabel: 'Privacy',
+    animatedIconVariant: 'lock',
     title: () => 'Secure privacy',
     to: to.benefits('4'),
   },
   {
     iconName: 'flag',
     iconLabel: 'Swiss Compliance',
+    animatedIconVariant: 'flag',
     title: () => 'Swiss registered company',
     description: () => (
       <>
@@ -142,7 +148,11 @@ export const BenefitsPage: FC = () => {
   return (
     <PageLayout>
       <div className={classes.root}>
-        <AnimatedIcon size={300} variant={benefit.iconName} />
+        {benefit.animatedIconVariant ? (
+          <AnimatedIcon size={300} variant={benefit.animatedIconVariant} />
+        ) : (
+          <Icon name={benefit.iconName} size={300} />
+        )}
         <div className={classes.card}>
           <div id='benefits-content' className={classes.content}>
             <div className={classes.title}>{benefit.title()}</div>
