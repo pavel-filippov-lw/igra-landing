@@ -2,13 +2,12 @@ import clsx from "clsx"
 import { forwardRef, ReactNode } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { Flex, FlexProps, Icon } from "~/shared/ui"
-import { IconName } from "~/shared/ui/Icon/assets"
+import { AnimatedIconVariant, Flex, FlexProps, Icon } from "~/shared/ui"
 
 import classes from './Card.module.scss'
 
 export interface Benefit {
-  iconName: IconName
+  iconName: AnimatedIconVariant
   title: () => ReactNode
   description?: () => ReactNode
   to: string
@@ -39,7 +38,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       <Icon
         name={iconName}
         size={120}
-        className={classes.icon}
       />
       <Flex
         flexDirection='column'
