@@ -5,13 +5,14 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import { PageLayout } from "~/Components"
 import { Benefit } from "~/Components/HeroBenefits/Card"
 import { to } from "~/shared/lib"
-import { AnimatedIcon, Icon } from "~/shared/ui"
+import { AnimatedIcon, AnimatedIconVariant, Icon } from "~/shared/ui"
 
 import classes from './BenefitsPage.module.scss'
 
-const benefitsList: Benefit[] = [
+const benefitsList: (Benefit & { animatedIconVariant: AnimatedIconVariant })[] = [
   {
     iconName: 'stack',
+    animatedIconVariant: 'stack',
     title: () => 'Bitcoin-grade security',
     description: () => (
       <>
@@ -25,27 +26,32 @@ const benefitsList: Benefit[] = [
   },
   {
     iconName: 'clock',
+    animatedIconVariant: 'clock',
     title: () => 'MEV and censorship resistant',
     description: () => 'Security isn\'t bootstrapped from scratch with a new token or delegated to a rotating committee. It\'s inherited directly from over 1 exahash of mining power with real electricity costs. No validator set to bribe. No stake to accumulate for a governance attack. No slashing conditions to game. The same security model that has protected Bitcoin for 15 years now protects programmable applications. Every smart contract on Igra is backed by the full weight of Kaspa\'s hashrate from block one — not a promise to decentralize later.',
     to: to.benefits('1'),
   },
   {
     iconName: 'molecule',
+    animatedIconVariant: 'molecule',
     title: () => 'Post Quantum Cryptography resilient',
     to: to.benefits('2'),
   },
   {
     iconName: 'blocks',
+    animatedIconVariant: 'blocks',
     title: () => 'Independent logical zones',
     to: to.benefits('3'),
   },
   {
     iconName: 'lock',
+    animatedIconVariant: 'lock',
     title: () => 'Secure privacy',
     to: to.benefits('4'),
   },
   {
     iconName: 'flag',
+    animatedIconVariant: 'flag',
     title: () => 'Swiss registered company',
     to: to.benefits('5'),
   },
@@ -68,7 +74,7 @@ export const BenefitsPage: FC = () => {
   return (
     <PageLayout>
       <div className={classes.root}>
-        <AnimatedIcon size={300} variant={benefit.iconName} />
+        <AnimatedIcon size={300} variant={benefit.animatedIconVariant} />
         <div className={classes.card}>
           <div id='benefits-content' className={classes.content}>
             <div className={classes.title}>{benefit.title()}</div>
