@@ -5,12 +5,11 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import { PageLayout } from "~/Components"
 import { Benefit } from "~/Components/HeroBenefits/Card"
 import { to } from "~/shared/lib"
-import { ClockIcon, Icon, StackIcon } from "~/shared/ui"
-import { IconName } from "~/shared/ui/Icon/assets"
+import { AnimatedIcon, Icon } from "~/shared/ui"
 
 import classes from './BenefitsPage.module.scss'
 
-const benefitsList: Benefit[] = [
+const benefitsList: (Benefit & { iconLabel?: string })[] = [
   {
     iconName: 'stack',
     iconLabel: 'Security',
@@ -20,10 +19,10 @@ const benefitsList: Benefit[] = [
         {'Bitcoin\'s $1.5T market cap isn\'t a fluke. Lindy effect in action: it proved resilient, non-censorable, non-capturable. PoS chains made security and decentralization tradeoffs that serious financial actors won\'t accept. Bitcoin captured 10x the liquidity of any other decentralized currency because attack cost scales with locked value.'}
         <br />
         <br />
-        {'Yes, auditability and other properties still prevent programmable systems from fully replacing traditional finance. But security is the foundation. Without it, nothing else matters.'}
+        Yes, auditability and other properties still prevent programmable systems from fully replacing traditional finance. But security is the foundation. Without it, nothing else matters.
         <br />
         <br />
-        {'Kaspa is the only system comparable to Bitcoin in security design. Same PoW consensus principles, same economic security model where attack cost scales with network value.'}
+        Kaspa is the only system comparable to Bitcoin in security design. Same PoW consensus principles, same economic security model where attack cost scales with network value.
         <br />
         <br />
         {'Igra inherits this security directly. As a based rollup, Igra uses Kaspa\'s PoW network as its sequencer. No centralized operator, no validator set to capture. Transaction ordering is determined by Kaspa miners, meaning attacks on Igra require attacking Kaspa itself. Smart contracts protected by real hashpower is what institutional players need to consider decentralized apps.'}
@@ -39,17 +38,17 @@ const benefitsList: Benefit[] = [
       <>
         <span className={classes.boldText}>Value extraction</span>
         <br />
-        {'MEV and frontrunning cost users $500M+ annually. 80%+ of Ethereum blocks are built by two builders. The people ordering your transactions profit from your trades.'}
+        MEV and frontrunning cost users $500M+ annually. 80%+ of Ethereum blocks are built by two builders. The people ordering your transactions profit from your trades.
         <br />
         <br />
         <span className={classes.boldText}>Solution:</span>
         <br />
-        {'Igra separates execution from sequencing. Kaspa miners order opaque transaction data without knowledge of EVM state or the value inside. No visibility means no sandwich attacks, no frontrunning, no extraction.'}
+        Igra separates execution from sequencing. Kaspa miners order opaque transaction data without knowledge of EVM state or the value inside. No visibility means no sandwich attacks, no frontrunning, no extraction.
         <br />
         <br />
         <span className={classes.boldText}>Problem: Censorship by capital</span>
         <br />
-        {'PoS lets token holders decide what gets included. Hyperliquid manipulated its oracle to avoid losses. Flow attempted to rollback 6 hours of history. Concentrated stake means concentrated power.'}
+        PoS lets token holders decide what gets included. Hyperliquid manipulated its oracle to avoid losses. Flow attempted to rollback 6 hours of history. Concentrated stake means concentrated power.
         <br />
         <br />
         <span className={classes.boldText}>Solution:</span>
@@ -132,16 +131,6 @@ export const BenefitsPage: FC = () => {
   const benefitId = searchParams.get('benefitId')
   const benefit = benefitsList.find((_, index) => index.toString() === benefitId) ?? benefitsList[0]
 
-  const animatedIcons: Partial<Record<IconName, React.ReactNode>> = {
-    stack: <StackIcon size={300} />,
-    clock: <ClockIcon size={300} />,
-    molecule: <Icon name='molecule' size={300} />,
-    blocks: <Icon name='blocks' size={300} />,
-    lock: <Icon name='lock' size={300} />,
-    flag: <Icon name='flag' size={300} />,
-    ethereum: <Icon name='ethereum' size={300} />,
-  }
-
   const handleNavigation = (index: number) => {
     document.getElementById('benefits-content')?.scrollTo({
       top: 0,
@@ -153,7 +142,7 @@ export const BenefitsPage: FC = () => {
   return (
     <PageLayout>
       <div className={classes.root}>
-        {animatedIcons[benefit.iconName]}
+        <AnimatedIcon size={300} variant={benefit.iconName} />
         <div className={classes.card}>
           <div id='benefits-content' className={classes.content}>
             <div className={classes.title}>{benefit.title()}</div>
@@ -174,7 +163,8 @@ export const BenefitsPage: FC = () => {
                 {benefit.iconLabel && (
                   <div className={clsx(classes.iconLabel, {
                     [classes.inactive]: index.toString() !== benefitId,
-                  })}>
+                  })}
+                  >
                     {benefit.iconLabel}
                   </div>
                 )}
