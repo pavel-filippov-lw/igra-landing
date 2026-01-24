@@ -11,7 +11,7 @@
     .buttons {
         position: absolute;
         bottom: 60px;
-        left: 0;
+        left: 20px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -60,8 +60,12 @@
     }
 
     .content {
-        max-width: 1600px;
+        max-width: 1400px;
         margin: 0 auto;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+        overflow-x: visible;
 
         .cards {
             .transactionSpeedCard {
@@ -86,6 +90,7 @@
 
         .buttons {
             gap: 30px;
+            left: 20px;
 
             .separator {
                 width: 1px;
@@ -110,7 +115,7 @@
         .buttons {
             position: absolute;
             bottom: 60px;
-            left: 0;
+            left: 20px;
             flex-direction: row;
             justify-content: flex-start;
             gap: 30px;
@@ -127,6 +132,7 @@
         }
 
         .content {
+            padding: 0 20px;
 
             .cards {
                 flex-direction: column;
@@ -146,7 +152,7 @@
         .buttons {
             position: relative;
             bottom: auto;
-            left: auto;
+            left: 0;
             transform: none;
             margin-top: 40px;
             margin-bottom: 30px;
@@ -165,6 +171,7 @@
 
         .content {
             max-width: 100%;
+            padding: 0 20px;
         }
     }
 }

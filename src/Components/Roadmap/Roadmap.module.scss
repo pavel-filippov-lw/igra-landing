@@ -1,4 +1,9 @@
 .root {
+	width: 100vw;
+	max-width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+
 	.title {
 		font-family: $font-secondary;
 		font-size: 42px;
@@ -11,23 +16,54 @@
 	.positioner {
 		position: relative;
 		padding-bottom: 400px;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+
+		&::-webkit-scrollbar {
+			height: 6px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: rgba(107, 209, 195, 0.1);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: rgba(107, 209, 195, 0.5);
+			border-radius: 3px;
+		}
 
 		.bg {
-			width: 100vw;
+			width: 100%;
+			max-width: 100vw;
 			height: 950px;
 			background: center / 100% 100% no-repeat url('./assets/bg.png');
 
 			position: absolute;
 			top: 0;
+			left: 0;
 			z-index: -2;
+
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 100%;
+				height: 300px;
+				background: radial-gradient(ellipse at bottom center, rgba(107, 209, 195, 0.2) 0%, rgba(107, 209, 195, 0.1) 30%, transparent 70%);
+				filter: blur(60px);
+			}
 		}
 
 		.wrapper {
-			width: 100vw;
+			width: 100%;
+			padding: 0 20px;
 
 			.roadmap {
 				position: relative;
-				width: 100vw;
+				width: 100%;
 				height: 500px;
 
 				&::after {
@@ -36,46 +72,73 @@
 					top: 50%;
 					left: 50%;
 					transform: translate(-50%, -50%);
-					width: 90%;
+					width: 95%;
 					height: 2px;
-					background-color: #6BD1C3;
+					background: linear-gradient(90deg, #6BD1C3 0%, #6BD1C3 55%, rgba(107, 209, 195, 0.5) 100%);
+					box-shadow: 0 0 30px rgba(107, 209, 195, 0.6), 0 0 60px rgba(107, 209, 195, 0.3);
 				}
 
 				&::before {
 					content: '';
 					position: absolute;
 					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-					width: 95%;
-					height: 80px;
-					background: radial-gradient(ellipse at center, #0F7584 0%, rgba(10, 123, 140, 0.6) 31%, rgba(40, 26, 24, 0) 100%);
-					filter: blur(30px);
+					left: 5%;
+					width: 55%;
+					height: 100px;
+					background: radial-gradient(ellipse at left center, rgba(107, 209, 195, 0.4) 0%, rgba(107, 209, 195, 0.2) 40%, transparent 80%);
+					filter: blur(40px);
+					z-index: -1;
 				}
 
 				.content {
 					position: relative;
-					width: 90%;
+					width: 95%;
 					height: 50%;
 					margin: 0 auto;
 
 					.card {
 						position: relative;
-						max-width: 210px;
+						max-width: 250px;
 						height: 100%;
+						flex: 1;
+
+						&.highlighted {
+							&::before {
+								content: '';
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								width: 200%;
+								height: 250px;
+								background: radial-gradient(ellipse at center, rgba(107, 209, 195, 0.4) 0%, rgba(107, 209, 195, 0.2) 35%, rgba(107, 209, 195, 0.1) 60%, transparent 80%);
+								filter: blur(50px);
+								z-index: -1;
+							}
+
+							.dot {
+								box-shadow: 0 0 30px rgba(107, 209, 195, 0.8), 0 0 60px rgba(107, 209, 195, 0.4);
+							}
+						}
 
 						.title {
 							font-family: $font-secondary;
-							font-size: 28px;
+							font-size: 26px;
 							font-weight: 600;
 							color: #6BD1C3;
 							margin-right: auto;
+							white-space: nowrap;
 						}
 
 						.description {
 							font-family: $font-secondary;
-							font-size: 20px;
-							line-height: 26px;
+							font-size: 18px;
+							line-height: 24px;
+
+							b {
+								display: block;
+								margin-bottom: 4px;
+							}
 						}
 
 						.dot {
@@ -87,6 +150,7 @@
 							height: 28px;
 							border-radius: 50%;
 							background-color: #6BD1C3;
+							box-shadow: 0 0 20px rgba(107, 209, 195, 0.6);
 						}
 
 						.stick {
@@ -102,7 +166,7 @@
 					}
 
 					&.bottom {
-						width: 70%;
+						width: 75%;
 
 						.card {
 							justify-content: end;
@@ -125,14 +189,34 @@
 	@media screen and (max-width: $laptop) {
 		.positioner {
 			.wrapper {
-				overflow-x: auto;
-
-				&::-webkit-scrollbar {
-					display: none;
+				.roadmap {
+					min-width: 1200px;
+					width: auto;
 				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $tablet) {
+		.positioner {
+			.wrapper {
+				.roadmap {
+					min-width: 1100px;
+					width: auto;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $mobile) {
+		.positioner {
+			padding-bottom: 300px;
+
+			.wrapper {
+				padding: 0 10px;
 
 				.roadmap {
-					min-width: 950px;
+					min-width: 1000px;
 					width: auto;
 				}
 			}

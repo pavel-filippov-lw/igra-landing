@@ -1,10 +1,11 @@
 @import '../../shared/styles/vars';
 
 .root {
-	max-width: 100%;
+	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 20px;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 12px;
+	box-sizing: border-box;
 
 	.boldTitle {
 		font-family: $font-secondary;

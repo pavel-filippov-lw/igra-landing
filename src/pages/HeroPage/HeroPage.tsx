@@ -1,7 +1,7 @@
 import gsap from "gsap"
 import { FC, useEffect, useRef } from "react"
 
-import { Hero, HeroBenefits, HeroCodeCard, PageLayout, TransactionSpeedCard } from "~/Components"
+import { Hero, HeroBenefits, HeroCodeCard, PageLayout, Roadmap, TransactionSpeedCard } from "~/Components"
 import { Flex, Icon } from "~/shared/ui"
 
 import classes from './HeroPage.module.scss'
@@ -41,7 +41,7 @@ export const HeroPage: FC = () => {
     <PageLayout>
       <Flex
         flexDirection='column'
-        gap={120}
+        gap={100}
         className={classes.root}
       >
         <div className={classes.heroSection}>
@@ -73,7 +73,7 @@ export const HeroPage: FC = () => {
             </a>
           </Flex>
         </div>
-        <Flex flexDirection='column' gap={120} className={classes.content}>
+        <Flex flexDirection='column' gap={100} className={classes.content}>
           <HeroBenefits />
           <Flex gap={40} className={classes.cards}>
             <TransactionSpeedCard
@@ -87,6 +87,7 @@ export const HeroPage: FC = () => {
               className={classes.heroCodeCard}
             />
           </Flex>
+          <Roadmap />
         </Flex>
       </Flex>
     </PageLayout>

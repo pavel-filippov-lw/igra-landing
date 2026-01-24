@@ -14,7 +14,7 @@
 		.title {
 			position: absolute;
 			top: 80px;
-			left: 0;
+			left: 20px;
 			font-size: 85px;
 			line-height: 105px;
 			font-weight: 400;
@@ -34,7 +34,7 @@
 		.note {
 			position: absolute;
 			bottom: 120px;
-			left: 0;
+			left: 20px;
 			max-width: fit-content;
 			padding: 20px 32px;
 			border-radius: 14px;
@@ -107,6 +107,7 @@
 
 			.title {
 				top: 60px;
+				left: 20px;
 				font-size: 54px;
 				line-height: 66px;
 
@@ -121,6 +122,7 @@
 
 			.note {
 				bottom: 120px;
+				left: 20px;
 				padding: 18px 25px;
 
 				.noteContent {
@@ -149,6 +151,7 @@
 			.title {
 				position: relative;
 				top: auto;
+				left: auto;
 				margin-top: 10px;
 				font-size: 38px;
 				line-height: 46px;

@@ -23,7 +23,7 @@ export const Roadmap: FC = () => {
               gap={30}
               className={classes.content}
             >
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
+              <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.highlighted)}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 Q1</h5>
@@ -31,7 +31,7 @@ export const Roadmap: FC = () => {
                   <b>Dromon:</b> Invite-only devnet with core development infrastructure
                 </div>
               </Flex>
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
+              <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.highlighted)}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 Q3</h5>
@@ -42,9 +42,10 @@ export const Roadmap: FC = () => {
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2026 January</h5>
+                <h5 className={classes.title}>2026 Jan</h5>
                 <div className={classes.description}>
-                  <b>Fluyt:</b> Open Mainnet with Attestors and TGE
+                  <b>Fluyt:</b> Open Mainnet with Attestors and TGE<br/>
+                  Audit by Sigma Prime
                 </div>
               </Flex>
               <Flex flexDirection='column' alignItems='center' className={classes.card}>
@@ -62,19 +63,19 @@ export const Roadmap: FC = () => {
               gap={30}
               className={clsx(classes.content, classes.bottom)}
             >
-              <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.bottom)}>
+              <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.bottom, classes.highlighted)}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
                 <h5 className={classes.title}>2025 July</h5>
                 <div className={classes.description}>
                   <b>Caravel:</b> Incentivized testnet on Kaspa TN10<br/>
-                  Pre-liquid token
+                  Pre-liquid
                 </div>
               </Flex>
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
+              <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.highlighted)}>
                 <div className={classes.dot} />
                 <div className={classes.stick} />
-                <h5 className={classes.title}>2025 Dec</h5>
+                <h5 className={classes.title}>2026 Jan</h5>
                 <div className={classes.description}>
                   <b>Galleon:</b> Closed Mainnet run by community node operators
                 </div>

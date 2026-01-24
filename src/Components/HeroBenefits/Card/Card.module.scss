@@ -1,6 +1,9 @@
 @import '../../../shared/styles/vars';
 
 .root {
+	width: 100%;
+	box-sizing: border-box;
+
 	.iconLabel {
 		font-size: 14px;
 		font-weight: 400;
@@ -14,16 +17,17 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		min-height: 230px;
-		padding: 25px 30px 20px;
+		min-height: 210px;
+		padding: 20px 18px 18px;
 		border-radius: 22px;
+		box-sizing: border-box;
 
 		.title {
 			font-family: $font-secondary;
-			font-size: 23px;
+			font-size: 21px;
 			font-weight: 600;
-			line-height: 31px;
-			min-height: 62px; // Force 2 lines height
+			line-height: 28px;
+			min-height: 56px; // Force 2 lines height
 			display: flex;
 			align-items: flex-start; // Align to top
 			justify-content: center;
@@ -33,9 +37,9 @@
 
 		.description {
 			font-family: $font;
-			font-size: 17px;
+			font-size: 16px;
 			font-weight: 400;
-			line-height: 25px;
+			line-height: 24px;
 			color: #FFFFFF;
 			text-align: left;
 		}
