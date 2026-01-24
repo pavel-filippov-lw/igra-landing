@@ -1,7 +1,7 @@
 import gsap from "gsap"
 import { FC, useEffect, useRef } from "react"
 
-import { Hero, HeroBenefits, HeroCodeCard, PageLayout, Roadmap, TransactionSpeedCard } from "~/Components"
+import { Hero, HeroBenefits, HeroCodeCard, LatestNews, PageLayout, Roadmap, TransactionSpeedCard } from "~/Components"
 import { Flex, Icon } from "~/shared/ui"
 
 import classes from './HeroPage.module.scss'
@@ -87,6 +87,7 @@ export const HeroPage: FC = () => {
               className={classes.heroCodeCard}
             />
           </Flex> */}
+          <LatestNews />
           <Roadmap />
         </Flex>
       </Flex>
