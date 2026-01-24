@@ -20,7 +20,6 @@ export const Roadmap: FC = () => {
             <Flex
               justifyContent='space-between'
               alignItems='center'
-              gap={30}
               className={classes.content}
             >
               <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.highlighted)}>
@@ -60,7 +59,6 @@ export const Roadmap: FC = () => {
             <Flex
               justifyContent='space-between'
               alignItems='center'
-              gap={30}
               className={clsx(classes.content, classes.bottom)}
             >
               <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.bottom, classes.highlighted)}>

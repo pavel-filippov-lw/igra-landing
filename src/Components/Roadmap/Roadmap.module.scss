@@ -6,7 +6,7 @@
 
 	.title {
 		font-family: $font-secondary;
-		font-size: 42px;
+		font-size: 48px;
 		line-height: 72px;
 		font-weight: 400;
 		color: #6BD1C3;
@@ -59,20 +59,21 @@
 
 		.wrapper {
 			width: 100%;
-			padding: 0 20px;
+			padding: 0;
 
 			.roadmap {
 				position: relative;
 				width: 100%;
-				height: 500px;
+				height: 520px;
 
 				&::after {
 					content: '';
 					position: absolute;
 					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-					width: 95%;
+					left: 0;
+					right: 0;
+					transform: translateY(-50%);
+					width: 100%;
 					height: 2px;
 					background: linear-gradient(90deg, #6BD1C3 0%, #6BD1C3 55%, rgba(107, 209, 195, 0.5) 100%);
 					box-shadow: 0 0 30px rgba(107, 209, 195, 0.6), 0 0 60px rgba(107, 209, 195, 0.3);
@@ -82,8 +83,8 @@
 					content: '';
 					position: absolute;
 					top: 50%;
-					left: 5%;
-					width: 55%;
+					left: 0;
+					width: 60%;
 					height: 100px;
 					background: radial-gradient(ellipse at left center, rgba(107, 209, 195, 0.4) 0%, rgba(107, 209, 195, 0.2) 40%, transparent 80%);
 					filter: blur(40px);
@@ -92,15 +93,18 @@
 
 				.content {
 					position: relative;
-					width: 95%;
+					width: 100%;
 					height: 50%;
-					margin: 0 auto;
+					margin: 0;
+					padding: 0 2px;
+					box-sizing: border-box;
 
 					.card {
 						position: relative;
-						max-width: 250px;
+						width: auto;
+						max-width: 350px;
 						height: 100%;
-						flex: 1;
+						flex: 1 1 auto;
 
 						&.highlighted {
 							&::before {
@@ -123,7 +127,7 @@
 
 						.title {
 							font-family: $font-secondary;
-							font-size: 26px;
+							font-size: 28px;
 							font-weight: 600;
 							color: #6BD1C3;
 							margin-right: auto;
@@ -132,8 +136,8 @@
 
 						.description {
 							font-family: $font-secondary;
-							font-size: 18px;
-							line-height: 24px;
+							font-size: 19px;
+							line-height: 25px;
 
 							b {
 								display: block;
@@ -159,14 +163,16 @@
 							left: 14px;
 							transform: translateY(-100%);
 							width: 1px;
-							height: 45px;
+							height: 50px;
 							background-color: #979797;
 							z-index: -1;
 						}
 					}
 
 					&.bottom {
-						width: 75%;
+						width: 78%;
+						margin: 0 auto;
+						padding: 0;
 
 						.card {
 							justify-content: end;
@@ -177,6 +183,7 @@
 
 							.stick {
 								top: 25px;
+								height: 50px;
 								transform: translateY(0);
 							}
 						}
@@ -213,7 +220,7 @@
 			padding-bottom: 300px;
 
 			.wrapper {
-				padding: 0 10px;
+				padding: 0;
 
 				.roadmap {
 					min-width: 1000px;
