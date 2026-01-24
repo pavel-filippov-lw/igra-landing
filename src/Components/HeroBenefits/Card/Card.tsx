@@ -17,6 +17,7 @@ export interface Benefit {
 
 export interface CardProps extends Benefit, FlexProps {
   className?: string
+  showBorder?: boolean
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(({
@@ -26,6 +27,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
   description,
   to,
   className,
+  showBorder = false,
   ...props
 }, ref) => {
   const navigate = useNavigate()
@@ -58,7 +60,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       <Flex
         flexDirection='column'
         gap={10}
-        className={classes.content}
+        className={clsx(classes.content, showBorder && classes.withBorder)}
       >
         <div className={classes.title}>
           {title()}

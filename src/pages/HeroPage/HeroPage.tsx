@@ -75,7 +75,7 @@ export const HeroPage: FC = () => {
         </div>
         <Flex flexDirection='column' gap={100} className={classes.content}>
           <HeroBenefits />
-          <Flex gap={40} className={classes.cards}>
+          {/* <Flex gap={40} className={classes.cards}>
             <TransactionSpeedCard
               ref={setRef(0)}
               value={30}
@@ -86,7 +86,7 @@ export const HeroPage: FC = () => {
               ref={setRef(1)}
               className={classes.heroCodeCard}
             />
-          </Flex>
+          </Flex> */}
           <Roadmap />
         </Flex>
       </Flex>

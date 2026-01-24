@@ -59,6 +59,7 @@ export const AboutBenefits: FC = () => {
           <Card
             {...benefit}
             className={classes.card}
+            showBorder={true}
           />
         </Fragment>
       ))}
