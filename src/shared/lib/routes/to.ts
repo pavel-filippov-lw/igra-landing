@@ -15,7 +15,7 @@ class To {
 
   benefits = (benefitId = '0') => `/${Routes.benefits}?benefitId=${benefitId}`
 
-  about = () => `/${Routes.about}`
+  igraToken = () => `/${Routes.igraToken}`
 }
 
 export const to = new To()

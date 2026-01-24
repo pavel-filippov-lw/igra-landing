@@ -12,11 +12,8 @@ import classes from './Header.module.scss'
 
 const links = [
   { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
-  { label: 'Documentation', to: 'https://docs.igralabs.com' },
-  { label: 'Team', to: to.team(), isPage: true },
-  { label: 'Manifesto', to: to.manifesto(), isPage: true },
-  { label: 'Vision', to: to.vision(), isPage: true },
-  { label: 'Contact', to: 'mailto:team@igralabs.com' },
+  { label: 'Documentation', to: 'https://igra-labs.gitbook.io/' },
+  { label: '$IGRA', to: to.igraToken(), isPage: true },
 ]
 
 export const Header: FC = () => {

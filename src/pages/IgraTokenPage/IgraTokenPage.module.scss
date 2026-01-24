@@ -1,0 +1,121 @@
+.root {
+    max-width: 1200px;
+    margin: 80px auto 0;
+
+    .title {
+        margin-bottom: 30px;
+        font-family: $font-secondary;
+        font-size: 78px;
+        line-height: 86px;
+        font-weight: 400;
+        color: #6BD1C3;
+    }
+
+    .subtitle {
+        margin-bottom: 20px;
+        font-family: $font-secondary;
+        font-size: 48px;
+        line-height: 60px;
+        font-weight: 400;
+        color: #6BD1C3;
+    }
+
+    .description {
+        max-width: 650px;
+        font-family: $font;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+        color: #FFFFFF;
+        text-align: left;
+
+        .boldText {
+            font-weight: 700;
+        }
+    }
+
+    .participateSection {
+        margin-top: 60px;
+
+        .participateTitle {
+            margin-bottom: 30px;
+            font-family: $font-secondary;
+            font-size: 36px;
+            line-height: 44px;
+            font-weight: 400;
+            color: #FFFFFF;
+        }
+
+        .participateList {
+            margin-bottom: 40px;
+            padding-left: 24px;
+            list-style: disc;
+
+            li {
+                margin-bottom: 16px;
+                font-family: $font;
+                font-size: 20px;
+                line-height: 28px;
+                font-weight: 400;
+                color: #FFFFFF;
+            }
+        }
+
+        .interested {
+            font-family: $font;
+            font-size: 20px;
+            line-height: 28px;
+            font-weight: 400;
+            color: #FFFFFF;
+
+            .contactLink {
+                color: #6BD1C3;
+                text-decoration: none;
+                transition: text-decoration 0.2s;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $tablet) {
+        .title {
+            font-size: 48px;
+            line-height: 56px;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            line-height: 40px;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 24px;
+            text-align: left;
+        }
+
+        .participateSection {
+            margin-top: 40px;
+
+            .participateTitle {
+                font-size: 28px;
+                line-height: 36px;
+            }
+
+            .participateList {
+                li {
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+            }
+
+            .interested {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+}

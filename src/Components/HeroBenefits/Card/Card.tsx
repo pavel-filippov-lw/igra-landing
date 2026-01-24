@@ -9,6 +9,7 @@ import classes from './Card.module.scss'
 
 export interface Benefit {
   iconName: IconName
+  iconLabel?: string
   title: () => ReactNode
   description?: () => ReactNode
   to: string
@@ -20,7 +21,9 @@ export interface CardProps extends Benefit, FlexProps {
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(({
   iconName,
+  iconLabel,
   title,
+  description,
   to,
   className,
   ...props
@@ -32,23 +35,39 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       ref={ref}
       flexDirection='column'
       alignItems='center'
-      gap={20}
+      gap={15}
       {...props}
       className={clsx(classes.root, className)}
     >
-      <Icon
-        name={iconName}
-        size={120}
-        className={classes.icon}
-      />
       <Flex
         flexDirection='column'
-        gap={10}
+        alignItems='center'
+        gap={8}
+      >
+        <Icon
+          name={iconName}
+          size={100}
+          className={classes.icon}
+        />
+        {iconLabel && (
+          <div className={classes.iconLabel}>
+            {iconLabel}
+          </div>
+        )}
+      </Flex>
+      <Flex
+        flexDirection='column'
+        gap={12}
         className={classes.content}
       >
         <div className={classes.title}>
           {title()}
         </div>
+        {description && (
+          <div className={classes.description}>
+            {description()}
+          </div>
+        )}
         <div
           className={classes.link}
           onClick={() => {
@@ -59,7 +78,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
             navigate(to)
           }}
         >
-          Read more
+          <Icon name='arrowTopRight' size={12} />
         </div>
       </Flex>
     </Flex>

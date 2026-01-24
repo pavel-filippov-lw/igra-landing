@@ -1,4 +1,4 @@
-export * from './AboutPage'
+export * from './IgraTokenPage'
 export * from './BenefitsPage'
 export * from './EcosystemPage'
 export * from './HeroPage'

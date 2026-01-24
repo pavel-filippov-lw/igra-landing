@@ -12,15 +12,29 @@ const randomChar = () => GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.le
 export const GlitchText: FC<GlitchTextProps> = ({ lines, className, ...props }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [index, setIndex] = useState(0)
+  const [isInitialized, setIsInitialized] = useState(false)
+
+  // Initialize the text with proper spacing on mount
+  useEffect(() => {
+    if (ref.current && !isInitialized) {
+      ref.current.innerHTML = lines[0]
+        .split("")
+        .map((c) => `<span style="display:inline-block; position:relative">${c === ' ' ? '&nbsp;' : c}</span>`)
+        .join("")
+      setIsInitialized(true)
+    }
+  }, [lines, isInitialized])
 
   useEffect(() => {
+    if (!isInitialized) return
+
     const glitch = (index: number) => {
       if (!ref.current) return
 
       const nextText = lines[(index + 1) % lines.length]
       ref.current.innerHTML = nextText
         .split("")
-        .map((c) => `<span style="display:inline-block; position:relative">${c}</span>`)
+        .map((c) => `<span style="display:inline-block; position:relative">${c === ' ' ? '&nbsp;' : c}</span>`)
         .join("")
 
       const chars = ref.current.querySelectorAll("span")
@@ -55,15 +69,16 @@ export const GlitchText: FC<GlitchTextProps> = ({ lines, className, ...props }) 
         {
           duration: 0.15,
           onUpdate: () => {
-            chars.forEach((span) => {
-              if (Math.random() < 0.2) {
+            chars.forEach((span, i) => {
+              // Don't glitch spaces
+              if (nextText[i] !== ' ' && Math.random() < 0.2) {
                 span.innerHTML = randomChar()
               }
             })
           },
           onComplete: () => {
             chars.forEach((span, i) => {
-              span.innerHTML = nextText[i] || ""
+              span.innerHTML = nextText[i] === ' ' ? '&nbsp;' : (nextText[i] || "")
             })
           },
         },
@@ -78,10 +93,11 @@ export const GlitchText: FC<GlitchTextProps> = ({ lines, className, ...props }) 
       })
     }
 
+    // Start the glitch animation cycle after a delay
     const interval = setInterval(() => glitch(index), 2000)
 
     return () => clearInterval(interval)
-  }, [index])
+  }, [index, lines, isInitialized])
 
   return (
     <div
@@ -89,7 +105,7 @@ export const GlitchText: FC<GlitchTextProps> = ({ lines, className, ...props }) 
       {...props}
       className={className}
     >
-      {lines[index]}
+      {!isInitialized ? lines[index] : null}
     </div>
   )
 }

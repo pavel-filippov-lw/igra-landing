@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { FC, Fragment } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 import { Flex } from "~/shared/ui"
 
@@ -20,6 +20,7 @@ export interface NavigationProps {
 
 export const Navigation: FC<NavigationProps> = ({ className, variant = 'primary', links }) => {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleNavigation = (link: Link) => {
     document.getElementById('root')?.scrollTo({
@@ -36,24 +37,31 @@ export const Navigation: FC<NavigationProps> = ({ className, variant = 'primary'
       flexWrap='wrap'
       className={clsx(classes.root, classes[variant], className )}
     >
-      {links.map((link, index) => (
-        <Fragment key={index}>
-          {!!link.isPage ? (
-            <div className={classes.route} onClick={() => handleNavigation(link)}>
-              {link.label}
-            </div>
-          ) : (
-            <a href={link.to} target='_blank' rel='noopener noreferrer'>
-              <div>
+      {links.map((link, index) => {
+        const isActive = location.pathname === link.to
+
+        return (
+          <Fragment key={index}>
+            {!!link.isPage ? (
+              <div
+                className={clsx(classes.route, { [classes.active]: isActive })}
+                onClick={() => handleNavigation(link)}
+              >
                 {link.label}
               </div>
-            </a>
-          )}
-          {index !== links.length - 1 && (
-            <div className={classes.separator} />
-          )}
-        </Fragment>
-      ))}
+            ) : (
+              <a href={link.to} target='_blank' rel='noopener noreferrer' className={classes.externalLink}>
+                <div>
+                  {link.label}
+                </div>
+              </a>
+            )}
+            {index !== links.length - 1 && (
+              <div className={classes.separator} />
+            )}
+          </Fragment>
+        )
+      })}
     </Flex>
   )
 }

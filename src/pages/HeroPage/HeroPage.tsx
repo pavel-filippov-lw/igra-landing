@@ -44,31 +44,36 @@ export const HeroPage: FC = () => {
         gap={120}
         className={classes.root}
       >
-        <Hero />
-        <Flex flexDirection='column' gap={120} className={classes.content}>
+        <div className={classes.heroSection}>
+          <Hero />
           <Flex
-            justifyContent='space-between'
+            justifyContent='center'
+            alignItems='center'
             className={classes.buttons}
           >
             <a className={classes.buttonLink}>
-              <Flex alignItems='center' gap={12} className={classes.button}>
+              <Flex alignItems='center' gap={8} className={classes.button}>
                 Setup-up a node
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
+            <div className={classes.separator} />
             <a className={classes.buttonLink}>
-              <Flex alignItems='center' gap={12} className={classes.button}>
+              <Flex alignItems='center' gap={8} className={classes.button}>
                 Apply for a grant
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
+            <div className={classes.separator} />
             <a className={classes.buttonLink}>
-              <Flex alignItems='center' gap={12} className={classes.button}>
+              <Flex alignItems='center' gap={8} className={classes.button}>
                 Become an Attester
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
           </Flex>
+        </div>
+        <Flex flexDirection='column' gap={120} className={classes.content}>
           <HeroBenefits />
           <Flex gap={40} className={classes.cards}>
             <TransactionSpeedCard

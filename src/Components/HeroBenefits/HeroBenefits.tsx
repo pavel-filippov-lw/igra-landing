@@ -1,5 +1,4 @@
-import gsap from "gsap"
-import { FC, Fragment, useEffect, useRef } from "react"
+import { FC, Fragment, useEffect } from "react"
 
 import { to } from "~/shared/lib"
 
@@ -10,10 +9,15 @@ const benefitsList: Benefit[] = [
   {
     iconName: 'stack',
     title: () => (
-      <>
-        <span className={classes.boldTitle}>Protected</span>
+      <div>
+        <span className={classes.boldTitle}>Bitcoin-grade</span>
         <br />
-        {' by Bitcoin-grade security'}
+        <span className={classes.boldTitle}>security</span>
+      </div>
+    ),
+    description: () => (
+      <>
+        {'No sequencer. No validator set. Kaspa\'s PoW secures every transaction. Bitcoin-grade security for smart contracts.'}
       </>
     ),
     to: to.benefits('0'),
@@ -21,14 +25,45 @@ const benefitsList: Benefit[] = [
   {
     iconName: 'clock',
     title: () => (
-      <>
-        <span className={classes.boldTitle}>MEV</span>
+      <div>
+        <span className={classes.boldTitle}>MEV & censorship</span>
         <br />
-        {' and censorship resistant'}
+        <span className={classes.boldTitle}>resistant</span>
+      </div>
+    ),
+    description: () => (
+      <>
+        {'Based rollup with no centralized sequencer. MEV resistant and censorship resistant by design.'}
       </>
     ),
     to: to.benefits('1'),
   },
+  {
+    iconName: 'ethereum',
+    title: () => (
+      <span className={classes.boldTitle}>EVM-compatible</span>
+    ),
+    description: () => (
+      <>
+        {'Full EVM compatibility, 400K+ Solidity devs, no cold start, clear audit frameworks'}
+      </>
+    ),
+    to: to.benefits('6'),
+  },
+  {
+    iconName: 'flag',
+    title: () => (
+      <span className={classes.boldTitle}>Swiss-governed</span>
+    ),
+    description: () => (
+      <>
+        {'Legal entity for accountability, no single operator to subpoena'}
+      </>
+    ),
+    to: to.benefits('5'),
+  },
+  // Hidden cards for now
+  /*
   {
     iconName: 'molecule',
     title: () => (
@@ -57,45 +92,13 @@ const benefitsList: Benefit[] = [
     ),
     to: to.benefits('4'),
   },
-  {
-    iconName: 'flag',
-    title: () => (
-      <>
-        <span className={classes.boldTitle}>Swiss</span>
-        <br />
-        {' registered company'}
-      </>
-    ),
-    to: to.benefits('5'),
-  },
+  */
 ]
 
 export const HeroBenefits: FC = () => {
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        gsap.to(entry.target, {
-          opacity: 1,
-          y: 0,
-          duration: 1 + index * 0.5,
-          ease: 'power3.out',
-        })
-      }
-    })
-  }
-
+  // Animation removed - cards now appear immediately
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.3,
-    })
-
-    cardRefs.current.forEach(card => {
-      if (card) observer.observe(card)
-    })
-
-    return () => observer.disconnect()
+    // Cleanup for any future animations if needed
   }, [])
 
   return (
@@ -103,7 +106,6 @@ export const HeroBenefits: FC = () => {
       {benefitsList.map((benefit, index) => (
         <Fragment key={index}>
           <Card
-            ref={(el) => cardRefs.current.push(el)}
             {...benefit}
             className={classes.card}
           />

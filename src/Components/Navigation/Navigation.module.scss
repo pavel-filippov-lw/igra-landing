@@ -18,10 +18,48 @@
 			transition: width 0.3s ease, left 0.3s ease;
 		}
 
+		&.active {
+			color: #6BD1C3;
+
+			&::after {
+				width: 100%;
+				left: 0;
+				background-color: #6BD1C3;
+			}
+		}
+
 		@include hover {
 			cursor: pointer;
 
+			&:not(.active)::after {
+				width: 100%;
+				left: 0;
+			}
+		}
+	}
+
+	.externalLink {
+		position: relative;
+		color: inherit;
+		text-decoration: none;
+
+		div {
+			position: relative;
+
 			&::after {
+				content: "";
+				position: absolute;
+				left: 50%;
+				bottom: -1px;
+				width: 0;
+				height: 2px;
+				background-color: #FFFFFF;
+				transition: width 0.3s ease, left 0.3s ease;
+			}
+		}
+
+		@include hover {
+			div::after {
 				width: 100%;
 				left: 0;
 			}

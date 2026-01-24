@@ -11,6 +11,8 @@ import Cube_5 from './cube_5.svg?react'
 import Cube_6 from './cube_6.svg?react'
 import Dex from './dex.svg?react'
 import Discord from './discord.svg?react'
+import Email from './email.svg?react'
+import Ethereum from './ethereum.svg?react'
 import Flag from './flag.svg?react'
 import Github from './github.svg?react'
 import Gitlab from './gitlab.svg?react'
@@ -35,6 +37,8 @@ export const icons = {
   arrowRight: { Component: ArrowRight },
   arrowTopRight: { Component: ArrowTopRight },
   discord: { Component: Discord },
+  email: { Component: Email },
+  ethereum: { Component: Ethereum },
   github: { Component: Github },
   gitlab: { Component: Gitlab },
   telegram: { Component: Telegram },

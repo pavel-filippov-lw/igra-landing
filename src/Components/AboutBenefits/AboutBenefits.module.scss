@@ -1,15 +1,19 @@
+@import '../../shared/styles/vars';
+
 .root {
+    max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 90px 40px;
+    gap: 40px;
 
     .boldTitle {
+        font-family: $font-secondary;
         font-weight: 700;
     }
 
     .card {
-        opacity: 0;
-        transform: translateY(50%);
+        opacity: 1;
+        transform: none;
     }
 
     @media screen and (max-width: $laptop) {

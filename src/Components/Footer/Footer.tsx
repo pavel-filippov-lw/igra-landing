@@ -9,16 +9,25 @@ import { Link } from "../Navigation"
 import classes from './Footer.module.scss'
 
 const links: Record<string, Link[]> = {
-  'About': [
-    { label: 'About Igra', to: to.about(), isPage: true },
-    { label: 'Privacy policy', to: to.privacy(), isPage: true },
-    { label: 'Terms of use', to: '' },
+  '': [
+    { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
+    { label: 'Documentation', to: 'https://igra-labs.gitbook.io/' },
+    { label: 'What is $IGRA', to: to.igraToken(), isPage: true },
+    { label: 'Contact', to: 'mailto:team@igralabs.com' },
   ],
-  'Research': [
-    { label: 'Articles', to: '' },
+  ' ': [
+    { label: 'Team', to: to.team(), isPage: true },
+    { label: 'Manifesto', to: to.manifesto(), isPage: true },
+    { label: 'Vision', to: to.vision(), isPage: true },
   ],
-  'Community': [
-    { label: 'Blog & News', to: '' },
+  '  ': [
+    { label: 'X.com', to: 'https://x.com/igra_labs' },
+    { label: 'Discord', to: 'https://discord.com/invite/igra' },
+    { label: 'Github', to: 'https://github.com/igralabs' },
+  ],
+  '   ': [
+    { label: 'Privacy Policy', to: to.privacy(), isPage: true },
+    { label: 'Terms of Use', to: '', isPage: false },
   ],
 }
 
@@ -64,7 +73,7 @@ export const Footer: FC<FooterProps> = ({ className }) => {
         ))}
       </Flex>
       <div className={classes.copyright}>
-        Copy Igra 2025
+        © Igra Labs 2026
       </div>
     </div>
   )

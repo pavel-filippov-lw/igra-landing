@@ -1,3 +1,5 @@
+@import '../../shared/styles/vars';
+
 .boldText {
     font-weight: 800;
 }
@@ -28,10 +30,12 @@
 
             .title {
                 flex: 1 0 30%;
-                font-size: 36px;
+                font-family: $font-secondary;
+                font-size: 38px;
                 font-weight: 700;
                 line-height: 60px;
                 color: #FFFFFF;
+                text-align: center;
             }
 
             .description {
@@ -39,8 +43,34 @@
                 margin-top: 13px;
                 padding-right: 15px;
                 overflow-y: auto;
+                font-family: $font;
                 font-size: 20px;
                 color: #FFFFFF;
+                text-align: left;
+
+                /* Custom scrollbar styles */
+                &::-webkit-scrollbar {
+                    width: 8px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: rgba(107, 209, 195, 0.1);
+                    border-radius: 4px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: #6BD1C3;
+                    border-radius: 4px;
+                    transition: background 0.3s ease;
+
+                    &:hover {
+                        background: #8DDFD3;
+                    }
+                }
+
+                /* Firefox scrollbar styling */
+                scrollbar-width: thin;
+                scrollbar-color: #6BD1C3 rgba(107, 209, 195, 0.1);
             }
         }
 
@@ -53,10 +83,30 @@
             border-top: 1px solid #6BD1C3;
 
             .item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
                 cursor: pointer;
 
                 .icon.inactive path {
                     fill: #6BD1C3;
+                }
+
+                .iconLabel {
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    color: #EED58A;
+                    opacity: 1;
+                    text-align: center;
+                    white-space: nowrap;
+                    transition: all 0.3s ease;
+
+                    &.inactive {
+                        color: #6BD1C3;
+                        opacity: 0.7;
+                    }
                 }
             }
         }
@@ -74,13 +124,40 @@
                 flex-direction: column;
                 overflow-y: auto;
 
+                /* Custom scrollbar styles for mobile content container */
+                &::-webkit-scrollbar {
+                    width: 6px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: rgba(107, 209, 195, 0.1);
+                    border-radius: 3px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: #6BD1C3;
+                    border-radius: 3px;
+
+                    &:hover {
+                        background: #8DDFD3;
+                    }
+                }
+
+                scrollbar-width: thin;
+                scrollbar-color: #6BD1C3 rgba(107, 209, 195, 0.1);
+
                 .title {
                     flex: 0 0 auto;
+                    font-family: $font-secondary;
+                    text-align: center;
                 }
 
                 .description {
                     margin-top: 0;
                     flex: 0 0 auto;
+                    padding-right: 10px;
+                    font-family: $font;
+                    text-align: left;
                 }
             }
 
