@@ -25,10 +25,6 @@ const links: Record<string, Link[]> = {
     { label: 'Discord', to: 'https://discord.com/invite/igra' },
     { label: 'Github', to: 'https://github.com/igralabs' },
   ],
-  '   ': [
-    { label: 'Privacy Policy', to: to.privacy(), isPage: true },
-    { label: 'Terms of Use', to: '', isPage: false },
-  ],
 }
 
 export interface FooterProps {
@@ -73,7 +69,10 @@ export const Footer: FC<FooterProps> = ({ className }) => {
         ))}
       </Flex>
       <div className={classes.copyright}>
-        © Igra Labs 2026
+        <a href={to.privacy()} className={classes.copyrightLink}>Privacy Policy</a>
+        <span className={classes.separator}>·</span>
+        <a href="#" className={classes.copyrightLink}>Terms of Use</a>
+        <span className={classes.copyrightText}>© 2026 Igra Labs</span>
       </div>
     </div>
   )
