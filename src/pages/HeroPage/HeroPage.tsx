@@ -1,42 +1,11 @@
-import gsap from "gsap"
-import { FC, useEffect, useRef } from "react"
+import { FC } from "react"
 
-import { Hero, HeroBenefits, HeroCodeCard, LatestNews, PageLayout, Roadmap, TransactionSpeedCard } from "~/Components"
+import { Hero, HeroBenefits, LatestNews, PageLayout, Roadmap } from "~/Components"
 import { Flex, Icon } from "~/shared/ui"
 
 import classes from './HeroPage.module.scss'
 
 export const HeroPage: FC = () => {
-  const refs = useRef<(HTMLDivElement | null)[]>([])
-  const setRef = (index: number) => (el: HTMLDivElement | null) => {
-    refs.current[index] = el
-  }
-
-  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        gsap.to(entry.target, {
-          opacity: 1,
-          y: 0,
-          duration: 1 + index * 0.5,
-          ease: 'power3.out',
-        })
-      }
-    })
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.3,
-    })
-
-    refs.current.forEach(ref => {
-      if (ref) observer.observe(ref)
-    })
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <PageLayout>
       <Flex
