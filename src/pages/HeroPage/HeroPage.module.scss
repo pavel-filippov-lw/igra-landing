@@ -67,6 +67,11 @@
         box-sizing: border-box;
         overflow-x: visible;
 
+        > div:last-child {
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+
         .cards {
             .transactionSpeedCard {
                 flex: 1;
@@ -99,6 +104,13 @@
         }
 
         .content {
+            padding: 0 20px;
+
+            > div:last-child {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+
             .cards {
                 .heroCodeCard {
                     max-width: 50%;
@@ -133,6 +145,11 @@
 
         .content {
             padding: 0 20px;
+
+            > div:last-child {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
 
             .cards {
                 flex-direction: column;
@@ -171,7 +188,12 @@
 
         .content {
             max-width: 100%;
-            padding: 0 20px;
+            padding: 0;
+
+            > div:last-child {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
     }
 }

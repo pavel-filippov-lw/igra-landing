@@ -18,7 +18,7 @@ export const Roadmap: FC = () => {
         <div className={classes.wrapper}>
           <div className={classes.roadmap}>
             <Flex
-              justifyContent='space-between'
+              justifyContent='space-around'
               alignItems='center'
               className={classes.content}
             >
@@ -57,7 +57,7 @@ export const Roadmap: FC = () => {
               </Flex>
             </Flex>
             <Flex
-              justifyContent='space-between'
+              justifyContent='space-around'
               alignItems='center'
               className={clsx(classes.content, classes.bottom)}
             >
