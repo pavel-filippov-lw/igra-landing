@@ -6,8 +6,3 @@
   NODE_VERSION = "20"
   YARN_VERSION = "1.22.19"
   GIT_LFS_ENABLED = "true"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
