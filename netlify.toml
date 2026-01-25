@@ -1,9 +1,10 @@
 [build]
-  command = "yarn install --frozen-lockfile && yarn build"
+  command = "yarn install && yarn build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
+  YARN_VERSION = "1.22.18"
 
 [[redirects]]
   from = "/*"
