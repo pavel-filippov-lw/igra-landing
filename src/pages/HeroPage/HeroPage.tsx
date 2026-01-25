@@ -27,9 +27,9 @@ export const HeroPage: FC = () => {
               </Flex>
             </a>
             <div className={classes.separator} />
-            <a className={classes.buttonLink}>
+            <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/deploy-your-first-contract" target="_blank" rel="noopener noreferrer" className={classes.buttonLink}>
               <Flex alignItems='center' gap={8} className={classes.button}>
-                Apply for a grant
+                Start building
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
