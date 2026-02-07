@@ -1,20 +1,11 @@
 .root {
     position: relative;
-    width: 90%;
-    max-width: 1270px;
-    padding: 80px 80px 45px 147px;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 80px 50px 45px;
     background-color: #262626;
 
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 60px;
-        height: 45px;
-        background: #000000;
-        clip-path: polygon(0 0, 100% 0, 0 100%);
-    }
 
     .navigation,
     .copyright {
@@ -98,11 +89,19 @@
         }
     }
 
+    @media screen and (max-width: $laptop) {
+        padding: 80px 30px 45px;
+    }
+
     @media screen and (max-width: $tablet) {
-        padding: 40px 40px 40px 80px;
+        padding: 60px 20px 40px;
 
         .navigation {
             flex-direction: column;
         }
+    }
+
+    @media screen and (max-width: $mobile) {
+        padding: 40px 20px 30px;
     }
 }
