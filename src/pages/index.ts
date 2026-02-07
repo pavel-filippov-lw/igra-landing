@@ -1,5 +1,6 @@
 export * from './IgraTokenPage'
 export * from './BenefitsPage'
+export * from './BenefitsPage2'
 export * from './EcosystemPage'
 export * from './HeroPage'
 export * from './ManifestoPage'

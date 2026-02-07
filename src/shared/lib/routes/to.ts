@@ -15,6 +15,8 @@ class To {
 
   benefits = (benefitId = '0') => `/${Routes.benefits}?benefitId=${benefitId}`
 
+  benefits2 = (benefitId = '0') => `/${Routes.benefits2}?benefitId=${benefitId}`
+
   igraToken = () => `/${Routes.igraToken}`
 }
 

@@ -1,29 +1,43 @@
 @import '../../../shared/styles/vars';
+@import '../../../shared/styles/mixins';
 
 .root {
 	width: 100%;
+	height: 100%;
 	box-sizing: border-box;
-
-	.iconLabel {
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 20px;
-		color: #EED58A;
-		opacity: 0.7;
-		text-align: center;
-	}
 
 	.content {
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
 		width: 100%;
-		min-height: 210px;
-		padding: 20px 18px 18px;
-		border-radius: 22px;
+		height: 100%;
+		min-height: 320px;
+		padding: 40px 28px 28px;
+		border-radius: 24px;
 		box-sizing: border-box;
+		background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(28, 28, 28, 0.90) 100%);
+		border: 1px solid rgba(110, 209, 195, 0.08);
+		backdrop-filter: blur(10px);
+		transition: all 0.3s ease;
+
+		.icon {
+			margin-bottom: 20px;
+			align-self: center;
+
+			path {
+				stroke: #EED58A;
+			}
+		}
 
 		&.withBorder {
-			border: 1px solid #6BD1C3;
+			border: 1px solid rgba(110, 209, 195, 0.15);
+		}
+
+		@include hover {
+			background: linear-gradient(135deg, rgba(25, 25, 25, 0.95) 0%, rgba(33, 33, 33, 0.90) 100%);
+			border-color: rgba(110, 209, 195, 0.12);
+			transform: translateY(-2px);
 		}
 
 		.title {
@@ -31,21 +45,21 @@
 			font-size: 21px;
 			font-weight: 600;
 			line-height: 28px;
-			min-height: 56px; // Force 2 lines height
-			display: flex;
-			align-items: flex-start; // Align to top
-			justify-content: center;
-			color: #EED58A;
+			color: #FFFFFF;
 			text-align: center;
+			width: 100%;
+			margin-bottom: 16px;
 		}
 
 		.description {
 			font-family: $font;
-			font-size: 16px;
+			font-size: 15px;
 			font-weight: 400;
-			line-height: 24px;
-			color: #FFFFFF;
+			line-height: 22px;
+			color: rgba(255, 255, 255, 0.7);
 			text-align: left;
+			flex: 1;
+			width: 100%;
 		}
 
 		.link {
@@ -53,59 +67,94 @@
 			width: fit-content;
 			margin-left: auto;
 			margin-top: auto;
+			padding-top: 16px;
 			color: #EED58A;
 			transition: transform 0.2s ease;
+			align-self: flex-end;
 
 			svg {
 				display: block;
+				width: 20px;
+				height: 20px;
+
+				path {
+					stroke: rgba(255, 255, 255, 0.5);
+				}
 			}
 
 			@include hover {
 				cursor: pointer;
 				transform: translate(2px, -2px);
+
+				svg path {
+					stroke: #EED58A;
+				}
 			}
 		}
 	}
 
 	@media screen and (max-width: $tablet) {
 		.content {
-			padding: 22px 25px 18px;
-			min-height: 210px;
+			padding: 35px 22px 22px;
+			min-height: 280px;
+
+			.icon {
+				width: 50px;
+				height: 50px;
+				margin-bottom: 16px;
+			}
 
 			.title {
-				font-size: 22px;
-				line-height: 29px;
-				min-height: 58px; // Adjusted for smaller line-height
-				align-items: flex-start; // Keep top alignment
-				text-align: center;
+				font-size: 20px;
+				line-height: 27px;
+				margin-bottom: 14px;
 			}
 
 			.description {
-				font-size: 16px;
-				line-height: 24px;
-				text-align: left;
+				font-size: 14px;
+				line-height: 21px;
 			}
 
 			.link {
-				// Arrow icon styling is now consistent
+				padding-top: 12px;
+
+				svg {
+					width: 18px;
+					height: 18px;
+				}
 			}
 		}
 	}
 
 	@media screen and (max-width: $mobile) {
 		.content {
-			padding: 20px 20px 18px;
-			min-height: 200px;
+			padding: 30px 20px 20px;
+			min-height: 240px;
+
+			.icon {
+				width: 45px;
+				height: 45px;
+				margin-bottom: 14px;
+			}
+
 			.title {
-				font-size: 20px;
-				line-height: 27px;
-				min-height: 54px; // 2 lines for mobile
-				align-items: flex-start; // Keep top alignment
+				font-size: 19px;
+				line-height: 26px;
+				margin-bottom: 12px;
 			}
 
 			.description {
-				font-size: 15px;
-				line-height: 22px;
+				font-size: 14px;
+				line-height: 20px;
+			}
+
+			.link {
+				padding-top: 10px;
+
+				svg {
+					width: 16px;
+					height: 16px;
+				}
 			}
 		}
 	}

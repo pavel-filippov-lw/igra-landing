@@ -16,24 +16,29 @@ const glitchTextLines = [
 export const Hero: FC = () => {
   return (
     <div className={classes.root}>
-      <div
-        className={classes.content}
-      >
+      <div className={classes.content}>
         <div className={classes.title}>
-          {`The `}
-          <GlitchText
-            lines={glitchTextLines}
-            className={classes.glitchText}
-          />
-          {`programmable PoW chain.`}
+          <span style={{ display: 'block' }}>
+            {`The `}
+            <GlitchText
+              lines={glitchTextLines}
+              className={classes.glitchText}
+            />
+          </span>
+          <span style={{ display: 'block' }}>
+            {`programmable`}
+          </span>
+          <span style={{ display: 'block' }}>
+            {`PoW chain`}
+          </span>
         </div>
-        <div className={classes.note}>
-          <div className={classes.noteContent}>
-            <span className={classes.date}>14 JAN 2026</span>
-            <span className={classes.noteText}>
-              Galleon closed mainnet is live. <a href="#" className={classes.readMore}>Read more.</a>
-            </span>
-          </div>
+        <div className={classes.announcement}>
+          <span className={classes.icon}>🔥</span>
+          <span className={classes.date}>14 JAN 2026</span>
+          <span className={classes.divider}>|</span>
+          <span className={classes.text}>
+            Galleon closed mainnet is live. <a href="#" className={classes.readMore}>Read more →</a>
+          </span>
         </div>
       </div>
       <div className={classes.videoWrapper}>

@@ -6,5 +6,6 @@ export const Routes = {
   ecosystem: 'ecosystem',
   privacy: 'privacy',
   benefits: 'benefits',
+  benefits2: 'benefits2',
   igraToken: 'igra-token',
 }

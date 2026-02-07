@@ -15,11 +15,7 @@ export const HeroPage: FC = () => {
       >
         <div className={classes.heroSection}>
           <Hero />
-          <Flex
-            justifyContent='center'
-            alignItems='center'
-            className={classes.buttons}
-          >
+          <div className={classes.heroButtons}>
             <a className={classes.buttonLink}>
               <Flex alignItems='center' gap={8} className={classes.button}>
                 Setup-up a node
@@ -40,7 +36,7 @@ export const HeroPage: FC = () => {
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
-          </Flex>
+          </div>
         </div>
         <Flex flexDirection='column' gap={100} className={classes.content}>
           <HeroBenefits />

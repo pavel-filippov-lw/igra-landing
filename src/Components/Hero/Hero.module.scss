@@ -1,75 +1,92 @@
+@import '../../shared/styles/vars';
+
 .root {
-	position: relative;
-	min-height: 85vh;
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 500px;
+	padding: 60px 0;
+	max-width: 1440px;
+	margin: 0 auto;
 
 	.content {
-		position: relative;
-		width: 70%;
-		padding-top: 80px;
-		min-height: 85vh;
-		z-index: 2;
+		flex: 1;
+		max-width: 700px;
 
 		.title {
-			position: absolute;
-			top: 80px;
-			left: 20px;
+			font-family: 'Funnel Display', $font-secondary;
 			font-size: 85px;
 			line-height: 105px;
 			font-weight: 400;
 			color: #6BD1C3;
+			margin-bottom: 40px;
+			text-align: left;
+
+			span {
+				display: block;
+				white-space: nowrap;
+			}
 
 			.glitchText {
 				display: inline-block;
+				font-family: 'Funnel Display', $font-secondary;
 				font-size: 85px;
 				line-height: 105px;
 				font-weight: 400;
 				color: #FFFFFF;
 				margin-right: 0.15em;
 				white-space: nowrap;
+				min-width: 280px;
+				text-align: left;
 			}
 		}
 
-		.note {
-			position: absolute;
-			bottom: 120px;
-			left: 20px;
-			max-width: fit-content;
-			padding: 20px 32px;
-			border-radius: 14px;
-			background: linear-gradient(135deg, rgba(15, 15, 15, 0.93) 0%, rgba(30, 30, 30, 0.85) 100%);
-			backdrop-filter: blur(14px);
-			border: 1px solid rgba(110, 209, 195, 0.06);
+		.announcement {
+			position: relative;
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			padding: 20px 0;
+			font-size: 19px;
+			line-height: 1.5;
+			color: rgba(255, 255, 255, 0.9);
+			margin-bottom: 40px;
 
-			.noteContent {
-				display: flex;
-				align-items: center;
-				gap: 16px;
-				font-size: 19px;
-				line-height: 27px;
-				color: rgba(255, 255, 255, 0.95);
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 1px;
+				border-bottom: 1px dashed #EED58A;
+			}
 
-				.date {
-					font-weight: 600;
-					color: #FFFFFF;
-					white-space: nowrap;
-					text-transform: uppercase;
-				}
+			.icon {
+				font-size: 20px;
+				color: #EED58A;
+			}
 
-				.noteText {
-					font-weight: 400;
-					color: rgba(255, 255, 255, 0.95);
+			.date {
+				font-weight: 600;
+				color: #EED58A;
+				white-space: nowrap;
+			}
 
-					.readMore {
-						color: rgba(255, 255, 255, 0.95);
-						text-decoration: underline;
-						text-underline-offset: 2px;
-						transition: color 0.2s ease;
+			.divider {
+				color: rgba(255, 255, 255, 0.3);
+			}
 
-						&:hover {
-							color: #6BD1C3;
-						}
+			.text {
+				color: rgba(255, 255, 255, 0.9);
+
+				.readMore {
+					color: rgba(255, 255, 255, 0.9);
+					text-decoration: none;
+					transition: color 0.2s ease;
+
+					&:hover {
+						color: #6BD1C3;
 					}
 				}
 			}
@@ -77,17 +94,15 @@
 	}
 
 	.videoWrapper {
-		position: absolute;
-		right: -120px;
-		top: 60px;
-		width: 60%;
-		aspect-ratio: 1/1;
-		z-index: 1;
+		flex-shrink: 0;
+		width: 600px;
+		height: 600px;
+		position: relative;
 
 		.video {
 			width: 100%;
 			height: 100%;
-			object-fit: cover;
+			object-fit: contain;
 			background: transparent;
 			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
@@ -95,100 +110,132 @@
 		}
 	}
 
-	@media screen and (max-width: $tablet) {
-		.root {
-			min-height: auto;
-		}
-
+	@media screen and (max-width: 1200px) {
 		.content {
-			width: 100%;
-			min-height: auto;
-			padding-top: 80px;
-
 			.title {
-				top: 60px;
-				left: 20px;
-				font-size: 54px;
-				line-height: 66px;
+				font-size: 70px;
+				line-height: 88px;
 
 				.glitchText {
-					font-size: 54px;
-					line-height: 66px;
-					display: inline-block;
-					margin-right: 0.15em;
-					white-space: nowrap;
-				}
-			}
-
-			.note {
-				bottom: 120px;
-				left: 20px;
-				padding: 18px 25px;
-
-				.noteContent {
-					font-size: 16px;
-					line-height: 24px;
-					gap: 12px;
+					font-size: 70px;
+					line-height: 88px;
+					min-width: 240px;
 				}
 			}
 		}
 
 		.videoWrapper {
-			top: 20px;
-			right: -50px;
-			width: 55%;
+			width: 500px;
+			height: 500px;
 		}
 	}
 
-	@media screen and (max-width: $mobile) {
-		.root {
-			min-height: auto;
-		}
+	@media screen and (max-width: $laptop) {
+		padding: 40px 0;
 
 		.content {
-			min-height: auto;
-			padding-top: 60px;
 			.title {
-				position: relative;
-				top: auto;
-				left: auto;
-				margin-top: 10px;
-				font-size: 38px;
-				line-height: 46px;
+				font-size: 64px;
+				line-height: 80px;
 
 				.glitchText {
-					font-size: 38px;
-					line-height: 46px;
-					display: inline-block;
-					margin-right: 0.12em;
-					white-space: nowrap;
+					font-size: 64px;
+					line-height: 80px;
+					min-width: 220px;
 				}
 			}
 
-			.note {
-				position: relative;
-				bottom: auto;
-				left: auto;
-				margin-top: 40px;
-				padding: 16px 20px;
-				max-width: 100%;
+			.announcement {
+				font-size: 17px;
+			}
+		}
 
-				.noteContent {
-					font-size: 14px;
-					line-height: 22px;
-					flex-direction: column;
-					align-items: flex-start;
-					gap: 8px;
+		.videoWrapper {
+			width: 450px;
+			height: 450px;
+		}
+	}
+
+	@media screen and (max-width: $tablet) {
+		flex-direction: column;
+		padding: 40px 0;
+
+		.content {
+			max-width: 100%;
+			text-align: center;
+
+			.title {
+				font-size: 54px;
+				line-height: 68px;
+				text-align: center;
+				margin-bottom: 30px;
+
+				span {
+					text-align: center;
+				}
+
+				.glitchText {
+					font-size: 54px;
+					line-height: 68px;
+					min-width: 180px;
+				}
+			}
+
+			.announcement {
+				justify-content: center;
+				font-size: 16px;
+				margin-bottom: 30px;
+			}
+		}
+
+		.videoWrapper {
+			width: 350px;
+			height: 350px;
+			margin: 0 auto;
+		}
+	}
+
+	@media screen and (max-width: 426px) {
+		padding: 30px 0;
+		min-height: auto;
+
+		.content {
+			.title {
+				font-size: 38px;
+				line-height: 48px;
+				margin-bottom: 24px;
+
+				span {
+					white-space: normal;
+				}
+
+				.glitchText {
+					font-size: 38px;
+					line-height: 48px;
+					min-width: auto;
+				}
+			}
+
+			.announcement {
+				flex-wrap: wrap;
+				padding: 16px 0;
+				gap: 8px;
+				font-size: 14px;
+				margin-bottom: 24px;
+
+				&::after {
+					background-size: 60px 1px;
+				}
+
+				.icon {
+					font-size: 16px;
 				}
 			}
 		}
 
 		.videoWrapper {
-			position: relative;
-			right: 0;
-			top: 0;
-			width: 100%;
-			margin: 20px 0;
+			width: 280px;
+			height: 280px;
 		}
 	}
 }

@@ -3,9 +3,12 @@
 .root {
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
-	gap: 12px;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	grid-auto-rows: 1fr;
+	gap: 20px;
 	box-sizing: border-box;
+	max-width: 1440px;
+	margin: 0 auto;
 
 	.boldTitle {
 		font-family: $font-secondary;
@@ -15,20 +18,32 @@
 	.card {
 		opacity: 1;
 		transform: none;
+		min-width: 0;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 
-	@media screen and (max-width: $laptop) {
+	// For 4 cards in a row on larger screens
+	@media screen and (min-width: 1200px) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	// For 2 cards in a row on tablets
+	@media screen and (max-width: 1199px) and (min-width: 600px) {
 		grid-template-columns: repeat(2, 1fr);
-		gap: 40px 20px;
-	}
-
-	@media screen and (max-width: $tablet) {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 30px 20px;
-	}
-
-	@media screen and (max-width: $mobile) {
-		grid-template-columns: 1fr;
 		gap: 30px;
+	}
+
+	// For 1 card in a row on mobile
+	@media screen and (max-width: 599px) {
+		grid-template-columns: 1fr;
+		gap: 20px;
+	}
+
+	// Specific mobile breakpoint at 402px
+	@media screen and (max-width: 402px) {
+		padding: 0 16px;
+		gap: 16px;
 	}
 }

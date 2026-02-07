@@ -1,32 +1,32 @@
+@import '../../shared/styles/vars';
+@import '../../shared/styles/mixins';
+
 .root {
     .heroSection {
         position: relative;
-        min-height: 90vh;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 50px;
     }
 
-    .buttons {
-        position: absolute;
-        bottom: 60px;
-        left: 20px;
+    .heroButtons {
         display: flex;
-        justify-content: flex-start;
         align-items: center;
         gap: 40px;
-        z-index: 10;
-        white-space: nowrap;
+        margin-top: 0;
+        margin-bottom: 60px;
 
         .separator {
             width: 1px;
             height: 24px;
-            background-color: #6BD1C3;
-            opacity: 0.15;
+            background-color: rgba(110, 209, 195, 0.15);
         }
 
         .buttonLink {
+            text-decoration: none;
+            display: block;
+
             .button {
                 padding: 0;
                 font-size: 19px;
@@ -60,16 +60,18 @@
     }
 
     .content {
-        max-width: 1400px;
+        max-width: 1440px;
         margin: 0 auto;
         width: 100%;
-        padding: 0 20px;
+        padding: 0 50px;
         box-sizing: border-box;
-        overflow-x: visible;
 
-        > div:last-child {
-            margin-left: -20px;
-            margin-right: -20px;
+        > div {
+            margin-bottom: 80px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
 
         .cards {
@@ -88,67 +90,25 @@
         }
     }
 
-    @media screen and (max-width: $desktop) {
-        .heroSection {
-            min-height: 85vh;
-        }
-
-        .buttons {
-            gap: 30px;
-            left: 20px;
-
-            .separator {
-                width: 1px;
-                height: 22px;
-            }
-        }
-
-        .content {
-            padding: 0 20px;
-
-            > div:last-child {
-                margin-left: -20px;
-                margin-right: -20px;
-            }
-
-            .cards {
-                .heroCodeCard {
-                    max-width: 50%;
-                }
-            }
-        }
-    }
-
     @media screen and (max-width: $laptop) {
         .heroSection {
-            min-height: 80vh;
+            padding: 0 30px;
         }
 
-        .buttons {
-            position: absolute;
-            bottom: 60px;
-            left: 20px;
-            flex-direction: row;
-            justify-content: flex-start;
+        .heroButtons {
             gap: 30px;
-
-            .separator {
-                width: 1px;
-                height: 24px;
-            }
+            margin-bottom: 50px;
 
             .button {
                 font-size: 18px;
-                white-space: nowrap;
             }
         }
 
         .content {
-            padding: 0 20px;
+            padding: 0 30px;
 
-            > div:last-child {
-                margin-left: -20px;
-                margin-right: -20px;
+            > div {
+                margin-bottom: 60px;
             }
 
             .cards {
@@ -161,38 +121,71 @@
         }
     }
 
-    @media screen and (max-width: $mobile) {
+    @media screen and (max-width: $tablet) {
         .heroSection {
-            min-height: auto;
+            padding: 0 20px;
         }
 
-        .buttons {
-            position: relative;
-            bottom: auto;
-            left: 0;
-            transform: none;
-            margin-top: 40px;
-            margin-bottom: 30px;
+        .heroButtons {
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+
+            .button {
+                font-size: 17px;
+            }
+        }
+
+        .content {
+            padding: 0 20px;
+
+            > div {
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 426px) {
+        .heroSection {
+            padding: 0 20px;
+        }
+
+        .heroButtons {
             flex-direction: column;
-            gap: 16px;
             width: 100%;
+            gap: 16px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            align-items: stretch;
 
             .separator {
                 display: none;
             }
 
-            .button {
-                font-size: 16px;
+            .buttonLink {
+                width: 100%;
+
+                .button {
+                    justify-content: center;
+                    padding: 16px 24px;
+                    font-size: 16px;
+                    border: 1px solid rgba(110, 209, 195, 0.2);
+                    border-radius: 40px;
+                    background: transparent;
+
+                    @include hover {
+                        background: rgba(238, 213, 138, 0.05);
+                        border-color: rgba(238, 213, 138, 0.3);
+                    }
+                }
             }
         }
 
         .content {
-            max-width: 100%;
-            padding: 0;
+            padding: 0 20px;
 
-            > div:last-child {
-                margin-left: 0;
-                margin-right: 0;
+            > div {
+                margin-bottom: 40px;
             }
         }
     }

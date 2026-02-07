@@ -37,31 +37,20 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       ref={ref}
       flexDirection='column'
       alignItems='center'
-      gap={12}
       {...props}
       className={clsx(classes.root, className)}
     >
       <Flex
         flexDirection='column'
         alignItems='center'
-        gap={8}
+        gap={20}
+        className={clsx(classes.content, showBorder && classes.withBorder)}
       >
         <Icon
           name={iconName}
-          size={85}
+          size={60}
           className={classes.icon}
         />
-        {iconLabel && (
-          <div className={classes.iconLabel}>
-            {iconLabel}
-          </div>
-        )}
-      </Flex>
-      <Flex
-        flexDirection='column'
-        gap={10}
-        className={clsx(classes.content, showBorder && classes.withBorder)}
-      >
         <div className={classes.title}>
           {title()}
         </div>
