@@ -7,6 +7,7 @@ import heroVideo from './assets/video_alpha.webm'
 import classes from './Hero.module.scss'
 
 const glitchTextLines = [
+  'Agentic-ready',
   'fastest',
   'fairest',
   'most secure',
