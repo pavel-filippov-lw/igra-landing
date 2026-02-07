@@ -21,6 +21,8 @@
 			color: #6BD1C3;
 			margin-bottom: 40px;
 			text-align: left;
+			width: 100%;
+			max-width: 700px;
 
 			span {
 				display: block;
@@ -36,7 +38,7 @@
 				color: #FFFFFF;
 				margin-right: 0.15em;
 				white-space: nowrap;
-				min-width: 280px;
+				min-width: 350px;
 				text-align: left;
 			}
 		}
@@ -51,13 +53,15 @@
 			line-height: 1.5;
 			color: rgba(255, 255, 255, 0.9);
 			margin-bottom: 40px;
+			width: 100%;
+			max-width: 700px;
 
 			&::after {
 				content: '';
 				position: absolute;
 				bottom: 0;
 				left: 0;
-				right: 0;
+				width: 100%;
 				height: 1px;
 				border-bottom: 1px dashed #EED58A;
 			}
