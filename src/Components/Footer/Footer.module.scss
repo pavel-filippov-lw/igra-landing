@@ -2,10 +2,10 @@
 
 .root {
     position: relative;
-    width: 90%;
-    max-width: 1270px;
-    margin-left: auto;
-    padding: 80px 80px 45px 147px;
+    width: calc(100% - 50px); // Leave 50px on the left for alignment
+    max-width: 1390px; // 1440px - 50px
+    margin-left: auto; // Push to right
+    padding: 80px 80px 45px 97px; // 97px left padding to align content after cut corner
     background-color: #262626;
 
     // Cut corner design on the left
@@ -14,7 +14,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 60px;
+        width: 97px; // Match the left padding
         height: 45px;
         background: #000000;
         clip-path: polygon(0 0, 100% 0, 0 100%);
@@ -103,20 +103,30 @@
     }
 
     @media screen and (max-width: $laptop) {
-        width: 95%;
-        padding: 80px 60px 45px 120px;
+        width: calc(100% - 30px);
+        max-width: 1410px;
+        padding: 80px 60px 45px 97px;
     }
 
     @media screen and (max-width: $tablet) {
-        width: 100%;
+        width: calc(100% - 20px);
         padding: 60px 40px 40px 80px;
 
         .navigation {
             flex-direction: column;
         }
+
+        &::before {
+            width: 80px;
+        }
     }
 
     @media screen and (max-width: $mobile) {
         padding: 40px 30px 30px 60px;
+
+        &::before {
+            width: 60px;
+            height: 35px;
+        }
     }
 }
