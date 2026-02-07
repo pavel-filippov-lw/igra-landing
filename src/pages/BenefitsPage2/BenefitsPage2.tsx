@@ -78,7 +78,7 @@ export const BenefitsPage2: FC = () => {
   const benefit = benefitsList.find((_, index) => index.toString() === benefitId) ?? benefitsList[0]
 
   const handleNavigation = (index: number) => {
-    navigate(to.benefits2(index.toString()))
+    navigate(to.benefits(index.toString()))
   }
 
   return (
@@ -97,7 +97,7 @@ export const BenefitsPage2: FC = () => {
                 onClick={() => handleNavigation(index)}
               >
                 <Icon
-                  name={item.iconName}
+                  name={item.iconName as any}
                   size={40}
                   className={classes.tabIcon}
                 />
