@@ -14,15 +14,18 @@ const glitchTextLines = [
   'only realtime',
 ]
 
+const glitchTextLinesWithThe = glitchTextLines.map(line =>
+  line === 'Agentic-ready' ? line : `The ${line}`
+)
+
 export const Hero: FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
         <div className={classes.title}>
           <span style={{ display: 'block' }}>
-            {`The `}
             <GlitchText
-              lines={glitchTextLines}
+              lines={glitchTextLinesWithThe}
               className={classes.glitchText}
             />
           </span>
