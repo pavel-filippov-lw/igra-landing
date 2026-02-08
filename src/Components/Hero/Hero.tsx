@@ -1,5 +1,6 @@
 import { FC } from "react"
 
+import { Flex, Icon } from "~/shared/ui"
 
 import { GlitchText } from "../GlitchText"
 import heroVideoSafari from './assets/video_alpha.mov'
@@ -15,7 +16,7 @@ const glitchTextLines = [
 ]
 
 const glitchTextLinesWithThe = glitchTextLines.map(line =>
-  line === 'Agentic-ready' ? line : `The ${line}`
+  line === 'Agentic-ready' ? line : `The ${line}`,
 )
 
 export const Hero: FC = () => {
@@ -30,19 +31,63 @@ export const Hero: FC = () => {
             />
           </span>
           <span style={{ display: 'block' }}>
-            {`programmable`}
+            programmable
           </span>
           <span style={{ display: 'block' }}>
-            {`PoW chain`}
+            PoW chain
           </span>
         </div>
-        <div className={classes.announcement}>
-          <span className={classes.icon}>🔥</span>
-          <span className={classes.date}>14 JAN 2026</span>
-          <span className={classes.divider}>|</span>
-          <span className={classes.text}>
-            Galleon closed mainnet is live. <a href="#" className={classes.readMore}>Read more →</a>
-          </span>
+        <div className={classes.info}>
+          <a href="#" className={classes.readMore}>
+            <div className={classes.announcement}>
+              <Icon
+                name='fire'
+                width={28}
+                height={36}
+                className={classes.icon}
+              />
+              <div className={classes.content}>
+                <span className={classes.date}>14 JAN 2026</span>
+                <span className={classes.divider}>|</span>
+                <div className={classes.text}>
+                  Galleon closed mainnet is live.
+                </div>
+                <div className={classes.link}>
+                  Read more
+                  <Icon
+                    name='arrowTopRight'
+                    size={10}
+                    className={classes.icon}
+                  />
+                </div>
+              </div>
+            </div>
+          </a>
+          <div className={classes.heroButtons}>
+            <a className={classes.buttonLink}>
+              <Flex alignItems='center' gap={8} className={classes.button}>
+                Setup-up a node
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+            <a
+              href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/deploy-your-first-contract"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.buttonLink}
+            >
+              <Flex alignItems='center' gap={8} className={classes.button}>
+                Start building
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+            <a className={classes.buttonLink}>
+              <Flex alignItems='center' gap={8} className={classes.button}>
+                Become an Attester
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+          </div>
         </div>
       </div>
       <div className={classes.videoWrapper}>

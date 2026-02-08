@@ -34,8 +34,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: center / cover no-repeat url('./assets/roadmap-bg.jpg');
-		opacity: 0.7;
+		background: center / cover no-repeat url('./assets/bg.png');
 		z-index: 0;
 	}
 
@@ -66,13 +65,11 @@
 			right: -5%;
 			height: 200px;
 			transform: translateY(-50%);
-			background: radial-gradient(
-				ellipse at center,
-				rgba(100, 180, 220, 0.4) 0%,
-				rgba(70, 150, 200, 0.25) 25%,
-				rgba(70, 150, 200, 0.15) 45%,
-				transparent 65%
-			);
+			background: radial-gradient(ellipse at center,
+					rgba(100, 180, 220, 0.4) 0%,
+					rgba(70, 150, 200, 0.25) 25%,
+					rgba(70, 150, 200, 0.15) 45%,
+					transparent 65%);
 			filter: blur(60px);
 			z-index: 1;
 		}
@@ -84,13 +81,11 @@
 			left: 0;
 			right: 0;
 			height: 2px;
-			background: linear-gradient(
-				90deg,
-				rgba(107, 209, 195, 0.8) 0%,
-				rgba(107, 209, 195, 1) 15%,
-				rgba(107, 209, 195, 1) 85%,
-				rgba(107, 209, 195, 0.8) 100%
-			);
+			background: linear-gradient(90deg,
+					rgba(107, 209, 195, 0.8) 0%,
+					rgba(107, 209, 195, 1) 15%,
+					rgba(107, 209, 195, 1) 85%,
+					rgba(107, 209, 195, 0.8) 100%);
 			transform: translateY(-50%);
 			box-shadow:
 				0 0 30px rgba(107, 209, 195, 1),
@@ -134,11 +129,9 @@
 					left: 50%;
 					width: 1px;
 					height: 60px;
-					background: linear-gradient(
-						to bottom,
-						rgba(107, 209, 195, 0.2) 0%,
-						rgba(107, 209, 195, 0.6) 100%
-					);
+					background: linear-gradient(to bottom,
+							rgba(107, 209, 195, 0.2) 0%,
+							rgba(107, 209, 195, 0.6) 100%);
 					transform: translateX(-50%);
 				}
 
@@ -166,11 +159,9 @@
 					left: 50%;
 					width: 1px;
 					height: 60px;
-					background: linear-gradient(
-						to top,
-						rgba(107, 209, 195, 0.2) 0%,
-						rgba(107, 209, 195, 0.6) 100%
-					);
+					background: linear-gradient(to top,
+							rgba(107, 209, 195, 0.2) 0%,
+							rgba(107, 209, 195, 0.6) 100%);
 					transform: translateX(-50%);
 				}
 

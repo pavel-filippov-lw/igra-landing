@@ -69,9 +69,11 @@ export const Footer: FC<FooterProps> = ({ className }) => {
         ))}
       </Flex>
       <div className={classes.copyright}>
-        <a href={to.privacy()} className={classes.copyrightLink}>Privacy Policy</a>
-        <span className={classes.separator}>·</span>
-        <a href="#" className={classes.copyrightLink}>Terms of Use</a>
+        <div className={classes.links}>
+          <a href={to.privacy()} className={classes.copyrightLink}>Privacy Policy</a>
+          <span className={classes.separator}>·</span>
+          <a href="#" className={classes.copyrightLink}>Terms of Use</a>
+        </div>
         <span className={classes.copyrightText}>© 2026 Igra Labs</span>
       </div>
     </div>

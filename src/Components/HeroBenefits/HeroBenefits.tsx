@@ -1,4 +1,4 @@
-import { FC, Fragment, useEffect } from "react"
+import { FC, Fragment } from "react"
 
 import { to } from "~/shared/lib"
 
@@ -33,7 +33,7 @@ const benefitsList: Benefit[] = [
     ),
     description: () => (
       <>
-        {'Based rollup with no centralized sequencer. MEV resistant and censorship resistant by design.'}
+        Based rollup with no centralized sequencer. MEV resistant and censorship resistant by design.
       </>
     ),
     to: to.benefits('1'),
@@ -45,7 +45,7 @@ const benefitsList: Benefit[] = [
     ),
     description: () => (
       <>
-        {'Full EVM compatibility, 400K+ Solidity devs, no cold start, clear audit frameworks'}
+        Full EVM compatibility, 400K+ Solidity devs, no cold start, clear audit frameworks
       </>
     ),
     to: to.benefits('6'),
@@ -57,7 +57,7 @@ const benefitsList: Benefit[] = [
     ),
     description: () => (
       <>
-        {'Legal entity for accountability, no single operator to subpoena'}
+        Legal entity for accountability, no single operator to subpoena
       </>
     ),
     to: to.benefits('5'),
@@ -96,11 +96,6 @@ const benefitsList: Benefit[] = [
 ]
 
 export const HeroBenefits: FC = () => {
-  // Animation removed - cards now appear immediately
-  useEffect(() => {
-    // Cleanup for any future animations if needed
-  }, [])
-
   return (
     <div className={classes.root}>
       {benefitsList.map((benefit, index) => (

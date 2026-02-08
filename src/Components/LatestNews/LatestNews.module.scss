@@ -1,8 +1,7 @@
-@import '../../shared/styles/vars';
-
 .root {
   width: 100%;
   max-width: 100%;
+  gap: 80px;
 
   .title {
     font-family: $font-secondary;
@@ -76,18 +75,18 @@
 
         .cardTitle {
           font-family: $font-secondary;
-          font-size: 32px;
-          line-height: 38px;
+          font-size: 24px;
           font-weight: 600;
+          line-height: 28px;
           color: #FFFFFF;
           margin: 0;
         }
 
         .description {
           font-family: $font;
-          font-size: 18px;
-          line-height: 26px;
-          color: rgba(255, 255, 255, 0.8);
+          font-size: 16px;
+          line-height: 28px;
+          color: #FFFFFF;
           margin: 0;
           white-space: pre-line;
           display: -webkit-box;
@@ -111,16 +110,6 @@
 
         .content {
           padding: 24px;
-
-          .cardTitle {
-            font-size: 28px;
-            line-height: 34px;
-          }
-
-          .description {
-            font-size: 16px;
-            line-height: 24px;
-          }
         }
       }
     }
@@ -145,6 +134,8 @@
   }
 
   @media screen and (max-width: $mobile) {
+    gap: 40px;
+
     .title {
       font-size: 36px;
       line-height: 48px;

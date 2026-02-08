@@ -37,16 +37,22 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       alignItems='center'
       {...props}
       className={clsx(classes.root, className)}
+      onClick={() => {
+        document.getElementById('root')?.scrollTo({
+          top: 0,
+          behavior: 'instant',
+        })
+        navigate(to)
+      }}
     >
       <Flex
         flexDirection='column'
         alignItems='center'
-        gap={20}
         className={clsx(classes.content, showBorder && classes.withBorder)}
       >
         <Icon
           name={iconName}
-          size={60}
+          size={96}
           className={classes.icon}
         />
         <div className={classes.title}>
@@ -57,16 +63,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
             {description()}
           </div>
         )}
-        <div
-          className={classes.link}
-          onClick={() => {
-            document.getElementById('root')?.scrollTo({
-              top: 0,
-              behavior: 'instant',
-            })
-            navigate(to)
-          }}
-        >
+        <div className={classes.link}>
           <Icon name='arrowTopRight' size={12} />
         </div>
       </Flex>

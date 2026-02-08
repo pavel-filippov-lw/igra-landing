@@ -13,6 +13,7 @@ import Dex from './dex.svg?react'
 import Discord from './discord.svg?react'
 import Email from './email.svg?react'
 import Ethereum from './ethereum.svg?react'
+import Fire from './fire.svg?react'
 import Flag from './flag.svg?react'
 import Github from './github.svg?react'
 import Gitlab from './gitlab.svg?react'
@@ -68,6 +69,7 @@ export const icons = {
   mark: { Component: Mark },
   governance: { Component: Governance },
   rocket: { Component: Rocket },
+  fire: { Component: Fire },
 } as const
 
 export type IconName = keyof typeof icons

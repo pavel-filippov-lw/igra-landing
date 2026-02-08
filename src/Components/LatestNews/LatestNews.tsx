@@ -1,5 +1,7 @@
 import { FC } from "react"
+
 import { Flex, Icon } from "~/shared/ui"
+
 import news1Image from './assets/news1.png'
 import news2Image from './assets/news2.jpg'
 import classes from './LatestNews.module.scss'
@@ -18,15 +20,15 @@ const newsItems: NewsItem[] = [
     tag: "Article",
     title: "On what matters most",
     description: "2025 is fading into the sunset.\nWe could reflect on many things as we built something beautiful this year. The precision mechanics of Viaduct and ATAN, a major refactoring of an Ethereum execution...",
-    link: "https://twitter.com"
+    link: "https://twitter.com",
   },
   {
     image: news2Image,
     tag: "Article",
     title: "Come sail your ships around me",
     description: "Ahoy! Our ship has crossed rough waters—reorgs, battles for storage, and a cold restart iceberg.\nWe're approaching El Dorado. The release schedule is the following:...",
-    link: "https://twitter.com"
-  }
+    link: "https://twitter.com",
+  },
 ]
 
 export const LatestNews: FC = () => {
@@ -34,7 +36,6 @@ export const LatestNews: FC = () => {
     <Flex
       flexDirection='column'
       alignItems='center'
-      gap={80}
       className={classes.root}
     >
       <h3 className={classes.title}>Latest News</h3>

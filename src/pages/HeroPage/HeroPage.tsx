@@ -1,7 +1,7 @@
 import { FC } from "react"
 
 import { Hero, HeroBenefits, LatestNews, PageLayout, Roadmap } from "~/Components"
-import { Flex, Icon } from "~/shared/ui"
+import { Flex } from "~/shared/ui"
 
 import classes from './HeroPage.module.scss'
 
@@ -10,35 +10,10 @@ export const HeroPage: FC = () => {
     <PageLayout>
       <Flex
         flexDirection='column'
-        gap={100}
         className={classes.root}
       >
-        <div className={classes.heroSection}>
-          <Hero />
-          <div className={classes.heroButtons}>
-            <a className={classes.buttonLink}>
-              <Flex alignItems='center' gap={8} className={classes.button}>
-                Setup-up a node
-                <Icon name='arrowTopRight' size={10} />
-              </Flex>
-            </a>
-            <div className={classes.separator} />
-            <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/deploy-your-first-contract" target="_blank" rel="noopener noreferrer" className={classes.buttonLink}>
-              <Flex alignItems='center' gap={8} className={classes.button}>
-                Start building
-                <Icon name='arrowTopRight' size={10} />
-              </Flex>
-            </a>
-            <div className={classes.separator} />
-            <a className={classes.buttonLink}>
-              <Flex alignItems='center' gap={8} className={classes.button}>
-                Become an Attester
-                <Icon name='arrowTopRight' size={10} />
-              </Flex>
-            </a>
-          </div>
-        </div>
-        <Flex flexDirection='column' gap={100} className={classes.content}>
+        <Hero />
+        <Flex flexDirection='column' className={classes.content}>
           <HeroBenefits />
           {/* <Flex gap={40} className={classes.cards}>
             <TransactionSpeedCard

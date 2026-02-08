@@ -1,25 +1,19 @@
-@import '../../shared/styles/vars';
-
 .root {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	position: relative;
 	min-height: 500px;
 	padding: 60px 0;
 	max-width: 1440px;
 	margin: 0 auto;
+	width: 100%;
 
 	.content {
-		flex: 1;
-		max-width: 700px;
-
 		.title {
-			font-family: 'Funnel Display', $font-secondary;
+			font-family: $font-secondary;
 			font-size: 85px;
 			line-height: 105px;
 			font-weight: 400;
 			color: #6BD1C3;
-			margin-bottom: 40px;
+			margin-bottom: 150px;
 			text-align: left;
 			width: 100%;
 			max-width: 700px;
@@ -31,7 +25,7 @@
 
 			.glitchText {
 				display: inline-block;
-				font-family: 'Funnel Display', $font-secondary;
+				font-family: $font-secondary;
 				font-size: 85px;
 				line-height: 105px;
 				font-weight: 400;
@@ -43,54 +37,109 @@
 			}
 		}
 
-		.announcement {
-			position: relative;
-			display: flex;
-			align-items: center;
-			gap: 16px;
-			padding: 20px 0;
-			font-size: 19px;
-			line-height: 1.5;
-			color: rgba(255, 255, 255, 0.9);
-			margin-bottom: 40px;
+		.info {
 			width: 100%;
 			max-width: 700px;
 
-			&::after {
-				content: '';
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				height: 1px;
-				border-bottom: 1px dashed #EED58A;
+			.readMore {
+				display: block;
+				margin-bottom: 60px;
+
+				.announcement {
+					position: relative;
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					padding: 15px 0;
+					font-size: 24px;
+					text-wrap: nowrap;
+					width: fit-content;
+					border-bottom: 1px dashed #EED58A;
+
+					.content {
+						display: flex;
+						align-items: center;
+						gap: 10px;
+
+						.date {
+							color: #EED58A;
+						}
+
+						.divider {
+							color: #EED58A;
+						}
+
+						.text {
+							color: #FFFFFF;
+						}
+
+						.link {
+							display: flex;
+							align-items: center;
+							gap: 40px;
+							color: #FFFFFF;
+
+							.icon path {
+								stroke: #FFFFFF;
+								transition: stroke 0.2s ease-in-out;
+							}
+						}
+					}
+				}
+
+				@include hover {
+					cursor: pointer;
+
+					.announcement {
+						.content {
+							.link {
+								.icon path {
+									stroke: #EED58A;
+								}
+							}
+						}
+					}
+				}
 			}
 
-			.icon {
-				font-size: 20px;
-				color: #EED58A;
-			}
+			.heroButtons {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 40px;
 
-			.date {
-				font-weight: 600;
-				color: #EED58A;
-				white-space: nowrap;
-			}
-
-			.divider {
-				color: rgba(255, 255, 255, 0.3);
-			}
-
-			.text {
-				color: rgba(255, 255, 255, 0.9);
-
-				.readMore {
-					color: rgba(255, 255, 255, 0.9);
+				.buttonLink {
 					text-decoration: none;
-					transition: color 0.2s ease;
+					display: block;
 
-					&:hover {
+					.button {
+						padding: 0;
+						font-size: 19px;
+						font-weight: 400;
+						line-height: 28px;
 						color: #6BD1C3;
+						transition: color 0.2s ease-in-out;
+						white-space: nowrap;
+
+						svg {
+							margin-top: 2px;
+
+							path {
+								transition: stroke 0.2s ease-in-out;
+							}
+						}
+					}
+
+					@include hover {
+						cursor: pointer;
+
+						.button {
+							color: #EED58A;
+
+							svg path {
+								stroke: #EED58A;
+							}
+						}
 					}
 				}
 			}
@@ -101,7 +150,11 @@
 		flex-shrink: 0;
 		width: 600px;
 		height: 600px;
-		position: relative;
+		position: absolute;
+		top: 50%;
+		right: -100px;
+		transform: translateY(-50%);
+		z-index: -1;
 
 		.video {
 			width: 100%;
@@ -114,17 +167,11 @@
 		}
 	}
 
-	@media screen and (max-width: 1200px) {
+	@media screen and (max-width: $desktop) {
 		.content {
 			.title {
 				font-size: 70px;
 				line-height: 88px;
-
-				.glitchText {
-					font-size: 70px;
-					line-height: 88px;
-					min-width: 240px;
-				}
 			}
 		}
 
@@ -149,8 +196,32 @@
 				}
 			}
 
-			.announcement {
-				font-size: 17px;
+			.info {
+				.readMore {
+					.announcement {
+						align-items: flex-start;
+						gap: 15px;
+						font-size: 18px;
+
+						.content {
+							flex-direction: column;
+							align-items: flex-start;
+							gap: 0;
+
+							.divider {
+								display: none;
+							}
+
+							.link {
+								font-size: 14px;
+
+								.icon {
+									display: none;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -161,22 +232,16 @@
 	}
 
 	@media screen and (max-width: $tablet) {
-		flex-direction: column;
 		padding: 40px 0;
 
 		.content {
 			max-width: 100%;
-			text-align: center;
 
 			.title {
+				margin-top: 200px;
 				font-size: 54px;
 				line-height: 68px;
-				text-align: center;
 				margin-bottom: 30px;
-
-				span {
-					text-align: center;
-				}
 
 				.glitchText {
 					font-size: 54px;
@@ -185,21 +250,54 @@
 				}
 			}
 
-			.announcement {
-				justify-content: center;
-				font-size: 16px;
-				margin-bottom: 30px;
+			.info {
+				.readMore {
+					margin-bottom: 30px;
+
+					.announcement {
+						font-size: 16px;
+					}
+				}
+
+				.heroButtons {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 18px;
+
+					.buttonLink {
+						.button {
+							min-width: 250px;
+							font-size: 16px;
+							border: 1px solid #6BD1C3;
+							border-radius: 17px;
+							background: transparent;
+							padding: 10px 20px;
+
+							@include hover {
+								cursor: pointer;
+								border-color: #EED58A;
+
+								svg path {
+									stroke: #EED58A;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 
 		.videoWrapper {
-			width: 350px;
-			height: 350px;
+			width: 400px;
+			height: 400px;
 			margin: 0 auto;
+			top: 0;
+			right: -100px;
+			transform: none;
 		}
 	}
 
-	@media screen and (max-width: 426px) {
+	@media screen and (max-width: $mobile) {
 		padding: 30px 0;
 		min-height: auto;
 
@@ -220,26 +318,38 @@
 				}
 			}
 
-			.announcement {
-				flex-wrap: wrap;
-				padding: 16px 0;
-				gap: 8px;
-				font-size: 14px;
-				margin-bottom: 24px;
+			.info {
+				.readMore {
+					.announcement {
+						width: 100%;
+						flex-wrap: wrap;
+						padding: 16px 0;
+						gap: 8px;
+						font-size: 14px;
 
-				&::after {
-					background-size: 60px 1px;
+						.content {
+							.link {
+								font-size: 12px;
+							}
+						}
+					}
 				}
 
-				.icon {
-					font-size: 16px;
+				.heroButtons {
+					.buttonLink {
+						width: 100%;
+
+						.button {
+							width: 100%;
+						}
+					}
 				}
 			}
 		}
 
 		.videoWrapper {
-			width: 280px;
-			height: 280px;
+			width: 350px;
+			height: 350px;
 		}
 	}
 }
