@@ -5,4 +5,6 @@ export const Routes = {
   vision: 'vision',
   ecosystem: 'ecosystem',
   privacy: 'privacy',
+  benefits: 'benefits',
+  about: 'about',
 }

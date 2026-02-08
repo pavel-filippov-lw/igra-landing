@@ -16,8 +16,8 @@ export const Logo: FC<LogoProps> = ({ onClick }) => {
       })}
       style={{
         flexShrink: 0,
-        width: 65,
-        height: 48,
+        width: 104,
+        height: 33,
         background: `center / contain no-repeat url(${logo})`,
       }}
       onClick={onClick}

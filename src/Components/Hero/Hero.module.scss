@@ -1,64 +1,136 @@
 .root {
+	position: relative;
+
 	.content {
-		padding-top: 57px;
-		margin-bottom: 77px;
+		position: relative;
+		width: 60%;
+		padding-top: 120px;
+		z-index: 2;
 
 		.title {
-			font-family: $font-secondary;
-			font-size: 78px;
-			line-height: 86px;
+			position: absolute;
+			top: 120px;
+			left: 0;
+			font-size: 100px;
+			line-height: 120px;
 			font-weight: 400;
 			color: #6BD1C3;
+
+			.glitchText {
+				display: inline;
+				font-size: 100px;
+				line-height: 120px;
+				font-weight: 400;
+				color: #FFFFFF;
+			}
 		}
 
-		.subtitle {
-			margin-left: 3px;
-			font-family: $font-secondary;
-			font-size: 26px;
-			line-height: 40px;
-			font-weight: 400;
-			color: #6BD1C3;
-		}
+		.note {
+			margin-top: 650px;
+			max-width: 548px;
+			min-height: 278px;
+			padding: 30px;
+			border-radius: 22px;
+			background: linear-gradient(to top right, #4AF8FF 0%, #4BABAB 48%, #EFFC66 100%);
 
-		.testnetText {
-			font-family: $font-secondary;
-			font-size: 22px;
-			font-weight: 400;
-			color: #CB9D4B;
-		}
+			.date {
+				margin-bottom: 9px;
+				font-size: 24px;
+				font-weight: 400;
+				line-height: 40px;
+				color: #EED58A;
+			}
 
-		.description {
-			font-size: 18px;
-			line-height: 36px;
-			color: #C7C7C7;
+			.noteTitle {
+				margin-bottom: 9px;
+				font-size: 24px;
+				font-weight: 600;
+				line-height: 40px;
+				color: #FFFFFF;
+			}
+
+			.description {
+				margin-bottom: 30px;
+				font-size: 18px;
+				font-weight: 400;
+				line-height: 30px;
+				color: #FFFFFF;
+			}
+
+			.button {
+				margin-left: auto;
+				min-width: 170px;
+			}
 		}
 	}
 
-	.buttons {
-		margin-bottom: 64px;
+	.video {
+		position: absolute;
+		right: -150px;
+		top: 50px;
+		width: 70%;
+		aspect-ratio: 1/1;
+		z-index: 1;
 	}
 
 	@media screen and (max-width: $tablet) {
 		.content {
-			margin-top: -80px;
-			margin-bottom: 43px;
+			width: 100%;
+
+			.title {
+				top: 300px;
+				font-size: 56px;
+				line-height: 68px;
+
+				.glitchText {
+					font-size: 56px;
+					line-height: 68px;
+				}
+			}
+
+			.note {
+				margin-top: 550px;
+			}
 		}
 
-		.buttons {
-			flex-direction: column;
-
-			>button {
-				width: 100%;
-			}
+		.video {
+			top: 0;
+			right: 0;
 		}
 	}
 
 	@media screen and (max-width: $mobile) {
 		.content {
 			.title {
-				font-size: 56px;
-				line-height: 68px;
+				font-size: 40px;
+				line-height: 48px;
+
+				.glitchText {
+					font-size: 40px;
+					line-height: 48px;
+				}
 			}
+
+			.note {
+				margin-top: 450px;
+				min-height: 0;
+				padding: 20px;
+
+				.date,
+				.noteTitle {
+					font-size: 24px;
+					line-height: 32px;
+				}
+
+				.description {
+					font-size: 16px;
+					line-height: 24px;
+				}
+			}
+		}
+
+		.video {
+			width: 100%;
 		}
 	}
 }

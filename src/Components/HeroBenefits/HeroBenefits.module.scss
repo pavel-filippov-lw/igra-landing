@@ -1,61 +1,23 @@
 .root {
-	text-align: center;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 90px 40px;
 
-	.title {
-		font-family: $font-secondary;
-		font-size: 42px;
-		line-height: 72px;
-		font-weight: 400;
-		color: #6BD1C3;
+	.boldTitle {
+		font-weight: 700;
 	}
 
-	.composability {
-		font-size: 24px;
-		line-height: 32px;
-		color: #6BD1C3;
+	.card {
+		opacity: 0;
+		transform: translateY(50%);
 	}
 
-	.nextGen {
-		.card {
-			width: calc((100% - 80px) / 3);
-			min-width: 400px;
-			min-height: 265px;
-			opacity: 0;
-			transform: translateY(15%);
-		}
-	}
-
-	.unlocksDeFi {
-		display: grid;
+	@media screen and (max-width: $laptop) {
 		grid-template-columns: repeat(2, 1fr);
-		gap: 40px;
-
-		.card {
-			max-width: 400px;
-			opacity: 0;
-			transform: translateY(15%);
-		}
+		gap: 40px 20px;
 	}
 
 	@media screen and (max-width: $tablet) {
-		.title {
-			font-size: 36px;
-			line-height: 58px;
-		}
-
-		.nextGen {
-			.card {
-				width: 100%;
-				min-width: 0;
-			}
-		}
-
-		.unlocksDeFi {
-			grid-template-columns: 1fr;
-
-			.card {
-				max-width: 100%;
-			}
-		}
+		grid-template-columns: 1fr;
 	}
 }

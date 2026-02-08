@@ -1,0 +1,107 @@
+.root {
+    .content {
+        max-width: 80%;
+        margin: 0 auto;
+
+        .buttons {
+            width: 100%;
+            max-width: 85%;
+            margin: 0 auto;
+
+            .buttonLink {
+                .button {
+                    min-width: 230px;
+                    padding: 6px 0 6px 12px;
+                    border-left: 1px solid #6BD1C3;
+                    font-size: 18px;
+                    font-weight: 400;
+                    line-height: 28px;
+                    color: #6BD1C3;
+                    transition: color 0.2s ease-in-out, border-left 0.2s ease-in-out;
+
+                    svg {
+                        margin-top: 4px;
+
+                        path {
+                            transition: stroke 0.2s ease-in-out;
+                        }
+                    }
+                }
+
+                @include hover {
+                    cursor: pointer;
+
+                    .button {
+                        border-left: 1px solid #EED58A;
+                        color: #EED58A;
+
+                        svg path {
+                            stroke: #EED58A;
+                        }
+                    }
+                }
+            }
+        }
+
+        .cards {
+            .transactionSpeedCard {
+                flex: 1;
+                opacity: 0;
+                transform: translateY(30%);
+            }
+
+            .heroCodeCard {
+                flex: 1;
+                max-width: 60%;
+                opacity: 0;
+                transform: translateY(30%);
+            }
+        }
+    }
+
+    @media screen and (max-width: $desktop) {
+        .content {
+            .cards {
+                .heroCodeCard {
+                    max-width: 50%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $laptop) {
+        .content {
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+
+                .button {
+                    width: fit-content;
+                    min-width: 330px;
+                }
+            }
+
+            .cards {
+                flex-direction: column;
+
+                .heroCodeCard {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $mobile) {
+        .content {
+            max-width: 100%;
+
+            .buttons {
+                .button {
+                    min-width: 100%;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

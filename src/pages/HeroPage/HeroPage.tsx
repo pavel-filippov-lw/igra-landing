@@ -1,18 +1,88 @@
-import { FC } from "react"
+import gsap from "gsap"
+import { FC, useEffect, useRef } from "react"
 
-import { Hero, HeroBenefits, PageLayout, Roadmap } from "~/Components"
-import { Flex } from "~/shared/ui"
+import { Hero, HeroBenefits, HeroCodeCard, PageLayout, TransactionSpeedCard } from "~/Components"
+import { Flex, Icon } from "~/shared/ui"
+
+import classes from './HeroPage.module.scss'
 
 export const HeroPage: FC = () => {
+  const refs = useRef<(HTMLDivElement | null)[]>([])
+  const setRef = (index: number) => (el: HTMLDivElement | null) => {
+    refs.current[index] = el
+  }
+
+  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        gsap.to(entry.target, {
+          opacity: 1,
+          y: 0,
+          duration: 1 + index * 0.5,
+          ease: 'power3.out',
+        })
+      }
+    })
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.3,
+    })
+
+    refs.current.forEach(ref => {
+      if (ref) observer.observe(ref)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <PageLayout>
       <Flex
         flexDirection='column'
-        gap={160}
+        gap={120}
+        className={classes.root}
       >
         <Hero />
-        <HeroBenefits />
-        <Roadmap />
+        <Flex flexDirection='column' gap={120} className={classes.content}>
+          <Flex
+            justifyContent='space-between'
+            className={classes.buttons}
+          >
+            <a className={classes.buttonLink}>
+              <Flex alignItems='center' gap={12} className={classes.button}>
+                Setup-up a node
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+            <a className={classes.buttonLink}>
+              <Flex alignItems='center' gap={12} className={classes.button}>
+                Apply for a grant
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+            <a className={classes.buttonLink}>
+              <Flex alignItems='center' gap={12} className={classes.button}>
+                Become an Attester
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+          </Flex>
+          <HeroBenefits />
+          <Flex gap={40} className={classes.cards}>
+            <TransactionSpeedCard
+              ref={setRef(0)}
+              value={30}
+              isLoading={false}
+              className={classes.transactionSpeedCard}
+            />
+            <HeroCodeCard
+              ref={setRef(1)}
+              className={classes.heroCodeCard}
+            />
+          </Flex>
+        </Flex>
       </Flex>
     </PageLayout>
   )

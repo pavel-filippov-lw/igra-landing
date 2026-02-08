@@ -22,14 +22,7 @@ export const Ecosystem: FC = () => {
             Igra Fleet
           </h1>
           <div className={classes.description}>
-            These vetted teams are already building real projects on Igra — from DeFi protocols to infrastructure tools. They’re shaping the future of Kaspa’s programmable layer. Join our ecosystem to build, collaborate, and shape the next wave of applications together.
-            <br/>
-            <a
-              href='mailto:team@igralabs.com'
-              target='_blank'
-              rel='noreferrer'
-              className={classes.link}
-            >Join the Fleet</a>
+            These early adopters are testing our devnet and developing the applications that will shape Igra Network future.
           </div>
         </Flex>
         <div className={classes.images}>
