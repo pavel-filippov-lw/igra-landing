@@ -30,13 +30,13 @@
 
 	// For 1 card in a row on mobile
 	@media screen and (max-width: 599px) {
-		grid-template-columns: 1fr;
+		grid-template-columns: auto;
+		grid-template-rows: repeat(4, auto);
 		gap: 20px;
 	}
 
 	// Specific mobile breakpoint at 402px
 	@media screen and (max-width: 402px) {
-		padding: 0 16px;
 		gap: 16px;
 	}
 }

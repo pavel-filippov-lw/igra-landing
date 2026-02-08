@@ -94,7 +94,6 @@ const benefitsList: (Benefit & { animatedIconVariant?: AnimatedIconVariant, icon
   {
     iconName: 'flag',
     iconLabel: 'Swiss Compliance',
-    animatedIconVariant: 'flag',
     title: () => 'Swiss registered company',
     description: () => (
       <>

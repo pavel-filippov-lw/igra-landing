@@ -8,16 +8,12 @@ import heroVideo from './assets/video_alpha.webm'
 import classes from './Hero.module.scss'
 
 const glitchTextLines = [
-  'Agentic-ready',
+  'The Agentic-ready',
   'fastest',
   'fairest',
   'most secure',
   'only realtime',
 ]
-
-const glitchTextLinesWithThe = glitchTextLines.map(line =>
-  line === 'Agentic-ready' ? line : `The ${line}`,
-)
 
 export const Hero: FC = () => {
   return (
@@ -26,7 +22,7 @@ export const Hero: FC = () => {
         <div className={classes.title}>
           <span style={{ display: 'block' }}>
             <GlitchText
-              lines={glitchTextLinesWithThe}
+              lines={glitchTextLines}
               className={classes.glitchText}
             />
           </span>

@@ -8,7 +8,7 @@ import lockAnimationData from './assets/lockAnimation.json'
 import moleculeAnimationData from './assets/moleculeAnimation.json'
 import stackAnimationData from './assets/stackAnimation.json'
 
-export type AnimatedIconVariant = 'stack' | 'clock' | 'molecule' | 'blocks' | 'lock' | 'flag'
+export type AnimatedIconVariant = 'stack' | 'clock' | 'molecule' | 'blocks' | 'lock'
 
 export interface AnimatedIconProps {
   variant: AnimatedIconVariant

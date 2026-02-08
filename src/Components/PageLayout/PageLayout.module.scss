@@ -59,6 +59,16 @@
 	.footer {
 		margin-left: auto;
 	}
+
+	@media screen and (max-width: $mobile) {
+		.layout {
+			padding: $header_h 20px 100px;
+		}
+
+		.footer {
+			display: none;
+		}
+	}
 }
 
 @keyframes waveBgAnimation {
