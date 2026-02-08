@@ -3,16 +3,16 @@ import { FC } from "react"
 import { Flex, Icon } from "~/shared/ui"
 
 import { GlitchText } from "../GlitchText"
-import heroVideoSafari from './assets/video_alpha.mov'
-import heroVideo from './assets/video_alpha.webm'
+import heroVideoSafari from './assets/video.mov'
+import heroVideo from './assets/video.webm'
 import classes from './Hero.module.scss'
 
 const glitchTextLines = [
-  'The Agentic-ready',
-  'fastest',
-  'fairest',
-  'most secure',
-  'only realtime',
+  'Agentic-ready',
+  'The fastest',
+  'The fairest',
+  'The most secure',
+  'The only realtime',
 ]
 
 export const Hero: FC = () => {
