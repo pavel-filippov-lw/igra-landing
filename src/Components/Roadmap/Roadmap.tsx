@@ -98,6 +98,40 @@ export const Roadmap: FC = () => {
           ))}
         </div>
       </div>
+      <div className={classes.mobileTimeline}>
+        <div className={classes.mobileGlow} />
+        <div className={classes.mobileLine} />
+        <div className={classes.mobileItems}>
+          {roadmapData.map((item, index) => (
+            <div
+              key={index}
+              className={clsx(classes.mobileItem, classes[item.status])}
+            >
+              <div className={classes.mobileMarker}>
+                <div className={classes.mobileDot} />
+                <div className={classes.mobileConnector} />
+              </div>
+              <div className={classes.mobileContent}>
+                <div className={classes.mobileDate}>{item.date}</div>
+                <div className={classes.mobileTitle}>{item.title}</div>
+                <div className={classes.mobileDescription}>
+                  {item.description.split('\n').map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </div>
+                {item.subdescription && (
+                  <div className={classes.mobileSubdescription}>
+                    {item.subdescription}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
