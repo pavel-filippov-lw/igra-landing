@@ -37,7 +37,7 @@ IGRA is a high-performance EVM-compatible blockchain built on Kaspa's BlockDAG p
 ## Important: Read This First
 
 1. **HTTPS only** — plain HTTP connections are refused. Always use `https://`.
-2. **Legacy transactions** — use type 0 transactions with explicit gas price. EIP-1559 defaults from ethers.js are too low and will fail.
+2. **Explicit gas price** — set `gasPrice: 1000e9` (1000 Gwei). This works with all transaction types (0, 1, 2). EIP-1559 defaults from ethers.js are too low and will fail without an explicit gas price.
 3. **Fetch gas price** — always query the network for current gas price before sending transactions.
 4. **Poll for receipts** — do NOT rely on `tx.wait()` which can hang or timeout. Instead, poll with `provider.getTransactionReceipt(hash)` in a loop (1s intervals, 30s deadline for transfers, 60s for deploys).
 5. **Estimate gas for deploys** — always call `provider.estimateGas()` before deploying contracts. Add a 20% buffer. Do not hardcode large gas limits.
@@ -138,7 +138,6 @@ async function main() {
   const tx1 = await wallet.sendTransaction({
     to: Wallet.createRandom().address,
     value: parseEther('0.01'),
-    type: 0,
     gasPrice,
   });
   const r1 = await waitForReceipt(tx1.hash);
@@ -153,7 +152,7 @@ async function main() {
   const estimated = await provider.estimateGas({ ...deployTx, from: wallet.address });
   const gasLimit = estimated * 120n / 100n;
   console.log('Gas estimate:', estimated.toString(), '| Limit:', gasLimit.toString());
-  const tx2 = await wallet.sendTransaction({ ...deployTx, gasPrice, type: 0, gasLimit });
+  const tx2 = await wallet.sendTransaction({ ...deployTx, gasPrice, gasLimit });
   const r2 = await waitForReceipt(tx2.hash, 60000);
   console.log('Contract:', r2.contractAddress, '| Gas:', r2.gasUsed.toString());
   console.log('Explorer:', EXPLORER + '/address/' + r2.contractAddress);
@@ -168,7 +167,7 @@ async function main() {
     const txStart = Date.now();
     try {
       const tx = await token.transfer(
-        Wallet.createRandom().address, parseEther('0.001'), { gasPrice, type: 0 }
+        Wallet.createRandom().address, parseEther('0.001'), { gasPrice }
       );
       const r = await waitForReceipt(tx.hash);
       const lat = Date.now() - txStart;
@@ -310,7 +309,7 @@ async function fundNewWallet() {
 
 ## Send Transactions
 
-The key pattern for all transactions on IGRA — fetch gas price, use legacy type, and poll for receipts:
+The key pattern for all transactions on IGRA — set explicit gas price and poll for receipts:
 
 ```javascript
 const { Wallet, JsonRpcProvider, parseEther } = require('ethers');
@@ -336,7 +335,6 @@ async function send(to, amountInIkas) {
   const tx = await wallet.sendTransaction({
     to,
     value: parseEther(amountInIkas),
-    type: 0,
     gasPrice,
   });
   const receipt = await waitForReceipt(tx.hash);
@@ -348,7 +346,7 @@ async function send(to, amountInIkas) {
 
 ## Deploy Smart Contracts
 
-Any Solidity contract that works on Ethereum works on IGRA. Use ethers.js ContractFactory with gas estimation and receipt polling:
+Any Solidity contract that works on Ethereum works on IGRA. Use ethers.js ContractFactory with explicit gas price, gas estimation, and receipt polling:
 
 ```javascript
 const { Wallet, JsonRpcProvider, ContractFactory } = require('ethers');
@@ -379,7 +377,7 @@ async function deploy(abi, bytecode, constructorArgs) {
   console.log('Estimated gas:', estimated.toString(), '| Limit:', gasLimit.toString());
 
   // Send deploy TX
-  const tx = await wallet.sendTransaction({ ...deployTx, gasPrice, type: 0, gasLimit });
+  const tx = await wallet.sendTransaction({ ...deployTx, gasPrice, gasLimit });
   console.log('Deploy TX:', tx.hash);
 
   // Poll for receipt (60s timeout for deploys)
@@ -443,7 +441,7 @@ async function stressTest(count) {
       const tx = await token.transfer(
         Wallet.createRandom().address,
         parseEther('0.001'),
-        { gasPrice, type: 0 }
+        { gasPrice }
       );
       const r = await waitForReceipt(tx.hash);
       latencies.push(Date.now() - txStart);
@@ -500,11 +498,11 @@ IGRA supports the standard Ethereum ecosystem:
 
 | Tool | Works? | Notes |
 |------|--------|-------|
-| **ethers.js v6** | Yes | Use `type: 0` + explicit `gasPrice` |
+| **ethers.js v6** | Yes | Set explicit `gasPrice: 1000e9` |
 | **web3.js** | Yes | Same gas price considerations |
-| **viem** | Yes | Set `type: 'legacy'` in transactions |
+| **viem** | Yes | Set explicit `gasPrice` |
 | **Hardhat** | Yes | Configure custom network in `hardhat.config.js` |
-| **Foundry/Forge** | Yes | Use `--legacy` flag for transactions |
+| **Foundry/Forge** | Yes | Set `--gas-price 1000000000000` |
 | **MetaMask** | Yes | Add custom network with RPC and Chain ID |
 | **Blockscout** | Yes | Explorer at `explorer.galleon.igralabs.com` |
 | **OpenZeppelin** | Yes | All standard contracts work |
@@ -529,7 +527,7 @@ module.exports = {
 forge create --rpc-url https://galleon.igralabs.com:8545 \
   --chain-id 38837 \
   --private-key YOUR_PRIVATE_KEY \
-  --legacy \
+  --gas-price 1000000000000 \
   src/MyContract.sol:MyContract
 ```
 
