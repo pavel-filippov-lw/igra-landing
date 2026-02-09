@@ -46,6 +46,154 @@ IGRA is a high-performance EVM-compatible blockchain built on Kaspa's BlockDAG p
 
 ---
 
+## Quick Start: Full End-to-End Test
+
+Run all steps in sequence with a single self-contained Node.js script. This creates a wallet, funds it from the faucet (3 drips for ~3 iKAS), sends an iKAS transfer, deploys a TestToken ERC-20, and runs a 5-transaction stress test.
+
+**Setup:**
+```bash
+mkdir igra-test && cd igra-test
+npm init -y && npm install ethers
+curl -s https://igralabs.com/skills/igra-network/artifacts/TestToken.json -o TestToken.json
+```
+
+**Save as `test-igra.js` and run with `node test-igra.js`:**
+
+```javascript
+const { Wallet, JsonRpcProvider, ContractFactory, Contract, parseEther, formatEther } = require('ethers');
+
+const RPC = 'https://galleon.igralabs.com:8545';
+const FAUCET = 'https://ikas-faucet-ecee9345b515.herokuapp.com';
+const CHAIN = { name: 'igra', chainId: 38837 };
+const EXPLORER = 'https://explorer.galleon.igralabs.com';
+
+const provider = new JsonRpcProvider(RPC, CHAIN);
+
+// ── Poll for receipt (do NOT use tx.wait() — it can hang on this RPC) ──
+
+async function waitForReceipt(txHash, timeoutMs = 30000) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    const receipt = await provider.getTransactionReceipt(txHash);
+    if (receipt) return receipt;
+    await new Promise(r => setTimeout(r, 1000));
+  }
+  throw new Error(`TX ${txHash} not confirmed in ${timeoutMs / 1000}s`);
+}
+
+// ── Faucet: request challenge, sign, claim ──
+
+async function faucetDrip(wallet) {
+  const { challenge } = await fetch(FAUCET + '/api/challenge', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ address: wallet.address }),
+  }).then(r => r.json());
+
+  const signature = await wallet.signMessage(challenge);
+  const drip = await fetch(FAUCET + '/api/drip', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ address: wallet.address, signature, challenge }),
+  }).then(r => r.json());
+
+  if (drip.error) throw new Error('Faucet: ' + drip.error);
+  console.log('  Drip:', drip.amount, '| TX:', drip.txHash);
+  await waitForReceipt(drip.txHash);
+  return drip;
+}
+
+async function main() {
+  console.log('=== IGRA GALLEON TEST ===');
+  console.log('Block:', await provider.getBlockNumber());
+
+  // 1. Create wallet
+  const wallet = Wallet.createRandom().connect(provider);
+  console.log('\nWallet:', wallet.address);
+  console.log('Private Key:', wallet.privateKey);
+
+  // 2. Fund with 3 faucet drips (~3 iKAS: enough for deploy + stress test)
+  console.log('\n--- Faucet (3 drips) ---');
+  for (let i = 0; i < 3; i++) {
+    await faucetDrip(wallet);
+  }
+  console.log('Balance:', formatEther(await provider.getBalance(wallet.address)), 'iKAS');
+
+  // 3. Send iKAS transfer
+  console.log('\n--- iKAS Transfer ---');
+  const gasPrice = (await provider.getFeeData()).gasPrice;
+  const tx1 = await wallet.sendTransaction({
+    to: Wallet.createRandom().address,
+    value: parseEther('0.01'),
+    type: 0,
+    gasPrice,
+  });
+  const r1 = await waitForReceipt(tx1.hash);
+  console.log('TX:', tx1.hash, '| Block:', r1.blockNumber, '| Gas:', r1.gasUsed.toString());
+
+  // 4. Deploy TestToken ERC-20
+  console.log('\n--- ERC-20 Deploy ---');
+  const artifact = require('./TestToken.json');
+  const factory = new ContractFactory(artifact.abi, artifact.bytecode, wallet);
+  const deployTx = await factory.getDeployTransaction('MyToken', 'MTK', 1000000);
+  const estimated = await provider.estimateGas({ ...deployTx, from: wallet.address });
+  const gasLimit = estimated * 120n / 100n;
+  console.log('Gas estimate:', estimated.toString(), '| Limit:', gasLimit.toString());
+  const tx2 = await wallet.sendTransaction({ ...deployTx, gasPrice, type: 0, gasLimit });
+  const r2 = await waitForReceipt(tx2.hash, 60000);
+  console.log('Contract:', r2.contractAddress, '| Gas:', r2.gasUsed.toString());
+  console.log('Explorer:', EXPLORER + '/address/' + r2.contractAddress);
+
+  // 5. Stress test: 5 ERC-20 transfers
+  console.log('\n--- Stress Test (5 ERC-20 transfers) ---');
+  const token = new Contract(r2.contractAddress, artifact.abi, wallet);
+  let ok = 0, fail = 0, totalGas = 0n;
+  const latencies = [];
+  const start = Date.now();
+  for (let i = 0; i < 5; i++) {
+    const txStart = Date.now();
+    try {
+      const tx = await token.transfer(
+        Wallet.createRandom().address, parseEther('0.001'), { gasPrice, type: 0 }
+      );
+      const r = await waitForReceipt(tx.hash);
+      const lat = Date.now() - txStart;
+      latencies.push(lat);
+      totalGas += r.gasUsed;
+      ok++;
+      console.log(`  TX ${i+1}/5: ${tx.hash} | ${r.gasUsed} gas | ${lat}ms`);
+    } catch (e) {
+      fail++;
+      console.log(`  TX ${i+1}/5: FAILED - ${e.message.substring(0, 80)}`);
+    }
+  }
+  const elapsed = (Date.now() - start) / 1000;
+  console.log(`\nResults: ${ok}/5 success | ${elapsed.toFixed(1)}s total | ${(ok/elapsed).toFixed(2)} TPS`);
+  if (ok > 0) console.log(`Gas: ${totalGas} total | ${totalGas/BigInt(ok)} avg/tx`);
+  if (latencies.length) {
+    latencies.sort((a, b) => a - b);
+    console.log(`Latency: min=${latencies[0]}ms median=${latencies[Math.floor(latencies.length/2)]}ms max=${latencies.at(-1)}ms`);
+  }
+
+  // Final
+  console.log('\n--- Final ---');
+  console.log('Balance:', formatEther(await provider.getBalance(wallet.address)), 'iKAS');
+  console.log('Wallet:', EXPLORER + '/address/' + wallet.address);
+}
+
+main().catch(e => { console.error('FATAL:', e.message); process.exit(1); });
+```
+
+**Expected output:** RPC connectivity confirmed, wallet funded with ~3 iKAS, one iKAS transfer confirmed, ERC-20 contract deployed, 5 token transfers completed with throughput/latency metrics.
+
+---
+
+## Reference: Individual Steps
+
+The sections below explain each step in detail. The Quick Start script above combines all of them.
+
+---
+
 ## Connect to RPC
 
 Verify the node is reachable:
@@ -196,6 +344,16 @@ const provider = new JsonRpcProvider('https://galleon.igralabs.com:8545', {
 });
 const wallet = new Wallet('YOUR_PRIVATE_KEY', provider);
 
+async function waitForReceipt(txHash, timeoutMs = 30000) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    const receipt = await provider.getTransactionReceipt(txHash);
+    if (receipt) return receipt;
+    await new Promise(r => setTimeout(r, 1000));
+  }
+  throw new Error(`TX ${txHash} not confirmed in ${timeoutMs / 1000}s`);
+}
+
 async function deploy(abi, bytecode, constructorArgs) {
   const gasPrice = (await provider.getFeeData()).gasPrice;
   const factory = new ContractFactory(abi, bytecode, wallet);
@@ -248,6 +406,16 @@ const provider = new JsonRpcProvider('https://galleon.igralabs.com:8545', {
 const wallet = new Wallet('YOUR_PRIVATE_KEY', provider);
 const artifact = require('./TestToken.json');
 const token = new Contract('CONTRACT_ADDRESS', artifact.abi, wallet);
+
+async function waitForReceipt(txHash, timeoutMs = 30000) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    const receipt = await provider.getTransactionReceipt(txHash);
+    if (receipt) return receipt;
+    await new Promise(r => setTimeout(r, 1000));
+  }
+  throw new Error(`TX ${txHash} not confirmed in ${timeoutMs / 1000}s`);
+}
 
 async function stressTest(count) {
   const gasPrice = (await provider.getFeeData()).gasPrice;
