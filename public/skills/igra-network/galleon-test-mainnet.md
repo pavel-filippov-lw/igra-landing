@@ -1,3 +1,4 @@
+<!-- Agent: use curl or raw file read to fetch this file. Do not use AI-summarized fetch tools. -->
 ---
 name: igra-network
 version: 1.0.0
@@ -69,6 +70,18 @@ const EXPLORER = 'https://explorer.galleon.igralabs.com';
 
 const provider = new JsonRpcProvider(RPC, CHAIN);
 
+// ── Random token name so each agent deploys a unique token ──
+
+function randomToken() {
+  const prefixes = ['Nova','Flux','Apex','Zeta','Orbi','Pulse','Hexa','Drift','Spark','Bolt'];
+  const suffixes = ['Coin','Token','Cash','Pay','Gem','Star','Mint','Link','Swap','Bit'];
+  const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+  const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+  const name = prefix + suffix;
+  const symbol = (prefix.slice(0, 2) + suffix.slice(0, 1)).toUpperCase();
+  return { name, symbol };
+}
+
 // ── Poll for receipt (do NOT use tx.wait() — it can hang on this RPC) ──
 
 async function waitForReceipt(txHash, timeoutMs = 30000) {
@@ -131,11 +144,12 @@ async function main() {
   const r1 = await waitForReceipt(tx1.hash);
   console.log('TX:', tx1.hash, '| Block:', r1.blockNumber, '| Gas:', r1.gasUsed.toString());
 
-  // 4. Deploy TestToken ERC-20
-  console.log('\n--- ERC-20 Deploy ---');
+  // 4. Deploy TestToken ERC-20 with random name
+  const { name: tokenName, symbol: tokenSymbol } = randomToken();
+  console.log(`\n--- ERC-20 Deploy: ${tokenName} (${tokenSymbol}) ---`);
   const artifact = require('./TestToken.json');
   const factory = new ContractFactory(artifact.abi, artifact.bytecode, wallet);
-  const deployTx = await factory.getDeployTransaction('MyToken', 'MTK', 1000000);
+  const deployTx = await factory.getDeployTransaction(tokenName, tokenSymbol, 1000000);
   const estimated = await provider.estimateGas({ ...deployTx, from: wallet.address });
   const gasLimit = estimated * 120n / 100n;
   console.log('Gas estimate:', estimated.toString(), '| Limit:', gasLimit.toString());
