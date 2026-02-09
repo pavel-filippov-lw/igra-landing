@@ -16,6 +16,18 @@ const links = [
   { label: '$IGRA', to: to.igraToken(), isPage: true },
 ]
 
+const mobileLinks = [
+  [
+    { label: 'Team', to: to.team(), isPage: true },
+    { label: 'Manifesto', to: to.manifesto(), isPage: true },
+    { label: 'Vision', to: to.vision(), isPage: true },
+  ],
+  [
+    { label: 'Privacy Policy', to: to.privacy(), isPage: true },
+    { label: 'Terms of Use', to: '#' },
+  ],
+]
+
 export const Header: FC = () => {
   const navigate = useNavigate()
   const [isVisibleMenu, setIsVisibleMenu] = useState(false)
@@ -37,6 +49,7 @@ export const Header: FC = () => {
           />
           <Navigation
             links={links}
+            mobileLinks={mobileLinks}
             className={clsx(classes.navigation, {
               [classes.isVisible]: isVisibleMenu,
             })}

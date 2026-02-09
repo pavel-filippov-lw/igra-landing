@@ -3,6 +3,7 @@
 	font-weight: 500;
 	line-height: 28px;
 	color: #FFFFFF;
+	gap: 12px;
 
 	.route {
 		position: relative;
@@ -70,10 +71,6 @@
 		width: 1px;
 		height: 14px;
 		background-color: #FFFFFF;
-
-		@media screen and (max-width: $laptop) {
-			display: none;
-		}
 	}
 
 	&.secondary {
@@ -87,6 +84,27 @@
 
 		.separator {
 			background-color: #878787;
+		}
+	}
+
+	.mobileLinks {
+		display: none;
+	}
+
+	@media screen and (max-width: $tablet) {
+		gap: 32px;
+
+		.desktopLinks {
+			flex-direction: column;
+		}
+
+		.separator {
+			display: none;
+		}
+
+		.mobileLinks {
+			display: flex;
+			gap: 32px;
 		}
 	}
 }
