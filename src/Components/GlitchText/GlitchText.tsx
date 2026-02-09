@@ -1,5 +1,5 @@
 import gsap from "gsap"
-import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
+import { FC, HTMLAttributes, useEffect, useRef } from "react"
 
 export interface GlitchTextProps extends Omit<HTMLAttributes<HTMLDivElement>, 'ref'> {
   lines: string[]
@@ -11,101 +11,76 @@ const randomChar = () => GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.le
 
 export const GlitchText: FC<GlitchTextProps> = ({ lines, className, ...props }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const [index, setIndex] = useState(0)
-  const [isInitialized, setIsInitialized] = useState(false)
+  const indexRef = useRef(0)
 
-  // Initialize the text with proper spacing on mount
-  useEffect(() => {
-    if (ref.current && !isInitialized) {
-      ref.current.innerHTML = lines[0]
-        .split("")
-        .map((c) => `<span style="display:inline-block; position:relative">${c === ' ' ? '&nbsp;' : c}</span>`)
-        .join("")
-      setIsInitialized(true)
-    }
-  }, [lines, isInitialized])
+  const renderText = (text: string) => {
+    if (!ref.current) return
+    ref.current.innerHTML = text
+      .split("")
+      .map((c) => `<span style="display:inline-block; position:relative">${c === " " ? "&nbsp;" : c}</span>`)
+      .join("")
+  }
 
   useEffect(() => {
-    if (!isInitialized) return
+    if (!lines.length) return
+    renderText(lines[0]) // стартуем с первого
+    indexRef.current = 0
+  }, [lines])
 
-    const glitch = (index: number) => {
-      if (!ref.current) return
+  useEffect(() => {
+    if (!lines.length) return
 
-      const nextText = lines[(index + 1) % lines.length]
-      ref.current.innerHTML = nextText
-        .split("")
-        .map((c) => `<span style="display:inline-block; position:relative">${c === ' ' ? '&nbsp;' : c}</span>`)
-        .join("")
+    const glitch = () => {
+      const current = indexRef.current
+      const nextIndex = (current + 1) % lines.length
+      const nextText = lines[nextIndex]
 
-      const chars = ref.current.querySelectorAll("span")
+      renderText(nextText)
+      const chars = ref.current?.querySelectorAll("span")
+      if (!chars) return
 
       const tl = gsap.timeline({
-        onComplete: () => setIndex((prev) => (prev + 1) % lines.length),
+        onComplete: () => {
+          indexRef.current = nextIndex
+        },
       })
 
+      tl.to(chars, { duration: 0.08, opacity: 0.5, repeat: 4, yoyo: true, ease: "steps(2)" })
       tl.to(chars, {
-        duration: 0.08,
-        opacity: 0.5,
-        repeat: 4,
+        duration: 0.12,
+        textShadow: "0 0 4px rgba(255,0,0,0.9), 0 0 4px rgba(0,255,255,0.9)",
+        repeat: 3,
         yoyo: true,
         ease: "steps(2)",
-      })
-
-      tl.to(
-        chars,
-        {
-          duration: 0.12,
-          textShadow:
-            "0 0 4px rgba(255,0,0,0.9), 0 0 4px rgba(0,255,255,0.9)",
-          repeat: 3,
-          yoyo: true,
-          ease: "steps(2)",
-        },
-        "<",
-      )
-
-      tl.to(
-        chars,
-        {
-          duration: 0.15,
-          onUpdate: () => {
-            chars.forEach((span, i) => {
-              // Don't glitch spaces
-              if (nextText[i] !== ' ' && Math.random() < 0.2) {
-                span.innerHTML = randomChar()
-              }
-            })
-          },
-          onComplete: () => {
-            chars.forEach((span, i) => {
-              span.innerHTML = nextText[i] === ' ' ? '&nbsp;' : (nextText[i] || "")
-            })
-          },
-        },
-        "<",
-      )
+      }, "<")
 
       tl.to(chars, {
-        duration: 0.1,
-        opacity: 1,
-        textShadow: "none",
-        ease: "power2.out",
-      })
+        duration: 0.15,
+        onUpdate: () => {
+          chars.forEach((span, i) => {
+            if (nextText[i] !== " " && Math.random() < 0.2) span.innerHTML = randomChar()
+          })
+        },
+        onComplete: () => {
+          chars.forEach((span, i) => {
+            span.innerHTML = nextText[i] === " " ? "&nbsp;" : (nextText[i] || "")
+          })
+        },
+      }, "<")
+
+      tl.to(chars, { duration: 0.1, opacity: 1, textShadow: "none", ease: "power2.out" })
     }
 
-    // Start the glitch animation cycle after a delay
-    const interval = setInterval(() => glitch(index), 2000)
+    const id = window.setInterval(glitch, 2000)
 
-    return () => clearInterval(interval)
-  }, [index, lines, isInitialized])
+    return () => window.clearInterval(id)
+  }, [lines])
 
   return (
     <div
       ref={ref}
       {...props}
       className={className}
-    >
-      {!isInitialized ? lines[index] : null}
-    </div>
+    />
   )
 }
