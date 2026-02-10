@@ -12,7 +12,7 @@ const benefitsList: Benefit[] = [
         Attesters ensure Igra-to-Kaspa state consistency and receive protocol-level incentives and fee participation.
       </>
     ),
-    to: '',
+    to: 'https://igra-labs.gitbook.io/igralabs-docs/for-developers/architecture/specifications/igra-attesting-protocol',
   },
   {
     iconName: 'governance',
@@ -29,7 +29,7 @@ const benefitsList: Benefit[] = [
     title: () => <span className={classes.boldTitle}>Swiss Compliance</span>,
     description: () => (
       <>
-        Igra Association and the $IGRA utility token are registered in Switzerland, Zug. MiCA paper submitted, ensuring clear legal responsibility and transparent management of funds.
+        Igra Association and the $IGRA utility token are registered in Switzerland, Zug. MiCA legal opinion ready, ensuring clear legal responsibility and transparent management of funds.
       </>
     ),
     to: '',
@@ -39,7 +39,7 @@ const benefitsList: Benefit[] = [
     title: () => <span className={classes.boldTitle}>Future Utility</span>,
     description: () => (
       <>
-        $IGRA extends to securing bridges, additional execution environments including ZK, and preferential access to network services.
+        $IGRA extends to securing bridges, additional execution environments, and preferential access to network services.
       </>
     ),
     to: '',

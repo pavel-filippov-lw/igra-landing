@@ -36,6 +36,7 @@
             font-size: 18px;
             font-weight: 400;
             color: #6BD1C3;
+            text-decoration: none;
 
             &::after {
                 content: "";
@@ -59,6 +60,7 @@
     }
 
     .navigation {
+        max-width: 65%;
         margin-bottom: 45px;
     }
 

@@ -8,11 +8,11 @@ import heroVideo from './assets/video.webm'
 import classes from './Hero.module.scss'
 
 const glitchTextLines = [
-  'Agentic-ready',
+  'Agent-native',
   'The fastest',
   'The fairest',
   'The most secure',
-  'The only realtime',
+  'The only real-time',
 ]
 
 export const Hero: FC = () => {
@@ -34,7 +34,7 @@ export const Hero: FC = () => {
           </span>
         </div>
         <div className={classes.info}>
-          <a href="#" className={classes.readMore}>
+          <a href="https://x.com/Igra_Labs/status/2019492850459640101" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -43,10 +43,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>14 JAN 2026</span>
+                <span className={classes.date}>5 FEB 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Galleon closed mainnet is live.
+                  Galleon Test Mainnet is live!
                 </div>
                 <div className={classes.link}>
                   Read more
@@ -60,9 +60,14 @@ export const Hero: FC = () => {
             </div>
           </a>
           <div className={classes.heroButtons}>
-            <a className={classes.buttonLink}>
+            <a
+              href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/how-to-setup-a-node"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.buttonLink}
+            >
               <Flex alignItems='center' gap={8} className={classes.button}>
-                Setup-up a node
+                Set up a node
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
@@ -77,7 +82,12 @@ export const Hero: FC = () => {
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
-            <a className={classes.buttonLink}>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeYewS-_fiAe1qW8lqjUcwbt2pLU9_0lRKp3rLnZp9kI2nDuA/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.buttonLink}
+            >
               <Flex alignItems='center' gap={8} className={classes.button}>
                 Become an Attester
                 <Icon name='arrowTopRight' size={10} />

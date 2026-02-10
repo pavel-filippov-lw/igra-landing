@@ -1,10 +1,14 @@
 @import '../../shared/styles/vars';
 
 .root {
-    max-width: 1200px;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 60px;
+    box-sizing: border-box;
+    max-width: 1440px;
+    margin: 0 auto;
 
     .boldTitle {
         font-family: $font-secondary;
@@ -14,13 +18,24 @@
     .card {
         opacity: 1;
         transform: none;
+        min-width: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
-    @media screen and (max-width: $laptop) {
-        gap: 40px 20px;
+    @media screen and (max-width: 1199px) and (min-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
     }
 
-    @media screen and (max-width: $tablet) {
-        grid-template-columns: 1fr;
+    @media screen and (max-width: 599px) {
+        grid-template-columns: auto;
+        grid-template-rows: repeat(4, auto);
+        gap: 20px;
+    }
+
+    @media screen and (max-width: 402px) {
+        gap: 16px;
     }
 }

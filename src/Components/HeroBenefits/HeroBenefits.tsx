@@ -26,14 +26,14 @@ const benefitsList: Benefit[] = [
     iconName: 'clock',
     title: () => (
       <div>
-        <span className={classes.boldTitle}>MEV & censorship</span>
+        <span className={classes.boldTitle}>Front-run & censorship</span>
         <br />
         <span className={classes.boldTitle}>resistant</span>
       </div>
     ),
     description: () => (
       <>
-        Based rollup with no centralized sequencer. MEV resistant and censorship resistant by design.
+        Based rollup with no centralized sequencer. Front-run resistant and censorship resistant by design.
       </>
     ),
     to: to.benefits('1'),
@@ -103,6 +103,7 @@ export const HeroBenefits: FC = () => {
           <Card
             {...benefit}
             className={classes.card}
+            disableLink
           />
         </Fragment>
       ))}

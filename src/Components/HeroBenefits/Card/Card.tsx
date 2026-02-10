@@ -1,6 +1,5 @@
 import clsx from "clsx"
 import { forwardRef, ReactNode } from "react"
-import { useNavigate } from "react-router-dom"
 
 import { Flex, FlexProps, Icon } from "~/shared/ui"
 import { IconName } from "~/shared/ui/Icon/assets"
@@ -17,6 +16,7 @@ export interface Benefit {
 export interface CardProps extends Benefit, FlexProps {
   className?: string
   showBorder?: boolean
+  disableLink?: boolean
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(({
@@ -26,9 +26,16 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
   to,
   className,
   showBorder = false,
+  disableLink = false,
   ...props
 }, ref) => {
-  const navigate = useNavigate()
+  const hasLink = !!to && !disableLink
+  const isExternal = hasLink && to.startsWith('http')
+  const handleClick = hasLink
+    ? isExternal
+      ? () => window.open(to, '_blank', 'noopener,noreferrer')
+      : () => { window.location.href = to }
+    : undefined
 
   return (
     <Flex
@@ -37,18 +44,12 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       alignItems='center'
       {...props}
       className={clsx(classes.root, className)}
-      onClick={() => {
-        document.getElementById('root')?.scrollTo({
-          top: 0,
-          behavior: 'instant',
-        })
-        navigate(to)
-      }}
+      onClick={handleClick}
     >
       <Flex
         flexDirection='column'
         alignItems='center'
-        className={clsx(classes.content, showBorder && classes.withBorder)}
+        className={clsx(classes.content, showBorder && classes.withBorder, hasLink && classes.clickable)}
       >
         <Icon
           name={iconName}
@@ -63,9 +64,11 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
             {description()}
           </div>
         )}
-        <div className={classes.link}>
-          <Icon name='arrowTopRight' size={12} />
-        </div>
+        {hasLink && (
+          <div className={classes.link}>
+            <Icon name='arrowTopRight' size={12} />
+          </div>
+        )}
       </Flex>
     </Flex>
   )

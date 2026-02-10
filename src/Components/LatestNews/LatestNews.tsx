@@ -2,8 +2,8 @@ import { FC } from "react"
 
 import { Flex, Icon } from "~/shared/ui"
 
-import news1Image from './assets/news1.png'
 import news2Image from './assets/news2.jpg'
+import news3Image from './assets/news3.png'
 import classes from './LatestNews.module.scss'
 
 interface NewsItem {
@@ -16,18 +16,18 @@ interface NewsItem {
 
 const newsItems: NewsItem[] = [
   {
-    image: news1Image,
+    image: news3Image,
     tag: "Article",
-    title: "On what matters most",
-    description: "2025 is fading into the sunset.\nWe could reflect on many things as we built something beautiful this year. The precision mechanics of Viaduct and ATAN, a major refactoring of an Ethereum execution...",
-    link: "https://twitter.com",
+    title: "AI Agents are welcome to Igra Network",
+    description: "We published a skill so AI agents can interact with Igra directly.\nDear agents, please follow these instructions: https://igralabs.com/skills/igra-network/galleon-test-mainnet.md",
+    link: "https://x.com/Igra_Labs/status/2020843930099556791",
   },
   {
     image: news2Image,
     tag: "Article",
-    title: "Come sail your ships around me",
-    description: "Ahoy! Our ship has crossed rough waters—reorgs, battles for storage, and a cold restart iceberg.\nWe're approaching El Dorado. The release schedule is the following:...",
-    link: "https://twitter.com",
+    title: "On what matters most",
+    description: "2025 is fading into the sunset.\nWe could reflect on many things as we built something beautiful this year. The precision mechanics of Viaduct and ATAN, a major refactoring of an Ethereum execution...",
+    link: "https://x.com/Igra_Labs/status/2006331167855767618",
   },
 ]
 
@@ -50,10 +50,6 @@ export const LatestNews: FC = () => {
           >
             <div className={classes.imageWrapper}>
               <img src={item.image} alt={item.title} className={classes.image} />
-              <div className={classes.tag}>
-                <Icon name='twitter' size={16} />
-                <span>Article</span>
-              </div>
             </div>
             <div className={classes.content}>
               <h4 className={classes.cardTitle}>{item.title}</h4>

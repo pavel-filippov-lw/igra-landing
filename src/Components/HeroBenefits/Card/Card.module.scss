@@ -62,17 +62,19 @@
 	}
 
 	@include hover {
-		cursor: pointer;
-
 		.content {
 			background: linear-gradient(135deg, rgba(25, 25, 25, 0.95) 0%, rgba(33, 33, 33, 0.90) 100%);
 			transform: translateY(-2px);
 
-			.link {
-				transform: translate(2px, -2px);
+			&.clickable {
+				cursor: pointer;
 
-				svg path {
-					stroke: #EED58A;
+				.link {
+					transform: translate(2px, -2px);
+
+					svg path {
+						stroke: #EED58A;
+					}
 				}
 			}
 		}

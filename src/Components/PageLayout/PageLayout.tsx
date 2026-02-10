@@ -8,13 +8,17 @@ import { Footer } from "../Footer"
 import { Header } from "../Header"
 import classes from './PageLayout.module.scss'
 
-export const PageLayout: FC<PropsWithChildren> = ({ children }) => {
+export interface PageLayoutProps extends PropsWithChildren {
+  hideBg?: boolean
+}
+
+export const PageLayout: FC<PageLayoutProps> = ({ children, hideBg }) => {
   const isSafari = navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome') && location.pathname === to.hero()
 
   return (
     <div className={classes.root}>
       <Header />
-      <div className={clsx(classes.radialBg, { [classes.isSafari]: isSafari })} />
+      {!hideBg && <div className={clsx(classes.radialBg, { [classes.isSafari]: isSafari })} />}
       <Flex flexDirection='column' className={classes.layout}>
         <div className={classes.content}>
           {children}

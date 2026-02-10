@@ -52,14 +52,19 @@ export const Footer: FC<FooterProps> = ({ className }) => {
               {links.map((link, i) => (
                 <Fragment key={`${index}-${i}`}>
                   {!!link.isPage ? (
-                    <div className={classes.link} onClick={() => handleNavigation(link)}>
+                    <a
+                      href={link.to}
+                      className={classes.link}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        handleNavigation(link)
+                      }}
+                    >
                       {link.label}
-                    </div>
+                    </a>
                   ) : (
-                    <a href={link.to} target='_blank' rel='noopener noreferrer'>
-                      <div className={classes.link}>
-                        {link.label}
-                      </div>
+                    <a href={link.to} target='_blank' rel='noopener noreferrer' className={classes.link}>
+                      {link.label}
                     </a>
                   )}
                 </Fragment>
