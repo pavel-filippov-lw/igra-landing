@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Flex, Icon } from "~/shared/ui"
+import { Flex } from "~/shared/ui"
 
 import news2Image from './assets/news2.jpg'
 import news3Image from './assets/news3.png'
