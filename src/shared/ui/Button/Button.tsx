@@ -6,7 +6,7 @@ import classes from './Button.module.scss'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean
-  variant?: 'primary' | 'secondary' | 'gold',
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'gradient' | 'gold',
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
@@ -29,12 +29,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
         },
       )}
     >
+      {variant === 'tertiary' && (
+        <Icon
+          name='arrowRight'
+          size={15}
+          className={classes.icon}
+        />
+      )}
       {children}
-      <Icon
-        name='arrowRight'
-        size={11}
-        className={classes.icon}
-      />
+      {variant !== 'tertiary' && variant !== 'gradient' && (
+        <Icon
+          name='arrowRight'
+          size={11}
+          className={classes.icon}
+        />
+      )}
     </button>
   )
 })

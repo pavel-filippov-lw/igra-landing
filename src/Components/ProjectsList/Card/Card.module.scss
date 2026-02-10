@@ -1,12 +1,12 @@
 .root {
-	height: 100%;
+	min-height: 240px;
 	padding: 16px 25px 25px;
-	border-radius: 12px;
-	border: 3px solid #F1F1F1;
-	background-color: #F1F1F1;
-	box-shadow: 0px 0px 20px 20px #6BD1C310;
+	border-radius: 22px;
+	border: 2px solid #6BD1C3;
+	background: transparent;
+	box-shadow: 0px 0px 0px 0px #6bd1c359;
 	transform: translateY(0);
-	transition: transform 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
 	&.isClickable {
 		cursor: pointer;
@@ -14,9 +14,7 @@
 
 	@include hover {
 		transform: translateY(-10px);
-		border: 3px solid #6BD1C3;
-		background-color: #FFFFFF;
-		box-shadow: 0px 0px 10px 10px #6BD1C359;
+		box-shadow: 0px 0px 10px 5px #6bd1c359;
 	}
 
 	.header {
@@ -28,9 +26,9 @@
 
 		.type {
 			font-family: $font-secondary;
-			font-size: 16px;
+			font-size: 14px;
 			font-weight: 700;
-			color: #CB9D4B;
+			color: #11A994;
 		}
 	}
 
@@ -38,14 +36,14 @@
 		font-family: $font-secondary;
 		font-size: 20px;
 		font-weight: 700;
-		color: #383841;
+		color: #FFFFFF;
 	}
 
 	.description {
 		font-family: $font;
 		font-size: 14px;
 		font-weight: 500;
-		color: #383841;
+		color: #FFFFFF;
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
 		overflow: hidden;

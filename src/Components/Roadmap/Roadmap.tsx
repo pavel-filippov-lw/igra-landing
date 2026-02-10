@@ -1,97 +1,137 @@
 import clsx from "clsx"
 import { FC } from "react"
 
-import { Flex } from "~/shared/ui"
-
 import classes from './Roadmap.module.scss'
+
+const roadmapData = [
+  {
+    date: "2025 Q1",
+    title: "Dromon:",
+    description: "Invite-only devnet with core development infrastructure",
+    position: "top",
+    status: "completed",
+  },
+  {
+    date: "2025 July",
+    title: "Caravel:",
+    description: "Incentivized testnet on Kaspa TN10",
+    subdescription: "Pre-liquid",
+    position: "bottom",
+    status: "completed",
+  },
+  {
+    date: "2025 Q3",
+    title: "Public Nodes: Caravel",
+    description: "Testnet running on community operators hardware",
+    position: "top",
+    status: "completed",
+  },
+  {
+    date: "2026 Jan",
+    title: "Galleon:",
+    description: "Closed Mainnet run by community node operators",
+    position: "bottom",
+    status: "completed",
+  },
+  {
+    date: "2026 February",
+    title: "Fluyt:",
+    description: "Open Mainnet with Attesters and TGE",
+    subdescription: "Audit by Sigma Prime",
+    position: "top",
+    status: "future",
+  },
+  {
+    date: "2026 Mar",
+    title: "Brigantine:",
+    description: "Whitelisted Mainnet with core DeFi",
+    position: "bottom",
+    status: "future",
+  },
+  {
+    date: "2026 H1",
+    title: "Frigate:",
+    description: "Public Open Mainnet",
+    position: "top",
+    status: "future",
+  },
+]
 
 export const Roadmap: FC = () => {
   return (
-    <Flex
-      flexDirection='column'
-      alignItems='center'
-      gap={80}
-      className={classes.root}
-    >
-      <h3 className={classes.title}>Roadmap</h3>
-      <div className={classes.positioner}>
-        <div className={classes.wrapper}>
-          <div className={classes.roadmap}>
-            <Flex
-              justifyContent='space-between'
-              alignItems='center'
-              gap={30}
-              className={classes.content}
+    <section className={classes.root}>
+      <div className={classes.backgroundEffect} />
+      <h2 className={classes.title}>Roadmap</h2>
+      <div className={classes.timeline}>
+        <div className={classes.glowEffect} />
+        <div className={classes.timelineLine} />
+        <div className={classes.timelineItems}>
+          {roadmapData.map((item, index) => (
+            <div
+              key={index}
+              className={clsx(
+                classes.timelineItem,
+                classes[item.position],
+                classes[item.status],
+              )}
             >
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
-                <div className={classes.dot} />
-                <div className={classes.stick} />
-                <h5 className={classes.title}>2025 Q1</h5>
+              <div className={classes.content}>
+                <div className={classes.date}>{item.date}</div>
+                <div className={classes.itemTitle}>{item.title}</div>
                 <div className={classes.description}>
-                  <b>Dromon:</b> Invite-only devnet with core development infrastructure
+                  {item.description.split('\n').map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
                 </div>
-              </Flex>
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
-                <div className={classes.dot} />
-                <div className={classes.stick} />
-                <h5 className={classes.title}>2025 Q3</h5>
-                <div className={classes.description}>
-                  <b>Public Nodes:</b> Caravel Testnet running on community operators hardware
-                </div>
-              </Flex>
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
-                <div className={classes.dot} />
-                <div className={classes.stick} />
-                <h5 className={classes.title}>2026 February</h5>
-                <div className={classes.description}>
-                  <b>Fluyt:</b> Open Mainnet with Attestors and TGE
-                </div>
-              </Flex>
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
-                <div className={classes.dot} />
-                <div className={classes.stick} />
-                <h5 className={classes.title}>2026 March</h5>
-                <div className={classes.description}>
-                  <b>Frigate:</b> Public Open Mainnet
-                </div>
-              </Flex>
-            </Flex>
-            <Flex
-              justifyContent='space-between'
-              alignItems='center'
-              gap={30}
-              className={clsx(classes.content, classes.bottom)}
-            >
-              <Flex flexDirection='column' alignItems='center' className={clsx(classes.card, classes.bottom)}>
-                <div className={classes.dot} />
-                <div className={classes.stick} />
-                <h5 className={classes.title}>2025 July</h5>
-                <div className={classes.description}>
-                  <b>Caravel:</b> Incentivized testnet on Kaspa TN10<br/>
-                  Pre-liquid token
-                </div>
-              </Flex>
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
-                <div className={classes.dot} />
-                <div className={classes.stick} />
-                <h5 className={classes.title}>2026 January</h5>
-                <div className={classes.description}>
-                  <b>Galleon:</b> Closed Mainnet run by community node operators
-                </div>
-              </Flex>
-              <Flex flexDirection='column' alignItems='center' className={classes.card}>
-                <div className={classes.dot} />
-                <div className={classes.stick} />
-                <h5 className={classes.title}>2026 February</h5>
-                <div className={classes.description}>
-                  <b>Brigantine:</b> Whitelisted Mainnet with core DeFi
-                </div>
-              </Flex>
-            </Flex>
-          </div>
+                {item.subdescription && (
+                  <div className={classes.subdescription}>
+                    {item.subdescription}
+                  </div>
+                )}
+              </div>
+              <div className={classes.connector} />
+              <div className={classes.dot} />
+            </div>
+          ))}
         </div>
-        <div className={classes.bg} />
       </div>
-    </Flex>
+      <div className={classes.mobileTimeline}>
+        <div className={classes.mobileGlow} />
+        <div className={classes.mobileLine} />
+        <div className={classes.mobileItems}>
+          {roadmapData.map((item, index) => (
+            <div
+              key={index}
+              className={clsx(classes.mobileItem, classes[item.status])}
+            >
+              <div className={classes.mobileMarker}>
+                <div className={classes.mobileDot} />
+                <div className={classes.mobileConnector} />
+              </div>
+              <div className={classes.mobileContent}>
+                <div className={classes.mobileDate}>{item.date}</div>
+                <div className={classes.mobileTitle}>{item.title}</div>
+                <div className={classes.mobileDescription}>
+                  {item.description.split('\n').map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </div>
+                {item.subdescription && (
+                  <div className={classes.mobileSubdescription}>
+                    {item.subdescription}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }

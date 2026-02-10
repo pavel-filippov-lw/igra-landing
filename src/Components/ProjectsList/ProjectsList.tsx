@@ -1,40 +1,38 @@
 import { FC, Fragment } from "react"
 
+import { Flex } from "~/shared/ui"
+
 import aporia from './assets/aporia.png'
 import crestdev from './assets/crestdev.png'
 import dagscan from './assets/dagscan.png'
 import fervent from './assets/fervent.png'
+import igraway from './assets/igraway.png'
 import kaskad from './assets/kaskad.png'
 import kasname from './assets/kasname.png'
 import kaspacom from './assets/kaspacom.png'
 import kaspafinance from './assets/kaspafinance.png'
+import kasperia from './assets/kasperia.png'
 import kaspulse from './assets/kaspulse.png'
 import kastle from './assets/kastle.png'
 import kasware from './assets/kasware.png'
 import kasway from './assets/kasway.png'
+import knexous from './assets/knexous.png'
 import kyo from './assets/kyo.png'
-import moonbound from './assets/moonbound.png'
-import nacho from './assets/nacho.png'
 import lightbeam from './assets/lightbeam.png'
+import nacho from './assets/nacho.png'
 import quex from './assets/quex.png'
 import seaswap from './assets/seaswap.png'
 import slow from './assets/slow.png'
+import spectre from './assets/spectre.jpg'
 import tbdai from './assets/tbdai.png'
+import tokify from './assets/tokify.png'
 import zealous from './assets/zealous.png'
 import zelcore from './assets/zelcore.png'
-import igraway from './assets/igraway.png'
-import spectre from './assets/spectre.jpg'
-
-import tokify from './assets/tokify.png'
-import kasperia from './assets/kasperia.png'
-import knexous from './assets/knexous.png'
-
 import { Card, Project } from "./Card"
-import classes from './ProjectsList.module.scss'
 
 const projects: Project[] = [
 
-    {
+  {
     logoUrl: quex,
     name: 'Quex',
     description: 'Quex is the intelligent data oracle for real-world blockchain applications. Quex leverages the latest advancements in TEEs to deliver first-of-its-kind confidential computing proofs, more efficient than any existing alternative. It enables verifiable access to web data, both public and private, directly from smart contracts with minimal overhead. Quex supports verifiable post-processing, allowing only the necessary data to be extracted and disclosed, ensuring privacy by design. This closes the gap between Web2 data and Web3 applications, enabling the development of truly cross-platform dApps.',
@@ -42,14 +40,13 @@ const projects: Project[] = [
     type: 'Oracle',
   },
 
-    {
+  {
     logoUrl: zelcore,
     name: 'Zelcore',
     description: 'Zelcore is a secure and simple non-custodial crypto wallet that puts you in full control of your digital assets. With seamless functionality across desktop, mobile, and browser extension, you can manage your portfolio anytime, anywhere. Buy, sell, send, receive, and swap crypto - all from one interface.',
     to: 'https://zelcore.io/',
     type: 'Wallet',
   },
-
 
   {
     logoUrl: kaskad,
@@ -59,7 +56,7 @@ const projects: Project[] = [
     type: 'DeFi, Lending protocol',
   },
 
-    {
+  {
     logoUrl: dagscan,
     name: 'DagScan',
     description: 'Explore the Kaspa EVM ecosystem with DagScan - Your gateway to BlockDAG transactions, blocks, and addresses.',
@@ -74,7 +71,7 @@ const projects: Project[] = [
     type: 'DeFi Platform',
   },
 
-    {
+  {
     logoUrl: zealous,
     name: 'Zealous Swap',
     description: 'Zealous Swap - Kaspa’s first AMM DEX with NFT-based fees, protocol-owned liquidity, insurance fund, and modular fees.',
@@ -89,7 +86,7 @@ const projects: Project[] = [
     type: 'DeFi, Lending protocol',
   },
 
-    {
+  {
     logoUrl: kyo,
     name: 'Kyo',
     description: 'KYO (Keep Your Ownership) gives you the freedom to pay and borrow in crypto without ever giving up what’s yours. With a simple wallet and card, you can spend instantly, take small loans when needed, and avoid hidden fees — all while keeping full ownership of your assets. KYO’s mission is to make crypto part of everyday life: easy, instant, and fair.',
@@ -126,7 +123,7 @@ const projects: Project[] = [
     type: 'Token management',
   },
 
-    {
+  {
     logoUrl: crestdev,
     name: 'Crest Development',
     description: 'Crest Dev Studio is a team of experienced smart contract developers and blockchain specialists creating reliable and efficient products for business and finance. Our solutions blend cutting-edge technology with intuitive design, making complex concepts simple and accessible.',
@@ -134,14 +131,13 @@ const projects: Project[] = [
     type: 'Development Studio',
   },
 
-    {
+  {
     logoUrl: kastle,
     name: 'Kastle',
     description: 'Kaspa wallet - send, receive and manage your Kaspa assets with ease and security and be the king of your own Kastle.',
     to: 'https://kastle.cc/',
     type: 'Wallet',
   },
-
 
   {
     logoUrl: aporia,
@@ -157,11 +153,11 @@ const projects: Project[] = [
     to: 'https://kaspafinance.io/',
     type: 'DeFi Platform',
   },
-    {
+  {
     logoUrl: igraway,
     name: 'Igraway',
     description: 'The gateway bringing stablecoins into the Igra ecosystem, empowering seamless cross-chain liquidity.',
-    to: 'https://igraway.com/',
+    to: 'https://linktr.ee/igraway',
     type: 'EVM Bridge',
   },
   {
@@ -193,13 +189,6 @@ const projects: Project[] = [
     type: 'PoS',
   },
   {
-    logoUrl: moonbound,
-    name: 'Moonbound',
-    description: 'The next-gen platform transforming tokens from fleeting pumps into sustainable moon missions. Powered by EVM on Kaspa, we’re fueling fair, high-velocity launches built to last. Lock in. Liftoff begins now.',
-    to: 'https://moonbound.gg',
-    type: 'Token Launchpad',
-  },
-  {
     logoUrl: seaswap,
     name: 'Sea Swap',
     description: 'We’re building SeaSwap to help users get the best swap rates across multiple DEXs on Kaspa L2s like Igra. By aggregating liquidity and routing trades through the most efficient paths, we’re aiming to make DeFi on Kaspa smooth and accessible.',
@@ -220,14 +209,14 @@ const projects: Project[] = [
     to: 'https://x.com/TBDai_Official',
     type: 'Business Directory',
   },
-    {
+  {
     logoUrl: kasname,
     name: 'Kasname',
     description: 'Digital Identity On Kaspa.',
     to: 'https://app.knsdomains.org/',
     type: 'dApp',
   },
-    {
+  {
     logoUrl: lightbeam,
     name: 'Lightbeam',
     description: 'Advanced Order Book DEX.',
@@ -235,19 +224,45 @@ const projects: Project[] = [
     to: 'https://lightbeam.finance/',
   },
 
-
 ]
 
+function splitIntoColumns<T>(items: T[], columnCount: number): T[][] {
+  const columns: T[][] = Array.from({ length: columnCount }, () => [])
+
+  items.forEach((item, index) => {
+    const col = index % columnCount
+    columns[col].push(item)
+  })
+
+  return columns
+}
+
 export const ProjectsList: FC = () => {
+  const columnsCount =
+  window.innerWidth < 769 ? 1 :
+    window.innerWidth < 1025 ? 2 :
+      3
+
+  const columns = splitIntoColumns(projects, columnsCount)
+
   return (
-    <div className={classes.root}>
-      {projects.map((project, index) => (
-        <Fragment key={index}>
-          <a href={project.to} target='_blank' rel='noreferrer'>
-            <Card {...project} />
-          </a>
-        </Fragment>
+    <Flex gap={40}>
+      {columns.map((column, index) => (
+        <Flex
+          key={`column-${index}`}
+          fullWidth
+          flexDirection='column'
+          gap={30}
+        >
+          {column.map((project, index) => (
+            <Fragment key={`project-${index}`}>
+              <a href={project.to} target='_blank' rel='noreferrer'>
+                <Card {...project} />
+              </a>
+            </Fragment>
+          ))}
+        </Flex>
       ))}
-    </div>
+    </Flex>
   )
 }

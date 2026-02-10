@@ -1,74 +1,114 @@
 import { FC } from "react"
 
-import { Button, Flex, Icon } from "~/shared/ui"
+import { Flex, Icon } from "~/shared/ui"
 
-import { CubeSection } from "../CubeSection"
-import { Difficulty } from "../Difficulty"
-import { MorphText } from "../MorphText"
+import { GlitchText } from "../GlitchText"
+import heroVideoSafari from './assets/video.mov'
+import heroVideo from './assets/video.webm'
 import classes from './Hero.module.scss'
 
-const descriptionLines = [
-  'A chain for builders who want to build without limitations',
-  'A chain where applications can run seamlessly across different chains',
-  'A chain that is fast enough to avoid MEV headaches',
-  'A chain that’s as secure as Bitcoin',
-  'A chain that unleashes endless new possibilities for composable smart contracts',
-  'A chain that lets builders manage risk in real time',
+const glitchTextLines = [
+  'Agent-native',
+  'The fastest',
+  'The fairest',
+  'The most secure',
+  'The only real-time',
 ]
 
 export const Hero: FC = () => {
   return (
-    <CubeSection className={classes.root}>
-      <Flex
-        flexDirection='column'
-        gap={24}
-        className={classes.content}
-      >
-        <h1 className={classes.title}>
-          Defy DeFi limitations
-        </h1>
-        <h2 className={classes.subtitle}>
-          Atomic programmability on a based rollup leveraging Kaspa BlockDAG.
-        </h2>
-        <Flex alignItems='center' gap={20} flexWrap='wrap'>
-          <Icon name='caravel' size={60} />
-          <div className={classes.testnetText}>
-            Caravel testnet launch underway!
-          </div>
-          <a
-            href="https://x.com/igra_labs/status/1946279111346819436?s=46&t=orsNfFppjKLweCyxLsiajQ"
-            target='_blank'
-            rel='noreferrer'
-          >
-            <Button variant='gold'>
-              <Flex gap={8} alignItems='center'>
-                {/* <Icon name='cube_2' size={16} /> */}
-                Learn more
-              </Flex>
-            </Button>
+    <div className={classes.root}>
+      <div className={classes.content}>
+        <div className={classes.title}>
+          <span style={{ display: 'block' }}>
+            <GlitchText
+              lines={glitchTextLines}
+              className={classes.glitchText}
+            />
+          </span>
+          <span style={{ display: 'block' }}>
+            programmable
+          </span>
+          <span style={{ display: 'block' }}>
+            PoW chain
+          </span>
+        </div>
+        <div className={classes.info}>
+          <a href="https://x.com/Igra_Labs/status/2019492850459640101" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+            <div className={classes.announcement}>
+              <Icon
+                name='fire'
+                width={28}
+                height={36}
+                className={classes.icon}
+              />
+              <div className={classes.content}>
+                <span className={classes.date}>5 FEB 2026</span>
+                <span className={classes.divider}>|</span>
+                <div className={classes.text}>
+                  Galleon Test Mainnet is live!
+                </div>
+                <div className={classes.link}>
+                  Read more
+                  <Icon
+                    name='arrowTopRight'
+                    size={10}
+                    className={classes.icon}
+                  />
+                </div>
+              </div>
+            </div>
           </a>
-        </Flex>
-        <MorphText
-          lines={descriptionLines}
-          className={classes.description}
-        />
-      </Flex>
-      <Flex
-        gap={16}
-        className={classes.buttons}
-      >
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeASfHT6R398RivDiM7qgtYDiih1rYk4b4kDOskyLeiXWRsuw/viewform">
-          <Button>
-            Build on IGRA
-          </Button>
-        </a>
-        <a href="https://docs.igralabs.com/">
-          <Button variant='secondary'>
-            Documentation
-          </Button>
-        </a>
-      </Flex>
-      <Difficulty />
-    </CubeSection>
+          <div className={classes.heroButtons}>
+            <a
+              href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/how-to-setup-a-node"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.buttonLink}
+            >
+              <Flex alignItems='center' gap={8} className={classes.button}>
+                Set up a node
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+            <a
+              href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/deploy-your-first-contract"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.buttonLink}
+            >
+              <Flex alignItems='center' gap={8} className={classes.button}>
+                Start building
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeYewS-_fiAe1qW8lqjUcwbt2pLU9_0lRKp3rLnZp9kI2nDuA/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.buttonLink}
+            >
+              <Flex alignItems='center' gap={8} className={classes.button}>
+                Become an Attester
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className={classes.videoWrapper}>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload='auto'
+          className={classes.video}
+        >
+          <source src={heroVideoSafari} type="video/mp4; codecs=&quot;hvc1&quot;" />
+          <source src={heroVideo} type="video/webm" />
+        </video>
+      </div>
+    </div>
   )
 }

@@ -1,0 +1,75 @@
+.root {
+    width: 100%;
+    padding: 35px;
+    border-radius: 22px;
+    border: 1px solid #6BD1C3;
+    background: linear-gradient(to top, #062C32 0%, #081C1F 48%, #085662 100%);
+    overflow: hidden;
+
+    .chart {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 2/1;
+        transform: translate(0, -35%);
+
+        .chartPieChart {
+            width: 200%;
+            aspect-ratio: 2;
+            transform: translate(-25%, 0);
+
+            svg {
+                outline: none;
+            }
+
+            .chartPieSector {
+                outline: none;
+            }
+        }
+
+        .labels {
+            position: absolute;
+            top: calc(100% + 15px);
+            left: -15px;
+            width: calc(100% + 30px);
+            display: flex;
+            justify-content: space-between;
+            font-size: 36px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .text {
+            position: absolute;
+            top: calc(100% + 100px);
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+    }
+
+    @media screen and (max-width: $laptop) {
+        .chart {
+            transform: translate(0, -35%);
+        }
+    }
+
+    @media screen and (max-width: $tablet) {
+        .chart {
+            transform: translate(0, -40%);
+
+            .labels {
+                font-size: 32px;
+                line-height: 40px;
+            }
+
+            .text {
+                top: calc(100% + 75px);
+                font-size: 22px;
+                line-height: 30px;
+            }
+        }
+    }
+}

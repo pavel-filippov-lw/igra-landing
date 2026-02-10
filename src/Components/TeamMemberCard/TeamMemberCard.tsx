@@ -25,13 +25,15 @@ export const TeamMemberCard: FC<TeamMemberCardProps> = ({
   return (
     <Flex
       gap={17}
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, className, {
+        [classes.isClickable]: !!linkedinUrl,
+      })}
     >
       <div
         className={classes.photo}
         style={{ background: `center / contain no-repeat url(${photoUrl})` }}
       />
-      <Flex flexDirection='column' gap={11}>
+      <Flex flexDirection='column' gap={14}>
         <div className={classes.name}>
           {name.map((text, index) => (
             <Fragment key={index}>
@@ -47,13 +49,11 @@ export const TeamMemberCard: FC<TeamMemberCardProps> = ({
           {`${description}`}
         </div>
         {!!linkedinUrl && (
-          <a
+          <div
             className={classes.link}
-            href={linkedinUrl}
-            target='_blank'
           >
             <Icon name='linkedin' size={30} />
-          </a>
+          </div>
         )}
       </Flex>
     </Flex>

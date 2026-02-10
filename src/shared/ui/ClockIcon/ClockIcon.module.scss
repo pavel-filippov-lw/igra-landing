@@ -1,0 +1,48 @@
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        position: relative;
+        width: 75%;
+        height: 75%;
+
+        .outer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: center / cover no-repeat url('/src/shared/ui/ClockIcon/assets/outer.svg');
+            opacity: 1;
+        }
+
+        .innerContainer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+
+            .inner {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 40%;
+                height: 40%;
+                background: center / cover no-repeat url('/src/shared/ui/ClockIcon/assets/inner.svg');
+            }
+
+            .oval {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 20%;
+                height: 20%;
+                background: center / cover no-repeat url('/src/shared/ui/ClockIcon/assets/oval.svg');
+            }
+        }
+    }
+}

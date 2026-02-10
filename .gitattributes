@@ -1,1 +1,4 @@
 *.mov filter=lfs diff=lfs merge=lfs -text
+src/Components/Hero/assets/video.mov filter=lfs diff=lfs merge=lfs -text
+src/Components/Hero/assets/video.webm filter=lfs diff=lfs merge=lfs -text
+src/Components/Hero/assets/video_alpha.webm filter=lfs diff=lfs merge=lfs -text

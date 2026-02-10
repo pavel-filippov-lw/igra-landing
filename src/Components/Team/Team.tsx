@@ -7,14 +7,12 @@ import denPhoto from './assets/den.png'
 import deuelPhoto from './assets/deuel.png'
 import ilyaPhoto from './assets/ilya.png'
 import mikePhoto from './assets/mike.png'
-import pavelPhoto from './assets/pavel.png'
-import romanPhoto from './assets/rom.png'
 import igorPhoto from './assets/new1.png'
 import behzadPhoto from './assets/new2.png'
 import vadimPhoto from './assets/new3.png'
-
+import pavelPhoto from './assets/pavel.png'
+import romanPhoto from './assets/rom.png'
 import classes from './Team.module.scss'
-
 
 const teamMembers = [
   {
@@ -29,12 +27,12 @@ const teamMembers = [
     name: ['Vadim Konstantinov', 'Navigator and Boatswain'],
     role: 'CTO, VP R&D',
     description: 'ex chief architect @ Panther protocol, experienced engineering leader and blockchain architect ',
-    linkedinUrl: '',
+    linkedinUrl: 'https://www.linkedin.com/in/vkonst/',
   },
   {
     photoUrl: denPhoto,
     name: ['Denis Mashkevich', 'Supercargo and Cabin Boy'],
-    role: 'Chief of Strategy, IT/Devops',
+    role: 'Chief of Strategy, IT/DevOps',
     description: 'Founder and engineer with 25 years in software development, 18 years leading teams, ex teamlead @ DAGlabs',
     linkedinUrl: 'https://www.linkedin.com/in/denis-mashkevich-78b6aa/',
   },
@@ -43,13 +41,13 @@ const teamMembers = [
     name: ['Igor Markelov', 'Bowman'],
     role: 'Head of Engineering',
     description: 'Ph.D. in Computational Sciences, ex Architect/Tech Lead @ Panther Protocol, DevCon speaker, ETHGlobal hackathon winner',
-    linkedinUrl: '',
+    linkedinUrl: 'https://www.researchgate.net/profile/Igor-Markelov',
   },
   {
     photoUrl: mikePhoto,
     name: ['Mike Zak', 'Sailor'],
     role: 'Blockchain Developer',
-    description: 'Software developer, an OG Kasper, led development of Kaspa up to the release of mainnet, ex core teamlead @ DAGlabs',
+    description: 'Software developer, an OG Kaspa, led development of Kaspa up to the release of mainnet, ex core teamlead @ DAGlabs',
     linkedinUrl: 'https://www.linkedin.com/in/mike-zak-2721324b/',
   },
   {
@@ -85,22 +83,34 @@ const teamMembers = [
 export const Team: FC = () => {
   return (
     <div className={classes.root}>
-      <h1 className={classes.title}>Team</h1>
+      <h1 className={classes.title}>Igra Team</h1>
       <Flex flexWrap='wrap' className={classes.content}>
         {teamMembers.map((member, index) => (
           <Fragment key={index}>
-            <TeamMemberCard
-              className={classes.card}
-              photoUrl={member.photoUrl}
-              name={member.name}
-              role={member.role}
-              description={member.description}
-              linkedinUrl={member.linkedinUrl}
-            />
+            <div className={classes.card}>
+              {member.linkedinUrl ? (
+                <a href={member.linkedinUrl} target='_blank'>
+                  <TeamMemberCard
+                    photoUrl={member.photoUrl}
+                    name={member.name}
+                    role={member.role}
+                    description={member.description}
+                    linkedinUrl={member.linkedinUrl}
+                  />
+                </a>
+              ) : (
+                <TeamMemberCard
+                  linkedinUrl={member.linkedinUrl}
+                  photoUrl={member.photoUrl}
+                  name={member.name}
+                  role={member.role}
+                  description={member.description}
+                />
+              )}
+            </div>
           </Fragment>
         ))}
       </Flex>
-      <div className={classes.shipBg} />
     </div>
   )
 }

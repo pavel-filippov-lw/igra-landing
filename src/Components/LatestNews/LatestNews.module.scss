@@ -1,0 +1,168 @@
+.root {
+  width: 100%;
+  max-width: 100%;
+  gap: 80px;
+  margin-top: 50px;
+
+  .title {
+    font-family: $font-secondary;
+    font-size: 48px;
+    line-height: 72px;
+    font-weight: 400;
+    color: #6BD1C3;
+    text-align: center;
+  }
+
+
+  .newsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+
+    .newsCard {
+      display: flex;
+      flex-direction: column;
+      background: #000000;
+
+      border-radius: 24px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .imageWrapper {
+        position: relative;
+        width: 100%;
+        height: 280px;
+        overflow: hidden;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .tag {
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px;
+          background: rgba(15, 15, 15, 0.9);
+          backdrop-filter: blur(10px);
+          border-radius: 100px;
+          color: #FFFFFF;
+          font-size: 14px;
+          font-weight: 500;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+
+      .content {
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .cardTitle {
+          font-family: $font-secondary;
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 28px;
+          color: #FFFFFF;
+          margin: 0;
+        }
+
+        .description {
+          font-family: $font;
+          font-size: 16px;
+          line-height: 28px;
+          color: #FFFFFF;
+          margin: 0;
+          white-space: pre-line;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $laptop) {
+    .newsGrid {
+      gap: 20px;
+
+      .newsCard {
+        .imageWrapper {
+          height: 240px;
+        }
+
+        .content {
+          padding: 24px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    .title {
+      font-size: 40px;
+      line-height: 60px;
+    }
+
+    .newsGrid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+
+      .newsCard {
+        .imageWrapper {
+          height: 200px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile) {
+    gap: 40px;
+
+    .title {
+      font-size: 36px;
+      line-height: 48px;
+    }
+
+    .newsGrid {
+      gap: 70px;
+
+      .newsCard {
+        .content {
+          padding: 20px;
+
+          .cardTitle {
+            font-size: 24px;
+            line-height: 30px;
+          }
+
+          .description {
+            font-size: 14px;
+            line-height: 22px;
+            -webkit-line-clamp: 3;
+          }
+        }
+      }
+    }
+  }
+}

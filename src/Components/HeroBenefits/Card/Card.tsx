@@ -7,53 +7,68 @@ import { IconName } from "~/shared/ui/Icon/assets"
 import classes from './Card.module.scss'
 
 export interface Benefit {
-  icon: {
-    name: IconName
-    width: number
-    height: number
-  }
-  title?: string
-  description: ReactNode
+  iconName: IconName
+  title: () => ReactNode
+  description?: () => ReactNode
+  to: string
 }
+
 export interface CardProps extends Benefit, FlexProps {
   className?: string
+  showBorder?: boolean
+  disableLink?: boolean
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(({
-  icon,
+  iconName,
   title,
   description,
+  to,
   className,
+  showBorder = false,
+  disableLink = false,
   ...props
 }, ref) => {
+  const hasLink = !!to && !disableLink
+  const isExternal = hasLink && to.startsWith('http')
+  const handleClick = hasLink
+    ? isExternal
+      ? () => window.open(to, '_blank', 'noopener,noreferrer')
+      : () => { window.location.href = to }
+    : undefined
+
   return (
     <Flex
       ref={ref}
       flexDirection='column'
       alignItems='center'
-      gap={15}
       {...props}
       className={clsx(classes.root, className)}
+      onClick={handleClick}
     >
-      <Icon
-        name={icon.name}
-        width={icon.width}
-        height={icon.height}
-        className={classes.icon}
-      />
       <Flex
         flexDirection='column'
-        gap={5}
         alignItems='center'
+        className={clsx(classes.content, showBorder && classes.withBorder, hasLink && classes.clickable)}
       >
-        {title && (
-          <h5 className={classes.title}>
-            {title}
-          </h5>
-        )}
-        <div className={classes.description}>
-          {description}
+        <Icon
+          name={iconName}
+          size={96}
+          className={classes.icon}
+        />
+        <div className={classes.title}>
+          {title()}
         </div>
+        {description && (
+          <div className={classes.description}>
+            {description()}
+          </div>
+        )}
+        {hasLink && (
+          <div className={classes.link}>
+            <Icon name='arrowTopRight' size={12} />
+          </div>
+        )}
       </Flex>
     </Flex>
   )

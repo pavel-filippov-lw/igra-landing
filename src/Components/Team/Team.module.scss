@@ -1,10 +1,11 @@
 .root {
 	position: relative;
-	margin-top: 63px;
+	max-width: 1200px;
+	margin: 100px auto 0;
 
 	.title {
 		font-family: $font-secondary;
-		margin-bottom: 67px;
+		margin-bottom: 100px;
 		font-size: 78px;
 		line-height: 86px;
 		font-weight: 400;

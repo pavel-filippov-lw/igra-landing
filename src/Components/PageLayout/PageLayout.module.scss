@@ -1,12 +1,13 @@
 .root {
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 
 	.radialBg {
 		position: relative;
 		max-width: 1020px;
 		margin: 0 auto;
 		animation: waveBgAnimation 8s ease-in-out infinite;
-		z-index: -2;
+		z-index: -4;
 
 		&::after {
 			content: '';
@@ -37,26 +38,54 @@
 			mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 70%);
 			-webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 70%);
 		}
+
+		&.isSafari {
+			z-index: -2;
+
+			&::before {
+				display: none;
+			}
+		}
 	}
 
 	.layout {
+		width: 100%;
 		max-width: 1440px;
 		min-height: 100vh;
 		margin: 0 auto;
-		padding: $header_h 39px 30px 57px;
-
-		@media screen and (max-width: $laptop) {
-			padding: $header_h 20px 30px;
-		}
+		padding: $header_h 50px 50px;
 
 		.content {
 			flex: 1 1 auto;
 		}
+	}
 
-		.copyright {
-			margin: 80px 0 0;
-			text-align: center;
-			color: #4d4d4d;
+	.footer {
+		margin-left: auto;
+	}
+
+	@media screen and (max-width: $laptop) {
+		.layout {
+			padding: $header_h 20px 200px;
+		}
+
+		.radialBg {
+			&.isSafari {
+				&::before {
+					display: block;
+					top: 0;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $tablet) {
+		.layout {
+			padding: $header_h 20px 100px;
+		}
+
+		.footer {
+			display: none;
 		}
 	}
 }

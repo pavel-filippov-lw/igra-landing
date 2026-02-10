@@ -1,0 +1,33 @@
+.root {
+    gap: 100px;
+
+    .content {
+        max-width: 1440px;
+        margin: 0 auto;
+        width: 100%;
+        gap: 50px;
+
+        .cards {
+            .transactionSpeedCard {
+                flex: 1;
+                opacity: 0;
+                transform: translateY(30%);
+            }
+
+            .heroCodeCard {
+                flex: 1;
+                max-width: 60%;
+                opacity: 0;
+                transform: translateY(30%);
+            }
+        }
+    }
+
+    @media screen and (max-width: $mobile) {
+        gap: 70px;
+
+        .content {
+            gap: 70px;
+        }
+    }
+}

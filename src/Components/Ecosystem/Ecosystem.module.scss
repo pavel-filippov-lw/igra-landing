@@ -1,9 +1,13 @@
 .root {
+	max-width: 1200px;
+	margin: 0 auto;
+
 	.content {
-		padding-top: 120px;
+		padding-top: 100px;
+		margin-bottom: 130px;
 
 		.leftSide {
-			flex: 1 0 55%;
+			flex: 1 0 45%;
 
 			.title {
 				font-family: $font-secondary;
@@ -18,59 +22,34 @@
 				font-family: $font-secondary;
 				font-size: 20px;
 				line-height: 40px;
-
-				.link {
-					position: relative;
-					margin-left: 0px;
-					font-family: $font;
-					font-weight: 700;
-					color: #6BD1C3;
-
-					&::after {
-						content: '';
-						position: absolute;
-						left: 0;
-						bottom: -6px;
-						width: 0;
-						height: 2px;
-						background-color: #6BD1C3;
-						transition: width 0.3s ease;
-					}
-
-					@include hover {
-						&::after {
-							width: 100%;
-						}
-					}
-				}
 			}
 		}
 
 
 		.images {
 			position: relative;
-			flex: 0 1 45%;
+			flex: 0 1 55%;
 			width: 100%;
 
 			.image {
 				position: absolute;
-				top: 0;
-				left: 0;
+				top: 100px;
+				right: -150px;
 				width: 100%;
 				height: 100%;
 				background: 40% 100% / contain no-repeat url('/src/Components/Ecosystem/assets/caravel.png');
-				transform: scale(2);
+				transform: scale(2.5);
 				z-index: -1;
 			}
 
 			.bg {
 				position: absolute;
-				top: 0;
+				top: 100px;
 				left: 0;
 				width: 100%;
 				height: 100%;
 				background: center / contain no-repeat url('/src/Components/Ecosystem/assets/ocean.png');
-				transform: scale(4);
+				transform: scale(5);
 				z-index: -2;
 			}
 		}
@@ -118,6 +97,13 @@
 			.title {
 				font-size: 56px;
 				line-height: 68px;
+			}
+
+			.images {
+				.image {
+					top: 0px;
+					right: -50px;
+				}
 			}
 		}
 	}
