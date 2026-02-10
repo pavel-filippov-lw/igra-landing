@@ -19,7 +19,6 @@ import kasway from './assets/kasway.png'
 import knexous from './assets/knexous.png'
 import kyo from './assets/kyo.png'
 import lightbeam from './assets/lightbeam.png'
-import moonbound from './assets/moonbound.png'
 import nacho from './assets/nacho.png'
 import quex from './assets/quex.png'
 import seaswap from './assets/seaswap.png'
@@ -158,7 +157,7 @@ const projects: Project[] = [
     logoUrl: igraway,
     name: 'Igraway',
     description: 'The gateway bringing stablecoins into the Igra ecosystem, empowering seamless cross-chain liquidity.',
-    to: 'https://igraway.com/',
+    to: 'https://linktr.ee/igraway',
     type: 'EVM Bridge',
   },
   {
@@ -188,13 +187,6 @@ const projects: Project[] = [
     description: 'Kasway is a project that aims to deliver real world utilities, non-trading applications for the Kaspa ecosystem.',
     to: 'https://kasway.xyz/',
     type: 'PoS',
-  },
-  {
-    logoUrl: moonbound,
-    name: 'Moonbound',
-    description: 'The next-gen platform transforming tokens from fleeting pumps into sustainable moon missions. Powered by EVM on Kaspa, we’re fueling fair, high-velocity launches built to last. Lock in. Liftoff begins now.',
-    to: 'https://moonbound.gg',
-    type: 'Token Launchpad',
   },
   {
     logoUrl: seaswap,
