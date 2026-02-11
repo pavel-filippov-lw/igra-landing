@@ -4,6 +4,7 @@ import { Flex } from "~/shared/ui"
 
 import news2Image from './assets/news2.jpg'
 import news3Image from './assets/news3.png'
+import news4Image from './assets/news4.png'
 import classes from './LatestNews.module.scss'
 
 interface NewsItem {
@@ -15,6 +16,13 @@ interface NewsItem {
 }
 
 const newsItems: NewsItem[] = [
+  {
+    image: news4Image,
+    tag: "Article",
+    title: "The next million on-chain users won't be human",
+    description: "A [not so] quiet revolution is happening. The ERC-8004 standard for autonomous agent reputation and discovery went live on Ethereum mainnet January 29...",
+    link: "https://x.com/Igra_Labs/status/2021691714348458366",
+  },
   {
     image: news3Image,
     tag: "Article",
