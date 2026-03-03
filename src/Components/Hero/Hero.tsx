@@ -34,7 +34,7 @@ export const Hero: FC = () => {
           </span>
         </div>
         <div className={classes.info}>
-          <a href="https://x.com/Igra_Labs/status/2019492850459640101" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+          <a href="https://x.com/Igra_Labs/status/2026747528755216889" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -43,10 +43,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>5 FEB 2026</span>
+                <span className={classes.date}>25 FEB 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Galleon Test Mainnet is live!
+                  Genesis block is mined!
                 </div>
                 <div className={classes.link}>
                   Read more

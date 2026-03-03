@@ -5,6 +5,7 @@ import { Flex } from "~/shared/ui"
 import news2Image from './assets/news2.jpg'
 import news3Image from './assets/news3.png'
 import news4Image from './assets/news4.png'
+import news5Image from './assets/news5.jpg'
 import classes from './LatestNews.module.scss'
 
 interface NewsItem {
@@ -16,6 +17,13 @@ interface NewsItem {
 }
 
 const newsItems: NewsItem[] = [
+  {
+    image: news5Image,
+    tag: "Article",
+    title: "Igra Mainnet Genesis block mined",
+    description: "Igra Mainnet Genesis block mined at DAA score 366020000: https://explorer.igralabs.com/block/0\n\nIgra Mainnet transactions prefix: 97b1.\n\nCore contracts deployed.",
+    link: "https://x.com/Igra_Labs/status/2026747528755216889",
+  },
   {
     image: news4Image,
     tag: "Article",
