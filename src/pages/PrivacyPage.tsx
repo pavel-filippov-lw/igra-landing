@@ -95,7 +95,7 @@ export const PrivacyPage: FC = () => {
               Contact Us
             </h3>
             <p style={{ marginBottom: '2rem' }}>
-              For privacy-related questions, contact us at: info@igralabs.com
+              For privacy-related questions, contact us at: legal@igra.network
             </p>
           </div>
 

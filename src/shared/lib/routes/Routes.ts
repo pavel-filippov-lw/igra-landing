@@ -8,4 +8,5 @@ export const Routes = {
   benefits: 'benefits',
   benefits2: 'benefits2',
   igraToken: 'igra-token',
+  terms: 'terms',
 }

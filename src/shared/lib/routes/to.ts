@@ -18,6 +18,8 @@ class To {
   benefits2 = (benefitId = '0') => `/${Routes.benefits2}?benefitId=${benefitId}`
 
   igraToken = () => `/${Routes.igraToken}`
+
+  terms = () => `/${Routes.terms}`
 }
 
 export const to = new To()
