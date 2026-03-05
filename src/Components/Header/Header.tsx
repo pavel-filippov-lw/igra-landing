@@ -24,7 +24,7 @@ const mobileLinks = [
   ],
   [
     { label: 'Privacy Policy', to: to.privacy(), isPage: true },
-    { label: 'Terms of Use', to: '#' },
+    { label: 'Terms of Use', to: to.terms(), isPage: true },
   ],
 ]
 
