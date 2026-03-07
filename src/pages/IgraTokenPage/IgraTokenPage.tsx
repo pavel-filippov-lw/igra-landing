@@ -13,7 +13,7 @@ const distributionItems = [
     description: '1.8% minted on TGE, 6 months lockup, 36 months vesting',
   },
   {
-    color: '#6BD1C3',
+    color: '#6B2FE0',
     title: 'Ecosystem Development & Grants (22%)',
     description: '2.2% minted on TGE, no lockup, 60 months vesting, phased DAO control',
   },
@@ -23,7 +23,7 @@ const distributionItems = [
     description: '1% minted on TGE, 6 months lockup, 18 months vesting',
   },
   {
-    color: '#F5A623',
+    color: '#6B2FE0',
     title: 'Community (25%)',
     description: '2.5% minted on TGE, no lockup, 60 months vesting, phased DAO control',
   },
@@ -33,7 +33,7 @@ const distributionItems = [
     description: '0.5% minted on TGE, no lockup, 12 months vesting',
   },
   {
-    color: '#6BD1C3',
+    color: '#0D6B5E',
     title: 'Association (20%)',
     description: '2% minted on TGE, no lockup, 24 months vesting, phased DAO control',
   },
