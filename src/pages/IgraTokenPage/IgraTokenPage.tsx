@@ -3,7 +3,41 @@ import { FC } from "react"
 import { AboutBenefits, PageLayout } from "~/Components"
 import { Flex } from "~/shared/ui"
 
+import tokenDistributionChart from './assets/token-distribution-chart.png'
 import classes from './IgraTokenPage.module.scss'
+
+const distributionItems = [
+  {
+    color: '#F5A623',
+    title: 'Team & Advisors (18%)',
+    description: '1.8% minted on TGE, 6 months lockup, 36 months vesting',
+  },
+  {
+    color: '#6B2FE0',
+    title: 'Ecosystem Development & Grants (22%)',
+    description: '2.2% minted on TGE, no lockup, 60 months vesting, phased DAO control',
+  },
+  {
+    color: '#E91E8C',
+    title: 'Early Token Sale (10%)',
+    description: '1% minted on TGE, 6 months lockup, 18 months vesting',
+  },
+  {
+    color: '#6B2FE0',
+    title: 'Community (25%)',
+    description: '2.5% minted on TGE, no lockup, 60 months vesting, phased DAO control',
+  },
+  {
+    color: '#E91E8C',
+    title: 'Public Token Sale (5%)',
+    description: '0.5% minted on TGE, no lockup, 12 months vesting',
+  },
+  {
+    color: '#0D6B5E',
+    title: 'Association (20%)',
+    description: '2% minted on TGE, no lockup, 24 months vesting, phased DAO control',
+  },
+]
 
 const participateSteps = [
   {
@@ -53,6 +87,25 @@ export const IgraTokenPage: FC = () => {
           </p>
         </div>
         <AboutBenefits />
+        <div className={classes.tokenDistribution}>
+          <h2 className={classes.distributionTitle}>Token distribution</h2>
+          <div className={classes.distributionGrid}>
+            {distributionItems.map((item, index) => (
+              <div key={index} className={classes.distributionItem}>
+                <div className={classes.distributionBar} style={{ backgroundColor: item.color }} />
+                <div className={classes.distributionContent}>
+                  <div className={classes.distributionItemTitle}>{item.title}</div>
+                  <div className={classes.distributionItemDesc}>{item.description}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <img
+            src={tokenDistributionChart}
+            alt="Token distribution vesting schedule chart"
+            className={classes.distributionChart}
+          />
+        </div>
       </Flex>
     </PageLayout>
   )
