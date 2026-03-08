@@ -50,10 +50,10 @@ export const PublicAuctionPage: FC = () => {
               <span />
             </div>
             <Logo onClick={() => navigate(to.hero())} />
-            <span className={classes.subHeaderTitle}>IGRA Public Auction</span>
+            <span className={classes.subHeaderTitle}>Public Auction</span>
           </Flex>
           <Button className={classes.ctaButton}>
-            Join IGRA Public Auction
+            Join Public Auction
           </Button>
         </div>
 
@@ -94,7 +94,7 @@ export const PublicAuctionPage: FC = () => {
           <div className={classes.mobileOverlayHeader}>
             <Flex alignItems='center' gap={16}>
               <Logo onClick={() => navigate(to.hero())} />
-              <span className={classes.subHeaderTitle}>IGRA Public Auction</span>
+              <span className={classes.subHeaderTitle}>Public Auction</span>
             </Flex>
             <button className={classes.closeButton} onClick={() => setMobileMenuOpen(false)}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
