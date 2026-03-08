@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { FC, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { Logo, PageLayout } from "~/Components"
+import { PageLayout } from "~/Components"
 import { to } from "~/shared/lib"
 import { Button, Flex } from "~/shared/ui"
 
@@ -49,7 +49,6 @@ export const PublicAuctionPage: FC = () => {
               <span />
               <span />
             </div>
-            <Logo onClick={() => navigate(to.hero())} />
             <span className={classes.subHeaderTitle}>Public Auction</span>
           </Flex>
           <Button className={classes.ctaButton}>
@@ -92,10 +91,7 @@ export const PublicAuctionPage: FC = () => {
         {/* Mobile menu overlay */}
         <div className={clsx(classes.mobileOverlay, { [classes.isOpen]: mobileMenuOpen })}>
           <div className={classes.mobileOverlayHeader}>
-            <Flex alignItems='center' gap={16}>
-              <Logo onClick={() => navigate(to.hero())} />
-              <span className={classes.subHeaderTitle}>Public Auction</span>
-            </Flex>
+            <span className={classes.subHeaderTitle}>Public Auction</span>
             <button className={classes.closeButton} onClick={() => setMobileMenuOpen(false)}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M2 2L18 18M18 2L2 18" stroke="white" strokeWidth="2" strokeLinecap="round" />
