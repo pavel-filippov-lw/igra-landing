@@ -1,0 +1,48 @@
+# Igra Network
+
+> Igra is a programmable EVM-compatible layer built on top of Kaspa BlockDAG. It brings smart contracts, DeFi, and agentic infrastructure to Kaspa's high-throughput DAG architecture.
+
+Igra Network enables developers to deploy Solidity smart contracts on Kaspa. The native gas token iKAS is pegged 1:1 to KAS. Attesters secure the network by staking $IGRA tokens to verify Igra-to-Kaspa state consistency via cryptographic anchors.
+
+## Pages
+
+- [Home](https://igralabs.com/hero): Landing page with project overview, latest news, ecosystem highlights, and roadmap
+- [Ecosystem](https://igralabs.com/ecosystem): Projects and partners building on Igra Network
+- [$IGRA Token](https://igralabs.com/igra-token): Token utility, distribution, and how to participate
+- [Public Auction](https://igralabs.com/public-auction): IGRA public token auction (ZAP) — facts, contract addresses, FAQ, timeline, and how to participate
+- [Team](https://igralabs.com/team): Core team members
+- [Manifesto](https://igralabs.com/manifesto): Project philosophy and vision
+- [Vision](https://igralabs.com/vision): Technical vision for Igra Network
+- [Terms of Service](https://igralabs.com/terms): Legal terms of service
+- [Privacy Policy](https://igralabs.com/privacy): Privacy policy
+
+## Key Facts
+
+- Token: $IGRA (security and governance token)
+- Total supply: 10,000,000,000 IGRA
+- Native gas token: iKAS (pegged 1:1 to KAS)
+- Network: EVM-compatible layer on Kaspa BlockDAG
+- Consensus: Attesters stake $IGRA to verify state consistency
+- Governance: Igra DAO controls attestation rules, rewards, bridge configuration, and grants
+- Contact: team@igralabs.com
+- Legal: legal@igra.network
+- Entity: Igra Association, Zug, Switzerland
+
+## Public Auction (ZAP)
+
+- Sale format: Continuous Clearing Auction (based on Uniswap's audited CCA contracts)
+- Tokens for sale: 500,000,000 IGRA (5% of total supply)
+- Payment method: iKAS
+- Floor FDV: $60M
+- No minimum or maximum bid amount
+- Staking requirement: 400,000 IGRA per attester
+- Tokens become transferable 1 week after ZAP commences
+
+## Links
+
+- [Website](https://igralabs.com)
+- [Documentation](https://igra-labs.gitbook.io/)
+- [Block Explorer](https://explorer.igralabs.com)
+- [Discord](https://discord.gg/igralabs)
+- [Telegram](https://t.me/IgraCommunity)
+- [GitHub](https://github.com/IgraLabs)
