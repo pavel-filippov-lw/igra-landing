@@ -8,7 +8,6 @@ import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
   { id: 'overview', label: 'Overview' },
-  { id: 'how-it-works', label: 'How it works' },
   { id: 'how-to-participate', label: 'How to participate' },
   { id: 'facts', label: 'Facts' },
   { id: 'contracts', label: 'Contract Addresses' },
