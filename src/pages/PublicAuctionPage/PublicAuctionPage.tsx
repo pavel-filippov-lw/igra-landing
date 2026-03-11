@@ -69,7 +69,28 @@ export const PublicAuctionPage: FC = () => {
           {/* Content area */}
           <main className={classes.content}>
             <h1 className={classes.pageTitle}>{activeLabel}</h1>
-            {activeSection === 'how-to-participate' ? (
+            {activeSection === 'overview' ? (
+              <div className={classes.disclaimerContent}>
+                <p>All you need to know about the IGRA Public Auction.</p>
+                <p>The IGRA Public Auction is a Continuous Clearing Auction (CCA), built on Uniswap's battle-tested and audited code. Tokens stream out block by block, each block clearing at a single market price against active bids. This ensures fair price discovery — large capital can't manipulate price through liquidity movements, and price only moves up when real demand requires it.</p>
+
+                <h2 className={classes.disclaimerHeading}>Important dates</h2>
+                <p>
+                  <strong>Genesis block minted, TGE:</strong> February 25, 2025<br />
+                  <strong>ZAP contract deployment:</strong> March 30, 2025<br />
+                  <strong>ZAP auction finalized:</strong> April 5, 2025<br />
+                  <strong>IGRA tokens available for claiming:</strong> April 12, 2025
+                </p>
+
+                <h2 className={classes.disclaimerHeading}>Useful links</h2>
+                <ul className={classes.guideList}>
+                  <li><a href="https://igralabs.com" target="_blank" rel="noopener noreferrer" className={classes.factLink}>igralabs.com</a></li>
+                  <li><a href="https://x.com/Igra_Labs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra on X</a></li>
+                  <li><a href="https://t.me/IgraCommunity" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra on Telegram</a></li>
+                  <li><a href="https://discord.gg/igralabs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra on Discord</a></li>
+                </ul>
+              </div>
+            ) : activeSection === 'how-to-participate' ? (
               <div className={classes.disclaimerContent}>
                 <h2 className={classes.disclaimerHeading}>1. Wrap KAS into iKAS using permissionless bridges:</h2>
                 <ul className={classes.guideList}>
