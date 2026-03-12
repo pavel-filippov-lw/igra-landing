@@ -6,7 +6,7 @@ import { IconName } from "~/shared/ui/Icon/assets"
 import classes from './Socials.module.scss'
 
 const links = [
-  // { iconName: 'telegram', to: '' },
+  { iconName: 'telegram', to: 'https://t.me/IgraCommunity' },
   { iconName: 'email', to: 'mailto:team@igralabs.com' },
   { iconName: 'twitter', to: 'https://x.com/Igra_Labs' },
   { iconName: 'discord', to: 'https://discord.gg/igralabs' },
