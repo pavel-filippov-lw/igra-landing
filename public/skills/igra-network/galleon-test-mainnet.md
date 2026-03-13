@@ -1,15 +1,11 @@
-<!-- Agent: use curl or raw file read to fetch this file. Do not use AI-summarized fetch tools. -->
----
-name: igra-network
-version: 1.0.0
-description: Build and test on IGRA Network — EVM-compatible L2 on Kaspa. Connect to RPC, get iKAS from faucet, deploy contracts, stress-test the chain.
-homepage: https://igralabs.com
-metadata: {"network":"IGRA Galleon Test Mainnet","chainId":38837,"currency":"iKAS","rpc":"https://galleon.igralabs.com:8545","explorer":"https://explorer.galleon.igralabs.com"}
----
+<!-- Agent: This file is deprecated. The updated comprehensive skill is at the URL below. -->
 
-# IGRA Network
+# IGRA Network (Deprecated)
 
-IGRA is a high-performance EVM-compatible blockchain built on Kaspa's BlockDAG proof-of-work. Sub-second block times, ~30s finality, full Ethereum tooling compatibility.
+> **This skill file has moved.** Please use the updated version:
+> **https://igralabs.com/skills/igra-network/igra-network.md**
+
+The Galleon Test Mainnet has been sunset. For current network details, RPC endpoints, deployment guides, and tooling, see the new skill file linked above.
 
 ## Network Details
 
