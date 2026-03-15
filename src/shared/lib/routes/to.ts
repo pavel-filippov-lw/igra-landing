@@ -20,6 +20,8 @@ class To {
   igraToken = () => `/${Routes.igraToken}`
 
   terms = () => `/${Routes.terms}`
+
+  news = () => `/${Routes.news}`
 }
 
 export const to = new To()
