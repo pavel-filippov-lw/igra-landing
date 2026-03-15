@@ -35,7 +35,7 @@ export const PublicAuctionPage: FC = () => {
 
   return (
     <PageLayout hideBg>
-      <div className={classes.root}>
+      <div className={clsx(classes.root, { [classes.rootWithBg]: activeSection === 'overview' })}>
         {/* Auction sub-header */}
         <div className={classes.subHeader}>
           <Flex alignItems='center' gap={16}>
@@ -69,7 +69,7 @@ export const PublicAuctionPage: FC = () => {
           </aside>
 
           {/* Content area */}
-          <main className={clsx(classes.content, { [classes.contentWithBg]: activeSection === 'overview' })}>
+          <main className={classes.content}>
             {activeSection === 'overview' && (
               <button className={classes.joinButton} onClick={handleJoinClick}>
                 Join Public Auction <span className={classes.chevron}>›</span>

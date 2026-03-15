@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - $header_h);
+  position: relative;
 }
 
 // Sub-header bar
@@ -114,30 +115,41 @@
   flex-shrink: 0;
 }
 
+// Auction background image (overview only, applied via .rootWithBg)
+.rootWithBg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 450px;
+  background-image: url('./assets/auction-bg.png');
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
+
+  @media screen and (max-width: $tablet) {
+    width: 90%;
+    height: 350px;
+  }
+
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+
 // Content area
 .content {
   flex: 1;
   min-width: 0;
 }
 
-.contentWithBg {
-  background-image: url('./assets/auction-bg.png');
-  background-repeat: no-repeat;
-  background-position: top right;
-  background-size: 75%;
-
-  @media screen and (max-width: $tablet) {
-    background-size: 90%;
-    background-position: top center;
-  }
-
-  @media screen and (max-width: $mobile) {
-    background-image: none;
-  }
-}
-
 .joinButton {
-  margin-bottom: 200px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 180px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -169,6 +181,8 @@
 }
 
 .pageTitle {
+  position: relative;
+  z-index: 1;
   font-family: $font-secondary;
   font-size: 48px;
   line-height: 1.2;
