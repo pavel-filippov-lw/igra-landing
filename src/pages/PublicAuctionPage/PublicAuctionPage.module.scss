@@ -1,0 +1,442 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - $header_h);
+}
+
+// Sub-header bar
+.subHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 40px;
+
+  .subHeaderTitle {
+    font-family: $font-secondary;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .ctaButton {
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: $tablet) {
+    padding: 16px 0;
+    margin-bottom: 24px;
+
+    .subHeaderTitle {
+      font-size: 16px;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+
+      span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: #ffffff;
+        border-radius: 2px;
+      }
+    }
+
+    .ctaButton {
+      display: none;
+    }
+  }
+}
+
+// Two-column layout
+.body {
+  display: flex;
+  gap: 60px;
+  flex: 1;
+
+  @media screen and (max-width: $tablet) {
+    gap: 0;
+  }
+}
+
+// Desktop sidebar
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  position: sticky;
+  top: calc($header_h + 40px);
+  align-self: flex-start;
+  height: fit-content;
+
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: $tablet) {
+    display: none;
+  }
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-family: $font;
+  font-size: 16px;
+  font-weight: 400;
+  color: #878787;
+  background: none;
+  border: none;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+
+  &.active {
+    color: #6BD1C3;
+    border-left-color: #6BD1C3;
+    font-weight: 500;
+  }
+
+  @include hover {
+    color: #ffffff;
+  }
+}
+
+.externalIcon {
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+// Content area
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.pageTitle {
+  font-family: $font-secondary;
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 24px;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 32px;
+  }
+}
+
+.placeholder {
+  font-family: $font;
+  font-size: 18px;
+  line-height: 28px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+// Facts table
+.factsTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.factRow {
+  display: flex;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px 0;
+  }
+}
+
+.factLabel {
+  width: 280px;
+  flex-shrink: 0;
+  font-family: $font;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+
+  @media screen and (max-width: $tablet) {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+.factValue {
+  font-family: $font;
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  word-break: break-all;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 15px;
+  }
+}
+
+.factLink {
+  color: #6BD1C3;
+  text-decoration: none;
+
+  @include hover {
+    text-decoration: underline;
+  }
+}
+
+.factDescription {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dateList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.guideList {
+  list-style: disc;
+  padding-left: 24px;
+  margin: 12px 0 32px;
+
+  li {
+    padding: 6px 0;
+    font-family: $font;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.85);
+
+    @media screen and (max-width: $tablet) {
+      font-size: 15px;
+    }
+  }
+}
+
+.inlineLink {
+  background: none;
+  border: none;
+  color: #6BD1C3;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+
+  @include hover {
+    text-decoration: underline;
+  }
+}
+
+// Disclaimer
+.disclaimerContent {
+  font-family: $font;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+
+  p {
+    margin: 0 0 20px;
+  }
+
+  @media screen and (max-width: $tablet) {
+    font-size: 15px;
+  }
+}
+
+.disclaimerHeading {
+  font-family: $font-secondary;
+  font-size: 24px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 40px 0 16px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @media screen and (max-width: $tablet) {
+    font-size: 20px;
+  }
+}
+
+// Mobile overlay
+.mobileOverlay {
+  display: none;
+
+  @media screen and (max-width: $tablet) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.97);
+    z-index: 200;
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+
+    &.isOpen {
+      transform: translateX(0);
+    }
+  }
+}
+
+.mobileOverlayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  .subHeaderTitle {
+    font-family: $font-secondary;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include hover {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNavItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  font-family: $font;
+  font-size: 18px;
+  font-weight: 400;
+  color: #878787;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: color 0.2s, background-color 0.2s;
+  border-radius: 8px;
+
+  &.active {
+    color: #6BD1C3;
+    font-weight: 500;
+    background-color: rgba(107, 209, 195, 0.08);
+  }
+
+  @include hover {
+    color: #ffffff;
+  }
+}
+
+// Modal
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modalCard {
+  position: relative;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 560px;
+  width: 100%;
+
+  @media screen and (max-width: $mobile) {
+    padding: 36px 24px;
+  }
+}
+
+.modalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+
+  @include hover {
+    opacity: 1;
+  }
+}
+
+.modalTitle {
+  font-family: $font-secondary;
+  font-size: 28px;
+  font-weight: 500;
+  color: #6BD1C3;
+  margin: 0 0 20px;
+
+  @media screen and (max-width: $mobile) {
+    font-size: 24px;
+  }
+}
+
+.modalBody {
+  font-family: $font;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+
+  @media screen and (max-width: $mobile) {
+    font-size: 15px;
+  }
+}
