@@ -6,6 +6,7 @@ import news2Image from './assets/news2.jpg'
 import news3Image from './assets/news3.png'
 import news4Image from './assets/news4.png'
 import news5Image from './assets/news5.jpg'
+import news6Image from './assets/news6.jpg'
 import classes from './LatestNews.module.scss'
 
 interface NewsItem {
@@ -17,6 +18,13 @@ interface NewsItem {
 }
 
 const newsItems: NewsItem[] = [
+  {
+    image: news6Image,
+    tag: "Article",
+    title: "On March 26th ZAP launch on Igra Mainnet",
+    description: "On March 26 2026 the first public protocol goes live on Igra Mainnet.\n\nZealousSwap opens a seven-day continuous auction for up to 500 million $IGRA.",
+    link: "https://x.com/Igra_Labs/status/2032227373412753715",
+  },
   {
     image: news5Image,
     tag: "Article",
