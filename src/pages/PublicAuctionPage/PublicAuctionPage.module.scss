@@ -116,22 +116,26 @@
 
 // Content area
 .content {
+  position: relative;
   flex: 1;
   min-width: 0;
 }
 
 // Hero section (overview only)
 .heroSection {
-  position: relative;
-  width: 100%;
-  margin-bottom: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .joinButton {
-  position: absolute;
-  top: 20px;
-  left: 0;
+  position: relative;
   z-index: 2;
+  pointer-events: auto;
+  margin-bottom: 140px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -181,16 +185,11 @@
   line-height: 1.2;
   font-weight: 400;
   color: #ffffff;
-  margin: -60px 0 24px;
+  margin: 0 0 24px;
 
   @media screen and (max-width: $tablet) {
     font-size: 32px;
-    margin-top: -40px;
   }
-}
-
-.pageTitleNoOverlap {
-  margin-top: 0;
 }
 
 .placeholder {

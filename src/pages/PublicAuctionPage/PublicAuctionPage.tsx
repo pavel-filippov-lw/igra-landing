@@ -72,14 +72,16 @@ export const PublicAuctionPage: FC = () => {
           {/* Content area */}
           <main className={classes.content}>
             {activeSection === 'overview' && (
-              <div className={classes.heroSection}>
+              <>
+                <div className={classes.heroSection}>
+                  <img src={auctionBg} alt="" className={classes.heroBg} />
+                </div>
                 <button className={classes.joinButton} onClick={handleJoinClick}>
                   Join Public Auction <span className={classes.chevron}>›</span>
                 </button>
-                <img src={auctionBg} alt="" className={classes.heroBg} />
-              </div>
+              </>
             )}
-            <h1 className={clsx(classes.pageTitle, { [classes.pageTitleNoOverlap]: activeSection !== 'overview' })}>{activeLabel}</h1>
+            <h1 className={classes.pageTitle}>{activeLabel}</h1>
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
                 <p><strong>All you need to know about the IGRA Public Auction.</strong></p>
