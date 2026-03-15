@@ -116,26 +116,28 @@
 
 // Content area
 .content {
-  position: relative;
   flex: 1;
   min-width: 0;
 }
 
-// Hero section (overview only)
-.heroSection {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 0;
-  pointer-events: none;
+.contentWithBg {
+  background-image: url('./assets/auction-bg.png');
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 75%;
+
+  @media screen and (max-width: $tablet) {
+    background-size: 90%;
+    background-position: top center;
+  }
+
+  @media screen and (max-width: $mobile) {
+    background-image: none;
+  }
 }
 
 .joinButton {
-  position: relative;
-  z-index: 2;
-  pointer-events: auto;
-  margin-bottom: 140px;
+  margin-bottom: 200px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -166,20 +168,7 @@
   line-height: 1;
 }
 
-.heroBg {
-  width: 100%;
-  display: block;
-  pointer-events: none;
-  user-select: none;
-
-  @media screen and (max-width: $mobile) {
-    opacity: 0.7;
-  }
-}
-
 .pageTitle {
-  position: relative;
-  z-index: 1;
   font-family: $font-secondary;
   font-size: 48px;
   line-height: 1.2;

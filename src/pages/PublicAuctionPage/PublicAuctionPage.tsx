@@ -5,7 +5,6 @@ import { PageLayout } from "~/Components"
 import { to } from "~/shared/lib"
 import { Flex } from "~/shared/ui"
 
-import auctionBg from './assets/auction-bg.png'
 import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
@@ -70,16 +69,11 @@ export const PublicAuctionPage: FC = () => {
           </aside>
 
           {/* Content area */}
-          <main className={classes.content}>
+          <main className={clsx(classes.content, { [classes.contentWithBg]: activeSection === 'overview' })}>
             {activeSection === 'overview' && (
-              <>
-                <div className={classes.heroSection}>
-                  <img src={auctionBg} alt="" className={classes.heroBg} />
-                </div>
-                <button className={classes.joinButton} onClick={handleJoinClick}>
-                  Join Public Auction <span className={classes.chevron}>›</span>
-                </button>
-              </>
+              <button className={classes.joinButton} onClick={handleJoinClick}>
+                Join Public Auction <span className={classes.chevron}>›</span>
+              </button>
             )}
             <h1 className={classes.pageTitle}>{activeLabel}</h1>
             {activeSection === 'overview' ? (
