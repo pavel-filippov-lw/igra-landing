@@ -21,7 +21,7 @@ const newsItems: NewsItem[] = [
   {
     image: news6Image,
     tag: "Article",
-    title: "On March 26 2026 ZAP, the first public protocol goes live on Igra Mainnet",
+    title: "On March 26th ZAP launch on Igra Mainnet",
     description: "ZAP — the first public protocol on Igra Mainnet. Decentralize the world.",
     link: "https://x.com/Igra_Labs/status/2032227373412753715",
   },
