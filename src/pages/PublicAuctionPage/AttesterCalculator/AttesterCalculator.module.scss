@@ -1,0 +1,488 @@
+.root {
+  --calc-bg-card: rgba(20, 20, 20, 0.95);
+  --calc-bg-card-2: rgba(28, 28, 28, 0.90);
+  --calc-bg-inner: #161616;
+  --calc-border: rgba(110, 209, 195, 0.15);
+  --calc-border-solid: #1C1C1C;
+  --calc-text3: #999999;
+  --calc-text4: #878787;
+  --calc-text5: #555555;
+  --calc-teal: #6BD1C3;
+  --calc-green: #3dd68c;
+  --calc-red: #f05252;
+  --calc-amber: #EED58A;
+  --calc-amber-dark: #CB9D4B;
+  --calc-radius: 22px;
+  --calc-radius-sm: 12px;
+}
+
+// Header
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: $font-secondary;
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 12px;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 32px;
+  }
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 640px;
+  line-height: 1.6;
+  margin: 0;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 18px;
+  }
+}
+
+// Calculator layout
+.calcLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @media screen and (max-width: $tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.colLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.colRight {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Card
+.card {
+  background: linear-gradient(135deg, var(--calc-bg-card) 0%, var(--calc-bg-card-2) 100%);
+  border: 1px solid var(--calc-border);
+  border-radius: var(--calc-radius);
+  padding: 24px;
+  backdrop-filter: blur(10px);
+}
+
+// Inputs wrap (single card wrapping multiple inner sections)
+.inputsWrap {
+  @extend .card;
+}
+
+.cardInner {
+  & + & {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--calc-border-solid);
+  }
+}
+
+.cardTitle {
+  font-family: $font-secondary;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+// Field
+.field {
+  margin-bottom: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.fieldRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.fieldLabel {
+  font-size: 15px;
+  color: var(--calc-text3);
+  flex: 1;
+  font-weight: 400;
+}
+
+.fieldVal {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 500;
+  min-width: 110px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+// Range slider
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  background: #2a2a2a;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--calc-teal);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 0 0 0 rgba(107, 209, 195, 0);
+  }
+
+  &::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 12px rgba(107, 209, 195, 0.4);
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--calc-teal);
+    border: none;
+    cursor: pointer;
+  }
+}
+
+// Toggle
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.toggleLabel {
+  font-size: 15px;
+  color: var(--calc-text3);
+}
+
+.toggle {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.toggleTrack {
+  position: absolute;
+  inset: 0;
+  background: #2a2a2a;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  input:checked + & {
+    background: var(--calc-teal);
+  }
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+
+  input:checked ~ & {
+    transform: translateX(16px);
+  }
+}
+
+.dimmed {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+// Profile buttons (simple mode: row layout)
+.profileGrid {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.profileBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--calc-bg-inner);
+  border: 1px solid var(--calc-border-solid);
+  border-radius: var(--calc-radius-sm);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  color: #ffffff;
+
+  @include hover {
+    border-color: rgba(107, 209, 195, 0.3);
+    background: #1a1a1a;
+  }
+}
+
+.profileActive {
+  border-color: var(--calc-teal);
+  background: rgba(107, 209, 195, 0.06);
+  box-shadow: 0 0 8px rgba(107, 209, 195, 0.15);
+}
+
+.profileIcon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.profileLabel {
+  font-family: $font;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.profileDesc {
+  font-size: 13px;
+  color: var(--calc-text4);
+  line-height: 1.5;
+  margin: 0;
+}
+
+// Summary grid
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+
+  @media screen and (max-width: $mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summaryFull {
+  grid-column: 1 / -1;
+}
+
+.summaryLabel {
+  font-size: 13px;
+  color: var(--calc-text4);
+}
+
+.summaryValue {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+// Color classes
+.green { color: var(--calc-green); }
+.red { color: var(--calc-red); }
+.teal { color: var(--calc-teal); }
+
+// Advanced controls overlay
+.assumptionsWrap {
+  position: relative;
+  margin-bottom: 20px;
+  z-index: 10;
+}
+
+.assumptionsToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: $font;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--calc-teal);
+  transition: opacity 0.2s;
+
+  @include hover {
+    opacity: 0.75;
+    span { text-decoration: underline; }
+  }
+}
+
+.chevronIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--calc-teal);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.assumptionsBody {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: rgba(18, 18, 18, 0.92);
+  border: 1px solid var(--calc-border);
+  border-radius: var(--calc-radius-sm);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.assumptionsOpen {
+  max-height: 80vh;
+  overflow-y: auto;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.assumptionsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px 0;
+}
+
+.assumptionsHeaderTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #dddddd;
+}
+
+.assumptionsClose {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--calc-text3);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+
+  @include hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.assumptionsInner {
+  padding: 20px 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  @media screen and (min-width: 600px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 32px;
+  }
+}
+
+.assumptionsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .field {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .toggleRow {
+    margin-bottom: 10px;
+  }
+}
+
+.assumptionsSectionTitle {
+  font-family: $font;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--calc-text5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.assumptionsFooter {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.assumptionsApply {
+  font-family: $font;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  background: var(--calc-teal);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  @include hover {
+    opacity: 0.85;
+  }
+}

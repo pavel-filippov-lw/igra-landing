@@ -5,6 +5,7 @@ import { PageLayout } from "~/Components"
 import { to } from "~/shared/lib"
 import { Flex } from "~/shared/ui"
 
+import { AttesterCalculator } from './AttesterCalculator'
 import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
@@ -14,6 +15,7 @@ const sections = [
   { id: 'contracts', label: 'Contract Addresses' },
   { id: 'timeline', label: 'Timeline' },
   { id: 'faq', label: 'FAQ' },
+  { id: 'attester-calculator', label: 'Attester Calculator' },
   { id: 'support', label: 'Support' },
   { id: 'disclaimer', label: 'Disclaimer' },
 ]
@@ -49,6 +51,9 @@ export const PublicAuctionPage: FC = () => {
             </div>
             <span className={classes.subHeaderTitle}>Public Auction</span>
           </Flex>
+          <button className={classes.joinButton} onClick={handleJoinClick}>
+            Join Public Auction <span className={classes.chevron}>›</span>
+          </button>
         </div>
 
         <div className={classes.body}>
@@ -69,12 +74,7 @@ export const PublicAuctionPage: FC = () => {
           </aside>
 
           {/* Content area */}
-          <main className={classes.content}>
-            {activeSection === 'overview' && (
-              <button className={classes.joinButton} onClick={handleJoinClick}>
-                Join Public Auction <span className={classes.chevron}>›</span>
-              </button>
-            )}
+          <main className={clsx(classes.content, { [classes.contentWide]: activeSection === 'attester-calculator' })}>
             <h1 className={classes.pageTitle}>{activeLabel}</h1>
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
@@ -261,6 +261,8 @@ export const PublicAuctionPage: FC = () => {
                 <p>No lockup or vesting for tokens distributed via ZAP. Fully liquid on claim.</p>
                 <p>After the auction closes, there is a short cooldown period before claims open — we use it to deploy DEX liquidity and Hyperlane bridge so both are live the moment you claim. We'll confirm the exact duration closer to launch.</p>
               </div>
+            ) : activeSection === 'attester-calculator' ? (
+              <AttesterCalculator />
             ) : activeSection === 'support' ? (
               <div className={classes.disclaimerContent}>
                 <h2 className={classes.disclaimerHeading}>Discord</h2>
