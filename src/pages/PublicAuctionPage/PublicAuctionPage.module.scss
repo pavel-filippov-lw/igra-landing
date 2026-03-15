@@ -119,8 +119,8 @@
 .rootWithBg::before {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -40px;
+  right: -50px;
   width: 70%;
   height: 450px;
   background-image: url('./assets/auction-bg.png');
