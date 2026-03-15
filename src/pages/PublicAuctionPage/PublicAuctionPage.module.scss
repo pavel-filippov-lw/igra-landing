@@ -25,10 +25,6 @@
     display: none;
   }
 
-  .ctaButton {
-    white-space: nowrap;
-  }
-
   @media screen and (max-width: $tablet) {
     padding: 16px 0;
     margin-bottom: 24px;
@@ -51,10 +47,6 @@
         background-color: #ffffff;
         border-radius: 2px;
       }
-    }
-
-    .ctaButton {
-      display: none;
     }
   }
 }
@@ -126,6 +118,67 @@
 .content {
   flex: 1;
   min-width: 0;
+}
+
+// Hero section (overview only)
+.heroSection {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.joinButton {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  border: none;
+  border-radius: 100px;
+  background: linear-gradient(to right, #2C9599 0%, #31E0DA 23%, #A7B54E 54%, #EAFF6A 80%);
+  color: #000000;
+  font-family: $font;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+
+  @include hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  @media screen and (max-width: $tablet) {
+    font-size: 16px;
+    padding: 14px 28px;
+  }
+}
+
+.chevron {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.heroBg {
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  width: 70%;
+  max-width: 700px;
+  pointer-events: none;
+  user-select: none;
+
+  @media screen and (max-width: $tablet) {
+    width: 90%;
+    right: -40px;
+    top: -20px;
+    opacity: 0.6;
+  }
+
+  @media screen and (max-width: $mobile) {
+    display: none;
+  }
 }
 
 .pageTitle {

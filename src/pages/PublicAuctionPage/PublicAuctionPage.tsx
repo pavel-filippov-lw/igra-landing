@@ -3,8 +3,9 @@ import { FC, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { PageLayout } from "~/Components"
 import { to } from "~/shared/lib"
-import { Button, Flex } from "~/shared/ui"
+import { Flex } from "~/shared/ui"
 
+import auctionBg from './assets/auction-bg.png'
 import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
@@ -49,9 +50,6 @@ export const PublicAuctionPage: FC = () => {
             </div>
             <span className={classes.subHeaderTitle}>Public Auction</span>
           </Flex>
-          <Button className={classes.ctaButton} onClick={handleJoinClick}>
-            Join Public Auction
-          </Button>
         </div>
 
         <div className={classes.body}>
@@ -73,11 +71,20 @@ export const PublicAuctionPage: FC = () => {
 
           {/* Content area */}
           <main className={classes.content}>
+            {activeSection === 'overview' && (
+              <div className={classes.heroSection}>
+                <button className={classes.joinButton} onClick={handleJoinClick}>
+                  Join Public Auction <span className={classes.chevron}>›</span>
+                </button>
+                <img src={auctionBg} alt="" className={classes.heroBg} />
+              </div>
+            )}
             <h1 className={classes.pageTitle}>{activeLabel}</h1>
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
-                <p>All you need to know about the IGRA Public Auction.</p>
-                <p>The IGRA Public Auction is a Continuous Clearing Auction (CCA), built on Uniswap's battle-tested and audited code. Tokens stream out block by block, each block clearing at a single market price against active bids. This ensures fair price discovery — large capital can't manipulate price through liquidity movements, and price only moves up when real demand requires it.</p>
+                <p><strong>All you need to know about the IGRA Public Auction.</strong></p>
+                <p>The IGRA Public Auction is a Continuous Clearing Auction (CCA), built on Uniswap's battle-tested and audited code.</p>
+                <p>Tokens stream out block by block, each block clearing at a single market price against active bids. This ensures fair price discovery - large capital can't manipulate price through liquidity movements, and price only moves up when real demand requires it.</p>
 
                 <h2 className={classes.disclaimerHeading}>Important dates</h2>
                 <p>
