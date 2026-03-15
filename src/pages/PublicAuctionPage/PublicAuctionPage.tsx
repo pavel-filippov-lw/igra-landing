@@ -79,7 +79,7 @@ export const PublicAuctionPage: FC = () => {
                 <img src={auctionBg} alt="" className={classes.heroBg} />
               </div>
             )}
-            <h1 className={classes.pageTitle}>{activeLabel}</h1>
+            <h1 className={clsx(classes.pageTitle, { [classes.pageTitleNoOverlap]: activeSection !== 'overview' })}>{activeLabel}</h1>
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
                 <p><strong>All you need to know about the IGRA Public Auction.</strong></p>

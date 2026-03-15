@@ -123,12 +123,15 @@
 // Hero section (overview only)
 .heroSection {
   position: relative;
-  margin-bottom: 40px;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .joinButton {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -141,12 +144,11 @@
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: filter 0.2s ease;
   white-space: nowrap;
 
   @include hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    filter: brightness(1.1);
   }
 
   @media screen and (max-width: $tablet) {
@@ -161,37 +163,34 @@
 }
 
 .heroBg {
-  position: absolute;
-  top: -40px;
-  right: -60px;
-  width: 70%;
-  max-width: 700px;
+  width: 100%;
+  display: block;
   pointer-events: none;
   user-select: none;
 
-  @media screen and (max-width: $tablet) {
-    width: 90%;
-    right: -40px;
-    top: -20px;
-    opacity: 0.6;
-  }
-
   @media screen and (max-width: $mobile) {
-    display: none;
+    opacity: 0.7;
   }
 }
 
 .pageTitle {
+  position: relative;
+  z-index: 1;
   font-family: $font-secondary;
   font-size: 48px;
   line-height: 1.2;
   font-weight: 400;
   color: #ffffff;
-  margin: 0 0 24px;
+  margin: -60px 0 24px;
 
   @media screen and (max-width: $tablet) {
     font-size: 32px;
+    margin-top: -40px;
   }
+}
+
+.pageTitleNoOverlap {
+  margin-top: 0;
 }
 
 .placeholder {
