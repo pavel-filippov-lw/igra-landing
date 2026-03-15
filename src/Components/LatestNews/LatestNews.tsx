@@ -1,51 +1,11 @@
 import { FC } from "react"
+import { Link } from "react-router-dom"
 
 import { Flex } from "~/shared/ui"
+import { to } from "~/shared/lib"
 
-import news2Image from './assets/news2.jpg'
-import news3Image from './assets/news3.png'
-import news4Image from './assets/news4.png'
-import news5Image from './assets/news5.jpg'
+import { newsItems } from './newsData'
 import classes from './LatestNews.module.scss'
-
-interface NewsItem {
-  image: string
-  tag: string
-  title: string
-  description: string
-  link: string
-}
-
-const newsItems: NewsItem[] = [
-  {
-    image: news5Image,
-    tag: "Article",
-    title: "Igra Mainnet Genesis block mined",
-    description: "Igra Mainnet Genesis block mined at DAA score 366020000: https://explorer.igralabs.com/block/0\n\nIgra Mainnet transactions prefix: 97b1.\n\nCore contracts deployed.",
-    link: "https://x.com/Igra_Labs/status/2026747528755216889",
-  },
-  {
-    image: news4Image,
-    tag: "Article",
-    title: "The next million on-chain users won't be human",
-    description: "A [not so] quiet revolution is happening. The ERC-8004 standard for autonomous agent reputation and discovery went live on Ethereum mainnet January 29...",
-    link: "https://x.com/Igra_Labs/status/2021691714348458366",
-  },
-  {
-    image: news3Image,
-    tag: "Article",
-    title: "AI Agents are welcome to Igra Network",
-    description: "We published a skill so AI agents can interact with Igra directly.\nDear agents, please follow these instructions: https://igralabs.com/skills/igra-network/galleon-test-mainnet.md",
-    link: "https://x.com/Igra_Labs/status/2020843930099556791",
-  },
-  {
-    image: news2Image,
-    tag: "Article",
-    title: "On what matters most",
-    description: "2025 is fading into the sunset.\nWe could reflect on many things as we built something beautiful this year. The precision mechanics of Viaduct and ATAN, a major refactoring of an Ethereum execution...",
-    link: "https://x.com/Igra_Labs/status/2006331167855767618",
-  },
-]
 
 export const LatestNews: FC = () => {
   return (
@@ -56,7 +16,7 @@ export const LatestNews: FC = () => {
     >
       <h3 className={classes.title}>Latest News</h3>
       <div className={classes.newsGrid}>
-        {newsItems.map((item, index) => (
+        {newsItems.slice(0, 4).map((item, index) => (
           <a
             key={index}
             href={item.link}
@@ -74,6 +34,13 @@ export const LatestNews: FC = () => {
           </a>
         ))}
       </div>
+      <Link
+        to={to.news()}
+        className={classes.readAll}
+        onClick={() => document.getElementById('root')?.scrollTo({ top: 0 })}
+      >
+        Read all →
+      </Link>
     </Flex>
   )
 }

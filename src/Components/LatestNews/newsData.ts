@@ -1,0 +1,51 @@
+import news2Image from './assets/news2.jpg'
+import news3Image from './assets/news3.png'
+import news4Image from './assets/news4.png'
+import news5Image from './assets/news5.jpg'
+import news6Image from './assets/news6.jpg'
+
+export interface NewsItem {
+  image: string
+  tag: string
+  title: string
+  description: string
+  link: string
+}
+
+export const newsItems: NewsItem[] = [
+  {
+    image: news6Image,
+    tag: "Article",
+    title: "On March 26th ZAP launch on Igra Mainnet",
+    description: "On March 26 2026 the first public protocol goes live on Igra Mainnet.\n\nZealousSwap opens a seven-day continuous auction for up to 500 million $IGRA.",
+    link: "https://x.com/Igra_Labs/status/2032227373412753715",
+  },
+  {
+    image: news5Image,
+    tag: "Article",
+    title: "Igra Mainnet Genesis block mined",
+    description: "Igra Mainnet Genesis block mined at DAA score 366020000: https://explorer.igralabs.com/block/0\n\nIgra Mainnet transactions prefix: 97b1.\n\nCore contracts deployed.",
+    link: "https://x.com/Igra_Labs/status/2026747528755216889",
+  },
+  {
+    image: news4Image,
+    tag: "Article",
+    title: "The next million on-chain users won't be human",
+    description: "A [not so] quiet revolution is happening. The ERC-8004 standard for autonomous agent reputation and discovery went live on Ethereum mainnet January 29...",
+    link: "https://x.com/Igra_Labs/status/2021691714348458366",
+  },
+  {
+    image: news3Image,
+    tag: "Article",
+    title: "AI Agents are welcome to Igra Network",
+    description: "We published a skill so AI agents can interact with Igra directly.\nDear agents, please follow these instructions: https://igralabs.com/skills/igra-network/galleon-test-mainnet.md",
+    link: "https://x.com/Igra_Labs/status/2020843930099556791",
+  },
+  {
+    image: news2Image,
+    tag: "Article",
+    title: "On what matters most",
+    description: "2025 is fading into the sunset.\nWe could reflect on many things as we built something beautiful this year. The precision mechanics of Viaduct and ATAN, a major refactoring of an Ethereum execution...",
+    link: "https://x.com/Igra_Labs/status/2006331167855767618",
+  },
+]
