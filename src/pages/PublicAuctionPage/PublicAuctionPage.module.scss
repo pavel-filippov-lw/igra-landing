@@ -277,6 +277,79 @@
   margin: 0 0 20px;
 }
 
+// FAQ
+.faqList {
+  display: flex;
+  flex-direction: column;
+}
+
+.faqItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.faqQuestion {
+  font-family: $font-secondary;
+  font-size: 20px;
+  font-weight: 500;
+  color: #ffffff;
+  padding: 20px 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 300;
+    color: #6BD1C3;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] > &::after {
+    content: '−';
+  }
+
+  @include hover {
+    color: #6BD1C3;
+  }
+
+  @media screen and (max-width: $tablet) {
+    font-size: 17px;
+  }
+}
+
+.faqAnswer {
+  font-family: $font;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0 0 20px;
+
+  p {
+    margin: 0 0 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    font-size: 15px;
+  }
+}
+
 // Facts table
 .factsTable {
   display: flex;

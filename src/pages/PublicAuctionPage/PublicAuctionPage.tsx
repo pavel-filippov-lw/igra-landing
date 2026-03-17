@@ -250,61 +250,98 @@ export const PublicAuctionPage: FC = () => {
                 </div>
               </div>
             ) : activeSection === 'faq' ? (
-              <div className={classes.disclaimerContent}>
-                <h2 className={classes.disclaimerHeading}>What is $IGRA?</h2>
-                <p>$IGRA is the security and governance token of Igra Network.</p>
-                <p>Attesters stake $IGRA to attest Igra-to-Kaspa state consistency via cryptographic anchors and receive protocol-level incentives, protocol fees and rewards in iKAS and $IGRA.</p>
-                <p>Token holders govern security-critical parameters via Igra DAO: attestation rules, reward and penalty calibration, bridge configuration, and ecosystem grant allocation.</p>
-
-                <h2 className={classes.disclaimerHeading}>What CCA has to do with fair distribution?</h2>
-                <p>Traditional mechanisms set price in one chaotic moment: bots snipe block one, whales move price with liquidity, insiders exit before retail sees the transaction. CCA is different and architecturally closer to fair distribution: tokens stream out block by block, each block clearing at a single market price against active bids. Large capital can't manipulate price through liquidity movements. Price only moves up when real demand requires it.</p>
-
-                <h2 className={classes.disclaimerHeading}>Which currency will be used for bidding?</h2>
-                <p>iKAS, Igra Network's native gas token, pegged 1:1 to KAS.</p>
-
-                <h2 className={classes.disclaimerHeading}>How secure are ZAP smart contracts?</h2>
-                <p>ZAP is built on Uniswap's CCA contracts, audited by OpenZeppelin and Spearbit (see <a href="https://github.com/Uniswap/continuous-clearing-auction?tab=readme-ov-file#audits" target="_blank" rel="noopener noreferrer" className={classes.factLink}>audits</a>). Everything that touches funds — bidding, price clearing, exits, refunds, claims — is byte-for-byte identical to that audited code. ZealousSwap added only read-only helper contracts for data querying which hold no funds and execute no state changes.</p>
-                <p>Once the ZAP auction contract is deployed, it's immutable with no owner, and no changes or manipulation is possible.</p>
-                <p>Before the auction opens, our team will verify the deployed contract on-chain against the public GitHub source. You can and should do the same.</p>
-
-                <h2 className={classes.disclaimerHeading}>What's special about this event?</h2>
-                <p>This is the first permissionless distribution of $IGRA. ZAP is open to anyone with an EVM wallet.</p>
-                <p>All previously distributed tokens remain locked as per tokenomics. ZAP participants pay a higher price than any prior round in exchange for immediate liquidity — that premium is the price of no lockup. Fully transferable on claim.</p>
-
-                <h2 className={classes.disclaimerHeading}>What's the lockup and vesting?</h2>
-                <p>No lockup or vesting for tokens distributed via ZAP. Fully liquid on claim.</p>
-                <p>After the auction closes, there is a short cooldown period before claims open — we use it to deploy DEX liquidity and Hyperlane bridge so both are live the moment you claim. We'll confirm the exact duration closer to launch.</p>
-
-                <h2 className={classes.disclaimerHeading}>How do I add Igra Network to my wallet?</h2>
-                <p>Network details (chain ID, RPC, explorer) are on the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Network Info</a> page. You can add it manually or via ChainList. Prefer interacting via agent? Use the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/igra-network-ai-skill" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Network AI skill</a>.</p>
-
-                <h2 className={classes.disclaimerHeading}>What RPCs are available?</h2>
-                <p>The official RPC is listed on the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Network Info</a> page. Additional community-run RPCs are available — any node operator can expose one. A write-enabled RPC is not required for decentralization: anyone can submit transactions directly to Kaspa L1 since the transaction format is open. You can also interact via the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/igra-network-ai-skill" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Network AI skill</a>.</p>
-
-                <h2 className={classes.disclaimerHeading}>What is the auction floor price?</h2>
-                <p>The floor price is not set in KAS and there is no fixed number we can give in advance. It will be calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered — the exact KAS equivalent depends on the KAS/USD rate at that moment. Once the auction opens, the floor is visible on the ZAP interface.</p>
-
-                <h2 className={classes.disclaimerHeading}>Can the team manipulate the auction price by bidding with their own KAS?</h2>
-                <p>No. Four reasons:</p>
-                <ul className={classes.guideList}>
-                  <li>All bridge activity is fully visible on-chain. Moving large KAS volumes to Igra mainnet is public.</li>
-                  <li>Acquiring that much KAS requires institutional exchange access, KYC, and KYB. The paper trail is real.</li>
-                  <li>Artificially inflating the clearing price hurts secondary market performance — self-defeating for the issuer's own credibility.</li>
-                  <li>ZAP has a hard token cap. Any iKAS the issuer spends on manipulation enters the auction pool and cannot be recovered.</li>
-                </ul>
-                <p>The attack is expensive, visible, and self-defeating.</p>
-
-                <h2 className={classes.disclaimerHeading}>Will there be more $IGRA auctions on ZAP after March 26?</h2>
-                <p>No. This is a one-off event. There is one ZAP auction scheduled for $IGRA.</p>
-
-                <h2 className={classes.disclaimerHeading}>What is the difference between the earlier investor round and ZAP?</h2>
-                <p>The earlier round was private: required KYC, had minimum investment sizes, and carries a 24-month vesting schedule with the first 10% cliff at 6 months from TGE. ZAP is fully public — permissionless, no KYC, no vesting. Tokens are fully transferable immediately after the claim period opens.</p>
-
-                <h2 className={classes.disclaimerHeading}>Why is attester APY showing 0%?</h2>
-                <p>Intentional. We are running end-to-end attester testing before mainnet. Enabling rewards now would give an unfair advantage to early runners over those who start after launch. Rewards will be activated via a DAO proposal before the auction. Staking figures on the dashboard are accurate.</p>
-
-                <h2 className={classes.disclaimerHeading}>Can I interact with ZAP contracts directly without the UI?</h2>
-                <p>Yes — the contract interface is public on GitHub. When the Foundry interaction setup is ready we will publish it. Watch the announcements channel.</p>
+              <div className={classes.faqList}>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>What is $IGRA?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>$IGRA is the security and governance token of Igra Network.</p>
+                    <p>Attesters stake $IGRA to attest Igra-to-Kaspa state consistency via cryptographic anchors and receive protocol-level incentives, protocol fees and rewards in iKAS and $IGRA.</p>
+                    <p>Token holders govern security-critical parameters via Igra DAO: attestation rules, reward and penalty calibration, bridge configuration, and ecosystem grant allocation.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>What CCA has to do with fair distribution?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>Traditional mechanisms set price in one chaotic moment: bots snipe block one, whales move price with liquidity, insiders exit before retail sees the transaction. CCA is different and architecturally closer to fair distribution: tokens stream out block by block, each block clearing at a single market price against active bids. Large capital can't manipulate price through liquidity movements. Price only moves up when real demand requires it.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>Which currency will be used for bidding?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>iKAS, Igra Network's native gas token, pegged 1:1 to KAS.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>How secure are ZAP smart contracts?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>ZAP is built on Uniswap's CCA contracts, audited by OpenZeppelin and Spearbit (see <a href="https://github.com/Uniswap/continuous-clearing-auction?tab=readme-ov-file#audits" target="_blank" rel="noopener noreferrer" className={classes.factLink}>audits</a>). Everything that touches funds — bidding, price clearing, exits, refunds, claims — is byte-for-byte identical to that audited code. ZealousSwap added only read-only helper contracts for data querying which hold no funds and execute no state changes.</p>
+                    <p>Once the ZAP auction contract is deployed, it's immutable with no owner, and no changes or manipulation is possible.</p>
+                    <p>Before the auction opens, our team will verify the deployed contract on-chain against the public GitHub source. You can and should do the same.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>What's special about this event?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>This is the first permissionless distribution of $IGRA. ZAP is open to anyone with an EVM wallet.</p>
+                    <p>All previously distributed tokens remain locked as per tokenomics. ZAP participants pay a higher price than any prior round in exchange for immediate liquidity — that premium is the price of no lockup. Fully transferable on claim.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>What's the lockup and vesting?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>No lockup or vesting for tokens distributed via ZAP. Fully liquid on claim.</p>
+                    <p>After the auction closes, there is a short cooldown period before claims open — we use it to deploy DEX liquidity and Hyperlane bridge so both are live the moment you claim. We'll confirm the exact duration closer to launch.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>How do I add Igra Network to my wallet?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>Network details (chain ID, RPC, explorer) are on the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Network Info</a> page. You can add it manually or via ChainList. Prefer interacting via agent? Use the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/igra-network-ai-skill" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Network AI skill</a>.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>What is the auction floor price?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>The floor price is not set in KAS and there is no fixed number we can give in advance. It will be calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered — the exact KAS equivalent depends on the KAS/USD rate at that moment. Once the auction opens, the floor is visible on the ZAP interface.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>Can the team manipulate the auction price by bidding with their own KAS?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>No. Four reasons:</p>
+                    <ul className={classes.guideList}>
+                      <li>All bridge activity is fully visible on-chain. Moving large KAS volumes to Igra mainnet is public.</li>
+                      <li>Acquiring that much KAS requires institutional exchange access, KYC, and KYB. The paper trail is real.</li>
+                      <li>Artificially inflating the clearing price hurts secondary market performance — self-defeating for the issuer's own credibility.</li>
+                      <li>ZAP has a hard token cap. Any iKAS the issuer spends on manipulation enters the auction pool and cannot be recovered.</li>
+                    </ul>
+                    <p>The attack is expensive, visible, and self-defeating.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>Will there be more $IGRA auctions on ZAP after March 26?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>No. This is a one-off event. There is one ZAP auction scheduled for $IGRA.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>What is the difference between the earlier investor round and ZAP?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>The earlier round was private: required KYC, had minimum investment sizes, and carries a 24-month vesting schedule with the first 10% cliff at 6 months from TGE. ZAP is fully public — permissionless, no KYC, no vesting. Tokens are fully transferable immediately after the claim period opens.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>Why is attester APY showing 0%?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>Intentional. We are running end-to-end attester testing before mainnet. Enabling rewards now would give an unfair advantage to early runners over those who start after launch. Rewards will be activated via a DAO proposal before the auction. Staking figures on the dashboard are accurate.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>Can I interact with ZAP contracts directly without the UI?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>Yes — the contract interface is public on GitHub. When the Foundry interaction setup is ready we will publish it. Watch the announcements channel.</p>
+                  </div>
+                </details>
               </div>
             ) : activeSection === 'attester-calculator' ? (
               <>
