@@ -3,21 +3,17 @@ import { FC, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { PageLayout } from "~/Components"
 import { to } from "~/shared/lib"
-import { Flex } from "~/shared/ui"
 
 import { AttesterCalculator } from './AttesterCalculator'
 import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
   { id: 'overview', label: 'Overview' },
-  { id: 'how-to-participate', label: 'How to participate' },
   { id: 'facts', label: 'Facts' },
-  { id: 'contracts', label: 'Contract Addresses' },
-  { id: 'timeline', label: 'Timeline' },
+  { id: 'contracts', label: 'Smart Contracts' },
   { id: 'faq', label: 'FAQ' },
   { id: 'attester-calculator', label: 'Attester Calculator' },
   { id: 'support', label: 'Support' },
-  { id: 'disclaimer', label: 'Disclaimer' },
 ]
 
 const validSections = new Set(sections.map(s => s.id))
@@ -27,6 +23,7 @@ export const PublicAuctionPage: FC = () => {
   const activeSection = section && validSections.has(section) ? section : 'overview'
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const [howOpen, setHowOpen] = useState(false)
 
   const handleJoinClick = () => {
     window.plausible?.('JoinAuctionClick')
@@ -38,22 +35,16 @@ export const PublicAuctionPage: FC = () => {
   return (
     <PageLayout hideBg>
       <div className={clsx(classes.root, { [classes.rootWithBg]: activeSection === 'overview' })}>
-        {/* Auction sub-header */}
-        <div className={classes.subHeader}>
-          <Flex alignItems='center' gap={16}>
-            <div
-              className={classes.hamburger}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <span />
-              <span />
-              <span />
-            </div>
-            <span className={classes.subHeaderTitle}>Public Auction</span>
-          </Flex>
-          <button className={classes.joinButton} onClick={handleJoinClick}>
-            Join Public Auction <span className={classes.chevron}>›</span>
-          </button>
+        {/* Mobile hamburger */}
+        <div className={classes.mobileHeader}>
+          <div
+            className={classes.hamburger}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
 
         <div className={classes.body}>
@@ -75,20 +66,38 @@ export const PublicAuctionPage: FC = () => {
 
           {/* Content area */}
           <main className={clsx(classes.content, { [classes.contentWide]: activeSection === 'attester-calculator' })}>
-            <h1 className={classes.pageTitle}>{activeLabel}</h1>
+            {activeSection === 'overview' ? (
+              <div className={classes.titleRowOverview}>
+                <button className={classes.joinButton} onClick={handleJoinClick}>
+                  Join Public Auction <span className={classes.chevron}>›</span>
+                </button>
+                <h1 className={classes.pageTitle}>{activeLabel}</h1>
+              </div>
+            ) : (
+              <div className={classes.titleRow}>
+                <div>
+                  <span className={classes.pageSuperTitle}>Public Auction:</span>
+                  <h1 className={classes.pageTitle}>{activeLabel}</h1>
+                </div>
+                <button className={classes.joinButton} onClick={handleJoinClick}>
+                  Join Public Auction <span className={classes.chevron}>›</span>
+                </button>
+              </div>
+            )}
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
                 <p><strong>All you need to know about the IGRA Public Auction.</strong></p>
-                <p>The IGRA Public Auction is a Continuous Clearing Auction (CCA), built on Uniswap's battle-tested and audited code.</p>
+                <p>The IGRA Public Auction is a Continuous Clearing Auction (CCA), built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>code</a>.</p>
                 <p>Tokens stream out block by block, each block clearing at a single market price against active bids. This ensures fair price discovery - large capital can't manipulate price through liquidity movements, and price only moves up when real demand requires it.</p>
 
                 <h2 className={classes.disclaimerHeading}>Important dates</h2>
-                <p>
-                  <strong>Genesis block minted, TGE:</strong> February 25, 2025<br />
-                  <strong>ZAP contract deployment:</strong> March 30, 2025<br />
-                  <strong>ZAP auction finalized:</strong> April 5, 2025<br />
-                  <strong>IGRA tokens available for claiming:</strong> April 12, 2025
-                </p>
+                <div className={classes.datesTable}>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>Genesis block minted, TGE</span><span className={classes.dateValue}>February 25, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP core contract deployment</span><span className={classes.dateValue}>March 4, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction start</span><span className={classes.dateValue}>March 26, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction finalized</span><span className={classes.dateValue}>April 1, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>IGRA tokens available for claiming</span><span className={classes.dateValue}>April 8, 2026</span></div>
+                </div>
 
                 <h2 className={classes.disclaimerHeading}>Useful links</h2>
                 <ul className={classes.guideList}>
@@ -99,6 +108,8 @@ export const PublicAuctionPage: FC = () => {
                 </ul>
               </div>
             ) : activeSection === 'how-to-participate' ? (
+              <p className={classes.placeholder}>Content coming soon.</p>
+              /* TODO: restore "How to participate" content
               <div className={classes.disclaimerContent}>
                 <h2 className={classes.disclaimerHeading}>1. Wrap KAS into iKAS using permissionless bridges:</h2>
                 <ul className={classes.guideList}>
@@ -110,19 +121,24 @@ export const PublicAuctionPage: FC = () => {
 
                 <h2 className={classes.disclaimerHeading}>2. Navigate to ZAP page and place a bid</h2>
               </div>
+              */
             ) : activeSection === 'facts' ? (
               <div className={classes.factsTable}>
                 <div className={classes.factRow}>
-                  <span className={classes.factLabel}>Total supply</span>
+                  <span className={classes.factLabel}>Max supply</span>
                   <span className={classes.factValue}>10,000,000,000 IGRA</span>
                 </div>
                 <div className={classes.factRow}>
+                  <span className={classes.factLabel}>Total supply</span>
+                  <span className={classes.factValue}>1,000,000,000 IGRA (minted to date)</span>
+                </div>
+                <div className={classes.factRow}>
                   <span className={classes.factLabel}>Token available for sale</span>
-                  <span className={classes.factValue}>500,000,000 tokens (5% of total supply)</span>
+                  <span className={classes.factValue}>350,000,000 tokens (3.5% of total supply)</span>
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Network</span>
-                  <span className={classes.factValue}>Igra Mainnet</span>
+                  <span className={classes.factValue}><a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info#igra-mainnet" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Mainnet</a></span>
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Token Address</span>
@@ -151,11 +167,11 @@ export const PublicAuctionPage: FC = () => {
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Maximum Bid Amount</span>
-                  <span className={classes.factValue}>No max.</span>
+                  <span className={classes.factValue}>No max</span>
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Minimum Bid Amount</span>
-                  <span className={classes.factValue}>No min.</span>
+                  <span className={classes.factValue}>No min</span>
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Staking requirement</span>
@@ -163,16 +179,17 @@ export const PublicAuctionPage: FC = () => {
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Transferability</span>
-                  <span className={classes.factValue}>Tokens become transferable 1 week after ZAP commences</span>
+                  <span className={classes.factValue}>Tokens bought on ZAP become transferable 7 days after ZAP concludes</span>
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Key dates</span>
                   <span className={classes.factValue}>
                     <span className={classes.dateList}>
-                      <span>25 Feb 2025 — Genesis block minted, TGE</span>
-                      <span>30 Mar 2025 — ZAP contract deployment</span>
-                      <span>5 Apr 2025 — ZAP auction finalized</span>
-                      <span>12 Apr 2025 — IGRA tokens available for claiming</span>
+                      <span>February 25, 2026 — Genesis block minted, TGE</span>
+                      <span>March 4, 2026 — ZAP core contract deployment</span>
+                      <span>March 26, 2026 — ZAP auction start</span>
+                      <span>April 1, 2026 — ZAP auction finalized</span>
+                      <span>April 8, 2026 — IGRA tokens available for claiming</span>
                     </span>
                   </span>
                 </div>
@@ -239,9 +256,6 @@ export const PublicAuctionPage: FC = () => {
                 <p>Attesters stake $IGRA to attest Igra-to-Kaspa state consistency via cryptographic anchors and receive protocol-level incentives, protocol fees and rewards in iKAS and $IGRA.</p>
                 <p>Token holders govern security-critical parameters via Igra DAO: attestation rules, reward and penalty calibration, bridge configuration, and ecosystem grant allocation.</p>
 
-                <h2 className={classes.disclaimerHeading}>How to participate?</h2>
-                <p>Here is the <Link to={to.publicAuction('how-to-participate')} className={classes.inlineLink}>full guide</Link>.</p>
-
                 <h2 className={classes.disclaimerHeading}>What CCA has to do with fair distribution?</h2>
                 <p>Traditional mechanisms set price in one chaotic moment: bots snipe block one, whales move price with liquidity, insiders exit before retail sees the transaction. CCA is different and architecturally closer to fair distribution: tokens stream out block by block, each block clearing at a single market price against active bids. Large capital can't manipulate price through liquidity movements. Price only moves up when real demand requires it.</p>
 
@@ -262,7 +276,18 @@ export const PublicAuctionPage: FC = () => {
                 <p>After the auction closes, there is a short cooldown period before claims open — we use it to deploy DEX liquidity and Hyperlane bridge so both are live the moment you claim. We'll confirm the exact duration closer to launch.</p>
               </div>
             ) : activeSection === 'attester-calculator' ? (
-              <AttesterCalculator />
+              <>
+                <button className={classes.howToggle} onClick={() => setHowOpen(v => !v)}>
+                  <span>How does it work?</span>
+                  <svg className={clsx(classes.howChevron, { [classes.howChevronOpen]: howOpen })} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6l4 4 4-4" /></svg>
+                </button>
+                {howOpen && (
+                  <p className={classes.howText}>
+                    Adjust stake, network load, node behaviour, and emission parameters to model your expected rewards. Illustrative only: actual returns determined by node performance, smart contract, and protocol configuration. See <a href="https://igra-labs.gitbook.io/igralabs-docs/for-developers/architecture/specifications/igra-attesting-protocol" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Attester Protocol</a> specification for details.
+                  </p>
+                )}
+                <AttesterCalculator />
+              </>
             ) : activeSection === 'support' ? (
               <div className={classes.disclaimerContent}>
                 <h2 className={classes.disclaimerHeading}>Discord</h2>
@@ -337,11 +362,7 @@ export const PublicAuctionPage: FC = () => {
             </button>
             <h2 className={classes.modalTitle}>IGRA Public Auction</h2>
             <p className={classes.modalBody}>
-              IGRA Public Auction launches on 26th of March. Till then, prepare iKAS (see guides in{' '}
-              <Link to={to.publicAuction('how-to-participate')} className={classes.factLink} onClick={() => setShowModal(false)}>
-                "How to participate"
-              </Link>
-              ), join our{' '}
+              IGRA Public Auction launches on March 26, 2026. Till then, join our{' '}
               <a href="https://t.me/IgraCommunity" target="_blank" rel="noopener noreferrer" className={classes.factLink}>
                 Telegram
               </a>
@@ -351,6 +372,9 @@ export const PublicAuctionPage: FC = () => {
               </a>
               {' '}for announcements.
             </p>
+            <button className={classes.joinButton} onClick={() => setShowModal(false)} style={{ marginTop: 24 }}>
+              OK!
+            </button>
           </div>
         </div>
       )}

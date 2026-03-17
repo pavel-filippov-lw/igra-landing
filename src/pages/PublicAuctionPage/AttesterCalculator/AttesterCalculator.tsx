@@ -1,6 +1,8 @@
-import { FC, useMemo, useCallback, useEffect, useRef, useState } from 'react'
+import { FC, useMemo, useCallback, useState } from 'react'
 import clsx from 'clsx'
 
+import node1Src from './assets/node1.png'
+import node2Src from './assets/node2.png'
 import classes from './AttesterCalculator.module.scss'
 
 const TIMELINESS = 0.80
@@ -29,7 +31,7 @@ const PROFILE_LABELS = [
   { label: 'Great', color: '#3dd68c' },
   { label: 'Good', color: '#EED58A' },
   { label: 'Ok', color: '#CB9D4B' },
-  { label: 'Poor', color: '#f05252' },
+  { label: 'Nasty', color: '#f05252' },
 ]
 
 const PROFILE_COLORS = ['var(--calc-green)', 'var(--calc-amber)', 'var(--calc-amber-dark)', 'var(--calc-red)']
@@ -45,11 +47,11 @@ function igr(n: number) { return fmt(Math.abs(n), 0) + ' IGRA' }
 
 export const AttesterCalculator: FC = () => {
   // Main inputs
-  const [stake, setStake] = useState(4000000)
+  const [stake, setStake] = useState(1000000)
   const [tps, setTps] = useState(1)
   const [profileIdx, setProfileIdx] = useState(0)
 
-  // Advanced controls (mirrors of advanced-mode inputs)
+  // Advanced controls
   const [netS, setNetS] = useState(100000000)
   const [netG, setNetG] = useState(0.05)
   const [txGas, setTxGas] = useState(0.1)
@@ -58,25 +60,10 @@ export const AttesterCalculator: FC = () => {
   const [emMo, setEmMo] = useState(6)
   const [attGas, setAttGas] = useState(0.000018)
 
-  // Assumptions overlay
-  const [assumptionsOpen, setAssumptionsOpen] = useState(false)
-  const assumptionsRef = useRef<HTMLDivElement>(null)
+  const [advancedOpen, setAdvancedOpen] = useState(false)
 
   const profile = PROFILES[profileIdx]
 
-  // Close assumptions on outside click
-  useEffect(() => {
-    if (!assumptionsOpen) return
-    const handler = (e: MouseEvent) => {
-      if (assumptionsRef.current && !assumptionsRef.current.contains(e.target as Node)) {
-        setAssumptionsOpen(false)
-      }
-    }
-    setTimeout(() => document.addEventListener('click', handler), 0)
-    return () => document.removeEventListener('click', handler)
-  }, [assumptionsOpen])
-
-  // Calculation (same logic as original calc())
   const result = useMemo(() => {
     const { missed, invalid, slashes } = profile
     const ejectThresh = stake * 3 / 16
@@ -117,39 +104,47 @@ export const AttesterCalculator: FC = () => {
     return { s6, cum6 }
   }, [stake, tps, profileIdx, netS, netG, txGas, emActive, emApy, emMo, attGas, profile])
 
-  const handleToggleAssumptions = useCallback(() => {
-    setAssumptionsOpen(prev => !prev)
+  // Node overlay opacity: stake size + node behaviour penalty
+  const BEHAVIOUR_FACTOR = [1, 0.85, 0.65, 0.4]
+  const stakeRatio = (stake - 400000) / (10000000 - 400000)
+  const nodeOpacity = stakeRatio * BEHAVIOUR_FACTOR[profileIdx]
+
+  const handleToggleAdvanced = useCallback(() => {
+    setAdvancedOpen(prev => !prev)
   }, [])
 
   return (
     <div className={classes.root}>
       {/* Advanced controls toggle */}
-      <div className={classes.assumptionsWrap} ref={assumptionsRef}>
-        <button
-          className={classes.assumptionsToggle}
-          aria-expanded={assumptionsOpen}
-          onClick={handleToggleAssumptions}
-        >
-          <span>Advanced controls</span>
-          <svg className={clsx(classes.chevronIcon, { [classes.chevronOpen]: assumptionsOpen })} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 6l4 4 4-4" />
-          </svg>
-        </button>
-        <div className={clsx(classes.assumptionsBody, { [classes.assumptionsOpen]: assumptionsOpen })}>
-          <div className={classes.assumptionsHeader}>
-            <span className={classes.assumptionsHeaderTitle}>Advanced controls</span>
-            <button className={classes.assumptionsClose} onClick={() => setAssumptionsOpen(false)}>
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4l8 8M12 4l-8 8" />
-              </svg>
-            </button>
-          </div>
-          <div className={classes.assumptionsInner}>
-            <div className={classes.assumptionsSection}>
-              <div className={classes.assumptionsSectionTitle}>Network</div>
+      <button
+        className={classes.advancedToggle}
+        aria-expanded={advancedOpen}
+        onClick={handleToggleAdvanced}
+      >
+        <span>Advanced controls</span>
+        <svg className={clsx(classes.chevronIcon, { [classes.chevronOpen]: advancedOpen })} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4 6l4 4 4-4" />
+        </svg>
+      </button>
+
+      {/* Calculator layout */}
+      <div className={classes.calcLayout}>
+        {/* Left column: inputs or advanced panel */}
+        <div className={classes.colLeft}>
+          {advancedOpen ? (
+            <div className={classes.advancedPanel}>
+              {/* Network section */}
+              <div className={classes.advancedHeader}>
+                <span />
+                <button className={classes.advancedClose} onClick={() => setAdvancedOpen(false)}>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4l8 8M12 4l-8 8" />
+                  </svg>
+                </button>
+              </div>
               <div className={classes.field}>
                 <div className={classes.fieldRow}>
-                  <span className={classes.fieldLabel}>Total network stake</span>
+                  <span className={classes.fieldLabel}>Total active network stake</span>
                   <span className={classes.fieldVal}>{M(netS)} IGRA</span>
                 </div>
                 <input type="range" min={10000000} max={500000000} step={5000000} value={netS} onChange={e => setNetS(+e.target.value)} />
@@ -175,88 +170,79 @@ export const AttesterCalculator: FC = () => {
                 </div>
                 <input type="range" min={0.000001} max={0.001} step={0.000001} value={attGas} onChange={e => setAttGas(+e.target.value)} />
               </div>
-            </div>
 
-            <div className={classes.assumptionsSection}>
-              <div className={classes.assumptionsSectionTitle}>IGRA Emission</div>
-              <div className={classes.toggleRow}>
-                <label className={classes.toggle}>
-                  <input type="checkbox" checked={emActive} onChange={e => setEmActive(e.target.checked)} />
-                  <span className={classes.toggleTrack} />
-                  <span className={classes.toggleThumb} />
-                </label>
-                <span className={classes.toggleLabel}>{emActive ? 'Active' : 'Inactive'}</span>
+              {/* IGRA Emission section — bordered card */}
+              <div className={classes.emissionCard}>
+                <div className={classes.emissionHeader}>
+                  <span className={classes.emissionTitle}>IGRA Emission {emActive ? 'Active' : 'Inactive'}</span>
+                  <label className={classes.toggle}>
+                    <input type="checkbox" checked={emActive} onChange={e => setEmActive(e.target.checked)} />
+                    <span className={classes.toggleTrack} />
+                    <span className={classes.toggleThumb} />
+                  </label>
+                </div>
+                <div className={emActive ? undefined : classes.dimmed}>
+                  <div className={classes.field}>
+                    <div className={classes.fieldRow}>
+                      <span className={classes.fieldLabel}>Emission APY</span>
+                      <span className={classes.fieldVal}>{fmt(emApy * 100, 0)}% APY</span>
+                    </div>
+                    <input type="range" min={0.05} max={0.5} step={0.01} value={emApy} onChange={e => setEmApy(+e.target.value)} />
+                  </div>
+                  <div className={classes.field}>
+                    <div className={classes.fieldRow}>
+                      <span className={classes.fieldLabel}>Emission duration</span>
+                      <span className={classes.fieldVal}>{emMo} mo</span>
+                    </div>
+                    <input type="range" min={1} max={24} step={1} value={emMo} onChange={e => setEmMo(+e.target.value)} />
+                  </div>
+                </div>
               </div>
-              <div className={emActive ? undefined : classes.dimmed}>
+            </div>
+          ) : (
+            <div className={classes.inputsWrap}>
+              {/* Stake */}
+              <div className={classes.cardInner}>
+                <div className={classes.cardTitle}>Stake</div>
                 <div className={classes.field}>
                   <div className={classes.fieldRow}>
-                    <span className={classes.fieldLabel}>Emission APY</span>
-                    <span className={classes.fieldVal}>{fmt(emApy * 100, 0)}% APY</span>
+                    <span className={classes.fieldLabel}>Stake</span>
+                    <span className={classes.fieldVal}>{M(stake)} IGRA</span>
                   </div>
-                  <input type="range" min={0.05} max={0.5} step={0.01} value={emApy} onChange={e => setEmApy(+e.target.value)} />
+                  <input type="range" min={400000} max={10000000} step={100000} value={stake} onChange={e => setStake(+e.target.value)} />
                 </div>
+              </div>
+
+              {/* TPS */}
+              <div className={classes.cardInner}>
                 <div className={classes.field}>
                   <div className={classes.fieldRow}>
-                    <span className={classes.fieldLabel}>Emission duration</span>
-                    <span className={classes.fieldVal}>{emMo} mo</span>
+                    <span className={classes.fieldLabel}>Network TPS</span>
+                    <span className={classes.fieldVal}>{tps.toFixed(1)} tx/s</span>
                   </div>
-                  <input type="range" min={1} max={24} step={1} value={emMo} onChange={e => setEmMo(+e.target.value)} />
+                  <input type="range" min={0.1} max={50} step={0.1} value={tps} onChange={e => setTps(+e.target.value)} />
                 </div>
               </div>
-            </div>
-          </div>
-          <div className={classes.assumptionsFooter}>
-            <button className={classes.assumptionsApply} onClick={() => setAssumptionsOpen(false)}>Apply</button>
-          </div>
-        </div>
-      </div>
 
-      {/* Calculator layout */}
-      <div className={classes.calcLayout}>
-        {/* Left: inputs */}
-        <div className={classes.colLeft}>
-          <div className={classes.inputsWrap}>
-            {/* Stake */}
-            <div className={classes.cardInner}>
-              <div className={classes.cardTitle}>Stake</div>
-              <div className={classes.field}>
-                <div className={classes.fieldRow}>
-                  <span className={classes.fieldLabel}>Stake</span>
-                  <span className={classes.fieldVal}>{M(stake)} IGRA</span>
+              {/* Node Behaviour */}
+              <div className={classes.cardInner}>
+                <div className={classes.cardTitle}>Node Behaviour</div>
+                <div className={classes.profileGrid}>
+                  {PROFILE_LABELS.map((p, i) => (
+                    <button
+                      key={i}
+                      className={clsx(classes.profileBtn, { [classes.profileActive]: profileIdx === i })}
+                      onClick={() => setProfileIdx(i)}
+                    >
+                      <span className={classes.profileIcon} style={{ color: p.color }}>&#9679;</span>
+                      <span className={classes.profileLabel}>{p.label}</span>
+                    </button>
+                  ))}
                 </div>
-                <input type="range" min={400000} max={10000000} step={100000} value={stake} onChange={e => setStake(+e.target.value)} />
+                <p className={classes.profileDesc}>{PROFILE_DESCS[profileIdx]}</p>
               </div>
             </div>
-
-            {/* TPS */}
-            <div className={classes.cardInner}>
-              <div className={classes.field}>
-                <div className={classes.fieldRow}>
-                  <span className={classes.fieldLabel}>Network TPS</span>
-                  <span className={classes.fieldVal}>{tps.toFixed(1)} tx/s</span>
-                </div>
-                <input type="range" min={0.1} max={50} step={0.1} value={tps} onChange={e => setTps(+e.target.value)} />
-              </div>
-            </div>
-
-            {/* Node Behaviour */}
-            <div className={classes.cardInner}>
-              <div className={classes.cardTitle}>Node Behaviour</div>
-              <div className={classes.profileGrid}>
-                {PROFILE_LABELS.map((p, i) => (
-                  <button
-                    key={i}
-                    className={clsx(classes.profileBtn, { [classes.profileActive]: profileIdx === i })}
-                    onClick={() => setProfileIdx(i)}
-                  >
-                    <span className={classes.profileIcon} style={{ color: p.color }}>&#9679;</span>
-                    <span className={classes.profileLabel}>{p.label}</span>
-                  </button>
-                ))}
-              </div>
-              <p className={classes.profileDesc}>{PROFILE_DESCS[profileIdx]}</p>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Right: summary */}
@@ -284,6 +270,11 @@ export const AttesterCalculator: FC = () => {
                 <span className={classes.summaryLabel}>Effective stake balance</span>
                 <span className={classes.summaryValue} style={{ color: PROFILE_COLORS[profileIdx] }}>{igr(Math.max(0, result.cum6.eff))}</span>
               </div>
+            </div>
+            <div className={classes.nodeImage}>
+              <div className={classes.nodePanel} />
+              <img src={node1Src} alt="" className={classes.nodeBase} />
+              <img src={node2Src} alt="" className={classes.nodeOverlay} style={{ opacity: nodeOpacity }} />
             </div>
           </div>
         </div>

@@ -5,50 +5,72 @@
   position: relative;
 }
 
-// Sub-header bar
-.subHeader {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 16px;
-
-  .subHeaderTitle {
-    font-family: $font-secondary;
-    font-size: 22px;
-    font-weight: 600;
-    color: #ffffff;
-    white-space: nowrap;
-  }
-
-  .hamburger {
-    display: none;
-  }
+// Mobile hamburger (hidden on desktop)
+.mobileHeader {
+  display: none;
 
   @media screen and (max-width: $tablet) {
+    display: flex;
     padding: 16px 0;
-    margin-bottom: 24px;
+  }
+}
 
-    .subHeaderTitle {
-      font-size: 16px;
-    }
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
 
-    .hamburger {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+  }
+}
 
-      span {
-        display: block;
-        width: 22px;
-        height: 2px;
-        background-color: #ffffff;
-        border-radius: 2px;
-      }
-    }
+// Overview title: button above header
+.titleRowOverview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 80px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+
+  .joinButton {
+    margin-left: -20px;
+  }
+}
+
+// Title row with button
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.pageSuperTitle {
+  font-family: $font-secondary;
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 4px;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 15px;
   }
 }
 
@@ -68,7 +90,7 @@
   width: 220px;
   flex-shrink: 0;
   position: sticky;
-  top: calc($header_h + 40px);
+  top: calc($header_h + 10px);
   align-self: flex-start;
   height: fit-content;
 
@@ -88,7 +110,7 @@
   gap: 8px;
   padding: 10px 16px;
   font-family: $font;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: #878787;
   background: none;
@@ -120,9 +142,9 @@
   content: '';
   position: absolute;
   top: -80px;
-  right: -100px;
-  width: 70%;
-  height: 450px;
+  right: -150px;
+  width: 54%;
+  height: 353px;
   background-image: url('./assets/auction-bg.png');
   background-repeat: no-repeat;
   background-position: top right;
@@ -147,7 +169,7 @@
   max-width: 680px;
   position: relative;
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 20px;
 
   @media screen and (max-width: $tablet) {
     max-width: 100%;
@@ -156,7 +178,6 @@
 
 .contentWide {
   max-width: 100%;
-  padding-top: 0;
 }
 
 .joinButton {
@@ -200,7 +221,7 @@
   line-height: 1.2;
   font-weight: 400;
   color: #ffffff;
-  margin: 0 0 24px;
+  margin: 0;
 
   @media screen and (max-width: $tablet) {
     font-size: 32px;
@@ -212,6 +233,48 @@
   font-size: 18px;
   line-height: 28px;
   color: rgba(255, 255, 255, 0.6);
+}
+
+// How does it work toggle
+.howToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 16px;
+  cursor: pointer;
+  font-family: $font;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6BD1C3;
+  transition: opacity 0.2s;
+
+  @include hover {
+    opacity: 0.75;
+    span { text-decoration: underline; }
+  }
+}
+
+.howChevron {
+  width: 14px;
+  height: 14px;
+  color: #6BD1C3;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.howChevronOpen {
+  transform: rotate(180deg);
+}
+
+.howText {
+  font-family: $font;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 20px;
 }
 
 // Facts table
@@ -283,6 +346,45 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.datesTable {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.dateRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+
+  &:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.dateLabel {
+  font-family: $font;
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dateValue {
+  font-family: $font;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
 }
 
 .guideList {
