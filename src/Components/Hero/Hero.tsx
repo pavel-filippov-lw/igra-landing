@@ -43,7 +43,7 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>15 MAR 2026</span>
+                <span className={classes.date}>26 MAR 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
                   First public protocol launch on mainnet
