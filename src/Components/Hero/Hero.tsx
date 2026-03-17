@@ -1,5 +1,7 @@
 import { FC } from "react"
+import { Link } from "react-router-dom"
 
+import { to } from "~/shared/lib"
 import { Flex, Icon } from "~/shared/ui"
 
 import { GlitchText } from "../GlitchText"
@@ -34,7 +36,7 @@ export const Hero: FC = () => {
           </span>
         </div>
         <div className={classes.info}>
-          <a href="https://x.com/Igra_Labs/status/2032227373412753715" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+          <Link to={to.publicAuction('overview')} className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -58,7 +60,7 @@ export const Hero: FC = () => {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
           <div className={classes.heroButtons}>
             <a
               href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/how-to-setup-a-node"
