@@ -274,6 +274,37 @@ export const PublicAuctionPage: FC = () => {
                 <h2 className={classes.disclaimerHeading}>What's the lockup and vesting?</h2>
                 <p>No lockup or vesting for tokens distributed via ZAP. Fully liquid on claim.</p>
                 <p>After the auction closes, there is a short cooldown period before claims open — we use it to deploy DEX liquidity and Hyperlane bridge so both are live the moment you claim. We'll confirm the exact duration closer to launch.</p>
+
+                <h2 className={classes.disclaimerHeading}>How do I add Igra Network to my wallet?</h2>
+                <p>Network details (chain ID, RPC, explorer) are on the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Network Info</a> page. You can add it manually or via ChainList. Prefer interacting via agent? Use the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/igra-network-ai-skill" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Network AI skill</a>.</p>
+
+                <h2 className={classes.disclaimerHeading}>What RPCs are available?</h2>
+                <p>The official RPC is listed on the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Network Info</a> page. Additional community-run RPCs are available — any node operator can expose one. A write-enabled RPC is not required for decentralization: anyone can submit transactions directly to Kaspa L1 since the transaction format is open. You can also interact via the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/igra-network-ai-skill" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Network AI skill</a>.</p>
+
+                <h2 className={classes.disclaimerHeading}>What is the auction floor price?</h2>
+                <p>The floor price is not set in KAS and there is no fixed number we can give in advance. It will be calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered — the exact KAS equivalent depends on the KAS/USD rate at that moment. Once the auction opens, the floor is visible on the ZAP interface.</p>
+
+                <h2 className={classes.disclaimerHeading}>Can the team manipulate the auction price by bidding with their own KAS?</h2>
+                <p>No. Four reasons:</p>
+                <ul className={classes.guideList}>
+                  <li>All bridge activity is fully visible on-chain. Moving large KAS volumes to Igra mainnet is public.</li>
+                  <li>Acquiring that much KAS requires institutional exchange access, KYC, and KYB. The paper trail is real.</li>
+                  <li>Artificially inflating the clearing price hurts secondary market performance — self-defeating for the issuer's own credibility.</li>
+                  <li>ZAP has a hard token cap. Any iKAS the issuer spends on manipulation enters the auction pool and cannot be recovered.</li>
+                </ul>
+                <p>The attack is expensive, visible, and self-defeating.</p>
+
+                <h2 className={classes.disclaimerHeading}>Will there be more $IGRA auctions on ZAP after March 26?</h2>
+                <p>No. This is a one-off event. There is one ZAP auction scheduled for $IGRA.</p>
+
+                <h2 className={classes.disclaimerHeading}>What is the difference between the earlier investor round and ZAP?</h2>
+                <p>The earlier round was private: required KYC, had minimum investment sizes, and carries a 24-month vesting schedule with the first 10% cliff at 6 months from TGE. ZAP is fully public — permissionless, no KYC, no vesting. Tokens are fully transferable immediately after the claim period opens.</p>
+
+                <h2 className={classes.disclaimerHeading}>Why is attester APY showing 0%?</h2>
+                <p>Intentional. We are running end-to-end attester testing before mainnet. Enabling rewards now would give an unfair advantage to early runners over those who start after launch. Rewards will be activated via a DAO proposal before the auction. Staking figures on the dashboard are accurate.</p>
+
+                <h2 className={classes.disclaimerHeading}>Can I interact with ZAP contracts directly without the UI?</h2>
+                <p>Yes — the contract interface is public on GitHub. When the Foundry interaction setup is ready we will publish it. Watch the announcements channel.</p>
               </div>
             ) : activeSection === 'attester-calculator' ? (
               <>
