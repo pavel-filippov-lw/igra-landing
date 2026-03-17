@@ -22,6 +22,8 @@ class To {
   terms = () => `/${Routes.terms}`
 
   news = () => `/${Routes.news}`
+
+  publicAuction = (section?: string) => section ? `/${Routes.publicAuction}/${section}` : `/${Routes.publicAuction}`
 }
 
 export const to = new To()

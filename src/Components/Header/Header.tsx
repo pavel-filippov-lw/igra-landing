@@ -14,6 +14,7 @@ const links = [
   { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
   { label: 'Documentation', to: 'https://igra-labs.gitbook.io/' },
   { label: '$IGRA', to: to.igraToken(), isPage: true },
+  { label: 'ZAP', to: to.publicAuction(), isPage: true },
 ]
 
 const mobileLinks = [

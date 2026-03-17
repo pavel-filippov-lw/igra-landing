@@ -1,6 +1,8 @@
 import { FC } from "react"
+import { Link } from "react-router-dom"
 
 import { AboutBenefits, PageLayout } from "~/Components"
+import { to } from "~/shared/lib"
 import { Flex } from "~/shared/ui"
 
 import tokenDistributionChart from './assets/token-distribution-chart.png'
@@ -39,20 +41,6 @@ const distributionItems = [
   },
 ]
 
-const participateSteps = [
-  {
-    number: '01',
-    text: 'Proven Kaspa miners can run attester nodes to secure the network.',
-  },
-  {
-    number: '02',
-    text: 'Ecosystem contributors can support development ahead of mainnet.',
-  },
-  {
-    number: '03',
-    text: 'Public on-chain distribution planned for Q1 2026 via fair auction mechanism.',
-  },
-]
 
 export const IgraTokenPage: FC = () => {
   return (
@@ -73,18 +61,7 @@ export const IgraTokenPage: FC = () => {
           </p>
         </Flex>
         <div className={classes.participateSection}>
-          <h3 className={classes.participateTitle}>To participate:</h3>
-          <div className={classes.participateCards}>
-            {participateSteps.map((step) => (
-              <div key={step.number} className={classes.stepCard}>
-                <div className={classes.stepNumber}>{step.number}</div>
-                <div className={classes.stepText}>{step.text}</div>
-              </div>
-            ))}
-          </div>
-          <p className={classes.interested}>
-            Interested? <a href="mailto:team@igralabs.com" className={classes.contactLink}>Contact Team</a>
-          </p>
+          <h3 className={classes.participateTitle}>Token sale is on 26th of March! <Link to={to.publicAuction()} className={classes.contactLink}>Learn more</Link></h3>
         </div>
         <AboutBenefits />
         <div className={classes.tokenDistribution}>
