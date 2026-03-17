@@ -298,19 +298,19 @@ input[type=range] {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex: 1;
   margin: 4px -15px -15px;
   min-height: 185px;
-  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .nodePanel {
   position: absolute;
-  bottom: 0;
+  top: 40px;
   left: 0;
   right: 0;
-  height: calc(55% + 50px);
+  bottom: 0;
   background: rgba(216, 216, 216, 0.08);
   border: 1px solid rgba(151, 151, 151, 0.25);
   border-radius: 12px 12px var(--calc-radius) var(--calc-radius);
@@ -327,9 +327,9 @@ input[type=range] {
 .nodeOverlay {
   position: absolute;
   z-index: 2;
-  top: 50%;
+  top: 10px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   height: 175px;
   width: auto;
   transition: opacity 0.3s ease;

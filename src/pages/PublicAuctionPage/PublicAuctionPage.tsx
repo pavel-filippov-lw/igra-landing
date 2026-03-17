@@ -75,7 +75,7 @@ export const PublicAuctionPage: FC = () => {
             ) : (
               <div className={classes.titleRow}>
                 <div>
-                  <span className={classes.pageSuperTitle}>Public Auction:</span>
+                  {activeSection !== 'attester-calculator' && <span className={classes.pageSuperTitle}>Public Auction:</span>}
                   <h1 className={classes.pageTitle}>{activeLabel}</h1>
                 </div>
                 <button className={classes.joinButton} onClick={handleJoinClick}>
@@ -92,7 +92,7 @@ export const PublicAuctionPage: FC = () => {
                 <h2 className={classes.disclaimerHeading}>Important dates</h2>
                 <div className={classes.datesTable}>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>Genesis block minted, TGE</span><span className={classes.dateValue}>February 25, 2026</span></div>
-                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP core contract deployment</span><span className={classes.dateValue}>March 4, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP core contract deployment</span><span className={classes.dateValue}>March 25, 2026</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction start</span><span className={classes.dateValue}>March 26, 2026</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction finalized</span><span className={classes.dateValue}>April 1, 2026</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>IGRA tokens available for claiming</span><span className={classes.dateValue}>April 8, 2026</span></div>
@@ -185,7 +185,7 @@ export const PublicAuctionPage: FC = () => {
                   <span className={classes.factValue}>
                     <span className={classes.dateList}>
                       <span>February 25, 2026 — Genesis block minted, TGE</span>
-                      <span>March 4, 2026 — ZAP core contract deployment</span>
+                      <span>March 25, 2026 — ZAP core contract deployment</span>
                       <span>March 26, 2026 — ZAP auction start</span>
                       <span>April 1, 2026 — ZAP auction finalized</span>
                       <span>April 8, 2026 — IGRA tokens available for claiming</span>
@@ -356,6 +356,9 @@ export const PublicAuctionPage: FC = () => {
                 <h2 className={classes.disclaimerHeading}>Telegram</h2>
                 <p>The official <a href="https://t.me/IgraCommunity" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Telegram community</a> to ask questions, follow progress, and be part of building the programmable EVM-compatible layer on Kaspa BlockDAG.</p>
                 <p>DM the official account: <a href="https://t.me/IgraNetwork" target="_blank" rel="noopener noreferrer" className={classes.factLink}>t.me/IgraNetwork</a></p>
+
+                <h2 className={classes.disclaimerHeading}>X</h2>
+                <p>Official account: <a href="https://x.com/Igra_Labs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>x.com/Igra_Labs</a></p>
 
                 <h2 className={classes.disclaimerHeading}>Email</h2>
                 <p><a href="mailto:team@igralabs.com" className={classes.factLink}>team@igralabs.com</a></p>

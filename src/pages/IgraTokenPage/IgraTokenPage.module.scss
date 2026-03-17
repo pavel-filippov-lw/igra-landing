@@ -87,21 +87,13 @@
             }
         }
 
-        .interested {
-            font-family: $font-secondary;
-            font-size: 36px;
-            line-height: 44px;
-            font-weight: 400;
-            color: #FFFFFF;
+        .contactLink {
+            color: #6BD1C3;
+            text-decoration: none;
+            transition: text-decoration 0.2s;
 
-            .contactLink {
-                color: #6BD1C3;
-                text-decoration: none;
-                transition: text-decoration 0.2s;
-
-                &:hover {
-                    text-decoration: underline;
-                }
+            &:hover {
+                text-decoration: underline;
             }
         }
     }
