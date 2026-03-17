@@ -10,7 +10,6 @@ import classes from './PublicAuctionPage.module.scss'
 const sections = [
   { id: 'overview', label: 'Overview' },
   { id: 'facts', label: 'Facts' },
-  { id: 'contracts', label: 'Smart Contracts' },
   { id: 'faq', label: 'FAQ' },
   { id: 'attester-calculator', label: 'Attester Calculator' },
   { id: 'support', label: 'Support' },
@@ -257,6 +256,12 @@ export const PublicAuctionPage: FC = () => {
                     <p>$IGRA is the security and governance token of Igra Network.</p>
                     <p>Attesters stake $IGRA to attest Igra-to-Kaspa state consistency via cryptographic anchors and receive protocol-level incentives, protocol fees and rewards in iKAS and $IGRA.</p>
                     <p>Token holders govern security-critical parameters via Igra DAO: attestation rules, reward and penalty calibration, bridge configuration, and ecosystem grant allocation.</p>
+                  </div>
+                </details>
+                <details className={classes.faqItem}>
+                  <summary className={classes.faqQuestion}>Who is running the ZAP auction?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p>The auction is operated by ZealousSwap — an independent protocol built on Uniswap's CCA contracts. Igra Labs is launching $IGRA through it, but ZealousSwap owns and operates the ZAP platform. Smart contracts are immutable, have no owner, and cannot be modified once deployed.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
