@@ -302,20 +302,7 @@ export const PublicAuctionPage: FC = () => {
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>What is the auction floor price?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>The floor price is not set in KAS and there is no fixed number we can give in advance. It will be calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered — the exact KAS equivalent depends on the KAS/USD rate at that moment. Once the auction opens, the floor is visible on the ZAP interface.</p>
-                  </div>
-                </details>
-                <details className={classes.faqItem}>
-                  <summary className={classes.faqQuestion}>Can the team manipulate the auction price by bidding with their own KAS?</summary>
-                  <div className={classes.faqAnswer}>
-                    <p>No. Four reasons:</p>
-                    <ul className={classes.guideList}>
-                      <li>All bridge activity is fully visible on-chain. Moving large KAS volumes to Igra mainnet is public.</li>
-                      <li>Acquiring that much KAS requires institutional exchange access, KYC, and KYB. The paper trail is real.</li>
-                      <li>Artificially inflating the clearing price hurts secondary market performance — self-defeating for the issuer's own credibility.</li>
-                      <li>ZAP has a hard token cap. Any iKAS the issuer spends on manipulation enters the auction pool and cannot be recovered.</li>
-                    </ul>
-                    <p>The attack is expensive, visible, and self-defeating.</p>
+                    <p>It will be calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered — the exact KAS equivalent depends on the KAS/USD rate at that moment. Once the auction opens, the floor is visible on the ZAP interface.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
