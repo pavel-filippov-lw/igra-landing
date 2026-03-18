@@ -336,6 +336,8 @@ export const PublicAuctionPage: FC = () => {
               </>
             ) : activeSection === 'support' ? (
               <div className={classes.disclaimerContent}>
+                <p className={classes.supportDisclaimer}>These are the only official Igra channels and accounts. Be vigilant&nbsp;— do not trust any other sources claiming to represent Igra.</p>
+
                 <h2 className={classes.disclaimerHeading}><Icon name="discord" size={22} className={classes.supportIcon} /> Discord</h2>
                 <p>Join the <a href="https://discord.gg/igralabs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Discord</a> for support and community discussion.</p>
 
@@ -348,8 +350,6 @@ export const PublicAuctionPage: FC = () => {
 
                 <h2 className={classes.disclaimerHeading}><Icon name="email" size={22} className={classes.supportIcon} /></h2>
                 <p><a href="mailto:team@igralabs.com" className={classes.factLink}>team@igralabs.com</a></p>
-
-                <p className={classes.supportDisclaimer}>These are the only official Igra channels and accounts. Be vigilant&nbsp;— do not trust any other sources claiming to represent Igra.</p>
               </div>
             ) : activeSection === 'disclaimer' ? (
               <div className={classes.disclaimerContent}>
