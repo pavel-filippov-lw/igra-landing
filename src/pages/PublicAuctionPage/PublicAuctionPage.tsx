@@ -10,7 +10,6 @@ import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
   { id: 'overview', label: 'Overview' },
-  { id: 'how-to-participate', label: 'How to Participate' },
   { id: 'facts', label: 'Facts' },
   { id: 'faq', label: 'FAQ' },
   { id: 'attester-calculator', label: 'Attester Calculator' },
@@ -344,10 +343,10 @@ export const PublicAuctionPage: FC = () => {
                 <p>The official <a href="https://t.me/IgraCommunity" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Telegram community</a> to ask questions, follow progress, and be part of building the programmable EVM-compatible layer on Kaspa BlockDAG.</p>
                 <p>DM the official account: <a href="https://t.me/IgraNetwork" target="_blank" rel="noopener noreferrer" className={classes.factLink}>t.me/IgraNetwork</a></p>
 
-                <h2 className={classes.disclaimerHeading}><Icon name="twitter" size={22} className={classes.supportIcon} /> X</h2>
+                <h2 className={classes.disclaimerHeading}><Icon name="twitter" size={22} className={classes.supportIcon} /></h2>
                 <p>Official account: <a href="https://x.com/Igra_Labs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>x.com/Igra_Labs</a></p>
 
-                <h2 className={classes.disclaimerHeading}><Icon name="email" size={22} className={classes.supportIcon} /> Email</h2>
+                <h2 className={classes.disclaimerHeading}><Icon name="email" size={22} className={classes.supportIcon} /></h2>
                 <p><a href="mailto:team@igralabs.com" className={classes.factLink}>team@igralabs.com</a></p>
               </div>
             ) : activeSection === 'disclaimer' ? (
