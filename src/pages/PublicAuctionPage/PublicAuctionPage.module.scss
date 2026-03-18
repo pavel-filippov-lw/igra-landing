@@ -55,9 +55,23 @@
   position: relative;
   z-index: 1;
 
+  .joinButton {
+    margin-right: -100px;
+  }
+
   @media screen and (max-width: $tablet) {
     flex-direction: column;
     gap: 16px;
+
+    .joinButton {
+      margin-right: 0;
+    }
+  }
+}
+
+.titleRowWide {
+  .joinButton {
+    margin-right: 0;
   }
 }
 
@@ -522,6 +536,11 @@
   @media screen and (max-width: $tablet) {
     font-size: 20px;
   }
+}
+
+.supportIcon {
+  vertical-align: -3px;
+  margin-right: 8px;
 }
 
 // Mobile overlay

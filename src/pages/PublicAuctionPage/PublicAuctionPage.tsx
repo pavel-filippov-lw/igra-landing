@@ -3,12 +3,14 @@ import { FC, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { PageLayout } from "~/Components"
 import { to } from "~/shared/lib"
+import { Icon } from "~/shared/ui/Icon/Icon"
 
 import { AttesterCalculator } from './AttesterCalculator'
 import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
   { id: 'overview', label: 'Overview' },
+  { id: 'how-to-participate', label: 'How to Participate' },
   { id: 'facts', label: 'Facts' },
   { id: 'faq', label: 'FAQ' },
   { id: 'attester-calculator', label: 'Attester Calculator' },
@@ -65,7 +67,7 @@ export const PublicAuctionPage: FC = () => {
           </aside>
 
           {/* Content area */}
-          <main className={clsx(classes.content, { [classes.contentWide]: activeSection === 'attester-calculator' })}>
+          <main className={clsx(classes.content, { [classes.contentWide]: activeSection === 'attester-calculator' || activeSection === 'contracts' })}>
             {activeSection === 'overview' ? (
               <div className={classes.titleRowOverview}>
                 <button className={classes.joinButton} onClick={handleJoinClick}>
@@ -74,7 +76,7 @@ export const PublicAuctionPage: FC = () => {
                 <h1 className={classes.pageTitle}>{activeLabel}</h1>
               </div>
             ) : (
-              <div className={classes.titleRow}>
+              <div className={clsx(classes.titleRow, { [classes.titleRowWide]: activeSection === 'attester-calculator' || activeSection === 'contracts' })}>
                 <div>
                   {activeSection !== 'attester-calculator' && <span className={classes.pageSuperTitle}>Public Auction:</span>}
                   <h1 className={classes.pageTitle}>{activeLabel}</h1>
@@ -86,9 +88,9 @@ export const PublicAuctionPage: FC = () => {
             )}
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
-                <p><strong>All you need to know about the IGRA Public Auction.</strong></p>
-                <p>The IGRA Public Auction is a Continuous Clearing Auction (CCA), built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>code</a>.</p>
-                <p>Tokens stream out block by block, each block clearing at a single market price against active bids. This ensures fair price discovery - large capital can't manipulate price through liquidity movements, and price only moves up when real demand requires it.</p>
+                <p>The IGRA Public Auction is an onchain, permissionless token distribution where the market sets the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>. Igra Association supplies the tokens&nbsp;— the auction contract is controlled by ZealousSwap, with no ability for either party to intervene once deployed.</p>
+                <p>Floor price is set at $0.006 per IGRA equivalent in iKAS at contract deployment&nbsp;— the auction cannot clear below this. Price moves up only when real demand requires it.</p>
+                <p>Docs: <a href="https://zealous-auctions.gitbook.io/zealous-auctions-docs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>zealous-auctions.gitbook.io</a></p>
 
                 <h2 className={classes.disclaimerHeading}>Important dates</h2>
                 <div className={classes.datesTable}>
@@ -96,7 +98,7 @@ export const PublicAuctionPage: FC = () => {
                   <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP core contract deployment</span><span className={classes.dateValue}>March 25, 2026</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction start</span><span className={classes.dateValue}>March 26, 2026, 4PM UTC</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction finalized</span><span className={classes.dateValue}>April 2, 2026, 4PM UTC</span></div>
-                  <div className={classes.dateRow}><span className={classes.dateLabel}>IGRA tokens available for claiming</span><span className={classes.dateValue}>April 8, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>IGRA tokens available for claiming</span><span className={classes.dateValue}>April 9, 2026</span></div>
                 </div>
 
                 <h2 className={classes.disclaimerHeading}>Useful links</h2>
@@ -108,8 +110,6 @@ export const PublicAuctionPage: FC = () => {
                 </ul>
               </div>
             ) : activeSection === 'how-to-participate' ? (
-              <p className={classes.placeholder}>Content coming soon.</p>
-              /* TODO: restore "How to participate" content
               <div className={classes.disclaimerContent}>
                 <h2 className={classes.disclaimerHeading}>1. Wrap KAS into iKAS using permissionless bridges:</h2>
                 <ul className={classes.guideList}>
@@ -121,7 +121,6 @@ export const PublicAuctionPage: FC = () => {
 
                 <h2 className={classes.disclaimerHeading}>2. Navigate to ZAP page and place a bid</h2>
               </div>
-              */
             ) : activeSection === 'facts' ? (
               <div className={classes.factsTable}>
                 <div className={classes.factRow}>
@@ -189,7 +188,7 @@ export const PublicAuctionPage: FC = () => {
                       <span>March 25, 2026 — ZAP core contract deployment</span>
                       <span>March 26, 2026, 4PM UTC — ZAP auction start</span>
                       <span>April 2, 2026, 4PM UTC — ZAP auction finalized</span>
-                      <span>April 8, 2026 — IGRA tokens available for claiming</span>
+                      <span>April 9, 2026 — IGRA tokens available for claiming</span>
                     </span>
                   </span>
                 </div>
@@ -338,17 +337,17 @@ export const PublicAuctionPage: FC = () => {
               </>
             ) : activeSection === 'support' ? (
               <div className={classes.disclaimerContent}>
-                <h2 className={classes.disclaimerHeading}>Discord</h2>
+                <h2 className={classes.disclaimerHeading}><Icon name="discord" size={22} className={classes.supportIcon} /> Discord</h2>
                 <p>Join the <a href="https://discord.gg/igralabs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Discord</a> for support and community discussion.</p>
 
-                <h2 className={classes.disclaimerHeading}>Telegram</h2>
+                <h2 className={classes.disclaimerHeading}><Icon name="telegram" size={22} className={classes.supportIcon} /> Telegram</h2>
                 <p>The official <a href="https://t.me/IgraCommunity" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Telegram community</a> to ask questions, follow progress, and be part of building the programmable EVM-compatible layer on Kaspa BlockDAG.</p>
                 <p>DM the official account: <a href="https://t.me/IgraNetwork" target="_blank" rel="noopener noreferrer" className={classes.factLink}>t.me/IgraNetwork</a></p>
 
-                <h2 className={classes.disclaimerHeading}>X</h2>
+                <h2 className={classes.disclaimerHeading}><Icon name="twitter" size={22} className={classes.supportIcon} /> X</h2>
                 <p>Official account: <a href="https://x.com/Igra_Labs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>x.com/Igra_Labs</a></p>
 
-                <h2 className={classes.disclaimerHeading}>Email</h2>
+                <h2 className={classes.disclaimerHeading}><Icon name="email" size={22} className={classes.supportIcon} /> Email</h2>
                 <p><a href="mailto:team@igralabs.com" className={classes.factLink}>team@igralabs.com</a></p>
               </div>
             ) : activeSection === 'disclaimer' ? (
