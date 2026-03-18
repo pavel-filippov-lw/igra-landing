@@ -55,9 +55,23 @@
   position: relative;
   z-index: 1;
 
+  .joinButton {
+    margin-right: -100px;
+  }
+
   @media screen and (max-width: $tablet) {
     flex-direction: column;
     gap: 16px;
+
+    .joinButton {
+      margin-right: 0;
+    }
+  }
+}
+
+.titleRowWide {
+  .joinButton {
+    margin-right: 0;
   }
 }
 
@@ -522,6 +536,22 @@
   @media screen and (max-width: $tablet) {
     font-size: 20px;
   }
+}
+
+.supportIcon {
+  vertical-align: -3px;
+  margin-right: 8px;
+}
+
+.supportDisclaimer {
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 200, 50, 0.4);
+  border-radius: 8px;
+  background: rgba(255, 200, 50, 0.06);
+  color: #EED58A;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 // Mobile overlay
