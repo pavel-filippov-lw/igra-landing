@@ -543,6 +543,17 @@
   margin-right: 8px;
 }
 
+.supportDisclaimer {
+  margin-top: 40px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 200, 50, 0.4);
+  border-radius: 8px;
+  background: rgba(255, 200, 50, 0.06);
+  color: #EED58A;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 // Mobile overlay
 .mobileOverlay {
   display: none;
