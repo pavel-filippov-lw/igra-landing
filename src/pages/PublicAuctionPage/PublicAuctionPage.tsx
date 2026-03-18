@@ -93,8 +93,8 @@ export const PublicAuctionPage: FC = () => {
                 <div className={classes.datesTable}>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>Genesis block minted, TGE</span><span className={classes.dateValue}>February 25, 2026</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP core contract deployment</span><span className={classes.dateValue}>March 25, 2026</span></div>
-                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction start</span><span className={classes.dateValue}>March 26, 2026</span></div>
-                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction finalized</span><span className={classes.dateValue}>April 1, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction start</span><span className={classes.dateValue}>March 26, 2026, 4PM UTC</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction finalized</span><span className={classes.dateValue}>April 2, 2026, 4PM UTC</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>IGRA tokens available for claiming</span><span className={classes.dateValue}>April 8, 2026</span></div>
                 </div>
 
@@ -186,8 +186,8 @@ export const PublicAuctionPage: FC = () => {
                     <span className={classes.dateList}>
                       <span>February 25, 2026 — Genesis block minted, TGE</span>
                       <span>March 25, 2026 — ZAP core contract deployment</span>
-                      <span>March 26, 2026 — ZAP auction start</span>
-                      <span>April 1, 2026 — ZAP auction finalized</span>
+                      <span>March 26, 2026, 4PM UTC — ZAP auction start</span>
+                      <span>April 2, 2026, 4PM UTC — ZAP auction finalized</span>
                       <span>April 8, 2026 — IGRA tokens available for claiming</span>
                     </span>
                   </span>
