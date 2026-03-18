@@ -133,7 +133,7 @@ export const PublicAuctionPage: FC = () => {
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Token available for sale</span>
-                  <span className={classes.factValue}>350,000,000 tokens (3.5% of total supply)</span>
+                  <span className={classes.factValue}>350,000,000 tokens (3.5% of total supply: 2% from the Igra Association pool and 1.5% from unsubscribed previous sale allocations)</span>
                 </div>
                 <div className={classes.factRow}>
                   <span className={classes.factLabel}>Network</span>
