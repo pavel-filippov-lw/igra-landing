@@ -12,6 +12,7 @@ const sections = [
   { id: 'facts', label: 'Facts' },
   { id: 'faq', label: 'FAQ' },
   { id: 'attester-calculator', label: 'Attester Calculator' },
+  { id: 'contracts', label: 'Smart Contracts' },
   { id: 'support', label: 'Support' },
 ]
 
@@ -199,7 +200,7 @@ export const PublicAuctionPage: FC = () => {
                   <span className={classes.factLabel}>Permit2</span>
                   <span className={classes.factValue}>
                     <a
-                      href="https://explorer.igralabs.com/address/0x000000000022D473030F116dDEE9F6B43aC78BA3?tab=contract"
+                      href="https://explorer.igralabs.com/address/0x000000000022D473030F116dDEE9F6B43aC78BA3?tab=index"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={classes.factLink}
@@ -212,12 +213,12 @@ export const PublicAuctionPage: FC = () => {
                   <span className={classes.factLabel}>AuctionStateLens</span>
                   <span className={classes.factValue}>
                     <a
-                      href="https://explorer.igralabs.com/address/0x1a2b3c4d5e6f7890abcdef1234567890abcdef12"
+                      href="https://explorer.igralabs.com/address/0xfa458995688c73fc48E7D833483a7206Bed75C27?tab=index"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={classes.factLink}
                     >
-                      0x1a2b3c4d5e6f7890abcdef1234567890abcdef12
+                      0xfa458995688c73fc48E7D833483a7206Bed75C27
                     </a>
                   </span>
                 </div>
@@ -225,25 +226,12 @@ export const PublicAuctionPage: FC = () => {
                   <span className={classes.factLabel}>Query</span>
                   <span className={classes.factValue}>
                     <a
-                      href="https://explorer.igralabs.com/address/0x2b3c4d5e6f7890abcdef1234567890abcdef1234"
+                      href="https://explorer.igralabs.com/address/0xf40178040278E16c8813dB20a84119A605812FB3?tab=index"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={classes.factLink}
                     >
-                      0x2b3c4d5e6f7890abcdef1234567890abcdef1234
-                    </a>
-                  </span>
-                </div>
-                <div className={classes.factRow}>
-                  <span className={classes.factLabel}>ContinuousClearingAuction</span>
-                  <span className={classes.factValue}>
-                    <a
-                      href="https://explorer.igralabs.com/address/0x3c4d5e6f7890abcdef1234567890abcdef123456"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={classes.factLink}
-                    >
-                      0x3c4d5e6f7890abcdef1234567890abcdef123456
+                      0xf40178040278E16c8813dB20a84119A605812FB3
                     </a>
                   </span>
                 </div>
