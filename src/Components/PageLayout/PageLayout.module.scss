@@ -1,6 +1,6 @@
 .root {
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow-x: clip;
+	overflow-y: visible;
 
 	.radialBg {
 		position: relative;
