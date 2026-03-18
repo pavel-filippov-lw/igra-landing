@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { PageLayout } from "~/Components"
 import { to } from "~/shared/lib"
@@ -12,6 +12,7 @@ const sections = [
   { id: 'overview', label: 'Overview' },
   { id: 'facts', label: 'Facts' },
   { id: 'faq', label: 'FAQ' },
+  { id: 'how-to-participate', label: 'How to Participate' },
   { id: 'attester-calculator', label: 'Attester Calculator' },
   { id: 'contracts', label: 'Smart Contracts' },
   { id: 'support', label: 'Support' },
@@ -19,12 +20,56 @@ const sections = [
 
 const validSections = new Set(sections.map(s => s.id))
 
+const LinkIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6.5 8.5a3.5 3.5 0 0 0 5 0l2-2a3.5 3.5 0 0 0-5-5l-1 1" />
+    <path d="M9.5 7.5a3.5 3.5 0 0 0-5 0l-2 2a3.5 3.5 0 0 0 5 5l1-1" />
+  </svg>
+)
+
+const AnchorLink: FC<{ id: string }> = ({ id }) => {
+  const [copied, setCopied] = useState(false)
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const url = `${window.location.origin}${window.location.pathname}#${id}`
+    navigator.clipboard.writeText(url).then(() => {
+      window.history.replaceState(null, '', `${window.location.pathname}#${id}`)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    })
+  }
+
+  return (
+    <span className={classes.anchorLinkWrap}>
+      <button className={classes.anchorLink} onClick={handleClick} aria-label="Copy link">
+        <LinkIcon />
+      </button>
+      {copied && <span className={classes.anchorToast}>Copied!</span>}
+    </span>
+  )
+}
+
 export const PublicAuctionPage: FC = () => {
   const { section } = useParams<{ section?: string }>()
   const activeSection = section && validSections.has(section) ? section : 'overview'
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [howOpen, setHowOpen] = useState(false)
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1)
+    if (!hash) return
+    const timer = setTimeout(() => {
+      const el = document.getElementById(hash)
+      if (!el) return
+      const details = el.closest('details')
+      if (details && !details.open) details.open = true
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [activeSection])
 
   const handleJoinClick = () => {
     window.plausible?.('JoinAuctionClick')
@@ -66,7 +111,7 @@ export const PublicAuctionPage: FC = () => {
           </aside>
 
           {/* Content area */}
-          <main className={clsx(classes.content, { [classes.contentWide]: activeSection === 'attester-calculator' || activeSection === 'contracts' })}>
+          <main className={clsx(classes.content, { [classes.contentWide]: activeSection === 'attester-calculator' || activeSection === 'contracts' || activeSection === 'how-to-participate' })}>
             {activeSection === 'overview' ? (
               <div className={classes.titleRowOverview}>
                 <button className={classes.joinButton} onClick={handleJoinClick}>
@@ -75,7 +120,7 @@ export const PublicAuctionPage: FC = () => {
                 <h1 className={classes.pageTitle}>{activeLabel}</h1>
               </div>
             ) : (
-              <div className={clsx(classes.titleRow, { [classes.titleRowWide]: activeSection === 'attester-calculator' || activeSection === 'contracts' })}>
+              <div className={clsx(classes.titleRow, { [classes.titleRowWide]: activeSection === 'attester-calculator' || activeSection === 'contracts' || activeSection === 'how-to-participate' })}>
                 <div>
                   {activeSection !== 'attester-calculator' && <span className={classes.pageSuperTitle}>Public Auction:</span>}
                   <h1 className={classes.pageTitle}>{activeLabel}</h1>
@@ -110,15 +155,116 @@ export const PublicAuctionPage: FC = () => {
               </div>
             ) : activeSection === 'how-to-participate' ? (
               <div className={classes.disclaimerContent}>
-                <h2 className={classes.disclaimerHeading}>1. Wrap KAS into iKAS using permissionless bridges:</h2>
-                <ul className={classes.guideList}>
-                  <li><a href="https://katbridge.io" target="_blank" rel="noopener noreferrer" className={classes.factLink}>KAT bridge</a></li>
-                  <li><a href="https://kasware.xyz" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kasware</a></li>
-                  <li><a href="https://kasperia.com" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kasperia</a></li>
-                  <li><a href="https://docs.igralabs.com" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Send tx via CLI</a></li>
-                </ul>
+                <h3 className={classes.guidePhaseHeading} id="before-march-26">1. Before March 26 <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="before-march-26" /></h3>
 
-                <h2 className={classes.disclaimerHeading}>2. Navigate to ZAP page and place a bid</h2>
+                <div className={clsx(classes.faqList, classes.guideSteps)}>
+                  <details className={classes.faqItem}>
+                    <summary className={classes.faqQuestion} id="understand-zap"><span>a. Understand how ZAP works <AnchorLink id="understand-zap" /></span></summary>
+                    <div className={classes.faqAnswer}>
+                      <p>Read the full auction mechanics before placing any bids.</p>
+                      <Link to={to.publicAuction('overview')} className={classes.guideArrowLink}>→ Auction Overview</Link>
+                      <a href="https://www.youtube.com/watch?v=0J-tbrpTlXo" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Uniswap's Continuous Clearing Auction (CCA) Explained</a>
+                      <a href="https://blog.uniswap.org/continuous-clearing-auctions" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Continuous Clearing Auctions: Bootstrapping Liquidity on Uniswap v4</a>
+                    </div>
+                  </details>
+
+                  <details className={classes.faqItem}>
+                    <summary className={classes.faqQuestion} id="set-up-wallet"><span>b. Set up your wallet <AnchorLink id="set-up-wallet" /></span></summary>
+                    <div className={classes.faqAnswer}>
+                      <p>You need two things: a <strong>Kaspa L1 wallet</strong> (to hold KAS before bridging) and an <strong>Igra EVM wallet</strong> (to bid and receive IGRA).</p>
+                      <p><strong>Option A&nbsp;— EVM-only wallet</strong></p>
+                      <a href="https://metamask.io" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ MetaMask</a>
+                      <a href="https://rabby.io" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Rabby</a>
+                      <p style={{ marginTop: 24 }}><strong>Option B&nbsp;— L1+L2 wallet (Kaspa + Igra in one app)</strong></p>
+                      <ul className={classes.guideList}>
+                        <li><a href="https://kasperia-doc.github.io/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kasperia</a></li>
+                        <li><a href="https://www.kasware.xyz/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kasware</a></li>
+                        <li><a href="https://kastle.cc/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kastle</a></li>
+                      </ul>
+                    </div>
+                  </details>
+
+                  <details className={classes.faqItem}>
+                    <summary className={classes.faqQuestion} id="add-igra-network"><span>c. Add Igra Network to your EVM wallet <AnchorLink id="add-igra-network" /></span></summary>
+                    <div className={classes.faqAnswer}>
+                      <p>Add Igra Mainnet using the official network details:</p>
+                      <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info#igra-mainnet" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Igra Network Info</a>
+                      <a href="https://chainlist.org/chain/38833" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Chainlist</a>
+                      <p>Once added, make sure your wallet is set to Igra Network before interacting with the auction.</p>
+                    </div>
+                  </details>
+
+                  <details className={classes.faqItem}>
+                    <summary className={classes.faqQuestion} id="buy-kas"><span>d. Buy KAS <AnchorLink id="buy-kas" /></span></summary>
+                    <div className={classes.faqAnswer}>
+                      <p>Purchase KAS from any of the following:</p>
+                      <p><strong>Exchanges</strong>&nbsp;— full list with live volume:</p>
+                      <a href="https://www.coingecko.com/en/coins/kaspa#markets" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ CoinGecko KAS Markets</a>
+                      <p><strong>Fiat on-ramp services:</strong></p>
+                      <ul className={classes.guideList}>
+                        <li><a href="https://guardarian.com/buy-kas" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Guardarian</a></li>
+                        <li><a href="https://topper.money" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Topper</a></li>
+                      </ul>
+                      <p><strong>Wallet with built-in KAS purchase:</strong></p>
+                      <ul className={classes.guideList}>
+                        <li><a href="https://zelcore.io" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Zelcore</a>&nbsp;— buy KAS directly in the wallet</li>
+                      </ul>
+                    </div>
+                  </details>
+
+                  <details className={classes.faqItem}>
+                    <summary className={classes.faqQuestion} id="bridge-kas"><span>e. Bridge KAS → iKAS <AnchorLink id="bridge-kas" /></span></summary>
+                    <div className={classes.faqAnswer}>
+                      <p>iKAS is the bridged representation of KAS on Igra Network. You bid using iKAS.</p>
+                      <p><strong>Available bridges:</strong></p>
+                      <ul className={classes.guideList}>
+                        <li><a href="https://ikas.katbridge.com/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>KAT Bridge</a>&nbsp;— recommended</li>
+                        <li><a href="https://kasperia-doc.github.io/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kasperia</a></li>
+                        <li><a href="https://www.kasware.xyz/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kasware</a></li>
+                        <li><a href="https://kurncy.com" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kurncy Wallet</a></li>
+                        <li>CLI tool (advanced users)&nbsp;— <a href="https://igra-labs.gitbook.io/igralabs-docs/for-developers/architecture/specifications/igra-transaction-protocol#id-4.3-entry" target="_blank" rel="noopener noreferrer" className={classes.factLink}>ITP Entry documentation</a></li>
+                      </ul>
+                      <div className={classes.guideNote}>
+                        <strong>Note:</strong> Bridging on Igra is permissionless and instant (1–2 seconds). If a transaction fails, it reverts immediately&nbsp;— no funds are lost. No custodian and no fees.
+                      </div>
+                    </div>
+                  </details>
+
+                  <details className={classes.faqItem}>
+                    <summary className={classes.faqQuestion} id="verify-balance"><span>f. Verify your iKAS balance <AnchorLink id="verify-balance" /></span></summary>
+                    <div className={classes.faqAnswer}>
+                      <p>Before March 26, confirm that iKAS is visible in your EVM wallet on <a href="https://explorer.igralabs.com" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Network</a>. Do not proceed to the auction without completing this step.</p>
+                    </div>
+                  </details>
+                </div>
+
+                <h3 className={classes.guidePhaseHeading} id="auction-opens">2. March 26&nbsp;— Auction Opens <AnchorLink id="auction-opens" /></h3>
+                <div className={classes.guidePhaseContent}>
+                  <ol className={classes.guideList}>
+                    <li>Go to the auction page: <em>link&nbsp;— will be live on March 25</em></li>
+                    <li>Connect your EVM wallet (set to Igra Network)</li>
+                    <li>Place your bid using iKAS</li>
+                    <li>You can monitor active bids and place additional bids at any time until April 2</li>
+                  </ol>
+                  <a href="https://x.com/coinco041/status/2034295869802172519" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>Step-by-step bidding guide</a>
+                </div>
+
+                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 2&nbsp;— Auction Closes <AnchorLink id="auction-closes" /></h3>
+                <div className={classes.guidePhaseContent}>
+                  <p>Bidding ends. No further bids can be placed after this point.</p>
+                  <p>Check your final bid status: <em>link&nbsp;— will be live on March 25</em></p>
+                </div>
+
+                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 9&nbsp;— Claiming Opens <AnchorLink id="claiming-opens" /></h3>
+                <div className={classes.guidePhaseContent}>
+                  <p>IGRA tokens become claimable.</p>
+                  <p>Go to the claiming page and connect the same EVM wallet you used to bid.</p>
+                  <p>Claiming page: <em>link&nbsp;— live after auction finalizes</em></p>
+                </div>
+
+                <hr className={classes.guideDivider} />
+
+                <p>Need help? Visit the <Link to={to.publicAuction('support')} className={classes.factLink}>Support</Link> page.</p>
               </div>
             ) : activeSection === 'facts' ? (
               <div className={classes.factsTable}>

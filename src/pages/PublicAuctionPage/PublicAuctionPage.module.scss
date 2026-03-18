@@ -107,6 +107,7 @@
   top: calc($header_h + 10px);
   align-self: flex-start;
   height: fit-content;
+  padding-top: 30px;
 
   nav {
     display: flex;
@@ -475,15 +476,23 @@
 }
 
 .guideList {
-  list-style: disc;
-  padding-left: 24px;
+  list-style: none;
+  padding-left: 20px;
   margin: 12px 0 32px;
 
   li {
+    position: relative;
     padding: 6px 0;
     font-family: $font;
     font-size: 17px;
     color: rgba(255, 255, 255, 0.85);
+
+    &::before {
+      content: '→';
+      position: absolute;
+      left: -20px;
+      color: #6BD1C3;
+    }
 
     @media screen and (max-width: $tablet) {
       font-size: 15px;
@@ -504,6 +513,172 @@
   @include hover {
     text-decoration: underline;
   }
+}
+
+// Guide phase headings
+.guidePhaseHeading {
+  font-family: $font-secondary;
+  font-size: 28px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 48px 0 16px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @media screen and (max-width: $tablet) {
+    font-size: 22px;
+  }
+}
+
+.youAreHere {
+  font-family: $font;
+  font-size: 14px;
+  font-weight: 600;
+  color: #EAFF6A;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.guidePhaseContent {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 16px 16px 4px;
+  margin-left: 24px;
+
+  @media screen and (max-width: $tablet) {
+    margin-left: 12px;
+  }
+}
+
+.guideArrowLink {
+  display: block;
+  color: #6BD1C3;
+  text-decoration: none;
+  font-size: inherit;
+  margin: 8px 0;
+
+  @include hover {
+    text-decoration: underline;
+  }
+}
+
+.guideDivider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 32px 0;
+}
+
+.guideNote {
+  margin: 16px 0 32px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.guideSteps {
+  padding-left: 24px;
+
+  .faqItem {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 0 16px;
+    margin-bottom: 4px;
+    border: none;
+
+    &:first-child {
+      border: none;
+    }
+  }
+
+  .faqQuestion {
+    font-size: 22px;
+
+    @media screen and (max-width: $tablet) {
+      font-size: 19px;
+    }
+  }
+
+  .faqAnswer {
+    font-size: 19px;
+
+    .guideList {
+      margin-bottom: 16px;
+
+      li {
+        font-size: 19px;
+
+        @media screen and (max-width: $tablet) {
+          font-size: 17px;
+        }
+      }
+    }
+
+    @media screen and (max-width: $tablet) {
+      font-size: 17px;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    padding-left: 12px;
+  }
+}
+
+
+// Anchor link (copy to clipboard)
+.anchorLinkWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.anchorLink {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: #6BD1C3;
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  .guidePhaseHeading:hover &,
+  .faqQuestion:hover & {
+    opacity: 0.6;
+  }
+
+  @include hover {
+    opacity: 1 !important;
+  }
+}
+
+.anchorToast {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-family: $font;
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  background: #6BD1C3;
+  padding: 3px 8px;
+  border-radius: 4px;
+  animation: anchorToastFade 1.5s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes anchorToastFade {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 // Disclaimer
