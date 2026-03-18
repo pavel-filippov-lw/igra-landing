@@ -39,7 +39,7 @@ const roadmapData = [
     description: "Open Mainnet with Attesters and TGE",
     subdescription: "Audit by Sigma Prime",
     position: "top",
-    status: "future",
+    status: "completed",
   },
   {
     date: "2026 Mar",
