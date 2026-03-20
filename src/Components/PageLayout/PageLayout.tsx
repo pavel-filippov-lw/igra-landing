@@ -6,6 +6,7 @@ import { Flex } from "~/shared/ui"
 
 import { Footer } from "../Footer"
 import { Header } from "../Header"
+import { NewsBanner } from "../NewsBanner"
 import classes from './PageLayout.module.scss'
 
 export interface PageLayoutProps extends PropsWithChildren {
@@ -17,6 +18,7 @@ export const PageLayout: FC<PageLayoutProps> = ({ children, hideBg }) => {
 
   return (
     <div className={classes.root}>
+      <NewsBanner />
       <Header />
       {!hideBg && <div className={clsx(classes.radialBg, { [classes.isSafari]: isSafari })} />}
       <Flex flexDirection='column' className={classes.layout}>

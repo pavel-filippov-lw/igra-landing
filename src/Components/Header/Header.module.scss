@@ -1,6 +1,6 @@
 .root {
 	position: fixed;
-	top: 0;
+	top: $banner_h;
 	left: 0;
 	width: 100%;
 	z-index: 100;
@@ -91,7 +91,7 @@
 		gap: 25px;
 		width: 100vw;
 		height: 100vh;
-		padding: calc($header_h + 25px) 25px 25px;
+		padding: calc($header_h + $banner_h + 25px) 25px 25px;
 		background-color: rgba(16, 16, 16, 0.9);
 		transition: transform 0.3s ease-in-out;
 
