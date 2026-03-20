@@ -104,7 +104,7 @@
   width: 220px;
   flex-shrink: 0;
   position: sticky;
-  top: calc($header_h + 10px);
+  top: calc($header_h + $banner_h + 10px);
   align-self: flex-start;
   height: fit-content;
   padding-top: 30px;

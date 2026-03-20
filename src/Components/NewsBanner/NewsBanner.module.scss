@@ -1,0 +1,32 @@
+.root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $banner_h;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #D3E560 0%, #879C4D 74%, #55AC93 100%);
+  text-decoration: none;
+  cursor: pointer;
+
+  .text {
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    .text {
+      font-size: 14px;
+    }
+  }
+}

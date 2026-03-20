@@ -53,7 +53,7 @@
 		max-width: 1440px;
 		min-height: 100vh;
 		margin: 0 auto;
-		padding: $header_h 50px 50px;
+		padding: calc($header_h + $banner_h) 50px 50px;
 
 		.content {
 			flex: 1 1 auto;
@@ -66,7 +66,7 @@
 
 	@media screen and (max-width: $laptop) {
 		.layout {
-			padding: $header_h 20px 200px;
+			padding: calc($header_h + $banner_h) 20px 200px;
 		}
 
 		.radialBg {
@@ -81,7 +81,7 @@
 
 	@media screen and (max-width: $tablet) {
 		.layout {
-			padding: $header_h 20px 100px;
+			padding: calc($header_h + $banner_h) 20px 100px;
 		}
 
 		.footer {
