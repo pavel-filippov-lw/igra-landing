@@ -485,14 +485,9 @@ export const PublicAuctionPage: FC = () => {
               <div className={classes.disclaimerContent}>
                 <p>Community-made guides and video tutorials to help you get started.</p>
 
-                <h2 className={classes.disclaimerHeading}>Bridging</h2>
-                <a href="https://x.com/fullface_69/status/2035848626644090964" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Bridge $KAS to $iKAS (mainnet)</a>
-                <a href="https://x.com/fullface_69/status/2034745070096658686" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Bridge $KAS to $iKAS (testnet)</a>
-                <a href="https://x.com/fullface_69/status/2036172953935814758" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Nacho NFTs bridging via KAT NFT bridge</a>
-
-                <h2 className={classes.disclaimerHeading}>ZAP Auction</h2>
+                <a href="https://x.com/fullface_69/status/2035848626644090964" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Bridge $KAS to $iKAS</a>
                 <a href="https://x.com/fullface_69/status/2034411092965753282" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ ZAP testnet: bidding, exiting &amp; claiming tokens</a>
-                <a href="https://youtu.be/LCE9GfP28IA" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ ZAP tutorial by Louis (Blockchain Banter, YouTube)</a>
+                <a href="https://youtu.be/LCE9GfP28IA" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ ZAP tutorial by Louis (YouTube)</a>
               </div>
             ) : activeSection === 'support' ? (
               <div className={classes.disclaimerContent}>
