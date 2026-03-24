@@ -15,6 +15,7 @@ const sections = [
   { id: 'how-to-participate', label: 'How to Participate' },
   { id: 'attester-calculator', label: 'Attester Calculator' },
   { id: 'contracts', label: 'Smart Contracts' },
+  { id: 'guides', label: 'Guides & Tutorials' },
   { id: 'support', label: 'Support' },
 ]
 
@@ -480,6 +481,14 @@ export const PublicAuctionPage: FC = () => {
                 )}
                 <AttesterCalculator />
               </>
+            ) : activeSection === 'guides' ? (
+              <div className={classes.disclaimerContent}>
+                <p>Community-made guides and video tutorials to help you get started.</p>
+
+                <a href="https://x.com/fullface_69/status/2035848626644090964" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Bridge $KAS to $iKAS</a>
+                <a href="https://x.com/fullface_69/status/2034411092965753282" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ ZAP testnet: bidding, exiting &amp; claiming tokens</a>
+                <a href="https://youtu.be/LCE9GfP28IA" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ ZAP tutorial by Louis (YouTube)</a>
+              </div>
             ) : activeSection === 'support' ? (
               <div className={classes.disclaimerContent}>
                 <p className={classes.supportDisclaimer}>These are the only official Igra channels and accounts. Be vigilant&nbsp;— do not trust any other sources claiming to represent Igra.</p>
