@@ -242,7 +242,7 @@ export const PublicAuctionPage: FC = () => {
                 <h3 className={classes.guidePhaseHeading} id="auction-opens">2. March 26&nbsp;— Auction Opens <AnchorLink id="auction-opens" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <ol className={classes.guideList}>
-                    <li>Go to the auction page: <em>link&nbsp;— will be live on March 25</em></li>
+                    <li>Go to the auction page: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></li>
                     <li>Connect your EVM wallet (set to Igra Network)</li>
                     <li>Place your bid using iKAS</li>
                     <li>You can monitor active bids and place additional bids at any time until April 2</li>
@@ -253,7 +253,7 @@ export const PublicAuctionPage: FC = () => {
                 <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 2&nbsp;— Auction Closes <AnchorLink id="auction-closes" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <p>Bidding ends. No further bids can be placed after this point.</p>
-                  <p>Check your final bid status: <em>link&nbsp;— will be live on March 25</em></p>
+                  <p>Check your final bid status: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
                 </div>
 
                 <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 9&nbsp;— Claiming Opens <AnchorLink id="claiming-opens" /></h3>
