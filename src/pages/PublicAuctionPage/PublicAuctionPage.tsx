@@ -74,7 +74,7 @@ export const PublicAuctionPage: FC = () => {
 
   const handleJoinClick = () => {
     window.plausible?.('JoinAuctionClick')
-    setShowModal(true)
+    window.open('https://auctions.zealousswap.com/auctions/igra', '_blank', 'noopener,noreferrer')
   }
 
   const activeLabel = sections.find(s => s.id === activeSection)?.label ?? 'Overview'
@@ -156,7 +156,7 @@ export const PublicAuctionPage: FC = () => {
               </div>
             ) : activeSection === 'how-to-participate' ? (
               <div className={classes.disclaimerContent}>
-                <h3 className={classes.guidePhaseHeading} id="before-march-26">1. Before March 26 <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="before-march-26" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="before-march-26">1. Before March 26 <AnchorLink id="before-march-26" /></h3>
 
                 <div className={clsx(classes.faqList, classes.guideSteps)}>
                   <details className={classes.faqItem}>
@@ -239,7 +239,7 @@ export const PublicAuctionPage: FC = () => {
                   </details>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="auction-opens">2. March 26&nbsp;— Auction Opens <AnchorLink id="auction-opens" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="auction-opens">2. March 26&nbsp;— Auction Opens <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="auction-opens" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <ol className={classes.guideList}>
                     <li>Go to the auction page: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></li>
