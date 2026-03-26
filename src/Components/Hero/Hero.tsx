@@ -51,7 +51,7 @@ export const Hero: FC = () => {
                   The $IGRA token sale is live
                 </div>
                 <div className={classes.link}>
-                  Join
+                  Join Public Auction
                   <Icon
                     name='arrowTopRight'
                     size={10}
