@@ -1,0 +1,128 @@
+.root {
+  margin: 24px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+
+  th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 10px 12px;
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    white-space: nowrap;
+  }
+
+  tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.newRow {
+  animation: flashNew 1.5s ease-out;
+}
+
+@keyframes flashNew {
+  0% {
+    background: rgba(107, 209, 195, 0.2);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+.link {
+  color: #6BD1C3;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.statusActive {
+  color: #6BD1C3;
+  background: rgba(107, 209, 195, 0.12);
+}
+
+.statusCancelled {
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.statusClaimed {
+  color: #D3E560;
+  background: rgba(211, 229, 96, 0.12);
+}
+
+.seeMore {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  color: #6BD1C3;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.loading,
+.error,
+.empty {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.error {
+  color: rgba(255, 100, 100, 0.7);
+}
+
+@media screen and (max-width: $tablet) {
+  .root {
+    padding: 16px;
+  }
+
+  .table {
+    font-size: 13px;
+  }
+}

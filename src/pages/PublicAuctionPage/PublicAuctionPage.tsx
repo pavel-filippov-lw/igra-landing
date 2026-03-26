@@ -6,6 +6,7 @@ import { to } from "~/shared/lib"
 import { Icon } from "~/shared/ui/Icon/Icon"
 
 import { AttesterCalculator } from './AttesterCalculator'
+import { RecentBids } from './RecentBids'
 import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
@@ -133,7 +134,9 @@ export const PublicAuctionPage: FC = () => {
             )}
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
-                <p>The IGRA Public Auction is an onchain, permissionless token distribution where the market sets the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>. Igra Association supplies the tokens&nbsp;— the auction contract is controlled by ZealousSwap, with no ability for either party to intervene once deployed.</p>
+                <p>The IGRA Public Auction is an onchain, permissionless token distribution where the market sets the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>.</p>
+                <RecentBids />
+                <p>Igra Association supplies the tokens&nbsp;— the auction contract is controlled by ZealousSwap, with no ability for either party to intervene once deployed.</p>
                 <p>Floor price is set at $0.006 per IGRA equivalent in iKAS at contract deployment&nbsp;— the auction cannot clear below this. Price moves up only when real demand requires it.</p>
                 <p>Docs: <a href="https://zealous-auctions.gitbook.io/zealous-auctions-docs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>zealous-auctions.gitbook.io</a></p>
 
