@@ -342,6 +342,19 @@ export const PublicAuctionPage: FC = () => {
             ) : activeSection === 'contracts' ? (
               <div className={classes.factsTable}>
                 <div className={classes.factRow}>
+                  <span className={classes.factLabel}>ContinuousClearingAuction</span>
+                  <span className={classes.factValue}>
+                    <a
+                      href="https://explorer.igralabs.com/address/0xa1ae5E85551F0093696f32BE6952c2bb23D3068B?tab=index"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={classes.factLink}
+                    >
+                      0xa1ae5E85551F0093696f32BE6952c2bb23D3068B
+                    </a>
+                  </span>
+                </div>
+                <div className={classes.factRow}>
                   <span className={classes.factLabel}>Permit2</span>
                   <span className={classes.factValue}>
                     <a
