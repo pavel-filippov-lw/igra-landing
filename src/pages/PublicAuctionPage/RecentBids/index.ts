@@ -1,0 +1,1 @@
+export { RecentBids } from './RecentBids'
