@@ -399,6 +399,26 @@ export const PublicAuctionPage: FC = () => {
               </div>
             ) : activeSection === 'faq' ? (
               <div className={classes.faqList}>
+                <details className={classes.faqItem} open>
+                  <summary className={classes.faqQuestion}>What is Igra Network?</summary>
+                  <div className={classes.faqAnswer}>
+                    <p style={{ marginBottom: 24 }}>Igra Network is a programmable layer on Kaspa BlockDAG, combining Ethereum's flexibility with Bitcoin-grade proof-of-work security.</p>
+                    <ul className={classes.guideList} style={{ margin: '0 0 11px' }}>
+                      <li><a href="https://docs.hyperlane.xyz/docs/reference/addresses/deployments/mailbox" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Hyperlane official integration</a> with warp routes for stablecoins and blue-chip tokens</li>
+                      <li><a href="https://x.com/Igra_Labs/status/2037186175673188854" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Multiple wallets supported</a>, including Ledger and Tangem</li>
+                      <li>$KAS collateralization via partner lending protocols: <a href="https://testnet.kaskad.live/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Kaskad</a>, <a href="https://defi.kaspa.com/lending/dashboard" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Kaspacom</a>, <a href="https://www.fervent.finance/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Fervent Finance</a></li>
+                    </ul>
+                    <ul className={classes.guideList} style={{ margin: '0 0 11px' }}>
+                      <li>IgReth: custom EVM client with DAG reorg support.</li>
+                      <li><a href="https://github.com/IgraLabs/research/blob/main/igra-protocol-leaderless-jan2026.pdf" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>CRDT-based threshold signing protocol</a> for UTXO-to-EVM bridging.</li>
+                    </ul>
+                    <ul className={classes.guideList} style={{ margin: 0 }}>
+                      <li><a href="https://grafana.igralabs.com/public-dashboards/56eb9e43b3854d38b1744f48675a82ac" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Twelve Igra full nodes</a> are live.</li>
+                      <li><a href="https://igralabs.com/ecosystem" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Fifteen teams deploy</a> on day one, with $5M TVL and 2,500 proven users.</li>
+                      <li>Governed by the <a href="https://igra.network/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Igra Association</a> under Swiss law, <a href="https://governance.igralabs.com/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>DAO</a> from day one.</li>
+                    </ul>
+                  </div>
+                </details>
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>What is $IGRA?</summary>
                   <div className={classes.faqAnswer}>
