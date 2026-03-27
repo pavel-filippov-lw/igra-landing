@@ -85,13 +85,13 @@ export const Hero: FC = () => {
               </Flex>
             </a>
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeYewS-_fiAe1qW8lqjUcwbt2pLU9_0lRKp3rLnZp9kI2nDuA/viewform"
+              href="https://explorer.igralabs.com"
               target="_blank"
               rel="noopener noreferrer"
               className={classes.buttonLink}
             >
               <Flex alignItems='center' gap={8} className={classes.button}>
-                Become an Attester
+                Open Igra Explorer
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
