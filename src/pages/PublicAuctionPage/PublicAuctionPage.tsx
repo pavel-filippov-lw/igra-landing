@@ -204,6 +204,8 @@ export const PublicAuctionPage: FC = () => {
                       <p>Purchase KAS from any of the following:</p>
                       <p><strong>Exchanges</strong>&nbsp;— full list with live volume:</p>
                       <a href="https://www.coingecko.com/en/coins/kaspa#markets" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ CoinGecko KAS Markets</a>
+                      <p><strong>Recommended:</strong></p>
+                      <a href="https://www.kraken.com" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Kraken</a>
                       <p><strong>Fiat on-ramp services:</strong></p>
                       <ul className={classes.guideList}>
                         <li><a href="https://guardarian.com/buy-kas" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Guardarian</a></li>
