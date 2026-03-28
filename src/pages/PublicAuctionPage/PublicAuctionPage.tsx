@@ -202,15 +202,17 @@ export const PublicAuctionPage: FC = () => {
                     <summary className={classes.faqQuestion} id="buy-kas"><span>d. Buy KAS <AnchorLink id="buy-kas" /></span></summary>
                     <div className={classes.faqAnswer}>
                       <p>Purchase KAS from any of the following:</p>
-                      <p><strong>Exchanges</strong>&nbsp;— full list with live volume:</p>
+                      <p style={{ marginBottom: 4 }}><strong>Exchanges</strong>&nbsp;— full list with live volume:</p>
                       <a href="https://www.coingecko.com/en/coins/kaspa#markets" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ CoinGecko KAS Markets</a>
-                      <p><strong>Fiat on-ramp services:</strong></p>
-                      <ul className={classes.guideList}>
+                      <p style={{ marginBottom: 4 }}><strong>Recommended:</strong></p>
+                      <a href="https://www.kraken.com" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>→ Kraken</a>
+                      <p style={{ marginBottom: 4 }}><strong>Fiat on-ramp services:</strong></p>
+                      <ul className={classes.guideList} style={{ marginTop: 0 }}>
                         <li><a href="https://guardarian.com/buy-kas" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Guardarian</a></li>
                         <li><a href="https://topper.money" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Topper</a></li>
                       </ul>
-                      <p><strong>Wallet with built-in KAS purchase:</strong></p>
-                      <ul className={classes.guideList}>
+                      <p style={{ marginBottom: 4 }}><strong>Wallet with built-in KAS purchase:</strong></p>
+                      <ul className={classes.guideList} style={{ marginTop: 0 }}>
                         <li><a href="https://zelcore.io" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Zelcore</a>&nbsp;— buy KAS directly in the wallet</li>
                       </ul>
                     </div>
