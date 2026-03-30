@@ -1,0 +1,146 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.statValue {
+  font-family: $font-secondary;
+  font-size: 28px;
+  font-weight: 500;
+  color: #6BD1C3;
+
+  @media screen and (max-width: $mobile) {
+    font-size: 22px;
+  }
+}
+
+.statLabel {
+  font-family: $font;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mapContainer {
+  position: relative;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.dot {
+  animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+.glow {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+.pulseRing {
+  animation: ringPulse 2.5s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.tooltip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 400;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 10px 14px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.tooltipCity {
+  font-family: $font;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.tooltipNode {
+  font-family: $font;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 0;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.statusHealthy {
+  background: #6BD1C3;
+}
+
+.statusBehind {
+  background: #EAFF6A;
+}
+
+.dashboardLink {
+  font-family: $font;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.2s;
+
+  @include hover {
+    color: #6BD1C3;
+  }
+}

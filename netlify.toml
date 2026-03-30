@@ -7,6 +7,12 @@
   YARN_VERSION = "1.22.18"
 
 [[redirects]]
+  from = "/api/status"
+  to = "http://status.igralabs.com:8090/status"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

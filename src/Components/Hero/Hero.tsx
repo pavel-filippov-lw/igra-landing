@@ -95,6 +95,12 @@ export const Hero: FC = () => {
                 <Icon name='arrowTopRight' size={10} />
               </Flex>
             </a>
+            <Link to={to.nodes()} className={classes.buttonLink}>
+              <Flex alignItems='center' gap={8} className={classes.button}>
+                Igra Nodes Live
+                <Icon name='arrowTopRight' size={10} />
+              </Flex>
+            </Link>
           </div>
         </div>
       </div>
