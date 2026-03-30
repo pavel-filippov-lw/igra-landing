@@ -11,4 +11,5 @@ export const Routes = {
   terms: 'terms',
   news: 'news',
   publicAuction: 'public-auction',
+  nodes: 'nodes',
 }
