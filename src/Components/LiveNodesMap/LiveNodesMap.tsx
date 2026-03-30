@@ -18,6 +18,7 @@ interface NodesResponse {
   clusters: Cluster[]
   totalNodes: number
   countries: number
+  attesters: number
 }
 
 // Static fallback when API is unreachable
@@ -39,6 +40,7 @@ const FALLBACK: NodesResponse = {
   ],
   totalNodes: 22,
   countries: 11,
+  attesters: 6,
 }
 
 export const LiveNodesMap: FC = () => {
@@ -70,7 +72,7 @@ export const LiveNodesMap: FC = () => {
     return () => { abortRef.current?.abort() }
   }, [fetchNodes])
 
-  const { clusters, totalNodes, countries } = data ?? FALLBACK
+  const { clusters, totalNodes, countries, attesters } = data ?? FALLBACK
 
   return (
     <div className={classes.root}>
@@ -84,7 +86,7 @@ export const LiveNodesMap: FC = () => {
           <span className={classes.statLabel}>countries</span>
         </div>
         <div className={classes.stat}>
-          <span className={classes.statValue}>{loading ? '...' : 6}</span>
+          <span className={classes.statValue}>{loading ? '...' : attesters}</span>
           <span className={classes.statLabel}>attesters</span>
         </div>
       </div>
