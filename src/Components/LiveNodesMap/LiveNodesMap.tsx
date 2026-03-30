@@ -1,46 +1,90 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState, useRef, useCallback } from 'react'
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps'
 
 import classes from './LiveNodesMap.module.scss'
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
+const NODES_API = 'https://igra-nodes-proxy-bfec81860b1a.herokuapp.com/nodes'
 
-// Static node cluster data — no IPs, just locations and counts
-const CLUSTERS: Array<{ lat: number; lon: number; city: string; country: string; count: number }> = [
-  { lat: 60.17, lon: 24.93, city: 'Helsinki', country: 'Finland', count: 5 },
-  { lat: 48.87, lon: 2.42,  city: 'Paris', country: 'France', count: 3 },
-  { lat: 38.75, lon: -77.49, city: 'Virginia', country: 'United States', count: 3 },
-  { lat: 49.44, lon: 11.02, city: 'Nuremberg', country: 'Germany', count: 2 },
-  { lat: 50.48, lon: 12.36, city: 'Falkenstein', country: 'Germany', count: 1 },
-  { lat: 49.03, lon: 8.36,  city: 'Karlsruhe', country: 'Germany', count: 1 },
-  { lat: 52.21, lon: 4.42,  city: 'Katwijk', country: 'Netherlands', count: 1 },
-  { lat: 47.27, lon: 8.85,  city: 'Zurich', country: 'Switzerland', count: 1 },
-  { lat: 43.26, lon: 27.82, city: 'Varna', country: 'Bulgaria', count: 1 },
-  { lat: 35.17, lon: 33.35, city: 'Nicosia', country: 'Cyprus', count: 1 },
-  { lat: 35.69, lon: 139.69, city: 'Tokyo', country: 'Japan', count: 1 },
-  { lat: 1.28,  lon: 103.85, city: 'Singapore', country: 'Singapore', count: 1 },
-  { lat: -6.38, lon: 106.82, city: 'Jakarta', country: 'Indonesia', count: 1 },
-]
+interface Cluster {
+  lat: number
+  lon: number
+  city: string
+  country: string
+  count: number
+}
 
-const TOTAL_NODES = CLUSTERS.reduce((sum, c) => sum + c.count, 0)
-const TOTAL_COUNTRIES = new Set(CLUSTERS.map(c => c.country)).size
+interface NodesResponse {
+  clusters: Cluster[]
+  totalNodes: number
+  countries: number
+}
+
+// Static fallback when API is unreachable
+const FALLBACK: NodesResponse = {
+  clusters: [
+    { lat: 60.17, lon: 24.93, city: 'Helsinki', country: 'Finland', count: 5 },
+    { lat: 48.87, lon: 2.42,  city: 'Paris', country: 'France', count: 3 },
+    { lat: 38.75, lon: -77.49, city: 'Virginia', country: 'United States', count: 3 },
+    { lat: 49.44, lon: 11.02, city: 'Nuremberg', country: 'Germany', count: 2 },
+    { lat: 50.48, lon: 12.36, city: 'Falkenstein', country: 'Germany', count: 1 },
+    { lat: 49.03, lon: 8.36,  city: 'Karlsruhe', country: 'Germany', count: 1 },
+    { lat: 52.21, lon: 4.42,  city: 'Katwijk', country: 'Netherlands', count: 1 },
+    { lat: 47.27, lon: 8.85,  city: 'Zurich', country: 'Switzerland', count: 1 },
+    { lat: 43.26, lon: 27.82, city: 'Varna', country: 'Bulgaria', count: 1 },
+    { lat: 35.17, lon: 33.35, city: 'Nicosia', country: 'Cyprus', count: 1 },
+    { lat: 35.69, lon: 139.69, city: 'Tokyo', country: 'Japan', count: 1 },
+    { lat: 1.28,  lon: 103.85, city: 'Singapore', country: 'Singapore', count: 1 },
+    { lat: -6.38, lon: 106.82, city: 'Jakarta', country: 'Indonesia', count: 1 },
+  ],
+  totalNodes: 22,
+  countries: 11,
+}
 
 export const LiveNodesMap: FC = () => {
-  const [hoveredCluster, setHoveredCluster] = useState<typeof CLUSTERS[number] | null>(null)
+  const [data, setData] = useState<NodesResponse | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [hoveredCluster, setHoveredCluster] = useState<Cluster | null>(null)
+  const abortRef = useRef<AbortController | null>(null)
+
+  const fetchNodes = useCallback(async () => {
+    abortRef.current?.abort()
+    const ctrl = new AbortController()
+    abortRef.current = ctrl
+
+    try {
+      const res = await fetch(NODES_API, { signal: ctrl.signal })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const json: NodesResponse = await res.json()
+      setData(json)
+    } catch (e) {
+      if (e instanceof DOMException && e.name === 'AbortError') return
+      setData(FALLBACK)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchNodes()
+    return () => { abortRef.current?.abort() }
+  }, [fetchNodes])
+
+  const { clusters, totalNodes, countries } = data ?? FALLBACK
 
   return (
     <div className={classes.root}>
       <div className={classes.stats}>
         <div className={classes.stat}>
-          <span className={classes.statValue}>{TOTAL_NODES}</span>
+          <span className={classes.statValue}>{loading ? '...' : totalNodes}</span>
           <span className={classes.statLabel}>nodes</span>
         </div>
         <div className={classes.stat}>
-          <span className={classes.statValue}>{TOTAL_COUNTRIES}</span>
+          <span className={classes.statValue}>{loading ? '...' : countries}</span>
           <span className={classes.statLabel}>countries</span>
         </div>
         <div className={classes.stat}>
-          <span className={classes.statValue}>6</span>
+          <span className={classes.statValue}>{loading ? '...' : 6}</span>
           <span className={classes.statLabel}>attesters</span>
         </div>
       </div>
@@ -73,7 +117,7 @@ export const LiveNodesMap: FC = () => {
               }
             </Geographies>
 
-            {CLUSTERS.map((cluster, i) => {
+            {clusters.map((cluster, i) => {
               const r = cluster.count > 1 ? 5 + Math.min(cluster.count, 6) : 4
               const color = '#6BD1C3'
 
