@@ -215,8 +215,7 @@ export const LiveNodesMap: FC = () => {
             {clusters.map((cluster, i) => {
               const count = cluster.nodes.length
               const r = count > 1 ? 5 + Math.min(count, 6) : 4
-              const allHealthy = cluster.nodes.every(n => n.status === 'healthy')
-              const color = allHealthy ? '#6BD1C3' : '#EAFF6A'
+              const color = '#6BD1C3'
 
               return (
                 <Marker
