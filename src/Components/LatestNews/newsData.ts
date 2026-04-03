@@ -19,7 +19,7 @@ export const newsItems: NewsItem[] = [
     tag: "Article",
     title: "$IGRA public sale is concluded",
     description: "Thanks everyone who showed up to support the unstoppable digital economy on Kaspa BlockDAG!",
-    link: "https://x.com/Igra_Labs",
+    link: "https://x.com/Igra_Labs/status/2040087520260534406",
   },
   {
     image: news6Image,
