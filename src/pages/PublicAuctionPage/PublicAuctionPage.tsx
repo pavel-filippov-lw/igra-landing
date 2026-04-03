@@ -140,26 +140,22 @@ export const PublicAuctionPage: FC = () => {
                   <h2 className={classes.auctionResultsTitle}>Auction Results</h2>
                   <div className={classes.auctionResultsRow}>
                     <div className={classes.auctionResultItem}>
-                      <span className={classes.auctionResultLabel}>Final Clearing Price</span>
-                      <span className={classes.auctionResultValue}>$0.05</span>
-                    </div>
-                    <div className={classes.auctionResultItem}>
-                      <span className={classes.auctionResultLabel}>Fully Diluted Valuation</span>
-                      <span className={classes.auctionResultValue}>$550,000,000</span>
+                      <span className={classes.auctionResultLabel}>Concluded Price</span>
+                      <span className={classes.auctionResultValue}>0.1652 iKAS</span>
                     </div>
                   </div>
                   <div className={classes.auctionResultsRow}>
                     <div className={classes.auctionResultItem}>
                       <span className={classes.auctionResultLabel}>Total Bids</span>
-                      <span className={classes.auctionResultValue}>14,600</span>
+                      <span className={classes.auctionResultValue}>1,915</span>
                     </div>
                     <div className={classes.auctionResultItem}>
-                      <span className={classes.auctionResultLabel}>Number of Bidders</span>
-                      <span className={classes.auctionResultValue}>7,653</span>
+                      <span className={classes.auctionResultLabel}>Unique Bidders</span>
+                      <span className={classes.auctionResultValue}>528</span>
                     </div>
                     <div className={classes.auctionResultItem}>
                       <span className={classes.auctionResultLabel}>Total Sold</span>
-                      <span className={classes.auctionResultValue}>$44,000,000</span>
+                      <span className={classes.auctionResultValue}>49.36M IGRA</span>
                     </div>
                   </div>
                 </div>
