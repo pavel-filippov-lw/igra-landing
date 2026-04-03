@@ -117,7 +117,7 @@ export const PublicAuctionPage: FC = () => {
             {activeSection === 'overview' ? (
               <div className={classes.titleRowOverview}>
                 <button className={classes.joinButton} onClick={handleJoinClick}>
-                  Join Public Auction <span className={classes.chevron}>›</span>
+                  Public Auction <span className={classes.chevron}>›</span>
                 </button>
                 <h1 className={classes.pageTitle}>{activeLabel}</h1>
               </div>
@@ -128,7 +128,7 @@ export const PublicAuctionPage: FC = () => {
                   <h1 className={classes.pageTitle}>{activeLabel}</h1>
                 </div>
                 <button className={classes.joinButton} onClick={handleJoinClick}>
-                  Join Public Auction <span className={classes.chevron}>›</span>
+                  Public Auction <span className={classes.chevron}>›</span>
                 </button>
               </div>
             )}
