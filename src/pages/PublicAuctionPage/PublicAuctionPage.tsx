@@ -244,24 +244,24 @@ export const PublicAuctionPage: FC = () => {
                   </details>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="auction-opens">2. March 26&nbsp;— Auction Opens <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="auction-opens" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="auction-opens">2. March 26&nbsp;— Auction Opened <AnchorLink id="auction-opens" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <ol className={classes.guideList}>
                     <li>Go to the auction page: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></li>
                     <li>Connect your EVM wallet (set to Igra Network)</li>
                     <li>Place your bid using iKAS</li>
-                    <li>You can monitor active bids and place additional bids at any time until April 2</li>
+                    <li>You could monitor active bids and place additional bids at any time until April 2</li>
                   </ol>
                   <a href="https://x.com/coinco041/status/2034295869802172519" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>Step-by-step bidding guide</a>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 2&nbsp;— Auction Closes <AnchorLink id="auction-closes" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 2&nbsp;— Auction Closed <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="auction-closes" /></h3>
                 <div className={classes.guidePhaseContent}>
-                  <p>Bidding ends. No further bids can be placed after this point.</p>
-                  <p>Check your final bid status: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
+                  <p>Bidding has ended.</p>
+                  <p>Check your final bid status and exit from your bid: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 9&nbsp;— Claiming Opens <AnchorLink id="claiming-opens" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 9&nbsp;— Claiming <AnchorLink id="claiming-opens" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <p>IGRA tokens become claimable.</p>
                   <p>Go to the claiming page and connect the same EVM wallet you used to bid.</p>
@@ -442,7 +442,7 @@ export const PublicAuctionPage: FC = () => {
                   </div>
                 </details>
                 <details className={classes.faqItem}>
-                  <summary className={classes.faqQuestion}>Which currency will be used for bidding?</summary>
+                  <summary className={classes.faqQuestion}>Which currency was used for bidding?</summary>
                   <div className={classes.faqAnswer}>
                     <p>iKAS, Igra Network's native gas token, pegged 1:1 to KAS.</p>
                   </div>
@@ -452,13 +452,13 @@ export const PublicAuctionPage: FC = () => {
                   <div className={classes.faqAnswer}>
                     <p>ZAP is built on Uniswap's CCA contracts, audited by OpenZeppelin and Spearbit (see <a href="https://github.com/Uniswap/continuous-clearing-auction?tab=readme-ov-file#audits" target="_blank" rel="noopener noreferrer" className={classes.factLink}>audits</a>). Everything that touches funds — bidding, price clearing, exits, refunds, claims — is byte-for-byte identical to that audited code. ZealousSwap added only read-only helper contracts for data querying which hold no funds and execute no state changes.</p>
                     <p>Once the ZAP auction contract is deployed, it's immutable with no owner, and no changes or manipulation is possible.</p>
-                    <p>Before the auction opens, our team will verify the deployed contract on-chain against the public GitHub source. You can and should do the same.</p>
+                    <p>Our team verified the deployed contract on-chain against the public GitHub source. You can do the same.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>What's special about this event?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>This is the first permissionless distribution of $IGRA. ZAP is open to anyone with an EVM wallet.</p>
+                    <p>This was the first permissionless distribution of $IGRA. ZAP was open to anyone with an EVM wallet.</p>
                     <p>All previously distributed tokens remain locked as per tokenomics. ZAP participants pay a higher price than any prior round in exchange for immediate liquidity — that premium is the price of no lockup. Fully transferable on claim.</p>
                   </div>
                 </details>
@@ -478,13 +478,13 @@ export const PublicAuctionPage: FC = () => {
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>What is the auction floor price?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>It will be calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered — the exact KAS equivalent depends on the KAS/USD rate at that moment. Once the auction opens, the floor is visible on the ZAP interface.</p>
+                    <p>It was calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered. The floor price was visible on the ZAP interface throughout the auction.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
-                  <summary className={classes.faqQuestion}>Will there be more $IGRA auctions on ZAP after March 26?</summary>
+                  <summary className={classes.faqQuestion}>Will there be more $IGRA auctions on ZAP?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>No. This is a one-off event. There is one ZAP auction scheduled for $IGRA.</p>
+                    <p>No. This was a one-off event. There was one ZAP auction for $IGRA.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
@@ -496,7 +496,7 @@ export const PublicAuctionPage: FC = () => {
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>Why is attester APY showing 0%?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>Intentional. We are running end-to-end attester testing before mainnet. Enabling rewards now would give an unfair advantage to early runners over those who start after launch. Rewards will be activated via a DAO proposal before the auction. Staking figures on the dashboard are accurate.</p>
+                    <p>Intentional. We ran end-to-end attester testing before mainnet. Enabling rewards earlier would have given an unfair advantage to early runners. Rewards were activated via a DAO proposal before the auction. Staking figures on the dashboard are accurate.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
