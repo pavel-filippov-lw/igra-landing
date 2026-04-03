@@ -134,11 +134,10 @@ export const PublicAuctionPage: FC = () => {
             )}
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
-                <p>The IGRA Public Auction was an onchain, permissionless token distribution where the market set the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>.</p>
+                <p>The IGRA Public Auction was an onchain, permissionless token distribution which ran March 28&nbsp;— April 3, 2026, where the market set the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>.</p>
 
                 <div className={classes.auctionResults}>
                   <h2 className={classes.auctionResultsTitle}>Auction Results</h2>
-                  <p className={classes.auctionResultDates}>March 28&nbsp;— April 3, 2026</p>
                   <div className={classes.auctionResultsRow}>
                     <div className={classes.auctionResultItem}>
                       <span className={classes.auctionResultLabel}>Concluded Price</span>
