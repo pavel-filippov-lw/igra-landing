@@ -134,10 +134,10 @@ export const PublicAuctionPage: FC = () => {
             )}
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
-                <p>The IGRA Public Auction is an onchain, permissionless token distribution where the market sets the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>.</p>
+                <p>The IGRA Public Auction was an onchain, permissionless token distribution where the market set the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>.</p>
                 <RecentBids />
-                <p>Igra Association supplies the tokens&nbsp;— the auction contract is controlled by ZealousSwap, with no ability for either party to intervene once deployed.</p>
-                <p>Floor price is set at $0.006 per IGRA equivalent in iKAS at contract deployment&nbsp;— the auction cannot clear below this. Price moves up only when real demand requires it.</p>
+                <p>Igra Association supplied the tokens&nbsp;— the auction contract was controlled by ZealousSwap, with no ability for either party to intervene once deployed.</p>
+                <p>Floor price was set at $0.006 per IGRA equivalent in iKAS at contract deployment&nbsp;— the auction could not clear below this. Price moved up only when real demand required it.</p>
                 <p>Docs: <a href="https://zealous-auctions.gitbook.io/zealous-auctions-docs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>zealous-auctions.gitbook.io</a></p>
 
                 <h2 className={classes.disclaimerHeading}>Important dates</h2>
