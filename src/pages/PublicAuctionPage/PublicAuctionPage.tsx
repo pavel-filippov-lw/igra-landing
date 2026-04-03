@@ -138,6 +138,7 @@ export const PublicAuctionPage: FC = () => {
 
                 <div className={classes.auctionResults}>
                   <h2 className={classes.auctionResultsTitle}>Auction Results</h2>
+                  <p className={classes.auctionResultDates}>March 28&nbsp;— April 3, 2026</p>
                   <div className={classes.auctionResultsRow}>
                     <div className={classes.auctionResultItem}>
                       <span className={classes.auctionResultLabel}>Concluded Price</span>
