@@ -135,6 +135,35 @@ export const PublicAuctionPage: FC = () => {
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
                 <p>The IGRA Public Auction was an onchain, permissionless token distribution where the market set the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>.</p>
+
+                <div className={classes.auctionResults}>
+                  <h2 className={classes.auctionResultsTitle}>Auction Results</h2>
+                  <div className={classes.auctionResultsRow}>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Final Clearing Price</span>
+                      <span className={classes.auctionResultValue}>$0.05</span>
+                    </div>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Fully Diluted Valuation</span>
+                      <span className={classes.auctionResultValue}>$550,000,000</span>
+                    </div>
+                  </div>
+                  <div className={classes.auctionResultsRow}>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Total Bids</span>
+                      <span className={classes.auctionResultValue}>14,600</span>
+                    </div>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Number of Bidders</span>
+                      <span className={classes.auctionResultValue}>7,653</span>
+                    </div>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Total Sold</span>
+                      <span className={classes.auctionResultValue}>$44,000,000</span>
+                    </div>
+                  </div>
+                </div>
+
                 <RecentBids />
                 <p>Igra Association supplied the tokens&nbsp;— the auction contract was controlled by ZealousSwap, with no ability for either party to intervene once deployed.</p>
                 <p>Floor price was set at $0.006 per IGRA equivalent in iKAS at contract deployment&nbsp;— the auction could not clear below this. Price moved up only when real demand required it.</p>
