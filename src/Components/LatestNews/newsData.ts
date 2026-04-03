@@ -3,6 +3,7 @@ import news3Image from './assets/news3.png'
 import news4Image from './assets/news4.png'
 import news5Image from './assets/news5.jpg'
 import news6Image from './assets/news6.jpg'
+import news7Image from './assets/news7.png'
 
 export interface NewsItem {
   image: string
@@ -13,6 +14,13 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news7Image,
+    tag: "Article",
+    title: "$IGRA public sale is concluded",
+    description: "Thanks everyone who showed up to support the unstoppable digital economy on Kaspa BlockDAG!",
+    link: "https://x.com/Igra_Labs/status/2040087520260534406",
+  },
   {
     image: news6Image,
     tag: "Article",

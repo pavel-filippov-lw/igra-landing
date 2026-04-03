@@ -6,7 +6,6 @@ import { to } from "~/shared/lib"
 import { Icon } from "~/shared/ui/Icon/Icon"
 
 import { AttesterCalculator } from './AttesterCalculator'
-import { RecentBids } from './RecentBids'
 import classes from './PublicAuctionPage.module.scss'
 
 const sections = [
@@ -117,7 +116,7 @@ export const PublicAuctionPage: FC = () => {
             {activeSection === 'overview' ? (
               <div className={classes.titleRowOverview}>
                 <button className={classes.joinButton} onClick={handleJoinClick}>
-                  Join Public Auction <span className={classes.chevron}>›</span>
+                  IGRA Public Auction <span className={classes.chevron}>›</span>
                 </button>
                 <h1 className={classes.pageTitle}>{activeLabel}</h1>
               </div>
@@ -128,16 +127,63 @@ export const PublicAuctionPage: FC = () => {
                   <h1 className={classes.pageTitle}>{activeLabel}</h1>
                 </div>
                 <button className={classes.joinButton} onClick={handleJoinClick}>
-                  Join Public Auction <span className={classes.chevron}>›</span>
+                  IGRA Public Auction <span className={classes.chevron}>›</span>
                 </button>
               </div>
             )}
             {activeSection === 'overview' ? (
               <div className={classes.disclaimerContent}>
-                <p>The IGRA Public Auction is an onchain, permissionless token distribution where the market sets the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>.</p>
-                <RecentBids />
-                <p>Igra Association supplies the tokens&nbsp;— the auction contract is controlled by ZealousSwap, with no ability for either party to intervene once deployed.</p>
-                <p>Floor price is set at $0.006 per IGRA equivalent in iKAS at contract deployment&nbsp;— the auction cannot clear below this. Price moves up only when real demand requires it.</p>
+                <p>The IGRA Public Auction was an onchain, permissionless token distribution which ran March 28&nbsp;— April 3, 2026, where the market set the price. Operated by ZealousSwap on Igra Mainnet, built on Uniswap's battle-tested and audited <a href="https://docs.uniswap.org/contracts/liquidity-launchpad/CCA" target="_blank" rel="noopener noreferrer" className={classes.factLink}>CCA contracts</a>.</p>
+
+                <div className={classes.auctionResults}>
+                  <h2 className={classes.auctionResultsTitle}>Auction Results</h2>
+                  <div className={classes.auctionResultsRow}>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Concluded Price</span>
+                      <span className={classes.auctionResultValue}>0.1652 iKAS</span>
+                    </div>
+                  </div>
+                  <div className={classes.auctionResultsRow}>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Total Bids</span>
+                      <span className={classes.auctionResultValue}>1,915</span>
+                    </div>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Unique Bidders</span>
+                      <span className={classes.auctionResultValue}>528</span>
+                    </div>
+                    <div className={classes.auctionResultItem}>
+                      <span className={classes.auctionResultLabel}>Total Sold</span>
+                      <span className={classes.auctionResultValue}>49.36M IGRA</span>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 className={classes.disclaimerHeading}>Top Bids</h2>
+                <table className={classes.topBidsTable}>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Amount</th>
+                      <th>Bidder</th>
+                      <th>Tx</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>1</td><td>500,000 iKAS</td><td><a href="https://explorer.igralabs.com/address/0xec30133671c607798cf736a036eacd39e5a6e92c" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0xec30…e92c</a></td><td><a href="https://explorer.igralabs.com/tx/0xb2549ca68f1479560e97388393f2f29c157d9e7cdf31a6b9f9f74f970ce5ae4b" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0xb254…ae4b</a></td></tr>
+                    <tr><td>2</td><td>218,000 iKAS</td><td><a href="https://explorer.igralabs.com/address/0xd8e2cb631c8f36fcbdd555e79b2518844b1762a5" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0xd8e2…62a5</a></td><td><a href="https://explorer.igralabs.com/tx/0x47cfc2c786766c30d7b613fe1624ffc7f9e7c12610e97d9b24057f6b7aa882ed" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x47cf…82ed</a></td></tr>
+                    <tr><td>3</td><td>165,262 iKAS</td><td><a href="https://explorer.igralabs.com/address/0xdadefe2735d31ceeece46073f6e805b4461a0113" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0xdade…0113</a></td><td><a href="https://explorer.igralabs.com/tx/0x5f834f028b0bed398a627842a823d67456c37dea12a22e7f59140c82d915299a" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x5f83…299a</a></td></tr>
+                    <tr><td>4</td><td>122,000 iKAS</td><td><a href="https://explorer.igralabs.com/address/0x5f4e59aec35336cf3ed5c6d96c2ae3981aaddf11" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x5f4e…df11</a></td><td><a href="https://explorer.igralabs.com/tx/0x973e223cd9373aac49bf04b2b265dc21c55a6ceda9a5e944c8e2c07a0c409745" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x973e…9745</a></td></tr>
+                    <tr><td>5</td><td>121,950 iKAS</td><td><a href="https://explorer.igralabs.com/address/0xdde02844411df337ea848990880886282f7341d1" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0xdde0…41d1</a></td><td><a href="https://explorer.igralabs.com/tx/0xde0ec4a9d2c5b689197c32f85fad8de105e9c30eaf8d2bd4765b60d293f1cc7d" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0xde0e…cc7d</a></td></tr>
+                    <tr><td>6</td><td>116,793 iKAS</td><td><a href="https://explorer.igralabs.com/address/0x4867b171392ae6b4b3f74aa75d4b7bc23e7626ab" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x4867…26ab</a></td><td><a href="https://explorer.igralabs.com/tx/0x3f9713b6109ec461eb42a328626f23491a1b3679b2dfa36314a33ffadaf15417" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x3f97…5417</a></td></tr>
+                    <tr><td>7</td><td>102,500 iKAS</td><td><a href="https://explorer.igralabs.com/address/0x5f4e59aec35336cf3ed5c6d96c2ae3981aaddf11" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x5f4e…df11</a></td><td><a href="https://explorer.igralabs.com/tx/0xd65509920bd02d3c07299c51d99597c48a6fa9ab587660125ea3a012c3e8f661" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0xd655…f661</a></td></tr>
+                    <tr><td>8</td><td>99,999 iKAS</td><td><a href="https://explorer.igralabs.com/address/0x4bd15b52fd2296860934626754d6eb0ad3de767d" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x4bd1…767d</a></td><td><a href="https://explorer.igralabs.com/tx/0x86fc7d454e16b5d29a0a016f666cef2c6b45e46e6829d1ef68b8316f2a124f36" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x86fc…4f36</a></td></tr>
+                    <tr><td>9</td><td>99,298 iKAS</td><td><a href="https://explorer.igralabs.com/address/0x82ff65765a96cd7956a9be00b71568cec4e00969" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x82ff…0969</a></td><td><a href="https://explorer.igralabs.com/tx/0x2edab020866d814c822467a55ac3b076b53a3a367f488aa0908ec45da65bc2c2" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x2eda…bc2c</a></td></tr>
+                    <tr><td>10</td><td>91,801 iKAS</td><td><a href="https://explorer.igralabs.com/address/0x1f29bcb9b58e4b969fa49c9f95daefdd5c81da7d" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0x1f29…da7d</a></td><td><a href="https://explorer.igralabs.com/tx/0xd7dada369a6bbd013e245bc461da609e9550a7a819a5071553b972a39177bc6c" target="_blank" rel="noopener noreferrer" className={classes.factLink}>0xd7da…bc6c</a></td></tr>
+                  </tbody>
+                </table>
+                <p>Igra Association supplied the tokens&nbsp;— the auction contract was controlled by ZealousSwap, with no ability for either party to intervene once deployed.</p>
+                <p>Floor price was set at $0.006 per IGRA equivalent in iKAS at contract deployment&nbsp;— the auction could not clear below this. Price moved up only when real demand required it.</p>
                 <p>Docs: <a href="https://zealous-auctions.gitbook.io/zealous-auctions-docs" target="_blank" rel="noopener noreferrer" className={classes.factLink}>zealous-auctions.gitbook.io</a></p>
 
                 <h2 className={classes.disclaimerHeading}>Important dates</h2>
@@ -145,8 +191,8 @@ export const PublicAuctionPage: FC = () => {
                   <div className={classes.dateRow}><span className={classes.dateLabel}>Genesis block minted, TGE</span><span className={classes.dateValue}>February 25, 2026</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP core contract deployment</span><span className={classes.dateValue}>March 25, 2026</span></div>
                   <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction start</span><span className={classes.dateValue}>March 26, 2026, 4PM UTC</span></div>
-                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction finalized</span><span className={classes.dateValue}>April 2, 2026, 4PM UTC</span></div>
-                  <div className={classes.dateRow}><span className={classes.dateLabel}>IGRA tokens available for claiming</span><span className={classes.dateValue}>April 9, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>ZAP auction finalized</span><span className={classes.dateValue}>April 3, 2026</span></div>
+                  <div className={classes.dateRow}><span className={classes.dateLabel}>IGRA tokens available for claiming</span><span className={classes.dateValue}>April 10, 2026</span></div>
                 </div>
 
                 <h2 className={classes.disclaimerHeading}>Useful links</h2>
@@ -244,24 +290,24 @@ export const PublicAuctionPage: FC = () => {
                   </details>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="auction-opens">2. March 26&nbsp;— Auction Opens <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="auction-opens" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="auction-opens">2. March 26&nbsp;— Auction Opened <AnchorLink id="auction-opens" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <ol className={classes.guideList}>
                     <li>Go to the auction page: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></li>
                     <li>Connect your EVM wallet (set to Igra Network)</li>
                     <li>Place your bid using iKAS</li>
-                    <li>You can monitor active bids and place additional bids at any time until April 2</li>
+                    <li>You could monitor active bids and place additional bids at any time until April 2</li>
                   </ol>
                   <a href="https://x.com/coinco041/status/2034295869802172519" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>Step-by-step bidding guide</a>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 2&nbsp;— Auction Closes <AnchorLink id="auction-closes" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 2&nbsp;— Auction Closed <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="auction-closes" /></h3>
                 <div className={classes.guidePhaseContent}>
-                  <p>Bidding ends. No further bids can be placed after this point.</p>
-                  <p>Check your final bid status: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
+                  <p>Bidding has ended.</p>
+                  <p>Check your final bid status and exit from your bid: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 9&nbsp;— Claiming Opens <AnchorLink id="claiming-opens" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 9&nbsp;— Claiming <AnchorLink id="claiming-opens" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <p>IGRA tokens become claimable.</p>
                   <p>Go to the claiming page and connect the same EVM wallet you used to bid.</p>
@@ -338,8 +384,8 @@ export const PublicAuctionPage: FC = () => {
                       <span>February 25, 2026 — Genesis block minted, TGE</span>
                       <span>March 25, 2026 — ZAP core contract deployment</span>
                       <span>March 26, 2026, 4PM UTC — ZAP auction start</span>
-                      <span>April 2, 2026, 4PM UTC — ZAP auction finalized</span>
-                      <span>April 9, 2026 — IGRA tokens available for claiming</span>
+                      <span>April 3, 2026 — ZAP auction finalized</span>
+                      <span>April 10, 2026 — IGRA tokens available for claiming</span>
                     </span>
                   </span>
                 </div>
@@ -442,7 +488,7 @@ export const PublicAuctionPage: FC = () => {
                   </div>
                 </details>
                 <details className={classes.faqItem}>
-                  <summary className={classes.faqQuestion}>Which currency will be used for bidding?</summary>
+                  <summary className={classes.faqQuestion}>Which currency was used for bidding?</summary>
                   <div className={classes.faqAnswer}>
                     <p>iKAS, Igra Network's native gas token, pegged 1:1 to KAS.</p>
                   </div>
@@ -452,13 +498,13 @@ export const PublicAuctionPage: FC = () => {
                   <div className={classes.faqAnswer}>
                     <p>ZAP is built on Uniswap's CCA contracts, audited by OpenZeppelin and Spearbit (see <a href="https://github.com/Uniswap/continuous-clearing-auction?tab=readme-ov-file#audits" target="_blank" rel="noopener noreferrer" className={classes.factLink}>audits</a>). Everything that touches funds — bidding, price clearing, exits, refunds, claims — is byte-for-byte identical to that audited code. ZealousSwap added only read-only helper contracts for data querying which hold no funds and execute no state changes.</p>
                     <p>Once the ZAP auction contract is deployed, it's immutable with no owner, and no changes or manipulation is possible.</p>
-                    <p>Before the auction opens, our team will verify the deployed contract on-chain against the public GitHub source. You can and should do the same.</p>
+                    <p>Our team verified the deployed contract on-chain against the public GitHub source. You can do the same.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>What's special about this event?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>This is the first permissionless distribution of $IGRA. ZAP is open to anyone with an EVM wallet.</p>
+                    <p>This was the first permissionless distribution of $IGRA. ZAP was open to anyone with an EVM wallet.</p>
                     <p>All previously distributed tokens remain locked as per tokenomics. ZAP participants pay a higher price than any prior round in exchange for immediate liquidity — that premium is the price of no lockup. Fully transferable on claim.</p>
                   </div>
                 </details>
@@ -478,13 +524,13 @@ export const PublicAuctionPage: FC = () => {
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>What is the auction floor price?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>It will be calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered — the exact KAS equivalent depends on the KAS/USD rate at that moment. Once the auction opens, the floor is visible on the ZAP interface.</p>
+                    <p>It was calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered. The floor price was visible on the ZAP interface throughout the auction.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
-                  <summary className={classes.faqQuestion}>Will there be more $IGRA auctions on ZAP after March 26?</summary>
+                  <summary className={classes.faqQuestion}>Will there be more $IGRA auctions on ZAP?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>No. This is a one-off event. There is one ZAP auction scheduled for $IGRA.</p>
+                    <p>No. This was a one-off event. There was one ZAP auction for $IGRA.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
@@ -496,7 +542,7 @@ export const PublicAuctionPage: FC = () => {
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>Why is attester APY showing 0%?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>Intentional. We are running end-to-end attester testing before mainnet. Enabling rewards now would give an unfair advantage to early runners over those who start after launch. Rewards will be activated via a DAO proposal before the auction. Staking figures on the dashboard are accurate.</p>
+                    <p>Intentional. We ran end-to-end attester testing before mainnet. Enabling rewards earlier would have given an unfair advantage to early runners. Rewards were activated via a DAO proposal before the auction. Staking figures on the dashboard are accurate.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
