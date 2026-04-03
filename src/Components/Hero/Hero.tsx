@@ -45,13 +45,13 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>26 MAR 2026</span>
+                <span className={classes.date}>3 APR 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  The $IGRA token sale is live
+                  $IGRA public sale is concluded
                 </div>
                 <div className={classes.link}>
-                  Join Public Auction
+                  Read more
                   <Icon
                     name='arrowTopRight'
                     size={10}
