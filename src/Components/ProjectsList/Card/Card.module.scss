@@ -24,11 +24,38 @@
 			overflow: visible;
 		}
 
+		.typeRow {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 4px;
+		}
+
 		.type {
 			font-family: $font-secondary;
 			font-size: 14px;
 			font-weight: 700;
 			color: #11A994;
+		}
+
+		.badgeMainnet, .badgeTestnet {
+			font-family: $font;
+			font-size: 10px;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+			padding: 2px 8px;
+			border-radius: 4px;
+		}
+
+		.badgeMainnet {
+			background: rgba(107, 209, 195, 0.15);
+			color: #6BD1C3;
+		}
+
+		.badgeTestnet {
+			background: rgba(234, 255, 106, 0.15);
+			color: #EAFF6A;
 		}
 	}
 
