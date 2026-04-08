@@ -22,7 +22,7 @@ export const Ecosystem: FC = () => {
             Igra Fleet
           </h1>
           <div className={classes.description}>
-            Projects building on Igra Network — from DeFi and wallets to oracles and compliance. Many are already live on mainnet.
+            The projects, protocols, and organizations building and growing the Igra ecosystem.
           </div>
         </Flex>
         <div className={classes.images}>
