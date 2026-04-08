@@ -11,11 +11,12 @@ export interface Project {
   name: string
   description: string
   to?: string
+  badge?: 'mainnet' | 'testnet'
 }
 
 export interface CardProps extends Project {}
 
-export const Card: FC<CardProps> = ({ type, logoUrl, name, to, description }) => {
+export const Card: FC<CardProps> = ({ type, logoUrl, name, to, description, badge }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [clamped, setClamped] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -41,8 +42,15 @@ export const Card: FC<CardProps> = ({ type, logoUrl, name, to, description }) =>
           className={classes.logo}
           style={{ background: `center / cover no-repeat url(${logoUrl})` }}
         />
-        <div className={classes.type}>
-          {type}
+        <div className={classes.typeRow}>
+          <div className={classes.type}>
+            {type}
+          </div>
+          {badge && (
+            <div className={badge === 'mainnet' ? classes.badgeMainnet : classes.badgeTestnet}>
+              {badge}
+            </div>
+          )}
         </div>
       </Flex>
       <div className={classes.name}>
