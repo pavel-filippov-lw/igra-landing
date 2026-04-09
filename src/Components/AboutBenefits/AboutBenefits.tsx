@@ -22,7 +22,7 @@ const benefitsList: Benefit[] = [
         {'$IGRA governs Igra\'s security-critical parameters via Igra DAO, including attestation rules, rewards and penalties calibration, bridge configuration and updates, and allocation of ecosystem grants.'}
       </>
     ),
-    to: '',
+    to: 'https://governance.igralabs.com/',
   },
   {
     iconName: 'flag',
