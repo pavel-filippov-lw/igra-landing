@@ -13,7 +13,7 @@ export const NewsBanner: FC = () => {
   return (
     <Link to={to.publicAuction('overview')} className={classes.root} onClick={handleClick}>
       <span className={classes.text}>
-        Public sale is finished! <strong>Claims from April 10th.</strong>
+        Public sale is finished! <strong>Claims are opened.</strong>
       </span>
     </Link>
   )

@@ -301,17 +301,17 @@ export const PublicAuctionPage: FC = () => {
                   <a href="https://x.com/coinco041/status/2034295869802172519" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>Step-by-step bidding guide</a>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 2&nbsp;— Auction Closed <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="auction-closes" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 3&nbsp;— Auction Closed <AnchorLink id="auction-closes" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <p>Bidding has ended.</p>
                   <p>Check your final bid status and exit from your bid: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 9&nbsp;— Claiming <AnchorLink id="claiming-opens" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 10&nbsp;— Claiming is Open <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="claiming-opens" /></h3>
                 <div className={classes.guidePhaseContent}>
-                  <p>IGRA tokens become claimable.</p>
-                  <p>Go to the claiming page and connect the same EVM wallet you used to bid.</p>
-                  <p>Claiming page: <em>link&nbsp;— live after auction finalizes</em></p>
+                  <p>IGRA tokens are now claimable.</p>
+                  <p>Go to the auction page and connect the same EVM wallet you used to bid. Then claim your tokens.</p>
+                  <p>Claim here: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
                 </div>
 
                 <hr className={classes.guideDivider} />
