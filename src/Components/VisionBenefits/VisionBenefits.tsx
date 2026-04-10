@@ -39,7 +39,7 @@ const benefitsList = [
         <span>
           Kaspa BlockDAG represents an attempt to surpass the limits of Nakamoto consensus
         </span>
-        {'. It prioritizes rapid transaction inclusion and control over transaction ordering in the ledger. Kaspa\'s vision is to create a ledger that operates at network speed limits, with an architecture supporting a programmability layers that inherits both the speed and security of its base layer.'}
+        {'. It prioritizes rapid transaction inclusion and control over transaction ordering in the ledger. Kaspa\'s vision is to create a ledger that operates at network speed limits, with an architecture supporting a programmability layer that inherits both the speed and security of its base layer.'}
       </>,
     ],
   },
@@ -47,7 +47,7 @@ const benefitsList = [
     iconName: 'cube_5',
     label: [
       <>
-        {'By establishing transaction ordering at L1 and deterministically derive the L2 state directly from the base layer, it eliminates the need for additional consensus mechanisms. '}
+        {'By establishing transaction ordering at L1 and deterministically deriving the L2 state directly from the base layer, it eliminates the need for additional consensus mechanisms. '}
         <span>This approach combines the best of all existing architectures</span>
         {': Bitcoin, Ethereum (rollup-centric roadmap), an Internet-speed version of Nakamoto base layer, a zk-based computation layer, and a Solana-like unified defragmented state.'}
       </>,
