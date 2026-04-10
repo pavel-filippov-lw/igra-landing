@@ -301,17 +301,17 @@ export const PublicAuctionPage: FC = () => {
                   <a href="https://x.com/coinco041/status/2034295869802172519" target="_blank" rel="noopener noreferrer" className={classes.guideArrowLink}>Step-by-step bidding guide</a>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 2&nbsp;— Auction Closed <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="auction-closes" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="auction-closes">3. April 3&nbsp;— Auction Closed <AnchorLink id="auction-closes" /></h3>
                 <div className={classes.guidePhaseContent}>
                   <p>Bidding has ended.</p>
                   <p>Check your final bid status and exit from your bid: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
                 </div>
 
-                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 9&nbsp;— Claiming <AnchorLink id="claiming-opens" /></h3>
+                <h3 className={classes.guidePhaseHeading} id="claiming-opens">4. April 10&nbsp;— Claiming is Open <span className={classes.youAreHere}>← you're here</span> <AnchorLink id="claiming-opens" /></h3>
                 <div className={classes.guidePhaseContent}>
-                  <p>IGRA tokens become claimable.</p>
-                  <p>Go to the claiming page and connect the same EVM wallet you used to bid.</p>
-                  <p>Claiming page: <em>link&nbsp;— live after auction finalizes</em></p>
+                  <p>IGRA tokens are now claimable.</p>
+                  <p>Go to the auction page and connect the same EVM wallet you used to bid. Then claim your tokens.</p>
+                  <p>Claim here: <a href="https://auctions.zealousswap.com/auctions/igra" target="_blank" rel="noopener noreferrer" className={classes.factLink}>auctions.zealousswap.com/auctions/igra</a></p>
                 </div>
 
                 <hr className={classes.guideDivider} />
@@ -329,7 +329,7 @@ export const PublicAuctionPage: FC = () => {
                   <span className={classes.factValue}>1,000,000,000 IGRA (minted to date)</span>
                 </div>
                 <div className={classes.factRow}>
-                  <span className={classes.factLabel}>Token available for sale</span>
+                  <span className={classes.factLabel}>Tokens available for sale</span>
                   <span className={classes.factValue}>350,000,000 tokens (3.5% of total supply: 2% from the Igra Association pool and 1.5% from unsubscribed previous sale allocations)</span>
                 </div>
                 <div className={classes.factRow}>
@@ -462,7 +462,7 @@ export const PublicAuctionPage: FC = () => {
                     </ul>
                     <ul className={classes.guideList} style={{ margin: 0 }}>
                       <li><a href="https://grafana.igralabs.com/public-dashboards/56eb9e43b3854d38b1744f48675a82ac" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Twelve Igra full nodes</a> are live.</li>
-                      <li><a href="https://igralabs.com/ecosystem" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Fifteen teams deploy</a> on day one, with $5M TVL and 2,500 proven users.</li>
+                      <li><a href="https://igralabs.com/ecosystem" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Fifteen teams deployed</a> on day one, with $5M TVL and 2,500 proven users.</li>
                       <li>Governed by the <a href="https://igra.network/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Igra Association</a> under Swiss law, <a href="https://governance.igralabs.com/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>DAO</a> from day one.</li>
                     </ul>
                   </div>
@@ -476,13 +476,13 @@ export const PublicAuctionPage: FC = () => {
                   </div>
                 </details>
                 <details className={classes.faqItem}>
-                  <summary className={classes.faqQuestion}>Who is running the ZAP auction?</summary>
+                  <summary className={classes.faqQuestion}>Who ran the ZAP auction?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>The auction is operated by ZealousSwap — an independent protocol built on Uniswap's CCA contracts. Igra Labs is launching $IGRA through it, but ZealousSwap owns and operates the ZAP platform. Smart contracts are immutable, have no owner, and cannot be modified once deployed.</p>
+                    <p>The auction was operated by ZealousSwap — an independent protocol built on Uniswap's CCA contracts. Igra Labs is launching $IGRA through it, but ZealousSwap owns and operates the ZAP platform. Smart contracts are immutable, have no owner, and cannot be modified once deployed.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
-                  <summary className={classes.faqQuestion}>What CCA has to do with fair distribution?</summary>
+                  <summary className={classes.faqQuestion}>What does CCA have to do with fair distribution?</summary>
                   <div className={classes.faqAnswer}>
                     <p>Traditional mechanisms set price in one chaotic moment: bots snipe block one, whales move price with liquidity, insiders exit before retail sees the transaction. CCA is different and architecturally closer to fair distribution: tokens stream out block by block, each block clearing at a single market price against active bids. Large capital can't manipulate price through liquidity movements. Price only moves up when real demand requires it.</p>
                   </div>
@@ -497,7 +497,7 @@ export const PublicAuctionPage: FC = () => {
                   <summary className={classes.faqQuestion}>How secure are ZAP smart contracts?</summary>
                   <div className={classes.faqAnswer}>
                     <p>ZAP is built on Uniswap's CCA contracts, audited by OpenZeppelin and Spearbit (see <a href="https://github.com/Uniswap/continuous-clearing-auction?tab=readme-ov-file#audits" target="_blank" rel="noopener noreferrer" className={classes.factLink}>audits</a>). Everything that touches funds — bidding, price clearing, exits, refunds, claims — is byte-for-byte identical to that audited code. ZealousSwap added only read-only helper contracts for data querying which hold no funds and execute no state changes.</p>
-                    <p>Once the ZAP auction contract is deployed, it's immutable with no owner, and no changes or manipulation is possible.</p>
+                    <p>Once the ZAP auction contract is deployed, it's immutable with no owner, and no changes or manipulation are possible.</p>
                     <p>Our team verified the deployed contract on-chain against the public GitHub source. You can do the same.</p>
                   </div>
                 </details>
@@ -512,7 +512,7 @@ export const PublicAuctionPage: FC = () => {
                   <summary className={classes.faqQuestion}>What's the lockup and vesting?</summary>
                   <div className={classes.faqAnswer}>
                     <p>No lockup or vesting for tokens distributed via ZAP. Fully liquid on claim.</p>
-                    <p>After the auction closes, there is a short cooldown period before claims open — we use it to deploy DEX liquidity and Hyperlane bridge so both are live the moment you claim. We'll confirm the exact duration closer to launch.</p>
+                    <p>After the auction closed, there was a short cooldown period before claims opened — used to deploy DEX liquidity and the Hyperlane bridge so both were live the moment you could claim.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>
@@ -522,7 +522,7 @@ export const PublicAuctionPage: FC = () => {
                   </div>
                 </details>
                 <details className={classes.faqItem}>
-                  <summary className={classes.faqQuestion}>What is the auction floor price?</summary>
+                  <summary className={classes.faqQuestion}>What was the auction floor price?</summary>
                   <div className={classes.faqAnswer}>
                     <p>It was calculated at auction inception based on a $60M FDV target across the 350M $IGRA offered. The floor price was visible on the ZAP interface throughout the auction.</p>
                   </div>
@@ -548,7 +548,7 @@ export const PublicAuctionPage: FC = () => {
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>Can I interact with ZAP contracts directly without the UI?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>Yes — the contract interface is public on GitHub. When the Foundry interaction setup is ready we will publish it. Watch the announcements channel.</p>
+                    <p>Yes — the contract interface is public on GitHub. The Foundry interaction setup is available in the documentation.</p>
                   </div>
                 </details>
               </div>

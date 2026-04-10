@@ -45,10 +45,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>3 APR 2026</span>
+                <span className={classes.date}>10 APR 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  $IGRA public sale is concluded
+                  Hyperlane warp routes are live on Igra Network
                 </div>
                 <div className={classes.link}>
                   Read more

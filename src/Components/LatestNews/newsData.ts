@@ -4,6 +4,7 @@ import news4Image from './assets/news4.png'
 import news5Image from './assets/news5.jpg'
 import news6Image from './assets/news6.jpg'
 import news7Image from './assets/news7.png'
+import news8Image from './assets/news8.jpg'
 
 export interface NewsItem {
   image: string
@@ -15,10 +16,17 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    image: news8Image,
+    tag: "Article",
+    title: "Hyperlane warp routes are live on Igra Network",
+    description: "Anyone can now bridge USDC, iKAS, cbBTC, and wstETH across 7 chains — Ethereum, Base, Arbitrum, Optimism, Polygon, Avalanche, and Igra.",
+    link: "https://x.com/Igra_Labs/status/2042327945792868420",
+  },
+  {
     image: news7Image,
     tag: "Article",
     title: "$IGRA public sale is concluded",
-    description: "Thanks everyone who showed up to support the unstoppable digital economy on Kaspa BlockDAG!",
+    description: "Thanks to everyone who showed up to support the unstoppable digital economy on Kaspa BlockDAG!",
     link: "https://x.com/Igra_Labs/status/2040087520260534406",
   },
   {
