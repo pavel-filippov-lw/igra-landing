@@ -36,7 +36,7 @@ export const Hero: FC = () => {
           </span>
         </div>
         <div className={classes.info}>
-          <Link to={to.publicAuction('overview')} className={classes.readMore}>
+          <a href="https://x.com/Igra_Labs/status/2046514932250730944" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -45,10 +45,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>10 APR 2026</span>
+                <span className={classes.date}>21 APR 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Hyperlane warp routes are live on Igra Network
+                  Attester client v2.3.2 released
                 </div>
                 <div className={classes.link}>
                   Read more
@@ -60,7 +60,7 @@ export const Hero: FC = () => {
                 </div>
               </div>
             </div>
-          </Link>
+          </a>
           <div className={classes.heroButtons}>
             <a
               href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/how-to-setup-a-node"
