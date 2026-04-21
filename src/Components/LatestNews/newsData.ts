@@ -5,6 +5,8 @@ import news5Image from './assets/news5.jpg'
 import news6Image from './assets/news6.jpg'
 import news7Image from './assets/news7.png'
 import news8Image from './assets/news8.jpg'
+import news9Image from './assets/news9.png'
+import news10Image from './assets/news10.jpg'
 
 export interface NewsItem {
   image: string
@@ -15,6 +17,20 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news9Image,
+    tag: "Article",
+    title: "Attester client v2.3.2 released",
+    description: "Main features: delegated attestation and stability improvements.",
+    link: "https://x.com/Igra_Labs/status/2046514932250730944",
+  },
+  {
+    image: news10Image,
+    tag: "Article",
+    title: "AI agents need wallets that don't require human co-signing on every tx",
+    description: "That infra is now live on Igra.",
+    link: "https://x.com/Igra_Labs/status/2044345525076373930",
+  },
   {
     image: news8Image,
     tag: "Article",
