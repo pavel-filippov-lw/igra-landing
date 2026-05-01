@@ -1,7 +1,5 @@
 import { FC, Fragment } from "react"
 
-import { to } from "~/shared/lib"
-
 import { Benefit, Card } from "./Card"
 import classes from './HeroBenefits.module.scss'
 
@@ -20,7 +18,7 @@ const benefitsList: Benefit[] = [
         {'No sequencer. No validator set. Kaspa\'s PoW secures every transaction. Bitcoin-grade security for smart contracts.'}
       </>
     ),
-    to: to.benefits('0'),
+    to: '',
   },
   {
     iconName: 'clock',
@@ -36,7 +34,7 @@ const benefitsList: Benefit[] = [
         Based rollup with no centralized sequencer. Front-run resistant and censorship resistant by design.
       </>
     ),
-    to: to.benefits('1'),
+    to: 'https://igra-labs.gitbook.io/igralabs-docs/for-developers/mev-on-igra',
   },
   {
     iconName: 'ethereum',
@@ -48,7 +46,7 @@ const benefitsList: Benefit[] = [
         Full EVM compatibility, 400K+ Solidity devs, no cold start, clear audit frameworks
       </>
     ),
-    to: to.benefits('6'),
+    to: '',
   },
   {
     iconName: 'flag',
@@ -60,7 +58,7 @@ const benefitsList: Benefit[] = [
         Legal entity for accountability, no single operator to subpoena
       </>
     ),
-    to: to.benefits('5'),
+    to: '',
   },
   // Hidden cards for now
   /*
@@ -103,7 +101,6 @@ export const HeroBenefits: FC = () => {
           <Card
             {...benefit}
             className={classes.card}
-            disableLink
           />
         </Fragment>
       ))}
