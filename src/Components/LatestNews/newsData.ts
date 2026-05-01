@@ -7,6 +7,8 @@ import news7Image from './assets/news7.png'
 import news8Image from './assets/news8.jpg'
 import news9Image from './assets/news9.png'
 import news10Image from './assets/news10.jpg'
+import news11Image from './assets/news11.png'
+import news12Image from './assets/news12.jpg'
 
 export interface NewsItem {
   image: string
@@ -17,6 +19,20 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news11Image,
+    tag: "Article",
+    title: "MEV resilience study is published",
+    description: "One of Igra's defining properties is MEV resilience. We just published a documentation page on the mechanism, aimed at integrators and partners.",
+    link: "https://x.com/Igra_Labs/status/2049102131861377438",
+  },
+  {
+    image: news12Image,
+    tag: "Article",
+    title: "New Hyperlane warp routes on Igra",
+    description: "Igra now has bridge routes to 9 blue-chip assets including USDC, USDT, USDS, sUSDS, cbBTC, wstETH, WETH, SOL, and iKAS across Ethereum, Base, Arbitrum, Optimism, Polygon, Avalanche, and Solana.",
+    link: "https://x.com/Igra_Labs/status/2048809693087400082",
+  },
   {
     image: news9Image,
     tag: "Article",
