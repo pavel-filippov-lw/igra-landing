@@ -29,7 +29,7 @@ const benefitsList: Benefit[] = [
     title: () => <span className={classes.boldTitle}>Swiss Compliance</span>,
     description: () => (
       <>
-        Igra Association and the $IGRA utility token are registered in Switzerland, Zug. MiCA legal opinion ready, ensuring clear legal responsibility and transparent management of funds.
+        The Igra Association, which develops the Igra ecosystem and its $IGRA utility token, is registered in Switzerland, ensuring clear legal responsibility and transparent management of funds.
       </>
     ),
     to: '',
