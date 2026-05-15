@@ -4,7 +4,6 @@ import { Flex } from "~/shared/ui"
 
 import { TeamMemberCard } from "../TeamMemberCard"
 import denPhoto from './assets/den.png'
-import deuelPhoto from './assets/deuel.png'
 import ilyaPhoto from './assets/ilya.png'
 import mikePhoto from './assets/mike.png'
 import igorPhoto from './assets/new1.png'
@@ -70,13 +69,6 @@ const teamMembers = [
     role: 'Advisor',
     description: 'Chief Architect @ Kaspa/DAGlabs, Chief Architect for Kaspa smart contract integration; Crypto/ZKP software architect',
     linkedinUrl: 'https://www.linkedin.com/in/romanmelnikov/',
-  },
-  {
-    photoUrl: deuelPhoto,
-    name: ['Deuel Horowitz', 'Jurisconsultus'],
-    role: 'Legal counsel',
-    description: 'International lawyer and litigator ; ex-MOJ ; emerging technologies regulation',
-    linkedinUrl: 'https://www.linkedin.com/in/deuel-horowitz-41840b20a/',
   },
 ]
 
