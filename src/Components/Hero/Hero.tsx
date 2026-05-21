@@ -36,7 +36,7 @@ export const Hero: FC = () => {
           </span>
         </div>
         <div className={classes.info}>
-          <a href="https://x.com/Igra_Labs/status/2049102131861377438" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+          <a href="https://x.com/Igra_Labs/status/2055770156765188355" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -45,10 +45,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>30 APR 2026</span>
+                <span className={classes.date}>16 MAY 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  MEV resilience study is published
+                  Toccata: what Kaspa's next consensus upgrade means for Igra
                 </div>
                 <div className={classes.link}>
                   Read more
