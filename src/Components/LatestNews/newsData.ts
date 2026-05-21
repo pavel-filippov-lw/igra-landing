@@ -9,6 +9,8 @@ import news9Image from './assets/news9.png'
 import news10Image from './assets/news10.jpg'
 import news11Image from './assets/news11.png'
 import news12Image from './assets/news12.jpg'
+import news13Image from './assets/news13.jpg'
+import news14Image from './assets/news14.jpg'
 
 export interface NewsItem {
   image: string
@@ -19,6 +21,20 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news13Image,
+    tag: "Article",
+    title: "Toccata: what Kaspa's next consensus upgrade means for Igra",
+    description: "Toccata, Kaspa's next consensus upgrade, is currently targeted for mid to late June. Here's what it means for the ecosystem and for Igra.",
+    link: "https://x.com/Igra_Labs/status/2055770156765188355",
+  },
+  {
+    image: news14Image,
+    tag: "Article",
+    title: "Igra partners with ChainPatrol to protect the community",
+    description: "Your safety is our priority. We've partnered with ChainPatrol to protect the Igra community.",
+    link: "https://x.com/Igra_Labs/status/2057374153829659099",
+  },
   {
     image: news11Image,
     tag: "Article",
