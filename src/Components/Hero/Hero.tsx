@@ -36,7 +36,7 @@ export const Hero: FC = () => {
           </span>
         </div>
         <div className={classes.info}>
-          <a href="https://x.com/Igra_Labs/status/2055770156765188355" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+          <a href="https://x.com/Igra_Labs/status/2059354269178900826" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -45,10 +45,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>16 MAY 2026</span>
+                <span className={classes.date}>26 MAY 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Toccata: what Kaspa's next consensus upgrade means for Igra
+                  DeFi ecosystem with $4.5M in liquidity deployed on Igra
                 </div>
                 <div className={classes.link}>
                   Read more
