@@ -11,6 +11,7 @@ import news11Image from './assets/news11.png'
 import news12Image from './assets/news12.jpg'
 import news13Image from './assets/news13.jpg'
 import news14Image from './assets/news14.jpg'
+import news15Image from './assets/news15.png'
 
 export interface NewsItem {
   image: string
@@ -18,9 +19,18 @@ export interface NewsItem {
   title: string
   description: string
   link: string
+  imagePosition?: string
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news15Image,
+    tag: "Article",
+    title: "DeFi ecosystem with $4.5M in liquidity deployed on Igra",
+    description: "Within eight weeks of open mainnet, a working DeFi ecosystem with $4.5M in liquidity deployed on Igra. We optimize so builders ship faster by working directly with core and ecosystem teams.",
+    link: "https://x.com/Igra_Labs/status/2059354269178900826",
+    imagePosition: 'center',
+  },
   {
     image: news13Image,
     tag: "Article",
