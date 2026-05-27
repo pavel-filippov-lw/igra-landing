@@ -45,7 +45,7 @@ const projects: Project[] = [
     description: 'Fully decentralized lending protocol, tailored for Kaspa\'s high-speed architecture.',
     to: 'https://kaskad.app/',
     type: 'DeFi, Lending protocol',
-    badge: 'testnet',
+    badge: 'mainnet',
   },
 
   {
