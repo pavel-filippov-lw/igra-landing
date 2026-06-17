@@ -36,7 +36,7 @@ export const Hero: FC = () => {
           </span>
         </div>
         <div className={classes.info}>
-          <a href="https://x.com/Igra_Labs/status/2059354269178900826" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+          <a href="https://luma.com/q8zh39zs" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -45,10 +45,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>26 MAY 2026</span>
+                <span className={classes.date}>12 JUN 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  DeFi ecosystem with $4.5M in liquidity deployed on Igra
+                  Registration open for Kaspa x Igra Berlin Blockchain Week event
                 </div>
                 <div className={classes.link}>
                   Read more
