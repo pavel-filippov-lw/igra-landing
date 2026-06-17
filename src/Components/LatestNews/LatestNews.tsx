@@ -25,7 +25,7 @@ export const LatestNews: FC = () => {
             className={classes.newsCard}
           >
             <div className={classes.imageWrapper}>
-              <img src={item.image} alt={item.title} className={classes.image} style={item.imagePosition ? { objectPosition: item.imagePosition } : undefined} />
+              <img src={item.image} alt={item.title} className={classes.image} style={{ ...(item.imagePosition ? { objectPosition: item.imagePosition } : {}), ...(item.imageFit ? { objectFit: item.imageFit } : {}) }} />
             </div>
             <div className={classes.content}>
               <h4 className={classes.cardTitle}>{item.title}</h4>

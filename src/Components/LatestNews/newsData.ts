@@ -1,3 +1,5 @@
+import news16Image from './assets/news16.jpg'
+import news17Image from './assets/news17.png'
 import news2Image from './assets/news2.jpg'
 import news3Image from './assets/news3.png'
 import news4Image from './assets/news4.png'
@@ -20,9 +22,24 @@ export interface NewsItem {
   description: string
   link: string
   imagePosition?: string
+  imageFit?: 'contain' | 'cover'
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news16Image,
+    tag: "Event",
+    title: "Registration open for Kaspa x Igra Berlin Blockchain Week event",
+    description: "Join us at Berlin Blockchain Week for the Kaspa x Igra event. Register now to secure your spot.",
+    link: "https://luma.com/q8zh39zs",
+  },
+  {
+    image: news17Image,
+    tag: "Article",
+    title: "Attester restaking enabled",
+    description: "Attesters now can compound rewards into stake without giving up emission share.",
+    link: "https://x.com/Igra_Labs/status/2067232269723431177",
+  },
   {
     image: news15Image,
     tag: "Article",
