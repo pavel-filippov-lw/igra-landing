@@ -1,0 +1,229 @@
+.root {
+	max-width: 1440px;
+	margin: 0 auto;
+	width: 100%;
+
+	.hero {
+		position: relative;
+		min-height: 500px;
+		padding: 160px 0 60px;
+
+		.heroContent {
+			.title {
+				font-family: $font-secondary;
+				font-size: 72px;
+				line-height: 88px;
+				font-weight: 700;
+				color: #FFFFFF;
+				margin: 0;
+				text-transform: uppercase;
+				letter-spacing: -0.02em;
+				max-width: 700px;
+			}
+		}
+
+		.imageWrapper {
+			position: absolute;
+			top: -80px;
+			right: -60px;
+			bottom: -80px;
+			width: 60%;
+			max-width: 900px;
+			z-index: -3;
+			overflow: visible;
+
+			.image {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				object-position: center right;
+			}
+		}
+	}
+
+	.details {
+		display: flex;
+		gap: 80px;
+		padding: 80px 0;
+
+		.description {
+			flex: 1;
+
+			.subtitle {
+				font-family: $font-secondary;
+				font-size: 32px;
+				line-height: 42px;
+				font-weight: 400;
+				color: #6BD1C3;
+				margin: 0 0 40px;
+			}
+
+			.featureList {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 28px;
+
+				li {
+					font-family: $font;
+					font-size: 24px;
+					line-height: 34px;
+					color: #FFFFFF;
+					font-weight: 400;
+				}
+			}
+		}
+
+		.useCases {
+			flex: 0 0 400px;
+
+			.useCasesTitle {
+				font-family: $font-secondary;
+				font-size: 28px;
+				line-height: 36px;
+				font-weight: 700;
+				color: #FFFFFF;
+				margin: 0 0 40px;
+				text-transform: uppercase;
+			}
+
+			.useCase {
+				display: flex;
+				align-items: center;
+				gap: 20px;
+				margin-bottom: 32px;
+
+				.useCaseIcon {
+					width: 64px;
+					height: 64px;
+					object-fit: contain;
+					filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%);
+				}
+
+				.useCaseLabel {
+					font-family: $font;
+					font-size: 22px;
+					line-height: 30px;
+					color: #FFFFFF;
+					font-weight: 400;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $desktop) {
+		.hero {
+			.heroContent {
+				.title {
+					font-size: 64px;
+					line-height: 78px;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $laptop) {
+		.hero {
+			padding: 100px 0 40px;
+
+			.heroContent {
+				.title {
+					font-size: 56px;
+					line-height: 68px;
+				}
+			}
+		}
+
+		.details {
+			gap: 40px;
+
+			.description {
+				.subtitle {
+					font-size: 26px;
+					line-height: 36px;
+				}
+
+				.featureList li {
+					font-size: 20px;
+					line-height: 30px;
+				}
+			}
+
+			.useCases {
+				flex: 0 0 320px;
+			}
+		}
+	}
+
+	@media screen and (max-width: $tablet) {
+		.hero {
+			padding: 40px 0;
+
+			.heroContent {
+				.title {
+					font-size: 44px;
+					line-height: 54px;
+				}
+			}
+
+			.imageWrapper {
+				position: relative;
+				top: auto;
+				right: auto;
+				bottom: auto;
+				width: 100%;
+				max-width: 100%;
+				margin-top: 30px;
+			}
+		}
+
+		.details {
+			flex-direction: column;
+			padding: 40px 0;
+
+			.useCases {
+				flex: none;
+			}
+		}
+	}
+
+	@media screen and (max-width: $mobile) {
+		.hero {
+			padding: 30px 0;
+
+			.heroContent {
+				.title {
+					font-size: 32px;
+					line-height: 40px;
+				}
+			}
+		}
+
+		.details {
+			.description {
+				.subtitle {
+					font-size: 22px;
+					line-height: 30px;
+				}
+
+				.featureList li {
+					font-size: 18px;
+					line-height: 26px;
+				}
+			}
+
+			.useCases {
+				.useCaseIcon {
+					width: 48px;
+					height: 48px;
+				}
+
+				.useCaseLabel {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+}

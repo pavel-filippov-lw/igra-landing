@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { BrowserRouter, Navigate, Outlet, Route, Routes as ReactRoutes } from 'react-router-dom'
 
-import { IgraTokenPage, /* BenefitsPage, BenefitsPage2, */ EcosystemPage, HeroPage, ManifestoPage, NewsPage, NodesPage, PrivacyPage, PublicAuctionPage, TeamPage, TermsPage, VisionPage } from '~/pages'
+import { IgraTokenPage, /* BenefitsPage, BenefitsPage2, */ EcosystemPage, HeroPage, ManifestoPage, MultitudePage, NewsPage, NodesPage, PrivacyPage, PublicAuctionPage, TeamPage, TermsPage, VisionPage } from '~/pages'
 import { Routes, to } from '~/shared/lib'
 
 export const AppRouter: FC = () => {
@@ -23,6 +23,7 @@ export const AppRouter: FC = () => {
           <Route path={Routes.news} element={<NewsPage />} />
           <Route path={`${Routes.publicAuction}/:section?`} element={<PublicAuctionPage />} />
           <Route path={Routes.nodes} element={<NodesPage />} />
+          <Route path={Routes.multitude} element={<MultitudePage />} />
           <Route path="*" element={<Navigate to={to.hero()} />} />
         </Route>
       </ReactRoutes>

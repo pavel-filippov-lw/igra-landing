@@ -12,4 +12,5 @@ export const Routes = {
   news: 'news',
   publicAuction: 'public-auction',
   nodes: 'nodes',
+  multitude: 'multitude',
 }

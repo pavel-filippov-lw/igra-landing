@@ -26,6 +26,8 @@ class To {
   publicAuction = (section?: string) => section ? `/${Routes.publicAuction}/${section}` : `/${Routes.publicAuction}`
 
   nodes = () => `/${Routes.nodes}`
+
+  multitude = () => `/${Routes.multitude}`
 }
 
 export const to = new To()
