@@ -29,17 +29,9 @@ export const MultitudePage: FC = () => {
       <div className={classes.root}>
         <div className={classes.hero}>
           <div className={classes.heroContent}>
-            <h1 className={classes.title}>MULTITUDE</h1>
-          </div>
-          <div className={classes.imageWrapper}>
-            <img src={multitudeImage} alt="Multitude" className={classes.image} />
-          </div>
-        </div>
-
-        <div className={classes.details}>
-          <div className={classes.description}>
+            <h1 className={classes.title}>IGRA MULTITUDE</h1>
             <h2 className={classes.subtitle}>
-              Igra Multitude: composable zones with custom isolated execution
+              Composable zones with custom isolated execution
             </h2>
             <ul className={classes.featureList}>
               {features.map((f, i) => (
@@ -47,15 +39,21 @@ export const MultitudePage: FC = () => {
               ))}
             </ul>
           </div>
+          <div className={classes.imageWrapper}>
+            <img src={multitudeImage} alt="Multitude" className={classes.image} />
+          </div>
+        </div>
 
+        <div className={classes.details}>
           <div className={classes.useCases}>
-            <h3 className={classes.useCasesTitle}>USE CASES</h3>
-            {useCases.map((uc, i) => (
-              <div key={i} className={classes.useCase}>
-                <img src={uc.icon} alt={uc.label} className={classes.useCaseIcon} />
-                <span className={classes.useCaseLabel}>{uc.label}</span>
-              </div>
-            ))}
+            <div className={classes.useCaseGrid}>
+              {useCases.map((uc, i) => (
+                <div key={i} className={classes.useCase}>
+                  <img src={uc.icon} alt={uc.label} className={classes.useCaseIcon} />
+                  <span className={classes.useCaseLabel}>{uc.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
