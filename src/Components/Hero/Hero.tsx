@@ -4,37 +4,17 @@ import { Link } from "react-router-dom"
 import { to } from "~/shared/lib"
 import { Flex, Icon } from "~/shared/ui"
 
-import { GlitchText } from "../GlitchText"
-import heroVideoSafari from './assets/video.mov'
-import heroVideo from './assets/video.webm'
+import heroVideoSafari from './assets/bg1.mov'
+import heroVideo from './assets/bg1.webm'
 import classes from './Hero.module.scss'
-
-const glitchTextLines = [
-  'Agent-native',
-  'The fastest',
-  'The fairest',
-  'The most secure',
-  'The only real-time',
-]
 
 export const Hero: FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <div className={classes.title}>
-          <span style={{ display: 'block' }}>
-            <GlitchText
-              lines={glitchTextLines}
-              className={classes.glitchText}
-            />
-          </span>
-          <span style={{ display: 'block' }}>
-            programmable
-          </span>
-          <span style={{ display: 'block' }}>
-            PoW chain
-          </span>
-        </div>
+        <h1 className={classes.title}>
+          FINANCE INFRASTRUCTURE THAT CANNOT BE OVERRIDDEN
+        </h1>
         <div className={classes.info}>
           <a href="https://luma.com/q8zh39zs" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>

@@ -9,32 +9,16 @@
 	.content {
 		.title {
 			font-family: $font-secondary;
-			font-size: 85px;
-			line-height: 105px;
-			font-weight: 400;
-			color: #6BD1C3;
-			margin-bottom: 105px;
+			font-size: 72px;
+			line-height: 88px;
+			font-weight: 700;
+			color: #FFFFFF;
+			margin: 0 0 80px;
 			text-align: left;
 			width: 100%;
 			max-width: 700px;
-
-			span {
-				display: block;
-				white-space: nowrap;
-			}
-
-			.glitchText {
-				display: inline-block;
-				font-family: $font-secondary;
-				font-size: 85px;
-				line-height: 105px;
-				font-weight: 400;
-				color: #FFFFFF;
-				margin-right: 0.15em;
-				white-space: nowrap;
-				min-width: 350px;
-				text-align: left;
-			}
+			text-transform: uppercase;
+			letter-spacing: -0.02em;
 		}
 
 		.info {
@@ -147,20 +131,20 @@
 	}
 
 	.videoWrapper {
-		flex-shrink: 0;
-		width: 600px;
-		height: 600px;
 		position: absolute;
-		top: 50%;
-		right: -100px;
-		transform: translateY(-50%);
+		top: -150px;
+		right: -140px;
+		bottom: -150px;
+		width: 80%;
+		max-width: 1200px;
 		z-index: -3;
+		overflow: visible;
 
 		.video {
 			width: 100%;
 			height: 100%;
 			object-fit: contain;
-			background: transparent;
+			object-position: center right;
 			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
 			transform: translateZ(0);
@@ -170,14 +154,9 @@
 	@media screen and (max-width: $desktop) {
 		.content {
 			.title {
-				font-size: 70px;
-				line-height: 88px;
+				font-size: 64px;
+				line-height: 78px;
 			}
-		}
-
-		.videoWrapper {
-			width: 500px;
-			height: 500px;
 		}
 	}
 
@@ -186,14 +165,8 @@
 
 		.content {
 			.title {
-				font-size: 64px;
-				line-height: 80px;
-
-				.glitchText {
-					font-size: 64px;
-					line-height: 80px;
-					min-width: 220px;
-				}
+				font-size: 56px;
+				line-height: 68px;
 			}
 
 			.info {
@@ -225,10 +198,6 @@
 			}
 		}
 
-		.videoWrapper {
-			width: 450px;
-			height: 450px;
-		}
 	}
 
 	@media screen and (max-width: $tablet) {
@@ -238,16 +207,9 @@
 			max-width: 100%;
 
 			.title {
-				margin-top: 200px;
-				font-size: 54px;
-				line-height: 68px;
+				font-size: 44px;
+				line-height: 54px;
 				margin-bottom: 30px;
-
-				.glitchText {
-					font-size: 54px;
-					line-height: 68px;
-					min-width: 180px;
-				}
 			}
 
 			.info {
@@ -287,14 +249,6 @@
 			}
 		}
 
-		.videoWrapper {
-			width: 400px;
-			height: 400px;
-			margin: 0 auto;
-			top: 0;
-			right: -100px;
-			transform: none;
-		}
 	}
 
 	@media screen and (max-width: $mobile) {
@@ -303,19 +257,9 @@
 
 		.content {
 			.title {
-				font-size: 38px;
-				line-height: 48px;
+				font-size: 32px;
+				line-height: 40px;
 				margin-bottom: 24px;
-
-				span {
-					white-space: normal;
-				}
-
-				.glitchText {
-					font-size: 38px;
-					line-height: 48px;
-					min-width: auto;
-				}
 			}
 
 			.info {
@@ -340,9 +284,5 @@
 			}
 		}
 
-		.videoWrapper {
-			width: 350px;
-			height: 350px;
-		}
 	}
 }
