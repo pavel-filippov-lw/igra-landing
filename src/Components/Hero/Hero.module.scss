@@ -27,6 +27,7 @@
 
 			.readMore {
 				display: block;
+				margin-top: 120px;
 				margin-bottom: 60px;
 
 				.announcement {
@@ -132,9 +133,9 @@
 
 	.videoWrapper {
 		position: absolute;
-		top: -150px;
+		top: -230px;
 		right: -140px;
-		bottom: -150px;
+		bottom: -70px;
 		width: 80%;
 		max-width: 1200px;
 		z-index: -3;
@@ -203,6 +204,13 @@
 	@media screen and (max-width: $tablet) {
 		padding: 40px 0;
 
+		.videoWrapper {
+			top: -250px;
+			bottom: 100px;
+			right: -250px;
+			width: 90%;
+		}
+
 		.content {
 			max-width: 100%;
 
@@ -254,6 +262,13 @@
 	@media screen and (max-width: $mobile) {
 		padding: 30px 0;
 		min-height: auto;
+
+		.videoWrapper {
+			top: -280px;
+			bottom: 150px;
+			right: -500px;
+			width: 100%;
+		}
 
 		.content {
 			.title {
