@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Hero, HeroBenefits, LatestNews, PageLayout, Roadmap } from "~/Components"
+import { Hero, HeroBenefits, LatestNews, PageLayout } from "~/Components"
 import { Flex } from "~/shared/ui"
 
 import classes from './HeroPage.module.scss'
@@ -28,7 +28,6 @@ export const HeroPage: FC = () => {
             />
           </Flex> */}
           <LatestNews />
-          <Roadmap />
         </Flex>
       </Flex>
     </PageLayout>

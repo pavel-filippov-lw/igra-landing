@@ -1,0 +1,1 @@
+export { MultitudePage } from './MultitudePage'

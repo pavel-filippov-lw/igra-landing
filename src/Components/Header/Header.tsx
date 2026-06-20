@@ -11,10 +11,10 @@ import { Socials } from "../Socials"
 import classes from './Header.module.scss'
 
 const links = [
+  { label: 'Multitude', to: to.multitude(), isPage: true },
   { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
   { label: 'Documentation', to: 'https://igra-labs.gitbook.io/' },
   { label: '$IGRA', to: to.igraToken(), isPage: true },
-  { label: 'ZAP', to: to.publicAuction(), isPage: true },
 ]
 
 const mobileLinks = [
