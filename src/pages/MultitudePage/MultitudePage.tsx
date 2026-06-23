@@ -110,10 +110,6 @@ const DOCS_URL = 'https://igra-labs.gitbook.io/igralabs-docs/igra-multitude'
 export const MultitudePage: FC = () => {
   const exploreRef = useRef<HTMLDivElement>(null)
 
-  const scrollToExplore = () => {
-    exploreRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <PageLayout hideBg>
       <div className={classes.root}>
@@ -140,9 +136,6 @@ export const MultitudePage: FC = () => {
               <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className={classes.btnSecondary}>
                 Read docs
               </a>
-              <button onClick={scrollToExplore} className={classes.btnSecondary}>
-                Explore
-              </button>
             </div>
           </div>
           <div className={classes.imageWrapper}>
