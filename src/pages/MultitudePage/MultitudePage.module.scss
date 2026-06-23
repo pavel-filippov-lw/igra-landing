@@ -3,6 +3,7 @@
 	margin: 0 auto;
 	width: 100%;
 
+	// Hero
 	.hero {
 		position: relative;
 		min-height: 500px;
@@ -31,22 +32,20 @@
 				max-width: 600px;
 			}
 
-			.featureList {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-				display: flex;
-				flex-direction: column;
-				gap: 16px;
+			.description {
+				font-family: $font;
+				font-size: 20px;
+				line-height: 30px;
+				color: rgba(255, 255, 255, 0.8);
+				font-weight: 400;
 				max-width: 600px;
+				margin: 0 0 16px;
+			}
 
-				li {
-					font-family: $font;
-					font-size: 20px;
-					line-height: 30px;
-					color: rgba(255, 255, 255, 0.8);
-					font-weight: 400;
-				}
+			.heroCta {
+				display: flex;
+				gap: 16px;
+				margin-top: 36px;
 			}
 		}
 
@@ -69,44 +68,422 @@
 		}
 	}
 
+	// Buttons
+	.btnPrimary {
+		display: inline-block;
+		font-family: $font;
+		font-size: 17px;
+		font-weight: 500;
+		line-height: 26px;
+		color: #000000;
+		background: #6BD1C3;
+		border: 1px solid #6BD1C3;
+		border-radius: 12px;
+		padding: 12px 32px;
+		text-decoration: none;
+		cursor: pointer;
+		transition: background 0.2s, color 0.2s;
+
+		&:hover {
+			background: #5bc0b2;
+		}
+	}
+
+	.btnSecondary {
+		display: inline-block;
+		font-family: $font;
+		font-size: 17px;
+		font-weight: 500;
+		line-height: 26px;
+		color: #6BD1C3;
+		background: transparent;
+		border: 1px solid #6BD1C3;
+		border-radius: 12px;
+		padding: 12px 32px;
+		text-decoration: none;
+		cursor: pointer;
+		transition: background 0.2s, color 0.2s;
+
+		&:hover {
+			background: rgba(107, 209, 195, 0.1);
+		}
+	}
+
+	// Details wrapper
 	.details {
 		display: flex;
 		flex-direction: column;
-		gap: 60px;
-		padding: 20px 0;
+		gap: 56px;
+		padding: 20px 0 80px;
+	}
 
-		.useCases {
-			.useCaseGrid {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 32px;
+	// Tabs
+	.tabsSection {
+		.tabHeaders {
+			display: flex;
+			gap: 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+		}
+
+		.tabHeader {
+			font-family: $font;
+			font-size: 18px;
+			line-height: 26px;
+			font-weight: 400;
+			color: rgba(255, 255, 255, 0.5);
+			background: none;
+			border: none;
+			border-bottom: 2px solid transparent;
+			padding: 14px 24px;
+			cursor: pointer;
+			transition: color 0.2s, border-color 0.2s;
+			white-space: nowrap;
+
+			&:hover {
+				color: rgba(255, 255, 255, 0.8);
 			}
 
-			.useCase {
+			&.active {
+				color: #6BD1C3;
+				border-bottom-color: #6BD1C3;
+			}
+		}
+
+		.tabContent {
+			padding: 30px 0;
+
+			.tabText {
+				font-family: $font;
+				font-size: 20px;
+				line-height: 30px;
+				color: rgba(255, 255, 255, 0.9);
+				margin: 0;
+			}
+
+			.tabBullets {
+				list-style: none;
+				padding: 0;
+				margin: 0;
 				display: flex;
 				flex-direction: column;
-				align-items: center;
-				text-align: center;
-				gap: 16px;
+				gap: 12px;
 
-				.useCaseIcon {
-					width: 64px;
-					height: 64px;
-					object-fit: contain;
-					filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%);
-				}
-
-				.useCaseLabel {
+				li {
 					font-family: $font;
 					font-size: 20px;
-					line-height: 28px;
-					color: #FFFFFF;
-					font-weight: 400;
+					line-height: 30px;
+					color: rgba(255, 255, 255, 0.9);
+					padding-left: 24px;
+					position: relative;
+
+					&::before {
+						content: '→';
+						position: absolute;
+						left: 0;
+						color: #6BD1C3;
+					}
 				}
 			}
 		}
 	}
 
+	// Core features
+	.coreFeatures {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		padding: 32px 40px;
+
+		.coreFeaturesIntro {
+			font-family: $font;
+			font-size: 20px;
+			line-height: 30px;
+			color: rgba(255, 255, 255, 0.9);
+			margin: 0 0 24px;
+		}
+
+		.coreFeaturesList {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+
+			li {
+				font-family: $font;
+				font-size: 18px;
+				line-height: 28px;
+				color: rgba(255, 255, 255, 0.8);
+				padding-left: 0;
+			}
+		}
+	}
+
+	.sectionSpaced {
+		margin-top: 24px;
+	}
+
+	// Sections
+	.section {
+		.sectionTitle {
+			font-family: $font-secondary;
+			font-size: 36px;
+			line-height: 46px;
+			font-weight: 700;
+			color: #FFFFFF;
+			margin: 0 0 32px;
+		}
+
+		.sectionSubtitle {
+			font-family: $font;
+			font-size: 19px;
+			line-height: 28px;
+			color: rgba(255, 255, 255, 0.6);
+			margin: -20px 0 32px;
+		}
+	}
+
+	// Deployment models
+	.modelGrid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+
+	.modelCard {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		padding: 32px;
+
+		.modelTitle {
+			font-family: $font-secondary;
+			font-size: 24px;
+			line-height: 32px;
+			font-weight: 700;
+			color: #6BD1C3;
+			margin: 0 0 12px;
+		}
+
+		.modelIntro {
+			font-family: $font;
+			font-size: 18px;
+			line-height: 28px;
+			color: rgba(255, 255, 255, 0.7);
+			margin: 0 0 16px;
+		}
+
+		.modelIncludes {
+			font-family: $font;
+			font-size: 15px;
+			line-height: 22px;
+			color: rgba(255, 255, 255, 0.5);
+			margin: 0 0 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+
+		.modelBullets {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+
+			li {
+				font-family: $font;
+				font-size: 18px;
+				line-height: 28px;
+				color: rgba(255, 255, 255, 0.8);
+				padding-left: 0;
+			}
+		}
+	}
+
+	// Why Multitude
+	.whyGrid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 24px;
+	}
+
+	.whyCard {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		padding: 32px;
+
+		.whyCardIcon {
+			width: 64px;
+			height: 64px;
+			object-fit: contain;
+			margin-bottom: 20px;
+		}
+
+		.whyCardTitle {
+			font-family: $font-secondary;
+			font-size: 22px;
+			line-height: 30px;
+			font-weight: 700;
+			color: #FFFFFF;
+			margin: 0 0 12px;
+		}
+
+		.whyCardText {
+			font-family: $font;
+			font-size: 18px;
+			line-height: 28px;
+			color: rgba(255, 255, 255, 0.7);
+			margin: 0;
+		}
+	}
+
+	// Split: what you control / we operate
+	.splitGrid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 24px;
+	}
+
+	.splitCard {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		padding: 32px;
+
+		.splitCardTitle {
+			font-family: $font-secondary;
+			font-size: 22px;
+			line-height: 30px;
+			font-weight: 700;
+			color: #6BD1C3;
+			margin: 0 0 20px;
+		}
+
+		.splitList {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+
+			li {
+				font-family: $font;
+				font-size: 18px;
+				line-height: 28px;
+				color: rgba(255, 255, 255, 0.8);
+				padding-left: 0;
+			}
+		}
+	}
+
+	// Use case cards
+	.useCaseCards {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+
+	.useCaseCard {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		padding: 28px 24px;
+		font-family: $font;
+		font-size: 19px;
+		line-height: 28px;
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	// Comparison table
+	.comparisonTable {
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		overflow: hidden;
+	}
+
+	.compRow {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+
+		&:not(:last-child) {
+			border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		}
+
+		&.compHeader {
+			background: rgba(255, 255, 255, 0.04);
+
+			.compCell {
+				font-weight: 600;
+				color: rgba(255, 255, 255, 0.6);
+				font-size: 16px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+		}
+	}
+
+	.compCell {
+		font-family: $font;
+		font-size: 17px;
+		line-height: 26px;
+		color: rgba(255, 255, 255, 0.7);
+		padding: 16px 24px;
+
+		&.compLabel {
+			font-weight: 500;
+			color: rgba(255, 255, 255, 0.9);
+		}
+
+		&.compHighlight {
+			color: #6BD1C3;
+		}
+	}
+
+	// Technical proof
+	.techText {
+		font-family: $font;
+		font-size: 20px;
+		line-height: 30px;
+		color: rgba(255, 255, 255, 0.8);
+		max-width: 800px;
+		margin: 0;
+	}
+
+	// Final CTA
+	.finalCta {
+		text-align: center;
+		padding: 60px 0;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+		.finalCtaTitle {
+			font-family: $font-secondary;
+			font-size: 40px;
+			line-height: 50px;
+			font-weight: 700;
+			color: #FFFFFF;
+			margin: 0 0 16px;
+		}
+
+		.finalCtaText {
+			font-family: $font;
+			font-size: 20px;
+			line-height: 30px;
+			color: rgba(255, 255, 255, 0.7);
+			margin: 0 0 36px;
+		}
+
+		.finalCtaButtons {
+			display: flex;
+			justify-content: center;
+			gap: 16px;
+		}
+	}
+
+	// Responsive
 	@media screen and (max-width: $desktop) {
 		.hero {
 			.heroContent {
@@ -133,7 +510,7 @@
 					line-height: 36px;
 				}
 
-				.featureList li {
+				.description {
 					font-size: 18px;
 					line-height: 26px;
 				}
@@ -141,13 +518,22 @@
 		}
 
 		.details {
-			gap: 40px;
+			gap: 44px;
+		}
 
-			.useCases {
-				.useCaseGrid {
-					grid-template-columns: repeat(2, 1fr);
-				}
+		.tabsSection {
+			.tabHeader {
+				font-size: 16px;
+				padding: 12px 18px;
 			}
+		}
+
+		.modelGrid {
+			grid-template-columns: 1fr;
+		}
+
+		.useCaseCards {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
@@ -180,11 +566,79 @@
 
 		.details {
 			padding: 40px 0;
+			gap: 40px;
+		}
 
-			.useCases {
-				.useCaseGrid {
-					grid-template-columns: repeat(2, 1fr);
+		.tabsSection {
+			.tabHeaders {
+				flex-direction: column;
+				border-bottom: none;
+			}
+
+			.tabHeader {
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				border-left: 2px solid transparent;
+				text-align: left;
+				white-space: normal;
+
+				&.active {
+					border-bottom-color: rgba(255, 255, 255, 0.1);
+					border-left-color: #6BD1C3;
 				}
+			}
+		}
+
+		.coreFeatures {
+			padding: 24px;
+		}
+
+		.whyGrid {
+			grid-template-columns: 1fr;
+		}
+
+		.splitGrid {
+			grid-template-columns: 1fr;
+		}
+
+		.useCaseCards {
+			grid-template-columns: 1fr;
+		}
+
+		.compRow {
+			grid-template-columns: 1fr;
+			gap: 0;
+
+			&.compHeader {
+				display: none;
+			}
+		}
+
+		.compCell {
+			padding: 8px 24px;
+
+			&.compLabel {
+				padding-top: 16px;
+				font-size: 14px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+				color: rgba(255, 255, 255, 0.5);
+			}
+
+			&::before {
+				font-size: 13px;
+				color: rgba(255, 255, 255, 0.4);
+			}
+		}
+
+		.finalCta {
+			.finalCtaTitle {
+				font-size: 32px;
+				line-height: 40px;
+			}
+
+			.finalCtaButtons {
+				flex-direction: column;
+				align-items: center;
 			}
 		}
 	}
@@ -204,23 +658,56 @@
 					line-height: 28px;
 				}
 
-				.featureList li {
+				.description {
 					font-size: 16px;
 					line-height: 24px;
+				}
+
+				.heroCta {
+					flex-direction: column;
+
+					.btnPrimary, .btnSecondary {
+						text-align: center;
+					}
 				}
 			}
 		}
 
 		.details {
-			.useCases {
-				.useCaseIcon {
-					width: 48px;
-					height: 48px;
-				}
+			gap: 36px;
+		}
 
-				.useCaseLabel {
-					font-size: 18px;
+		.section {
+			.sectionTitle {
+				font-size: 28px;
+				line-height: 36px;
+				margin-bottom: 24px;
+			}
+		}
+
+		.tabsSection {
+			.tabHeader {
+				font-size: 15px;
+				padding: 12px 16px;
+			}
+
+			.tabContent {
+				.tabText, .tabBullets li {
+					font-size: 17px;
+					line-height: 26px;
 				}
+			}
+		}
+
+		.coreFeatures {
+			.coreFeaturesIntro {
+				font-size: 17px;
+				line-height: 26px;
+			}
+
+			.coreFeaturesList li {
+				font-size: 16px;
+				line-height: 24px;
 			}
 		}
 	}

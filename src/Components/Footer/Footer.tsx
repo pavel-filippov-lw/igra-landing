@@ -13,6 +13,8 @@ const links: Record<string, Link[]> = {
     { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
     { label: 'Documentation', to: 'https://igra-labs.gitbook.io/' },
     { label: 'What is $IGRA', to: to.igraToken(), isPage: true },
+    { label: 'Multitude', to: to.multitude(), isPage: true },
+    { label: 'ZAP', to: to.publicAuction(), isPage: true },
     { label: 'Contact', to: 'mailto:team@igralabs.com' },
   ],
   ' ': [
