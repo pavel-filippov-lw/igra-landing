@@ -105,6 +105,7 @@ const comparisonRows = [
 ]
 
 const CALENDLY_URL = 'https://calendly.com/emdin/20-minute-meeting'
+const DOCS_URL = 'https://igra-labs.gitbook.io/igralabs-docs/igra-multitude'
 
 export const MultitudePage: FC = () => {
   const exploreRef = useRef<HTMLDivElement>(null)
@@ -135,6 +136,9 @@ export const MultitudePage: FC = () => {
             <div className={classes.heroCta}>
               <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className={classes.btnPrimary}>
                 Talk to us
+              </a>
+              <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className={classes.btnSecondary}>
+                Read docs
               </a>
               <button onClick={scrollToExplore} className={classes.btnSecondary}>
                 Explore
@@ -242,7 +246,7 @@ export const MultitudePage: FC = () => {
               <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className={classes.btnPrimary}>
                 Talk to the team
               </a>
-              <a href="https://igra-labs.gitbook.io/" target="_blank" rel="noopener noreferrer" className={classes.btnSecondary}>
+              <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className={classes.btnSecondary}>
                 Read docs
               </a>
             </div>
