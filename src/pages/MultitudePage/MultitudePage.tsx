@@ -9,14 +9,6 @@ import iconWhySequencer from './assets/icon-why-sequencer.png'
 import iconWhyManaged from './assets/icon-why-managed.png'
 import classes from './MultitudePage.module.scss'
 
-const coreFeatures = [
-  'Bitcoin-grade security of the Kaspa blockDAG validator set',
-  'Up to 3,000 TPS throughput and subsecond probabilistic finality',
-  'Liveness of blockDAG validator set',
-  'Structural MEV resilience',
-  'Full EVM compatibility',
-]
-
 const deploymentModels = [
   {
     title: 'Managed Zone',
