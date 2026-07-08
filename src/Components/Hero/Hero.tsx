@@ -28,7 +28,7 @@ export const Hero: FC = () => {
                 <span className={classes.date}>30 JUN 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Igra Multitude Announced
+                  Igra Multitude announced
                 </div>
                 <div className={classes.link}>
                   Read more

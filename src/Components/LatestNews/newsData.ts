@@ -32,7 +32,7 @@ export const newsItems: NewsItem[] = [
   {
     image: news20Image,
     tag: "Article",
-    title: "Igra Multitude Announced",
+    title: "Igra Multitude announced",
     description: "Deploy your sovereign finance chain infrastructure. Managed EVM chains with dedicated throughput, no vendor-run sequencer, and reduced MEV capture risk.",
     link: "https://x.com/Igra_Labs/status/2071872531905040506",
     imagePosition: 'top',
@@ -42,7 +42,7 @@ export const newsItems: NewsItem[] = [
     tag: "Article",
     title: "Account Abstraction is fully enabled on Igra",
     description: "Type-4 transactions (EIP-7702) are enabled on all RPCs with the latest Igra node release.",
-    link: "https://x.com/Igra_Labs/status/2071872531905040506",
+    link: "https://x.com/Igra_Labs/status/2074914350926602684",
     imagePosition: 'bottom',
   },
   {
@@ -50,7 +50,7 @@ export const newsItems: NewsItem[] = [
     tag: "Article",
     title: "Toccata migration is done",
     description: "Igra Network has fully migrated to Kaspa Toccata with zero chain downtime. Block production and transactions stayed intact throughout.",
-    link: "https://x.com/Igra_Labs/status/2071872531905040506",
+    link: "https://x.com/Igra_Labs/status/2074492198893105463",
     imagePosition: 'top',
   },
   {
