@@ -35,7 +35,7 @@ export const newsItems: NewsItem[] = [
     title: "Igra Multitude announced",
     description: "Deploy your sovereign finance chain infrastructure. Managed EVM chains with dedicated throughput, no vendor-run sequencer, and reduced MEV capture risk.",
     link: "https://x.com/Igra_Labs/status/2071872531905040506",
-    imagePosition: 'top',
+    imagePosition: 'center',
   },
   {
     image: news18Image,
