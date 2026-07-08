@@ -16,7 +16,7 @@ export const Hero: FC = () => {
           FINANCE INFRASTRUCTURE THAT CANNOT BE OVERRIDDEN
         </h1>
         <div className={classes.info}>
-          <a href="https://luma.com/q8zh39zs" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+          <a href="https://x.com/Igra_Labs/status/2071872531905040506" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -25,10 +25,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>12 JUN 2026</span>
+                <span className={classes.date}>30 JUN 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Registration open for Kaspa x Igra Berlin Blockchain Week event
+                  Igra Multitude announced
                 </div>
                 <div className={classes.link}>
                   Read more
