@@ -1,6 +1,8 @@
 import news18Image from './assets/news18.jpg'
 import news19Image from './assets/news19.png'
 import news20Image from './assets/news20.jpg'
+import news21Image from './assets/news21.jpg'
+import news22Image from './assets/news22.jpg'
 import news16Image from './assets/news16.jpg'
 import news17Image from './assets/news17.png'
 import news2Image from './assets/news2.jpg'
@@ -29,6 +31,22 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news21Image,
+    tag: "Article",
+    title: "Call to miners",
+    description: "Financial infrastructure for Kaspa miners should be designed with Kaspa miners. We're looking to speak with operators running multiple Kaspa ASICs about payouts, opex, and holding vs selling KAS.",
+    link: "https://x.com/Igra_Labs/status/2077359605210906919",
+    imagePosition: 'center',
+  },
+  {
+    image: news22Image,
+    tag: "Article",
+    title: "Igra partners with Novacula",
+    description: "Novacula, a blockchain node infrastructure provider, inverts the hosting model: nodes run on your own infrastructure, so a single Igra RPC node can be free, permanently. Their beta is now open.",
+    link: "https://x.com/Igra_Labs/status/2077763549628129655",
+    imagePosition: 'center',
+  },
   {
     image: news20Image,
     tag: "Article",

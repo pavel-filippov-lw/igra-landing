@@ -13,6 +13,7 @@ import classes from './Header.module.scss'
 const links = [
   { label: 'Multitude', to: to.multitude(), isPage: true },
   { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
+  { label: 'Media', to: to.media(), isPage: true },
   { label: 'Documentation', to: 'https://igra-labs.gitbook.io/' },
   { label: '$IGRA', to: to.igraToken(), isPage: true },
 ]

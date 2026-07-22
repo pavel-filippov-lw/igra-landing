@@ -13,4 +13,5 @@ export const Routes = {
   publicAuction: 'public-auction',
   nodes: 'nodes',
   multitude: 'multitude',
+  media: 'media',
 }
