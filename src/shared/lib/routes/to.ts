@@ -28,6 +28,8 @@ class To {
   nodes = () => `/${Routes.nodes}`
 
   multitude = () => `/${Routes.multitude}`
+
+  media = () => `/${Routes.media}`
 }
 
 export const to = new To()
