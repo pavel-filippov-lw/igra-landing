@@ -91,9 +91,9 @@ export const MediaPage: FC = () => {
           {filtered.length === 0 ? (
             <div className={classes.empty}>No media for this selection.</div>
           ) : (
-            filtered.map((item, index) => (
+            filtered.map((item) => (
               <a
-                key={index}
+                key={item.link}
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"

@@ -101,7 +101,7 @@ export const mediaItems: MediaItem[] = [
   },
   {
     image: thumbAtanDecentralizedL2,
-    title: 'IGRA Labs: ATAN Makes Decentralized L2s on Kaspa Possible',
+    title: 'Igra Labs: ATAN Makes Decentralized L2s on Kaspa Possible',
     description: 'XXIM · 27 December 2025',
     category: 'Podcast',
     year: 2025,
