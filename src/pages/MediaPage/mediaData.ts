@@ -13,6 +13,7 @@ import thumbKaspaExpProgrammability from './assets/yt-8QgpOIHIx1M.jpg'
 import thumbAtanDecentralizedL2 from './assets/yt-9zQWAMuQREU.jpg'
 import thumbKaspaL2Composability from './assets/yt-NH9u1ifpsIg.jpg'
 import thumbKaspaL2BasedRollups from './assets/yt-CUfomKOmCMQ.jpg'
+import thumbBitcoinPeopleKaspa from './assets/spotify-bitcoin-people-kaspa.jpg'
 
 export type MediaCategory = 'Video' | 'Podcast' | 'Talk' | 'Tutorial'
 
@@ -90,6 +91,14 @@ export const mediaItems: MediaItem[] = [
     category: 'Podcast',
     year: 2026,
     link: 'https://www.youtube.com/watch?v=l6SaBU-4EZc',
+  },
+  {
+    image: thumbBitcoinPeopleKaspa,
+    title: 'Did We Find the “Ethereum Foundation” of Kaspa? (in Hebrew)',
+    description: 'The Bitcoin People · אנשי הביטקוין · 11 May 2026',
+    category: 'Podcast',
+    year: 2026,
+    link: 'https://open.spotify.com/episode/4KIcz37aR7p1nUb3p9ohI2',
   },
   {
     image: thumbRunFullNode,
