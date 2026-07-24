@@ -5,7 +5,6 @@ import { Flex } from "~/shared/ui"
 import { TeamMemberCard } from "../TeamMemberCard"
 import denPhoto from './assets/den.png'
 import ilyaPhoto from './assets/ilya.png'
-import mikePhoto from './assets/mike.png'
 import igorPhoto from './assets/new1.png'
 import behzadPhoto from './assets/new2.png'
 import vadimPhoto from './assets/new3.png'
@@ -41,13 +40,6 @@ const teamMembers = [
     role: 'Head of Engineering',
     description: 'Ph.D. in Computational Sciences, ex Architect/Tech Lead @ Panther Protocol, DevCon speaker, ETHGlobal hackathon winner',
     linkedinUrl: 'https://www.researchgate.net/profile/Igor-Markelov',
-  },
-  {
-    photoUrl: mikePhoto,
-    name: ['Mike Zak', 'Sailor'],
-    role: 'Blockchain Developer',
-    description: 'Software developer, an OG Kaspa, led development of Kaspa up to the release of mainnet, ex core teamlead @ DAGlabs',
-    linkedinUrl: 'https://www.linkedin.com/in/mike-zak-2721324b/',
   },
   {
     photoUrl: ilyaPhoto,
