@@ -18,11 +18,13 @@ import katalliance from './assets/katbridge.png'
 import katbridgeapp from './assets/katbridgeapp.png'
 import knexous from './assets/knexous.png'
 import kyo from './assets/kyo.png'
+import lynx from './assets/lynx.png'
 import moonbound from './assets/moonbound.png'
 import nacho from './assets/nacho.png'
 import quex from './assets/quex.png'
-import spectre from './assets/spectre.jpg'
-import tangem from './assets/tangem.png'
+import kaspagent from './assets/kaspagent.png'
+import rkstratum from './assets/rkstratum.png'
+import tangem from './assets/tangem-igra.png'
 import zealous from './assets/zealous.png'
 import zealousflow from './assets/zealousflow.png'
 import zelcore from './assets/zelcore.png'
@@ -31,20 +33,20 @@ import { Card, Project } from "./Card"
 const projects: Project[] = [
 
   {
-    logoUrl: zealous,
-    name: 'Zealous Swap',
-    description: 'Zealous Swap - Kaspa\'s first AMM DEX with NFT-based fees, protocol-owned liquidity, insurance fund, and modular fees.',
-    to: 'https://www.zealousswap.com/',
-    type: 'DeFi, DEX',
-    badge: 'mainnet',
-  },
-
-  {
     logoUrl: kaskad,
     name: 'Kaskad',
     description: 'Fully decentralized lending protocol, tailored for Kaspa\'s high-speed architecture.',
     to: 'https://kaskad.app/',
     type: 'DeFi, Lending protocol',
+    badge: 'mainnet',
+  },
+
+  {
+    logoUrl: zealous,
+    name: 'Zealous Swap',
+    description: 'Zealous Swap - Kaspa\'s first AMM DEX with NFT-based fees, protocol-owned liquidity, insurance fund, and modular fees.',
+    to: 'https://www.zealousswap.com/',
+    type: 'DeFi, DEX',
     badge: 'mainnet',
   },
 
@@ -71,6 +73,33 @@ const projects: Project[] = [
     description: 'The #1 Leading Kaspa DeFi Platform - DEX, Lending & Borrowing, Launchpad, and NFTs. For the Community, by the Community.',
     to: 'https://kaspa.com',
     type: 'DeFi Platform',
+    badge: 'mainnet',
+  },
+
+  {
+    logoUrl: lynx,
+    name: 'LYNX',
+    description: 'LYNX is a liquid staking vault protocol on Igra, now on Galleon testnet. It lets anyone stake IGRA, the network\'s governance and security token, without running an Attester node, and earn staking rewards.',
+    to: 'https://lynx-galleon.kat.foundation/',
+    type: 'DeFi, Liquid Staking',
+    badge: 'testnet',
+  },
+
+  {
+    logoUrl: rkstratum,
+    name: 'RKStratum',
+    description: 'RKStratum (rustykaspa.org) provides Kaspa stratum infrastructure across independent community-operated bridge hosts instead of relying on centralized servers. Bridge operators and miners earn additional rewards for providing reliable, high-availability infrastructure, creating sustainable incentives for network growth. RKStratum supports both Solo and PPLNS mining, giving miners the flexibility to choose the mining experience that best fits their goals. The project reduces single points of failure, improves mining decentralization, and makes it easy for anyone to contribute infrastructure to the Kaspa ecosystem.',
+    to: 'https://rustykaspa.org/',
+    type: 'Mining Infrastructure',
+    badge: 'mainnet',
+  },
+
+  {
+    logoUrl: kaspagent,
+    name: 'Kaspagent',
+    description: 'The first AI agent marketplace on Kaspa, running on Igra Network. Pay-per-call in iKAS to access 45+ specialized AI agents (security audits, on-chain analytics, research, productivity, and more) — no subscription. Payments are escrowed on-chain and refunded automatically if an agent fails to deliver.',
+    to: 'https://kaspagent.com/',
+    type: 'AI Agent Marketplace',
     badge: 'mainnet',
   },
 
@@ -238,15 +267,6 @@ const projects: Project[] = [
     description: 'The first true CLOB DEX on Kaspa: MEV Resistant, trustless interoperability, atomically composable, fully on-chain.',
     to: 'https://x.com/aporiaexchange',
     type: 'DeFi, CLOB DEX',
-    badge: 'testnet',
-  },
-
-  {
-    logoUrl: spectre,
-    name: 'Spectre Market',
-    description: 'Spectre Market is Kaspa\'s premier NFT marketplace built on Igra L2, enabling you to deploy NFT collections, mint tokens, trade digital assets, and stake NFTs for rewards.',
-    to: 'https://spectre.market/',
-    type: 'NFT Marketplace',
     badge: 'testnet',
   },
 
