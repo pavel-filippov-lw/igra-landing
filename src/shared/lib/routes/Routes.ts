@@ -14,4 +14,5 @@ export const Routes = {
   nodes: 'nodes',
   multitude: 'multitude',
   media: 'media',
+  tangemClaim: 'tangem-claim',
 }

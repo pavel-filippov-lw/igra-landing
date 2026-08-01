@@ -1,0 +1,544 @@
+.root {
+  width: 100%;
+  padding: 80px 0 80px;
+
+  // Per the Figma: two columns of EQUAL height (align-items: stretch). The left
+  // block (title + card) sets the height; the hero on the right matches it, and
+  // the WHOLE illustration fits within that height (object-fit: contain — never
+  // cropped). Result: hero top edge ≈ title top (near nav), hero bottom edge ≈
+  // card bottom.
+  .layout {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .left {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 55%;
+    max-width: 620px;
+    // Shifted right to overlap the hero on its right edge.
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  // Hero column: matches the left block's height (flex stretch). The source PNG
+  // is tightly cropped to the illustration, so `object-fit: contain` at the full
+  // column height renders it large — the whole box + cards fill the left block's
+  // height (box near card bottom, cards rising toward the nav) with nothing
+  // cropped. Slight overlap onto the left column via the negative margin.
+  .hero {
+    flex: 1 1 auto;
+    position: relative;
+    min-width: 0;
+    margin-left: -60px;
+    margin-top: -30px;
+    margin-bottom: -20px;
+    pointer-events: none;
+  }
+
+  // The image extends UP past the content's top padding, behind the fixed nav
+  // (which has z-index 100 and a near-transparent blurred bg, so the glow shows
+  // through) — matching the Figma where the light beams pass under the nav. Top
+  // reaches ~toward the page top; bottom stays at the card bottom so the box
+  // sits low. `contain` keeps the whole illustration visible.
+  .heroImg {
+    display: block;
+    position: absolute;
+    top: calc(-1 * ($header_h + $banner_h) - 20px);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: right center;
+  }
+
+  .card {
+    width: 100%;
+    // Figma card fill: #3F3F3F at 40% opacity; +30% more transparent (0.4 → 0.28).
+    background: rgba(63, 63, 63, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Registration/success content lives INSIDE the card (not a second card):
+  // a divided section, not a nested box.
+  .formCard {
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .title {
+    font-family: $font-secondary;
+    font-size: 64px;
+    line-height: 1.1;
+    font-weight: 400;
+    color: #6BD1C3;
+    margin: 0;
+  }
+
+  .intro {
+    font-family: $font;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 16px 0 0;
+  }
+
+  // Compact horizontal step tracker: dot + label, connectors between.
+  .tracker {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    .trackerStep {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: $font;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+
+      // connector line to the next step
+      &:not(:last-child)::after {
+        content: '';
+        width: 100%;
+        min-width: 16px;
+        height: 1px;
+        margin: 0 12px;
+        background: rgba(255, 255, 255, 0.14);
+        flex: 1;
+      }
+    }
+
+    .trackerDot {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .trackerActive {
+      color: #FFFFFF;
+      .trackerDot {
+        border-color: #6BD1C3;
+        color: #6BD1C3;
+      }
+    }
+
+    .trackerPending {
+      color: rgba(255, 255, 255, 0.4);
+      .trackerDot {
+        color: rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    .trackerDone {
+      color: rgba(255, 255, 255, 0.6);
+      .trackerDot {
+        background: #6BD1C3;
+        border-color: #6BD1C3;
+        color: #0A0A0A;
+      }
+    }
+
+    // On narrow widths, drop the labels — keep just the dots + connectors.
+    @media screen and (max-width: 520px) {
+      .trackerLabel {
+        display: none;
+      }
+      .trackerStep:not(:last-child)::after {
+        margin: 0 8px;
+      }
+    }
+  }
+
+  .reassure {
+    font-family: $font;
+    font-size: 15px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 24px 0 0;
+
+    strong {
+      color: #E7EE90;
+      font-weight: 700;
+    }
+  }
+
+  .cta {
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  .connected {
+    font-family: $font;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 16px 0 0;
+
+    .address {
+      color: #6BD1C3;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .linkInline {
+      margin-left: 10px;
+      padding: 0;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.45);
+      font-family: $font;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: underline;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+
+  .notice {
+    margin-top: 20px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    background: rgba(239, 252, 102, 0.06);
+    border: 1px solid rgba(239, 252, 102, 0.2);
+    font-family: $font;
+    font-size: 15px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.8);
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .linkButton {
+    margin-top: 12px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #6BD1C3;
+    font-family: $font;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .error {
+    margin-top: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(255, 90, 90, 0.08);
+    border: 1px solid rgba(255, 90, 90, 0.25);
+    font-family: $font;
+    font-size: 15px;
+    line-height: 22px;
+    color: #FF9A9A;
+  }
+
+  .privacy {
+    font-family: $font;
+    font-size: 13px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 28px 0 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  // Document links row at the bottom of the card (eligibility / rules / privacy).
+  .footerLinks {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding-left: 4px;
+    font-family: $font;
+    font-size: 14px;
+
+    a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+
+      &:hover {
+        color: #6BD1C3;
+      }
+    }
+
+    span {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .formHeading {
+    font-family: $font-secondary;
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0 0 8px;
+  }
+
+  .deadline {
+    font-family: $font;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 20px;
+  }
+
+  .emailForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .emailIntro {
+    font-family: $font;
+    font-size: 15px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+
+    strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  }
+
+  .mockHint {
+    color: #EFFC66;
+    font-size: 13px;
+  }
+
+  .input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #FFFFFF;
+    font-family: $font;
+    font-size: 17px;
+    outline: none;
+    transition: border-color 0.2s ease;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    &:focus {
+      border-color: #6BD1C3;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  // Red border on an input with a validation/submit error.
+  .inputError {
+    border-color: rgba(255, 90, 90, 0.55);
+
+    &:focus {
+      border-color: rgba(255, 90, 90, 0.8);
+    }
+  }
+
+  // Compact error message shown directly under the input (visible, not below the fold).
+  .fieldError {
+    margin: -6px 0 0;
+    font-family: $font;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FF9A9A;
+  }
+
+  .codeInput {
+    letter-spacing: 0.4em;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .codeActions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  // Checkmark + heading on one line.
+  .successHead {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 20px;
+
+    .formHeading {
+      margin: 0;
+    }
+  }
+
+  .successMark {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #6BD1C3;
+    color: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  // Confirmed wallet + email, shown on the success screen.
+  .confirmed {
+    margin: 0 0 20px;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .confirmedRow {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin: 0;
+
+      dt {
+        flex-shrink: 0;
+        width: 56px;
+        font-family: $font;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      dd {
+        margin: 0;
+        font-family: $font;
+        font-size: 15px;
+        font-weight: 600;
+        color: #6BD1C3;
+        font-variant-numeric: tabular-nums;
+        word-break: break-all;
+
+        // Inline "disconnect" action after the wallet address.
+        button {
+          margin-left: 12px;
+          padding: 0;
+          background: none;
+          border: none;
+          font-family: $font;
+          font-size: 13px;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.6);
+          text-decoration: underline;
+          cursor: pointer;
+
+          &:hover {
+            color: #FFFFFF;
+          }
+        }
+      }
+    }
+  }
+
+  .successText {
+    font-family: $font;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+  }
+
+
+  // Below laptop: the height-matched hero doesn't work in a stacked layout, so
+  // hide it entirely — just the title + card, centered.
+  @media screen and (max-width: $laptop) {
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .left {
+      flex: none;
+      width: 100%;
+      max-width: 640px;
+      margin-left: 0;
+    }
+
+    .hero {
+      display: none;
+    }
+
+    .title {
+      font-size: 48px;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    padding: 90px 0 60px;
+
+    .card,
+    .formCard {
+      padding: 28px 22px;
+      border-radius: 18px;
+    }
+
+    .title {
+      font-size: 38px;
+    }
+
+    .intro {
+      font-size: 16px;
+    }
+
+    .cta {
+      align-self: stretch;
+    }
+
+    .heroImg {
+      max-width: 300px;
+    }
+  }
+}

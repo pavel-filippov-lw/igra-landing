@@ -1,8 +1,14 @@
-import { FC } from 'react'
+import { FC, lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Outlet, Route, Routes as ReactRoutes } from 'react-router-dom'
 
 import { IgraTokenPage, /* BenefitsPage, BenefitsPage2, */ EcosystemPage, HeroPage, ManifestoPage, MediaPage, MultitudePage, NewsPage, NodesPage, PrivacyPage, PublicAuctionPage, TeamPage, TermsPage, VisionPage } from '~/pages'
 import { Routes, to } from '~/shared/lib'
+
+// Lazy-loaded so the heavy WalletConnect/AppKit stack it pulls in is code-split
+// out of the main landing bundle — downloaded only when /tangem-claim is opened.
+const TangemClaimPage = lazy(() =>
+  import('~/pages/TangemClaimPage').then((m) => ({ default: m.TangemClaimPage })),
+)
 
 export const AppRouter: FC = () => {
   return (
@@ -25,6 +31,14 @@ export const AppRouter: FC = () => {
           <Route path={Routes.nodes} element={<NodesPage />} />
           <Route path={Routes.multitude} element={<MultitudePage />} />
           <Route path={Routes.media} element={<MediaPage />} />
+          <Route
+            path={Routes.tangemClaim}
+            element={
+              <Suspense fallback={null}>
+                <TangemClaimPage />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<Navigate to={to.hero()} />} />
         </Route>
       </ReactRoutes>
