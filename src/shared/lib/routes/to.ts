@@ -30,6 +30,8 @@ class To {
   multitude = () => `/${Routes.multitude}`
 
   media = () => `/${Routes.media}`
+
+  tangemClaim = () => `/${Routes.tangemClaim}`
 }
 
 export const to = new To()
