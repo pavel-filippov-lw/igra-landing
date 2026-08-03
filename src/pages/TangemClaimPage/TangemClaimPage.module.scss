@@ -274,21 +274,29 @@
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  // Document links row at the bottom of the card (eligibility / rules / privacy).
+  // Document links row at the bottom of the card (eligibility / rules / privacy),
+  // centered relative to the card above.
   .footerLinks {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     margin-top: 20px;
-    padding-left: 4px;
     font-family: $font;
     font-size: 14px;
 
-    a {
+    a,
+    button {
+      padding: 0;
+      background: none;
+      border: none;
+      font-family: $font;
+      font-size: 14px;
       color: rgba(255, 255, 255, 0.6);
       text-decoration: underline;
       text-underline-offset: 2px;
+      cursor: pointer;
 
       &:hover {
         color: #6BD1C3;

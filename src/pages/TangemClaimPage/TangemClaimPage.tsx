@@ -17,6 +17,13 @@ import {
 import heroImg from './assets/hero-tight.png'
 import { EmailRegister, RegisteredSuccess } from './EmailRegister'
 import {
+  GiveawayRules,
+  GIVEAWAY_RULES_TITLE,
+  PrivacyNotice,
+  PRIVACY_NOTICE_TITLE,
+} from './legalContent'
+import { LegalModal } from './LegalModal'
+import {
   clearClaimToken,
   getRegistration,
   isRegistered,
@@ -35,11 +42,9 @@ interface Verified {
   deadline?: string
 }
 
-// Document links shown at the bottom of the card. Placeholders — replace with the
-// real URLs when available.
-const ELIGIBILITY_SNAPSHOT_URL = '#'
-const GIVEAWAY_RULES_URL = '#'
-const PRIVACY_NOTICE_URL = '#'
+// External GitHub link for the eligibility snapshot. Placeholder — replace with
+// the real repo URL. (Rules + Privacy open in-page modals, see the footer.)
+const ELIGIBILITY_SNAPSHOT_URL = 'https://github.com/IgraLabs/tangem-zap-giveaway-2026'
 
 // The exact registration deadline, shown to the user verbatim.
 const DEADLINE = '15 August 2026, 23:59 UTC'
@@ -76,6 +81,7 @@ const ClaimShell: FC<{ phase: Phase; stepIndex: number; action: ReactNode; child
   children,
 }) => {
   const onboarding = phase === 'connect' || phase === 'verify'
+  const [openDoc, setOpenDoc] = useState<'rules' | 'privacy' | null>(null)
   return (
     <div className={classes.root}>
       <div className={classes.layout}>
@@ -85,7 +91,10 @@ const ClaimShell: FC<{ phase: Phase; stepIndex: number; action: ReactNode; child
           <div className={classes.card}>
             {onboarding && (
               <p className={classes.intro}>
-                Participated in ZAP? Verify your wallet and add an email so we can contact you if you win.
+                Bid at least 500 iKAS during ZAP? You’re in the draw for one of 10 Igra-themed
+                Tangem 3-card sets.
+                <br />
+                Connect your wallet to check, and optionally add an email so we can notify if you win.
               </p>
             )}
 
@@ -115,13 +124,13 @@ const ClaimShell: FC<{ phase: Phase; stepIndex: number; action: ReactNode; child
               Eligibility snapshot
             </a>
             <span aria-hidden="true">·</span>
-            <a href={GIVEAWAY_RULES_URL} target="_blank" rel="noopener noreferrer">
+            <button type="button" onClick={() => setOpenDoc('rules')}>
               Giveaway rules
-            </a>
+            </button>
             <span aria-hidden="true">·</span>
-            <a href={PRIVACY_NOTICE_URL} target="_blank" rel="noopener noreferrer">
+            <button type="button" onClick={() => setOpenDoc('privacy')}>
               Privacy notice
-            </a>
+            </button>
           </nav>
         </div>
 
@@ -129,6 +138,17 @@ const ClaimShell: FC<{ phase: Phase; stepIndex: number; action: ReactNode; child
           <img src={heroImg} alt="" className={classes.heroImg} />
         </div>
       </div>
+
+      {openDoc === 'rules' && (
+        <LegalModal title={GIVEAWAY_RULES_TITLE} onClose={() => setOpenDoc(null)}>
+          <GiveawayRules />
+        </LegalModal>
+      )}
+      {openDoc === 'privacy' && (
+        <LegalModal title={PRIVACY_NOTICE_TITLE} onClose={() => setOpenDoc(null)}>
+          <PrivacyNotice />
+        </LegalModal>
+      )}
     </div>
   )
 }
