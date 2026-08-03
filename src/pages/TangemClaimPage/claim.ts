@@ -3,7 +3,7 @@ import { getAddress, type Address } from 'viem'
 import { isMockEnabled, mockConfirm, mockStart } from './mockApi'
 
 /**
- * Claim flow logic for the Tangem × Igra giveaway (API + SIWE message building).
+ * Claim flow logic for the Igra × Tangem giveaway (API + SIWE message building).
  * Wallet connection and message signing are handled by wagmi/AppKit in the
  * component (see appkit.ts); this module is transport + message construction only.
  *
@@ -21,14 +21,17 @@ const API_URL = import.meta.env.VITE_GIVEAWAY_API_URL
 
 /** SIWE statement shown to the user in their wallet before signing. */
 const SIWE_STATEMENT =
-  'Verify ownership of your wallet to register for the Tangem × Igra giveaway. This is a free signature — it does not authorize any transaction.'
+  'Verify ownership of your wallet to register for the Igra × Tangem giveaway. This is a free signature — it does not authorize any transaction.'
 
 export interface EligibilityResponse {
   /** Whether this address participated in ZAP and may register. */
   eligible: boolean
   /** Server-issued, single-use nonce to embed in the SIWE message. */
   nonce: string
-  /** Optional human-readable claim deadline (ISO 8601), shown to the user. */
+  /**
+   * Optional human-readable deadline the server may return. Informational only —
+   * the UI shows its own fixed deadline constant, so this is not displayed.
+   */
   deadline?: string
 }
 

@@ -39,11 +39,10 @@ type Phase = 'connect' | 'verify' | 'done'
 
 interface Verified {
   claimToken: string
-  deadline?: string
 }
 
-// External GitHub link for the eligibility snapshot. Placeholder — replace with
-// the real repo URL. (Rules + Privacy open in-page modals, see the footer.)
+// External GitHub link for the eligibility snapshot + draw methodology.
+// (Rules + Privacy open in-page modals, see the footer.)
 const ELIGIBILITY_SNAPSHOT_URL = 'https://github.com/IgraLabs/tangem-zap-giveaway-2026'
 
 // The exact registration deadline, shown to the user verbatim.
@@ -86,7 +85,7 @@ const ClaimShell: FC<{ phase: Phase; stepIndex: number; action: ReactNode; child
     <div className={classes.root}>
       <div className={classes.layout}>
         <div className={classes.left}>
-          <h1 className={classes.title}>Tangem × Igra Giveaway</h1>
+          <h1 className={classes.title}>Igra × Tangem Giveaway</h1>
 
           <div className={classes.card}>
             {onboarding && (
@@ -213,7 +212,7 @@ const TangemClaimInner: FC = () => {
     }
     setRegistered(false)
     const stored = loadClaimToken(address, Date.now())
-    setVerified(stored ? { claimToken: stored.claimToken, deadline: stored.deadline } : null)
+    setVerified(stored ? { claimToken: stored.claimToken } : null)
   }, [address])
 
   const handleError = (err: unknown) => {
@@ -232,7 +231,7 @@ const TangemClaimInner: FC = () => {
     setError(null)
     setBusy(true)
     try {
-      const { eligible, nonce, deadline } = await fetchEligibility(address)
+      const { eligible, nonce } = await fetchEligibility(address)
       if (!eligible) {
         setIneligible(true)
         return
@@ -249,8 +248,8 @@ const TangemClaimInner: FC = () => {
       }
 
       const { claimToken } = await verifyClaim(address, message, signature)
-      saveClaimToken(address, claimToken, deadline, Date.now())
-      setVerified({ claimToken, deadline })
+      saveClaimToken(address, claimToken, Date.now())
+      setVerified({ claimToken })
     } catch (err) {
       handleError(err)
     } finally {

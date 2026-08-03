@@ -25,7 +25,6 @@ const CLAIM_TOKEN_CLIENT_TTL_MS = 12 * 60 * 1000
 interface StoredToken {
   address: string
   claimToken: string
-  deadline?: string
   expiresAt: number
 }
 
@@ -55,11 +54,10 @@ function remove(key: string): void {
 }
 
 /** Save a fresh claimToken for this wallet with a client-side expiry. */
-export function saveClaimToken(address: string, claimToken: string, deadline: string | undefined, now: number): void {
+export function saveClaimToken(address: string, claimToken: string, now: number): void {
   const entry: StoredToken = {
     address: address.toLowerCase(),
     claimToken,
-    deadline,
     expiresAt: now + CLAIM_TOKEN_CLIENT_TTL_MS,
   }
   writeJSON(TOKEN_KEY, entry)
@@ -69,17 +67,14 @@ export function saveClaimToken(address: string, claimToken: string, deadline: st
  * Return a still-valid stored token for this wallet, or null. Discards the entry
  * if it's for a different wallet or past its client expiry.
  */
-export function loadClaimToken(
-  address: string,
-  now: number,
-): { claimToken: string; deadline?: string } | null {
+export function loadClaimToken(address: string, now: number): { claimToken: string } | null {
   const entry = readJSON<StoredToken>(TOKEN_KEY)
   if (!entry) return null
   if (entry.address !== address.toLowerCase() || entry.expiresAt <= now) {
     remove(TOKEN_KEY)
     return null
   }
-  return { claimToken: entry.claimToken, deadline: entry.deadline }
+  return { claimToken: entry.claimToken }
 }
 
 export function clearClaimToken(): void {

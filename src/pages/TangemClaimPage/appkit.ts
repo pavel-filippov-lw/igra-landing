@@ -4,7 +4,7 @@ import { defineChain, mainnet } from '@reown/appkit/networks'
 import type { AppKitNetwork } from '@reown/appkit/networks'
 
 /**
- * Reown AppKit (Web3Modal successor) setup for the Tangem × Igra giveaway.
+ * Reown AppKit (Web3Modal successor) setup for the Igra × Tangem giveaway.
  *
  * WalletConnect is required here: Tangem is a WalletConnect-only wallet (no
  * browser extension, no in-app dApp browser), so injected-only connection would
@@ -25,7 +25,7 @@ const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID
  * chainId 38833 (0x97B1), native currency iKAS (18 decimals). ZAP participants'
  * wallets live on this chain, so it is listed first (the default network).
  */
-export const igraMainnet = defineChain({
+const igraMainnet = defineChain({
   id: 38833,
   caipNetworkId: 'eip155:38833',
   chainNamespace: 'eip155',
@@ -76,8 +76,8 @@ export function initAppKit(): void {
     networks,
     projectId,
     metadata: {
-      name: 'Tangem × Igra Giveaway',
-      description: 'Verify your wallet to register for the Tangem × Igra giveaway.',
+      name: 'Igra × Tangem Giveaway',
+      description: 'Verify your wallet to register for the Igra × Tangem giveaway.',
       url: 'https://igralabs.com',
       icons: ['https://igralabs.com/favicon.ico'],
     },

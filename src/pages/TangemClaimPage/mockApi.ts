@@ -1,6 +1,8 @@
 /**
- * Dev-only mock for the email + OTP endpoints, so the frontend flow can be
- * exercised before the real backend exists. Enabled with VITE_GIVEAWAY_MOCK=1.
+ * Dev-only mock for the email + OTP step only (/email/start, /email/confirm), so
+ * the email form can be exercised without a mail backend. Eligibility and verify
+ * still hit the real API, so VITE_GIVEAWAY_API_URL is still required. Enabled
+ * with VITE_GIVEAWAY_MOCK=1.
  *
  * The mock code is always "123456". `start` pretends to send it; `confirm`
  * accepts only that code (or 409s a second time to simulate "already

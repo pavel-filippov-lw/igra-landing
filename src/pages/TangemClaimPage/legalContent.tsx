@@ -20,7 +20,7 @@ const OrgAddress: FC = () => (
 )
 
 /** ── Giveaway Rules ─────────────────────────────────────────────────── */
-export const GIVEAWAY_RULES_TITLE = 'Tangem × Igra ZAP Wallet Giveaway Rules'
+export const GIVEAWAY_RULES_TITLE = 'Igra × Tangem ZAP Wallet Giveaway Rules'
 
 export const GiveawayRules: FC = () => (
   <>
@@ -28,7 +28,7 @@ export const GiveawayRules: FC = () => (
 
     <h3>1. Organizer and purpose</h3>
     <p>
-      The Tangem × Igra ZAP Wallet Giveaway (the <strong>“Giveaway”</strong>) is organized by:
+      The Igra × Tangem ZAP Wallet Giveaway (the <strong>“Giveaway”</strong>) is organized by:
     </p>
     <OrgAddress />
     <p>(the <strong>“Organizer”</strong>)</p>
@@ -190,7 +190,7 @@ export const GiveawayRules: FC = () => (
 )
 
 /** ── Privacy Notice ─────────────────────────────────────────────────── */
-export const PRIVACY_NOTICE_TITLE = 'Tangem × Igra ZAP Wallet Giveaway Privacy Notice'
+export const PRIVACY_NOTICE_TITLE = 'Igra × Tangem ZAP Wallet Giveaway Privacy Notice'
 
 export const PrivacyNotice: FC = () => (
   <>

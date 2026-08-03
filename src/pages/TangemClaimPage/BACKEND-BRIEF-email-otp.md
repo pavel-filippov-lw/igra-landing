@@ -112,8 +112,9 @@ status. **Never** expose the claimToken, SIWE signature, or OTP codes.
 ## Resend integration
 
 - Use the Resend Node SDK (`resend` npm) or their REST API.
-- Env: `RESEND_API_KEY`, `GIVEAWAY_EMAIL_FROM` (e.g. `Tangem × Igra
-  <giveaway@igralabs.com>` — the domain must be verified in Resend).
+- Env: `RESEND_API_KEY`, `GIVEAWAY_EMAIL_FROM` (e.g. `Igra × Tangem
+  <giveaway@igra.network>` — must match the contact address in the legal docs and
+  be a verified sending domain in Resend).
 - Send the OTP email in `email/start`. Keep the template plain: the 6-digit code,
   a one-line what-it's-for, and the 10-min expiry. No links needed (this is a code,
   not a magic link).
