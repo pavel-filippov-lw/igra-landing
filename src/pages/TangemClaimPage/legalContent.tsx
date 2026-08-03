@@ -24,7 +24,7 @@ export const GIVEAWAY_RULES_TITLE = 'Igra × Tangem ZAP Wallet Giveaway Rules'
 
 export const GiveawayRules: FC = () => (
   <>
-    <p className={classes.effective}>Effective date: 1 August 2026</p>
+    <p className={classes.effective}>Effective date: 3 August 2026</p>
 
     <h3>1. Organizer and purpose</h3>
     <p>
@@ -80,7 +80,7 @@ export const GiveawayRules: FC = () => (
 
     <h3>4. Registration</h3>
     <p>
-      Registration opens on <strong>1 August 2026</strong> and closes on{' '}
+      Registration opens on <strong>3 August 2026</strong> and closes on{' '}
       <strong>15 August 2026 at 23:59 UTC</strong>.
     </p>
     <p>To register, a participant must:</p>
@@ -194,7 +194,7 @@ export const PRIVACY_NOTICE_TITLE = 'Igra × Tangem ZAP Wallet Giveaway Privacy 
 
 export const PrivacyNotice: FC = () => (
   <>
-    <p className={classes.effective}>Effective date: 1 August 2026</p>
+    <p className={classes.effective}>Effective date: 3 August 2026</p>
     <p>The controller responsible for the Giveaway is:</p>
     <OrgAddress />
     <p>
