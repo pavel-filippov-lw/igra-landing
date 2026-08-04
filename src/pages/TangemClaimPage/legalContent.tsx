@@ -44,8 +44,8 @@ export const GiveawayRules: FC = () => (
     <h3>2. Prizes</h3>
     <p>The Giveaway offers ten prizes.</p>
     <p>
-      Each prize consists of one Tangem Wallet three-card set, with an approximate retail value of
-      USD 63.
+      Each prize consists of one Tangem Wallet two-card set, with an approximate retail value of
+      USD 55.
     </p>
     <p>Prizes cannot be exchanged for cash, tokens or another product.</p>
 
