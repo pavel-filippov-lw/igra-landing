@@ -1,3 +1,4 @@
+import news23Image from './assets/news23.jpg'
 import news18Image from './assets/news18.jpg'
 import news19Image from './assets/news19.png'
 import news20Image from './assets/news20.jpg'
@@ -31,6 +32,14 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news23Image,
+    tag: "Giveaway",
+    title: "Igra-themed Tangem wallet giveaway is live",
+    description: "10 Igra-themed Tangem 2-card sets to be won. If you bid at least 500 iKAS during ZAP, you're already in the draw — connect your wallet to check and optionally add an email so we can notify you if you win. Registration closes 15 August 2026.",
+    link: "https://x.com/Igra_Labs/status/2084380604058255498",
+    imagePosition: 'center',
+  },
   {
     image: news21Image,
     tag: "Article",
