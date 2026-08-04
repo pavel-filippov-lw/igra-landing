@@ -28,7 +28,7 @@ export const Hero: FC = () => {
                 <span className={classes.date}>03 AUG 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Igra themed Tangem wallet giveaway is live!
+                  Igra × Tangem wallet giveaway is live!
                 </div>
                 <div className={classes.link}>
                   Read more

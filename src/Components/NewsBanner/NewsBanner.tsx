@@ -7,13 +7,13 @@ import classes from './NewsBanner.module.scss'
 
 export const NewsBanner: FC = () => {
   const handleClick = () => {
-    window.plausible?.('NewsBannerClick')
+    window.plausible?.('TangemGiveawayBannerClick')
   }
 
   return (
-    <Link to={to.publicAuction('overview')} className={classes.root} onClick={handleClick}>
+    <Link to={to.tangemClaim()} className={classes.root} onClick={handleClick}>
       <span className={classes.text}>
-        Public sale is finished! <strong>Claims are open.</strong>
+        Igra × Tangem wallet giveaway is live! <strong>Check if you're eligible.</strong>
       </span>
     </Link>
   )
