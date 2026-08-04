@@ -91,7 +91,7 @@ const ClaimShell: FC<{ phase: Phase; stepIndex: number; action: ReactNode; child
             {onboarding && (
               <p className={classes.intro}>
                 Bid at least 500 iKAS during ZAP? You’re in the draw for one of 10 Igra-themed
-                Tangem 3-card sets.
+                Tangem 2-card sets.
                 <br />
                 Connect your wallet to check, and optionally add an email so we can notify if you win.
               </p>
