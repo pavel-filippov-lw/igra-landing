@@ -34,7 +34,7 @@ interface SupplyData {
 // omits the note rather than showing something wrong.
 const EXCLUSION_REASONS: Record<string, string> = {
   VestingPools: 'Unreleased vesting allocations',
-  Attesting: 'Staked by attesters',
+  Attesting: 'Staked\nAttesters or voters',
   StakeRewardsController: 'Attester rewards not yet distributed',
   ContinuousClearingAuction: 'Sold at auction, not yet claimed by buyers',
   'Igra Team': 'Team allocation, under a no-transfer commitment',
