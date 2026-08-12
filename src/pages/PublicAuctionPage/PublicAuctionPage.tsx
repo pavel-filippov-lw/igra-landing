@@ -230,6 +230,7 @@ export const PublicAuctionPage: FC = () => {
                         <li><a href="https://kasperia-doc.github.io/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kasperia</a></li>
                         <li><a href="https://www.kasware.xyz/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kasware</a></li>
                         <li><a href="https://kastle.cc/" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Kastle</a></li>
+                        <li><a href="https://zelcore.io" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Zelcore</a></li>
                       </ul>
                     </div>
                   </details>
