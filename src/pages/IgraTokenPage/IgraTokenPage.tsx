@@ -222,16 +222,7 @@ export const IgraTokenPage: FC = () => {
               {'Igra Mainnet is a live EVM network built on Kaspa\'s proof-of-work BlockDAG. Public mainnet was launched in February \'26.'}
               <br /><br />
               <span className={classes.boldText}>$IGRA</span>
-              {' secures the Igra Network and governs the protocol. Fixed supply, demand grows with network usage. It was launched via '}
-              <a
-                href="https://www.zealousswap.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={classes.inlineLink}
-              >
-                Zealous Swap ZAP
-              </a>
-              {', a fair onchain auction mechanism.'}
+              {' secures the Igra Network and governs the protocol. Fixed supply, demand grows with network usage. It was launched via Zealous Swap ZAP, a fair onchain auction mechanism.'}
               <br /><br />
               {'On this page you can see the token unlock schedule, allocation at genesis, and circulating supply breakdown.'}
               <br /><br />
