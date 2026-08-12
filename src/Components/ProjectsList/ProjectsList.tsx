@@ -80,7 +80,7 @@ const projects: Project[] = [
     logoUrl: lynx,
     name: 'LYNX',
     description: 'LYNX is a liquid staking vault protocol on Igra, now on Galleon testnet. It lets anyone stake IGRA, the network\'s governance and security token, without running an Attester node, and earn staking rewards.',
-    to: 'https://lynx-galleon.kat.foundation/',
+    to: 'https://lynx.kat.foundation/',
     type: 'DeFi, Liquid Staking',
     badge: 'testnet',
   },

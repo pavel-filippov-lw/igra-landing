@@ -19,7 +19,7 @@ const benefitsList: Benefit[] = [
     title: () => <span className={classes.boldTitle}>Governance</span>,
     description: () => (
       <>
-        {'$IGRA governs Igra\'s security-critical parameters via Igra DAO, including attestation rules, rewards and penalties calibration, bridge configuration and updates, and allocation of ecosystem grants.'}
+        {'$IGRA governs attestation, rewards and penalties, bridge configuration, grants.'}
       </>
     ),
     to: 'https://governance.igralabs.com/',
@@ -29,7 +29,7 @@ const benefitsList: Benefit[] = [
     title: () => <span className={classes.boldTitle}>Swiss Compliance</span>,
     description: () => (
       <>
-        The Igra Association, which develops the Igra ecosystem and its $IGRA utility token, is registered in Switzerland, ensuring clear legal responsibility and transparent management of funds.
+        Igra Association registered in Switzerland, ensuring clear legal responsibility and transparent management of funds.
       </>
     ),
     to: '',

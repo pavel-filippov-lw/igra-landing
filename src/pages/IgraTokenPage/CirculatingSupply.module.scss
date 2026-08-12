@@ -1,0 +1,261 @@
+.section {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.title {
+    font-family: $font-secondary;
+    font-size: 48px;
+    line-height: 60px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0 0 24px;
+}
+
+.muted {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.headline {
+    margin-bottom: 24px;
+}
+
+.bigNumber {
+    font-family: $font-secondary;
+    font-size: 44px;
+    line-height: 1.1;
+    font-weight: 400;
+    color: #6BD1C3;
+
+    .unit {
+        font-size: 22px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+.subline {
+    margin-top: 8px;
+    font-family: $font;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.marketCap {
+    margin-top: 6px;
+    font-family: $font;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.cgLink {
+    color: #6BD1C3;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.explain {
+    max-width: 720px;
+    font-family: $font;
+    font-size: 18px;
+    line-height: 26px;
+    color: #FFFFFF;
+    margin: 0 0 24px;
+}
+
+.tableWrap {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 28px;
+}
+
+.table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    font-family: $font;
+
+    th,
+    td {
+        text-align: left;
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.85);
+        vertical-align: top;
+    }
+
+    th {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.5);
+        border-bottom-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+}
+
+.walletName {
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.walletWhy {
+    margin-top: 3px;
+    max-width: 380px;
+    font-size: 15px;
+    line-height: 21px;
+    color: rgba(255, 255, 255, 0.55);
+    white-space: pre-line;
+}
+
+.addrCell {
+    white-space: nowrap;
+}
+
+.addrLink {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #6BD1C3;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.copyBtn {
+    margin-left: 8px;
+    padding: 2px 8px;
+    font-family: $font;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+        color: #FFFFFF;
+    }
+}
+
+.totalRow td {
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: none;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.calc {
+    display: inline-block;
+    padding: 18px 22px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.calcRow {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding: 4px 0;
+}
+
+.calcNum {
+    min-width: 200px;
+    text-align: right;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 20px;
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.calcLabel {
+    font-family: $font;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.calcTotal {
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+    .calcNum {
+        color: #6BD1C3;
+    }
+
+    .calcLabel {
+        color: rgba(255, 255, 255, 0.85);
+    }
+}
+
+.reconcile {
+    margin: 0 0 24px;
+    font-family: $font;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.honesty {
+    max-width: 720px;
+    margin-bottom: 20px;
+    padding: 16px 18px;
+    background: rgba(107, 209, 195, 0.08);
+    border: 1px solid rgba(107, 209, 195, 0.3);
+    border-radius: 12px;
+    font-family: $font;
+    font-size: 15px;
+    line-height: 23px;
+    color: rgba(255, 255, 255, 0.85);
+
+    strong {
+        color: #FFFFFF;
+    }
+}
+
+.meta {
+    margin: 0;
+    font-family: $font;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.metaLink {
+    color: rgba(107, 209, 195, 0.9);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: $tablet) {
+    .title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .bigNumber {
+        font-size: 32px;
+
+        .unit {
+            font-size: 18px;
+        }
+    }
+
+    .calcNum {
+        min-width: 140px;
+        font-size: 16px;
+    }
+}
