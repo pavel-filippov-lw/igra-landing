@@ -3,7 +3,8 @@ import { FC, useEffect, useState } from "react"
 import { AboutBenefits, PageLayout } from "~/Components"
 import { Flex, Icon } from "~/shared/ui"
 
-import tokenDistributionChart from './assets/token-distribution-chart.png'
+import unlockScheduleChart from './assets/unlock-schedule.png'
+import { CirculatingSupply } from './CirculatingSupply'
 import classes from './IgraTokenPage.module.scss'
 
 const distributionItems = [
@@ -38,6 +39,85 @@ const distributionItems = [
     description: '2% minted on TGE, no lockup, 24 months vesting, phased DAO control',
   },
 ]
+
+// Unlock Schedule legend — colors sampled directly from the chart image so the
+// swatches match each band exactly (Team/Investors/Association/DAO-controlled).
+const unlockLegend = [
+  { color: '#F17100', label: 'Team' },
+  { color: '#DA32CF', label: 'Investors' },
+  { color: '#008CF1', label: 'Association' },
+  { color: '#00CC9B', label: 'DAO-controlled', note: '(Ecosystem, Grants, Staking rewards)' },
+  { color: '#A8A8A8', label: 'Unallocated' },
+]
+
+// Right-edge value labels overlaid on the unlock chart as HTML (kept out of the
+// image so they stay crisp). `top` is the % height of each band's centre, measured
+// from the chart's plot area; colours match the legend.
+const unlockValueLabels = [
+  { name: 'Unallocated', value: '1.07B', pct: '10.7%', color: '#A8A8A8', top: 17.8 },
+  { name: 'Team', value: '1.80B', pct: '18%', color: '#F17100', top: 24 },
+  { name: 'Investors', value: '0.43B', pct: '4.3%', color: '#DA32CF', top: 33 },
+  { name: 'Association', value: '2B', pct: '20%', color: '#008CF1', top: 45.5 },
+  { name: 'DAO', value: '4.70B', pct: '47%', color: '#00CC9B', top: 71 },
+]
+
+const SHORT_NAMES: Record<string, string> = {
+  'Team & Advisors': 'Team',
+  'Ecosystem Development & Grants': 'Ecosystem',
+  'Early Token Sale': 'Early sale',
+  Community: 'Community',
+  'Public Token Sale': 'Public',
+  Association: 'Association',
+}
+
+// Horizontal allocation bar, derived from distributionItems (same pools + colors);
+// "phased DAO control" is stripped from each note per request.
+// Bar colors: the four Unlock-schedule legend colors + two extra (violet, gold).
+const ALLOC_COLORS: Record<string, string> = {
+  'Team & Advisors': '#F17100',
+  'Ecosystem Development & Grants': '#7C6CF0',
+  'Early Token Sale': '#DA32CF',
+  Community: '#00CC9B',
+  'Public Token Sale': '#EAB308',
+  Association: '#008CF1',
+}
+
+// Display widths are intentionally skewed from the real percentages so labels
+// fit (Public gets room; Community/Ecosystem trimmed a touch). Labels still show
+// the true %. Widths sum to 100.
+const ALLOC_WIDTHS: Record<string, number> = {
+  Community: 22,
+  'Ecosystem Development & Grants': 20,
+  Association: 20,
+  'Team & Advisors': 18,
+  'Early Token Sale': 10,
+  'Public Token Sale': 10,
+}
+
+const allocationSegments = distributionItems
+  .map((it) => {
+    const m = it.title.match(/^(.*?)\s*\((\d+)%\)\s*$/)
+    const name = m ? m[1] : it.title
+    const percent = m ? Number(m[2]) : 0
+    return {
+      name,
+      short: SHORT_NAMES[name] ?? name,
+      percent,
+      width: ALLOC_WIDTHS[name] ?? percent,
+      color: ALLOC_COLORS[name] ?? it.color,
+      note: it.description.replace(/,?\s*phased DAO control/i, ''),
+    }
+  })
+  .sort((a, b) => b.percent - a.percent)
+
+const textOn = (hex: string) => {
+  const c = hex.replace('#', '')
+  const r = parseInt(c.slice(0, 2), 16)
+  const g = parseInt(c.slice(2, 4), 16)
+  const b = parseInt(c.slice(4, 6), 16)
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+  return lum > 0.5 ? 'rgba(0, 0, 0, 0.85)' : '#FFFFFF'
+}
 
 const TOKEN_API = 'https://apis.igralabs.com/igra-token'
 const PRICE_API = 'https://apis.igralabs.com/twap/price/0x093d77d397F8acCbaee0820345E9E700B1233cD1'
@@ -139,10 +219,10 @@ export const IgraTokenPage: FC = () => {
               <h2 className={classes.subtitle}>KAS for inclusion. $IGRA for execution.</h2>
             </div>
             <p className={classes.description}>
+              {'Igra Mainnet is a live EVM network built on Kaspa\'s proof-of-work BlockDAG. Public mainnet was launched in February \'26.'}
+              <br /><br />
               <span className={classes.boldText}>$IGRA</span>
-              {' secures the Igra Network and governs the protocol. Fixed supply. Demand grows with network usage.'}
-              <br />
-              {'Fair launched via '}
+              {' secures the Igra Network and governs the protocol. Fixed supply, demand grows with network usage. It was launched via '}
               <a
                 href="https://www.zealousswap.com/"
                 target="_blank"
@@ -151,10 +231,23 @@ export const IgraTokenPage: FC = () => {
               >
                 Zealous Swap ZAP
               </a>
-              {', a fair onchain auction mechanism. No hidden actors, no frontrunning, no undisclosed allocations, no random airdrops.'}
+              {', a fair onchain auction mechanism.'}
+              <br /><br />
+              {'On this page you can see the token unlock schedule, allocation at genesis, and circulating supply breakdown.'}
+              <br /><br />
+              {'Token and all network core contracts were audited by '}
+              <a
+                href="https://github.com/sigp/public-audits/blob/master/reports/igra/Sigma_Prime_Igra_Core_Smart_Contracts_Security_Assessment_Report_v2_1.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={classes.inlineLink}
+              >
+                Sigma Prime
+              </a>
+              {'.'}
               <br /><br />
               <a
-                href="https://igra-labs.gitbook.io/igralabs-docs"
+                href="https://igra-labs.gitbook.io/igralabs-docs/igra-token"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={classes.inlineLink}
@@ -171,19 +264,6 @@ export const IgraTokenPage: FC = () => {
                 Litepaper <Icon name='arrowTopRight' size={10} />
               </a>
             </p>
-            <div className={classes.participateSection}>
-              <h3 className={classes.participateTitle}>
-                Now trading:{' '}
-                <a
-                  href="https://app.zealousswap.com/swap"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={classes.contactLink}
-                >
-                  Zealous Swap
-                </a>
-              </h3>
-            </div>
           </Flex>
 
           <div className={classes.statsPanel}>
@@ -232,28 +312,99 @@ export const IgraTokenPage: FC = () => {
                 )}
               </span>
             </div>
+            <div className={classes.statItem}>
+              <span className={classes.statLabel}>Markets</span>
+              <span className={classes.statValue}>
+                <a
+                  href="https://app.zealousswap.com/swap"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={classes.statsPanelTitleLink}
+                >
+                  Zealous Swap
+                </a>
+              </span>
+            </div>
           </div>
         </div>
 
-        <AboutBenefits />
-        <div className={classes.tokenDistribution}>
-          <h2 className={classes.distributionTitle}>Token distribution</h2>
-          <div className={classes.distributionGrid}>
-            {distributionItems.map((item, index) => (
-              <div key={index} className={classes.distributionItem}>
-                <div className={classes.distributionBar} style={{ backgroundColor: item.color }} />
-                <div className={classes.distributionContent}>
-                  <div className={classes.distributionItemTitle}>{item.title}</div>
-                  <div className={classes.distributionItemDesc}>{item.description}</div>
+        <div className={classes.unlockSchedule}>
+          <h2 className={classes.unlockTitle}>Unlock schedule</h2>
+          <div className={classes.chartWrap}>
+            <img
+              src={unlockScheduleChart}
+              alt="IGRA unlock schedule: cumulative circulating supply by allocation category from 2026 to 2031, approaching the 10B cap"
+              className={classes.unlockChart}
+            />
+            {unlockValueLabels.map((l) => (
+              <span
+                key={l.name}
+                className={classes.unlockValueLabel}
+                style={{ top: `${l.top}%`, color: l.color }}
+              >
+                <span className={classes.labelName}>{l.name}</span>
+                <span className={classes.labelVal}>
+                  {l.value} {l.pct}
+                </span>
+              </span>
+            ))}
+          </div>
+          <ul className={classes.unlockLegend}>
+            {unlockLegend.map((item) => (
+              <li key={item.label} className={classes.legendItem}>
+                <span className={classes.legendSwatch} style={{ backgroundColor: item.color }} />
+                {item.label}
+                {item.note && <span className={classes.legendMuted}> {item.note}</span>}
+              </li>
+            ))}
+          </ul>
+          <p className={classes.unlockNote}>
+            Community and Ecosystem form the DAO-controlled 47% balance. From 10% of early token sale 4.3% actually
+            sold, the unsold remainder (5.7%) plus Public/Reserve allocation (5%) form the 10.7% unallocated balance.
+          </p>
+        </div>
+
+        <CirculatingSupply priceUsd={stats.priceUsd} />
+
+        <div className={classes.allocation}>
+          <h2 className={classes.allocTitle}>IGRA allocation at genesis</h2>
+          <div className={classes.allocBar}>
+            {allocationSegments.map((s) => (
+              <div
+                key={s.name}
+                className={classes.allocSeg}
+                style={{ width: `${s.width}%`, backgroundColor: s.color }}
+                title={`${s.name} — ${s.percent}%`}
+              >
+                {s.width >= 8 ? (
+                  <span className={classes.allocSegLabel} style={{ color: textOn(s.color) }}>
+                    {s.short} {s.percent}%
+                  </span>
+                ) : s.width >= 3 ? (
+                  <span className={classes.allocSegLabel} style={{ color: textOn(s.color) }}>
+                    {s.percent}%
+                  </span>
+                ) : null}
+              </div>
+            ))}
+          </div>
+          <div className={classes.allocLegend}>
+            {allocationSegments.map((s) => (
+              <div key={s.name} className={classes.allocLegendItem}>
+                <span className={classes.allocSwatch} style={{ backgroundColor: s.color }} />
+                <div>
+                  <div className={classes.allocLegendName}>
+                    {s.name} ({s.percent}%)
+                  </div>
+                  <div className={classes.allocLegendDesc}>{s.note}</div>
                 </div>
               </div>
             ))}
           </div>
-          <img
-            src={tokenDistributionChart}
-            alt="Token distribution vesting schedule chart"
-            className={classes.distributionChart}
-          />
+        </div>
+
+        <div className={classes.benefitsTop}>
+          <AboutBenefits />
         </div>
       </Flex>
     </PageLayout>
