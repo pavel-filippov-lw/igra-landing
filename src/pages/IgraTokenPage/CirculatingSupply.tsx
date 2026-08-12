@@ -34,10 +34,15 @@ interface SupplyData {
 // omits the note rather than showing something wrong.
 const EXCLUSION_REASONS: Record<string, string> = {
   VestingPools: 'Unreleased vesting allocations',
-  Attesting: 'Staked\nAttesters or voters',
+  Attesting: 'Attesters or voters',
   StakeRewardsController: 'Attester rewards not yet distributed',
   ContinuousClearingAuction: 'Sold at auction, not yet claimed by buyers',
   'Igra Team': 'Team allocation, under a no-transfer commitment',
+}
+
+// Display-name overrides for the wallet column (API description → shown label).
+const NAME_OVERRIDES: Record<string, string> = {
+  Attesting: 'Staked',
 }
 
 const fmtInt = (n: number) => Math.round(n).toLocaleString('en-US')
@@ -181,7 +186,7 @@ export const CirculatingSupply: FC<{ priceUsd?: number }> = ({ priceUsd }) => {
             {excluded.map((w) => (
               <tr key={w.address}>
                 <td>
-                  <div className={classes.walletName}>{w.description}</div>
+                  <div className={classes.walletName}>{NAME_OVERRIDES[w.description] ?? w.description}</div>
                   {EXCLUSION_REASONS[w.description] && (
                     <div className={classes.walletWhy}>{EXCLUSION_REASONS[w.description]}</div>
                   )}
