@@ -16,7 +16,7 @@ export const Hero: FC = () => {
           FINANCE INFRASTRUCTURE THAT CANNOT BE OVERRIDDEN
         </h1>
         <div className={classes.info}>
-          <a href="https://x.com/Igra_Labs/status/2084380604058255498" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+          <a href="https://x.com/Igra_Labs/status/2087592799067595023" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -25,10 +25,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>03 AUG 2026</span>
+                <span className={classes.date}>12 AUG 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Igra × Tangem wallet giveaway is live!
+                  Panther and Igra explore privacy infrastructure for the Kaspa ecosystem
                 </div>
                 <div className={classes.link}>
                   Read more
