@@ -1,3 +1,5 @@
+import news25Image from './assets/news25.jpg'
+import news26Image from './assets/news26.jpg'
 import news23Image from './assets/news23.jpg'
 import news24Image from './assets/news24.jpg'
 import news18Image from './assets/news18.jpg'
@@ -33,6 +35,22 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news26Image,
+    tag: "Ecosystem",
+    title: "Panther and Igra explore privacy infrastructure for the Kaspa ecosystem",
+    description: "Panther Protocol Foundation and Igra are exploring bringing Panther's privacy-preserving infrastructure to Kaspa: EVM-compatible shielded pools, configurable compliance zones, and selective ZK disclosures that prove only what's required.",
+    link: "https://x.com/Igra_Labs/status/2087592799067595023",
+    imagePosition: 'center',
+  },
+  {
+    image: news25Image,
+    tag: "Update",
+    title: "Igra explorer upgraded to Blockscout v11.2.5",
+    description: "The Igra block explorer moved to Blockscout backend v11.2.5 (frontend v2.10.3): smarter contract verification with Sourcify support, broader proxy detection, fewer failed verifications, and a better v2 API.",
+    link: "https://x.com/Igra_Labs/status/2086920637269127609",
+    imagePosition: 'center',
+  },
   {
     image: news23Image,
     tag: "Giveaway",
