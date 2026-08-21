@@ -45,6 +45,10 @@ interface Verified {
 // (Rules + Privacy open in-page modals, see the footer.)
 const ELIGIBILITY_SNAPSHOT_URL = 'https://github.com/IgraLabs/tangem-zap-giveaway-2026'
 
+// The reproducible-draw writeup, linked from the closed-registration screen.
+const REPRODUCE_URL =
+  'https://github.com/IgraLabs/tangem-zap-giveaway-2026/blob/draw-v1.2/REPRODUCE.md'
+
 // The exact registration deadline, shown to the user verbatim.
 const DEADLINE = '15 August 2026, 23:59 UTC'
 
@@ -359,22 +363,102 @@ const TangemClaimInner: FC = () => {
   )
 }
 
-export const TangemClaimPage: FC = () => (
-  <PageLayout hideBg>
-    {isAppKitConfigured ? (
-      <TangemClaimProviders>
-        <TangemClaimInner />
-      </TangemClaimProviders>
-    ) : (
-      <ClaimShell
-        phase="connect"
-        stepIndex={0}
-        action={
-          <p className={classes.error}>
-            Wallet connection is not configured yet. Please check back soon.
-          </p>
-        }
-      />
-    )}
-  </PageLayout>
-)
+/**
+ * Post-registration status screen. Registration is closed; the precommitted draw
+ * is being verified and winners will be published here. Renders no wagmi/AppKit
+ * hooks, so there is no wallet connection (and no unsupported-network prompt).
+ */
+const ClaimClosed: FC = () => {
+  const [openDoc, setOpenDoc] = useState<'rules' | 'privacy' | null>(null)
+  return (
+    <div className={classes.root}>
+      <div className={classes.layout}>
+        <div className={classes.left}>
+          <h1 className={classes.title}>Igra × Tangem Giveaway</h1>
+
+          <div className={classes.card}>
+            <p className={classes.closedHeadline}>Registration is closed.</p>
+            <p className={classes.closedText}>
+              The precommitted Kaspa beacon and deterministic draw are now being independently
+              verified. 10 provisional winners will be published here once verification is complete.
+            </p>
+            <a
+              className={classes.closedLink}
+              href={REPRODUCE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View draw methodology ↗
+            </a>
+          </div>
+
+          <nav className={classes.footerLinks} aria-label="Giveaway documents">
+            <a href={ELIGIBILITY_SNAPSHOT_URL} target="_blank" rel="noopener noreferrer">
+              Eligibility snapshot
+            </a>
+            <span aria-hidden="true">·</span>
+            <button type="button" onClick={() => setOpenDoc('rules')}>
+              Giveaway rules
+            </button>
+            <span aria-hidden="true">·</span>
+            <button type="button" onClick={() => setOpenDoc('privacy')}>
+              Privacy notice
+            </button>
+          </nav>
+        </div>
+
+        <div className={classes.hero} aria-hidden="true">
+          <img src={heroImg} alt="" className={classes.heroImg} />
+        </div>
+      </div>
+
+      {openDoc === 'rules' && (
+        <LegalModal title={GIVEAWAY_RULES_TITLE} onClose={() => setOpenDoc(null)}>
+          <GiveawayRules />
+        </LegalModal>
+      )}
+      {openDoc === 'privacy' && (
+        <LegalModal title={PRIVACY_NOTICE_TITLE} onClose={() => setOpenDoc(null)}>
+          <PrivacyNotice />
+        </LegalModal>
+      )}
+    </div>
+  )
+}
+
+/**
+ * Registration has closed, so the page shows the status screen. The interactive
+ * wallet flow (connect → SIWE → email) above is intentionally kept — it will be
+ * reused for winners' address registration. Flip REGISTRATION_CLOSED to re-enable it.
+ */
+const REGISTRATION_CLOSED: boolean = true
+
+export const TangemClaimPage: FC = () => {
+  if (REGISTRATION_CLOSED) {
+    return (
+      <PageLayout hideBg>
+        <ClaimClosed />
+      </PageLayout>
+    )
+  }
+
+  return (
+    <PageLayout hideBg>
+      {isAppKitConfigured ? (
+        <TangemClaimProviders>
+          <TangemClaimInner />
+        </TangemClaimProviders>
+      ) : (
+        <ClaimShell
+          phase="connect"
+          stepIndex={0}
+          action={
+            <p className={classes.error}>
+              Wallet connection is not configured yet. Please check back soon.
+            </p>
+          }
+        />
+      )}
+    </PageLayout>
+  )
+}
