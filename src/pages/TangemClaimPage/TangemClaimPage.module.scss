@@ -99,6 +99,36 @@
     margin: 16px 0 0;
   }
 
+  .closedHeadline {
+    font-family: $font-secondary;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  .closedText {
+    font-family: $font;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 20px 0 0;
+  }
+
+  .closedLink {
+    align-self: flex-start;
+    margin: 24px 0 0;
+    font-family: $font;
+    font-size: 16px;
+    color: #6BD1C3;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   // Compact horizontal step tracker: dot + label, connectors between.
   .tracker {
     list-style: none;
@@ -538,6 +568,14 @@
     }
 
     .intro {
+      font-size: 16px;
+    }
+
+    .closedHeadline {
+      font-size: 24px;
+    }
+
+    .closedText {
       font-size: 16px;
     }
 
