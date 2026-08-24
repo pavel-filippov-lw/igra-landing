@@ -10,6 +10,13 @@ const TangemClaimPage = lazy(() =>
   import('~/pages/TangemClaimPage').then((m) => ({ default: m.TangemClaimPage })),
 )
 
+// Same rationale as above: the PoolStakes vesting-claim dapp pulls in the
+// WalletConnect/AppKit + viem contract stack, so it is code-split behind its
+// own lazy route and downloaded only when /poolstakes is opened.
+const PoolStakesPage = lazy(() =>
+  import('~/pages/PoolStakesPage').then((m) => ({ default: m.PoolStakesPage })),
+)
+
 export const AppRouter: FC = () => {
   return (
     <BrowserRouter>
@@ -36,6 +43,14 @@ export const AppRouter: FC = () => {
             element={
               <Suspense fallback={null}>
                 <TangemClaimPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path={Routes.poolStakes}
+            element={
+              <Suspense fallback={null}>
+                <PoolStakesPage />
               </Suspense>
             }
           />
