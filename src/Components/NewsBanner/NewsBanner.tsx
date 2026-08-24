@@ -13,7 +13,7 @@ export const NewsBanner: FC = () => {
   return (
     <Link to={to.tangemClaim()} className={classes.root} onClick={handleClick}>
       <span className={classes.text}>
-        Igra × Tangem wallet giveaway is live! <strong>Check if you're eligible.</strong>
+        Igra × Tangem giveaway — winners announced! <strong>Connect your wallet to claim.</strong>
       </span>
     </Link>
   )
