@@ -1,16 +1,16 @@
 /**
  * IGRA PoolStakes vesting-claim dapp — chain + contract config.
  *
- * Two network profiles, selected by `VITE_POOLSTAKES_NETWORK` (default 'galleon'):
+ * Three network profiles, selected by `VITE_POOLSTAKES_NETWORK` (default 'mainnet'):
+ *  - 'mainnet': Igra Mainnet (chainId 38833, real IGRA) — the PRODUCTION target.
  *  - 'galleon': the Galleon testnet sandbox (chainId 38836, tIGRA test token).
  *  - 'fork':    a LOCAL anvil fork of Igra mainnet (chainId 138833, real IGRA), for
  *               testing the claim UI against mainnet contracts. Dev-only; nothing
  *               real is touched. See the fork runbook.
  *
- * Galleon addresses were verified live (chainId 38836). The fork's pool #7 clone
- * is the real mainnet Round 1 (contributor) distributor — a PoolStakes clone behind a
- * VestingPoolSplitter, so its poolId() is the CHILD id (0) and its vestingPools()
- * is the splitter, not the real VestingPools (the schedule is read per-clone).
+ * All addresses were verified live. Round 1 (pool #7) is a PoolStakes clone behind
+ * a VestingPoolSplitter, so its poolId() is the CHILD id (0) and its vestingPools()
+ * is the splitter, not the real VestingPools — the schedule is read per-clone.
  */
 
 export type Hex = `0x${string}`
@@ -112,13 +112,52 @@ const fork: NetworkConfig = {
   ],
 }
 
-const PROFILES = { galleon, fork } as const
+/**
+ * Igra MAINNET — the production target. Real IGRA, real vesting.
+ *
+ * Only Round 1 (pool #7) is live: verified on-chain, `VestingPools.getWallet(7)`
+ * is the VestingPoolSplitter and `splitter.getWallet(0)` is the clone below, with
+ * real stakes loaded. Pool #5 (Team & Angels) is NOT deployed as a claim contract
+ * yet — `getWallet(5)` still returns the Team Safe — so it is intentionally absent.
+ * When Team is handed over, add a second clone entry (its address is
+ * `VestingPools.getWallet(5)` once the wallet handover lands).
+ *
+ * Gas limit sized from a measured splitter claim (~164k warm; a cold first claim
+ * runs higher), so 400k covers it with margin. The balance guard is
+ * `gasLimit × gasPrice` = 0.8 iKAS (the silent-drop threshold); actual cost is
+ * lower and the remainder is refunded.
+ */
+const mainnet: NetworkConfig = {
+  id: 38833,
+  name: 'Igra Mainnet',
+  rpcUrl: 'https://rpc.igralabs.com:8545', // port 8545 required
+  explorer: 'https://explorer.igralabs.com',
+  nativeSymbol: 'iKAS',
+  tokenSymbol: 'IGRA',
+  token: '0x093d77d397F8acCbaee0820345E9E700B1233cD1',
+  testnet: false,
+  txGasLimit: 400_000n,
+  clones: [
+    {
+      key: 'round1',
+      name: 'Round 1 (contributors)',
+      address: '0xf8A15e869F8327fe7af0538F5fB07312CF37DDCf', // splitter child clone (pool #7)
+      poolId: 0, // CHILD id, not pool #7 — schedule read via the clone's own vestingPools()
+      fromBlock: 0n,
+      dynamic: false,
+      blurb: 'Early contributors — contractual terms, frozen for the life of the vest.',
+    },
+  ],
+}
+
+const PROFILES = { mainnet, galleon, fork } as const
 type ProfileName = keyof typeof PROFILES
 
-const selected = (import.meta.env.VITE_POOLSTAKES_NETWORK as ProfileName | undefined) ?? 'galleon'
+// Production targets mainnet by default; galleon/fork are opt-in for dev/testing.
+const selected = (import.meta.env.VITE_POOLSTAKES_NETWORK as ProfileName | undefined) ?? 'mainnet'
 
-/** Active network profile (Galleon unless VITE_POOLSTAKES_NETWORK=fork). */
-export const NETWORK: NetworkConfig = PROFILES[selected] ?? galleon
+/** Active network profile (Igra Mainnet unless VITE_POOLSTAKES_NETWORK overrides). */
+export const NETWORK: NetworkConfig = PROFILES[selected] ?? mainnet
 
 /** Convenience view of the active profile's chain fields. */
 export const CHAIN = {
