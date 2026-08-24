@@ -182,9 +182,13 @@ const ConnectedApp: FC = () => {
     if (!silent) setLoading(true)
     try {
       const next = await resolveMemberships(holder)
+      // Drop a stale result: if the connected wallet changed while this read was
+      // in flight, don't paint the previous wallet's allocation over the new one.
+      if (holderRef.current !== holder) return
       setPositions(next)
       setLoadError(null)
     } catch (err) {
+      if (holderRef.current !== holder) return
       setLoadError(describeError(err))
     } finally {
       if (!silent) setLoading(false)

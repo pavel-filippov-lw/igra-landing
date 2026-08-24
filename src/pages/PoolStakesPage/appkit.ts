@@ -8,11 +8,12 @@ import { CHAIN } from './constants'
 /**
  * Reown AppKit setup for the PoolStakes vesting-claim dapp.
  *
- * Only Galleon Testnet (38836) is listed, so connecting enforces the right
- * network — writes must be legacy type-0 @ 2000 gwei, which only makes sense on
- * an Igra chain. This is a SEPARATE AppKit config from the Tangem giveaway page;
- * both are lazy-loaded, unlisted, single-purpose flows that a visitor is only
- * ever on one of at a time.
+ * Exactly ONE network is listed — the active profile's chain (Igra Mainnet by
+ * default; see constants.ts) — so connecting enforces the right network: writes
+ * must be legacy type-0 @ 2000 gwei, which only makes sense on an Igra chain, and
+ * the UI blocks claims while the wallet is on any other chain. This is a SEPARATE
+ * AppKit config from the Tangem giveaway page; both are lazy-loaded, unlisted,
+ * single-purpose flows that a visitor is only ever on one of at a time.
  *
  * Requires a free WalletConnect Cloud (Reown) projectId:
  *   VITE_WALLETCONNECT_PROJECT_ID=...
