@@ -14,6 +14,7 @@
     "@gsap/react": "^2.1.2",
     "@reown/appkit": "^1.8.23",
     "@reown/appkit-adapter-wagmi": "^1.8.23",
+    "@sentry/react": "^10.71.0",
     "@tanstack/react-query": "^5.101.4",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
