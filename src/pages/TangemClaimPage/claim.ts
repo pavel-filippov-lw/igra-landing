@@ -19,9 +19,13 @@ import { isMockEnabled, mockConfirm, mockStart } from './mockApi'
 
 const API_URL = import.meta.env.VITE_GIVEAWAY_API_URL
 
-/** SIWE statement shown to the user in their wallet before signing. */
+/** SIWE statement shown to the user in their wallet before signing (registration flow). */
 const SIWE_STATEMENT =
   'Verify ownership of your wallet to register for the Igra × Tangem giveaway. This is a free signature — it does not authorize any transaction.'
+
+/** SIWE statement shown to a winner proving control of their winning wallet before claiming. */
+export const WINNER_SIWE_STATEMENT =
+  'Verify control of this winning wallet to claim an Igra × Tangem Giveaway prize. This signature does not authorize a transaction.'
 
 export interface EligibilityResponse {
   /** Whether this address participated in ZAP and may register. */
@@ -90,14 +94,19 @@ export async function fetchEligibility(address: Address): Promise<EligibilityRes
  * Build an EIP-4361 (SIWE) message. Kept deliberately close to the spec so the
  * backend can parse/validate it with a standard SIWE library.
  */
-export function buildSiweMessage(address: Address, nonce: string, issuedAt: string): string {
+export function buildSiweMessage(
+  address: Address,
+  nonce: string,
+  issuedAt: string,
+  statement: string = SIWE_STATEMENT,
+): string {
   const domain = window.location.host
   const uri = window.location.origin + window.location.pathname
   return [
     `${domain} wants you to sign in with your Ethereum account:`,
     address,
     '',
-    SIWE_STATEMENT,
+    statement,
     '',
     `URI: ${uri}`,
     'Version: 1',
@@ -230,4 +239,161 @@ export function maskEmail(email: string): string {
   const domain = email.slice(at)
   const visible = local.slice(0, Math.min(2, local.length))
   return `${visible}${'•'.repeat(3)}${domain}`
+}
+
+/* ------------------------------------------------------------------ *
+ *  Winners' claim flow (draw complete).                              *
+ *  Contract verified live against apis.igralabs.com/giveaway         *
+ *  (apis repo routes/giveaway.js @ main): winner-status + claim.     *
+ * ------------------------------------------------------------------ */
+
+/** winner-status for a non-winning wallet. */
+interface NotSelected {
+  selected: false
+}
+
+/** winner-status for a winning wallet (unclaimed, or already claimed). */
+export interface WinnerSelected {
+  selected: true
+  rank: number
+  /** Backend emits 'unclaimed' | 'claimed'; treat anything ≠ 'unclaimed' as a returning claim. */
+  claimStatus: string
+  /** ISO deadline for THIS wallet (per-wallet — reserves get their own). Null if unset. */
+  claimDeadlineAt: string | null
+  /** Server clock at response time — anchor the countdown to this, not the browser clock. */
+  serverTime: string
+  /** Single-use SIWE nonce — present only while unclaimed. */
+  nonce?: string
+  /** Masked registered email (e.g. "t***@gmail.com"), if the wallet registered one. */
+  registeredEmail?: string
+  /** Present once claimed. */
+  claimRef?: string
+  claimedAt?: string
+  trackingUrl?: string
+}
+
+export type WinnerStatus = NotSelected | WinnerSelected
+
+/** POST /winner-status — is this wallet a winner, and what is its claim state? */
+export async function fetchWinnerStatus(address: Address): Promise<WinnerStatus> {
+  const base = requireApiUrl()
+  let res: Response
+  try {
+    res = await fetch(`${base}/winner-status`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address }),
+    })
+  } catch {
+    throw new ClaimError('Could not reach the giveaway service. Check your connection and retry.', 'network')
+  }
+  if (!res.ok) {
+    throw new ClaimError('The giveaway service returned an error. Please try again later.', 'server')
+  }
+  const data = (await res.json()) as Partial<WinnerSelected> & { selected?: unknown }
+  if (data.selected !== true) return { selected: false }
+  if (typeof data.rank !== 'number' || typeof data.claimStatus !== 'string') {
+    throw new ClaimError('Unexpected response from the giveaway service.', 'server')
+  }
+  return {
+    selected: true,
+    rank: data.rank,
+    claimStatus: data.claimStatus,
+    claimDeadlineAt: typeof data.claimDeadlineAt === 'string' ? data.claimDeadlineAt : null,
+    serverTime: typeof data.serverTime === 'string' ? data.serverTime : new Date().toISOString(),
+    nonce: data.nonce,
+    registeredEmail: data.registeredEmail,
+    claimRef: data.claimRef,
+    claimedAt: data.claimedAt,
+    trackingUrl: data.trackingUrl,
+  }
+}
+
+/** Delivery details submitted with a claim. */
+export interface ClaimDetails {
+  fullName: string
+  email: string
+  country: string
+  addressLine1: string
+  addressLine2?: string
+  city: string
+  region?: string
+  postalCode: string
+  telephone?: string
+}
+
+export interface ClaimResult {
+  claimRef: string
+  claimedAt: string
+}
+
+async function errorMessage(res: Response, fallback: string): Promise<string> {
+  const body = (await res.json().catch(() => null)) as { error?: unknown } | null
+  return body && typeof body.error === 'string' && body.error ? body.error : fallback
+}
+
+/**
+ * POST /claim — submit delivery details for a verified winning wallet, authorised
+ * by the `claimToken` from verifyClaim. The five required confirmations are always
+ * sent true; the UI blocks submit until every box is ticked.
+ *
+ * When `useRegisteredEmail` is true, the backend resolves the wallet's already-
+ * verified registration email server-side (the client only ever sees it masked),
+ * and `details.email` is ignored — no OTP needed. Otherwise `details.email` (which
+ * the UI OTP-verifies first) is used.
+ */
+export async function submitClaim(
+  claimToken: string,
+  details: ClaimDetails,
+  useRegisteredEmail = false,
+): Promise<ClaimResult> {
+  const base = requireApiUrl()
+  let res: Response
+  try {
+    res = await fetch(`${base}/claim`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        claimToken,
+        useRegisteredEmail,
+        fullName: details.fullName,
+        email: details.email,
+        country: details.country,
+        addressLine1: details.addressLine1,
+        addressLine2: details.addressLine2 ?? '',
+        city: details.city,
+        region: details.region ?? '',
+        postalCode: details.postalCode,
+        telephone: details.telephone ?? '',
+        ageConfirmed: true,
+        lawfulReceiptConfirmed: true,
+        householdLimitConfirmed: true,
+        rulesAccepted: true,
+        privacyAccepted: true,
+      }),
+    })
+  } catch {
+    throw new ClaimError('Could not reach the giveaway service. Check your connection and retry.', 'network')
+  }
+  if (res.status === 401) {
+    throw new ClaimError('Your session expired. Please sign again to continue.', 'expired')
+  }
+  if (res.status === 409) {
+    throw new ClaimError('This wallet has already submitted a claim.', 'server')
+  }
+  if (res.status === 403) {
+    // Not a winner, or the claim deadline has passed — surface the server's message.
+    throw new ClaimError(await errorMessage(res, 'This claim can no longer be submitted.'), 'server')
+  }
+  if (!res.ok) {
+    throw new ClaimError(await errorMessage(res, 'Could not submit your claim. Please check your details and retry.'), 'server')
+  }
+  const data = (await res.json()) as Partial<ClaimResult>
+  if (typeof data.claimRef !== 'string') {
+    throw new ClaimError('Unexpected response from the giveaway service.', 'server')
+  }
+  return {
+    claimRef: data.claimRef,
+    claimedAt: typeof data.claimedAt === 'string' ? data.claimedAt : new Date().toISOString(),
+  }
 }

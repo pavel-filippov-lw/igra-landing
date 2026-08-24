@@ -527,6 +527,467 @@
     margin: 0;
   }
 
+  /* ---- Winners' claim flow (draw complete) ---- */
+
+  .drawHeadline {
+    font-family: $font-secondary;
+    font-size: 34px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  .drawText {
+    font-family: $font;
+    font-size: 17px;
+    line-height: 27px;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 18px 0 0;
+  }
+
+  .drawDeadline {
+    font-family: $font;
+    font-size: 15px;
+    font-weight: 600;
+    color: #E7EE90;
+    margin: 16px 0 0;
+  }
+
+  .securityLine {
+    font-family: $font;
+    font-size: 13px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 12px 0 0;
+  }
+
+  .screenTitle {
+    font-family: $font-secondary;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  // Shared inline helpers, also used outside the .connected block.
+  .address {
+    color: #6BD1C3;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    word-break: break-all;
+  }
+
+  .linkInline {
+    padding: 0;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    font-family: $font;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: #FFFFFF;
+    }
+  }
+
+  .connectedRow {
+    font-family: $font;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 16px 0 0;
+  }
+
+  // Winning wallets list on the connect screen.
+  .winners {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .winnersTitle {
+    font-family: $font;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 14px;
+  }
+
+  .winnersList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px 20px;
+
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    code {
+      font-family: monospace;
+      font-size: 15px;
+      color: #6BD1C3;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  .winnerRank {
+    flex-shrink: 0;
+    font-family: $font;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    min-width: 24px;
+  }
+
+  .verifyLink {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: $font;
+    font-size: 15px;
+    font-weight: 600;
+    color: #6BD1C3;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Metadata list (you-won / success / returning screens).
+  .meta {
+    margin: 4px 0 0;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .metaRow {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 0;
+
+    dt {
+      flex-shrink: 0;
+      width: 118px;
+      font-family: $font;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    dd {
+      margin: 0;
+      font-family: $font;
+      font-size: 16px;
+      font-weight: 600;
+      color: #FFFFFF;
+      word-break: break-word;
+    }
+  }
+
+  .wonHead {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 20px;
+  }
+
+  .wonMark {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #E7EE90;
+    color: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .countdown {
+    font-variant-numeric: tabular-nums;
+    color: #E7EE90;
+    font-weight: 700;
+  }
+
+  .contact {
+    font-family: $font;
+    font-size: 15px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 20px 0 0;
+
+    a {
+      color: #6BD1C3;
+    }
+  }
+
+  .closedNotice {
+    margin-top: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: $font;
+    font-size: 15px;
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* ---- Shipping form ---- */
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .label {
+    font-family: $font;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .optional {
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  // Required-field marker.
+  .req {
+    color: #FF8A8A;
+    font-weight: 700;
+  }
+
+  .select {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #FFFFFF;
+    font-family: $font;
+    font-size: 17px;
+    outline: none;
+    cursor: pointer;
+
+    &:focus {
+      border-color: #6BD1C3;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+
+    option {
+      color: #000;
+    }
+  }
+
+  .row2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0 18px;
+  }
+
+  .emailRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .input {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  .smallBtn {
+    flex-shrink: 0;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: rgba(107, 209, 195, 0.14);
+    border: 1px solid rgba(107, 209, 195, 0.4);
+    color: #6BD1C3;
+    font-family: $font;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+      background: rgba(107, 209, 195, 0.22);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+
+  .verifiedTag {
+    flex-shrink: 0;
+    font-family: $font;
+    font-size: 15px;
+    font-weight: 600;
+    color: #6BD1C3;
+    white-space: nowrap;
+  }
+
+  .registeredEmail {
+    flex: 1;
+    min-width: 0;
+    font-family: $font;
+    font-size: 17px;
+    font-weight: 600;
+    color: #FFFFFF;
+    word-break: break-all;
+  }
+
+  .hint {
+    font-family: $font;
+    font-size: 13px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+  }
+
+  .checks {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .check {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: $font;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+
+    input {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+      accent-color: #6BD1C3;
+      cursor: pointer;
+    }
+  }
+
+  // The single combined legal confirmation sits in a subtle panel to read as one unit.
+  .checkCombined {
+    margin-top: 24px;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* ---- Address preview (review step) ---- */
+
+  .previewAddress {
+    margin: 4px 0 0;
+    padding: 18px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: $font;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(255, 255, 255, 0.85);
+
+    div {
+      word-break: break-word;
+    }
+  }
+
+  .previewName {
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+
+  .previewMeta {
+    margin-top: 6px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .customsWarn {
+    margin: 18px 0 0;
+    padding: 22px 24px;
+    border-radius: 12px;
+    background: rgba(239, 252, 102, 0.06);
+    border: 1px solid rgba(239, 252, 102, 0.22);
+    font-family: $font;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .previewActions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+
+    .cta {
+      margin-top: 0;
+    }
+  }
+
+  .editBtn {
+    padding: 12px 22px;
+    border-radius: 12px;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: $font;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #FFFFFF;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+
 
   // Below laptop: the height-matched hero doesn't work in a stacked layout, so
   // hide it entirely — just the title + card, centered.
