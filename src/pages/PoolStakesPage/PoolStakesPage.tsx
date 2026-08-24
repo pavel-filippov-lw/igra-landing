@@ -15,6 +15,7 @@ import {
   waitForClaim,
   type Position,
 } from './client'
+import { errorReason, track, VestingEvent } from './analytics'
 import { CHAIN, TOKEN_SYMBOL } from './constants'
 import classes from './PoolStakesPage.module.scss'
 import { PoolStakesProviders } from './PoolStakesProviders'
@@ -187,9 +188,12 @@ const ConnectedApp: FC = () => {
       if (holderRef.current !== holder) return
       setPositions(next)
       setLoadError(null)
+      // Only on a foreground load (not the 12s poll), so counts aren't inflated.
+      if (!silent && next.length === 0) track(VestingEvent.NoAllocation)
     } catch (err) {
       if (holderRef.current !== holder) return
       setLoadError(describeError(err))
+      if (!silent) track(VestingEvent.LoadError, { reason: errorReason(err) })
     } finally {
       if (!silent) setLoading(false)
     }
@@ -222,14 +226,18 @@ const ConnectedApp: FC = () => {
         open()
         return
       }
+      track(VestingEvent.ClaimStart, { pool: key })
       setClaim(key, { status: 'submitting' })
       try {
         const hash = await claimAndWithdraw(walletClient, position.clone)
+        track(VestingEvent.ClaimSubmitted, { pool: key })
         setClaim(key, { status: 'pending', hash })
         await waitForClaim(hash)
+        track(VestingEvent.ClaimConfirmed, { pool: key })
         setClaim(key, { status: 'confirmed', hash })
         await refresh(true)
       } catch (err) {
+        track(VestingEvent.ClaimError, { pool: key, reason: errorReason(err) })
         setClaim(key, { status: 'error', message: describeError(err) })
       }
     },
@@ -237,6 +245,15 @@ const ConnectedApp: FC = () => {
   )
 
   const wrongNetwork = isConnected && chainId !== undefined && chainId !== CHAIN.id
+
+  // Funnel events: a wallet connected (once per connection), and connecting on the
+  // wrong chain — the two most common "can't claim" causes, visible in Plausible.
+  useEffect(() => {
+    if (isConnected && address) track(VestingEvent.Connected)
+  }, [isConnected, address])
+  useEffect(() => {
+    if (wrongNetwork) track(VestingEvent.WrongNetwork, { chainId: chainId ?? 0 })
+  }, [wrongNetwork, chainId])
 
   return (
     <div className={classes.root}>
