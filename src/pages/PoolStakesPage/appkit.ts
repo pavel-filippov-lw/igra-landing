@@ -34,7 +34,7 @@ const igraChain = defineChain({
   blockExplorers: {
     default: { name: `${CHAIN.name} Explorer`, url: CHAIN.explorer },
   },
-  testnet: true,
+  testnet: CHAIN.testnet,
 })
 
 const networks: [AppKitNetwork, ...AppKitNetwork[]] = [igraChain]

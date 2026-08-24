@@ -1,7 +1,7 @@
 /**
  * Contract access for the PoolStakes dapp.
  *
- * Reads go through a plain viem public client against the Galleon RPC — they
+ * Reads go through a plain viem public client against the configured RPC — they
  * need no wallet, so the dashboard renders even when WalletConnect is not
  * configured. Only the write path (claim / split) needs the connected wallet.
  */
@@ -34,7 +34,7 @@ export const chain = defineChain({
   nativeCurrency: { name: CHAIN.nativeSymbol, symbol: CHAIN.nativeSymbol, decimals: 18 },
   rpcUrls: { default: { http: [CHAIN.rpcUrl] } },
   blockExplorers: { default: { name: `${CHAIN.name} Explorer`, url: CHAIN.explorer } },
-  testnet: true,
+  testnet: CHAIN.testnet,
 })
 
 export const publicClient = createPublicClient({
@@ -67,24 +67,34 @@ export interface Position {
 }
 
 /**
- * Read a single holder's position in one clone. Returns null when the wallet has
- * no stake there (allocated == 0) — the caller uses that to decide membership.
+ * Read a holder's position in one clone. `now` is chain time (unix seconds),
+ * fetched once by the caller. Returns null when the wallet has no stake there
+ * (allocated == 0); a genuine read failure THROWS, so the caller can tell a real
+ * error apart from "no stake".
  */
-export async function loadPosition(clone: CloneInfo, holder: Hex): Promise<Position | null> {
+export async function loadPosition(clone: CloneInfo, holder: Hex, now: number): Promise<Position | null> {
   const address = getAddress(clone.address)
   const account = getAddress(holder)
 
-  const [stake, releasable, unclaimed, poolId, vestingPoolsAddr, block] = await Promise.all([
-    publicClient.readContract({ address, abi: poolStakesAbi, functionName: 'stakes', args: [account] }),
+  // `stakes` never reverts — it returns (0,0) for a non-member. Read it FIRST and
+  // bail on a zero allocation, so a genuine "no stake" is a clean null. The
+  // releasable/unclaimed views below REVERT for a non-member ("PStakes: unknown
+  // stake"), so calling them for everyone would make "no stake" indistinguishable
+  // from a real RPC error.
+  const [allocated, released] = await publicClient.readContract({
+    address,
+    abi: poolStakesAbi,
+    functionName: 'stakes',
+    args: [account],
+  })
+  if (allocated === 0n) return null
+
+  const [releasable, unclaimed, poolId, vestingPoolsAddr] = await Promise.all([
     publicClient.readContract({ address, abi: poolStakesAbi, functionName: 'releasableAmount', args: [account] }),
     publicClient.readContract({ address, abi: poolStakesAbi, functionName: 'unclaimedShare', args: [account] }),
     publicClient.readContract({ address, abi: poolStakesAbi, functionName: 'poolId' }),
     publicClient.readContract({ address, abi: poolStakesAbi, functionName: 'vestingPools' }),
-    publicClient.getBlock(),
   ])
-
-  const [allocated, released] = stake
-  if (allocated === 0n) return null
 
   // Read the schedule from whatever THIS clone reports as its vesting source, at
   // its own poolId. Direct clone → the real VestingPools at the pool id; splitter-
@@ -100,9 +110,6 @@ export async function loadPosition(clone: CloneInfo, holder: Hex): Promise<Posit
 
   const start = Number(pool.start)
   const end = start + Number(pool.vestingDays) * 86_400
-  // Gate on CHAIN time (block.timestamp), not the browser clock — it's what the
-  // contract enforces for vesting, and keeps a time-warped fork claimable.
-  const now = Number(block.timestamp)
   const vestedFraction = end > start ? Math.min(1, Math.max(0, (now - start) / (end - start))) : 0
 
   return {
@@ -119,12 +126,28 @@ export async function loadPosition(clone: CloneInfo, holder: Hex): Promise<Posit
   }
 }
 
-/** Resolve every clone the wallet belongs to (0, 1, or both). */
+/**
+ * Resolve every clone the wallet belongs to. Uses one chain-time read for the
+ * whole refresh (the vesting gate is block.timestamp). A genuine non-member
+ * yields all-null with no error → []. If EVERY clone read fails, the error is
+ * surfaced (so the UI shows a Retry) rather than masquerading as "no allocation";
+ * a partial failure still returns whatever loaded (the rest reappear next poll).
+ */
 export async function resolveMemberships(holder: Hex): Promise<Position[]> {
-  const results = await Promise.all(
-    CLONES.map((c) => loadPosition(c, holder).catch(() => null)),
-  )
-  return results.filter((p): p is Position => p !== null)
+  const now = Number((await publicClient.getBlock()).timestamp)
+  const settled = await Promise.allSettled(CLONES.map((c) => loadPosition(c, holder, now)))
+
+  const positions: Position[] = []
+  let firstError: unknown = null
+  for (const r of settled) {
+    if (r.status === 'fulfilled') {
+      if (r.value) positions.push(r.value)
+    } else if (!firstError) {
+      firstError = r.reason
+    }
+  }
+  if (positions.length === 0 && firstError) throw firstError
+  return positions
 }
 
 /**

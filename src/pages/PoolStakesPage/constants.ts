@@ -43,9 +43,8 @@ export interface NetworkConfig {
   token: Hex
   clones: CloneInfo[]
   testnet: boolean
-  /** Legacy type-0 gas limit + pre-write native-balance guard (per network). */
+  /** Legacy type-0 gas limit for a claim write (per network). */
   txGasLimit: bigint
-  minGasBalance: bigint
 }
 
 const galleon: NetworkConfig = {
@@ -58,7 +57,6 @@ const galleon: NetworkConfig = {
   token: '0x6B44D6D1d51C6b9507A2245CdEf1d1ABf6b61F38',
   testnet: true,
   txGasLimit: 300_000n,
-  minGasBalance: 400_000_000_000_000_000n, // ~0.4 iKAS
   clones: [
     {
       key: 'round1',
@@ -101,7 +99,6 @@ const fork: NetworkConfig = {
   token: '0x093d77d397F8acCbaee0820345E9E700B1233cD1', // real IGRA
   testnet: true,
   txGasLimit: 1_000_000n,
-  minGasBalance: 400_000_000_000_000_000n,
   clones: [
     {
       key: 'round1',
@@ -130,6 +127,7 @@ export const CHAIN = {
   rpcUrl: NETWORK.rpcUrl,
   explorer: NETWORK.explorer,
   nativeSymbol: NETWORK.nativeSymbol,
+  testnet: NETWORK.testnet,
 }
 
 export const TOKEN: Hex = NETWORK.token
@@ -143,8 +141,14 @@ export const CLONES: CloneInfo[] = NETWORK.clones
  */
 export const TX_GAS_PRICE = 2_000_000_000_000n // 2000 gwei
 export const TX_GAS_LIMIT = NETWORK.txGasLimit
-/** Require this much native balance before a write (silent-drop guard on Igra). */
-export const MIN_GAS_BALANCE = NETWORK.minGasBalance
+/**
+ * Native balance required before a write. Igra's silent-drop trap fires when
+ * `gasLimit × gasPrice` EXCEEDS the sender's balance (the RPC accepts the tx then
+ * never mines it, no revert), so the guard must be the FULL `gasLimit × gasPrice`
+ * — not a lower "typical cost" figure, or a wallet in between passes the check and
+ * the claim silently vanishes.
+ */
+export const MIN_GAS_BALANCE = TX_GAS_LIMIT * TX_GAS_PRICE
 
 /** Human revert-string → user-facing copy. */
 export const REVERT_MESSAGES: Record<string, string> = {
