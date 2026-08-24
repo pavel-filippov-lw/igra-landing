@@ -15,5 +15,5 @@ export const Routes = {
   multitude: 'multitude',
   media: 'media',
   tangemClaim: 'tangem-claim',
-  poolStakes: 'poolstakes',
+  poolStakes: 'igra-vesting',
 }

@@ -256,12 +256,8 @@ const ConnectedApp: FC = () => {
       {!isConnected && !activeHolder && (
         <div className={classes.intro}>
           <p>
-            Connect the wallet that holds your vesting allocation to see what has vested and
-            withdraw it. Withdrawing is a single transaction; there is nothing to sign otherwise.
-          </p>
-          <p className={classes.muted}>
-            Network: {CHAIN.name}. Vesting begins at each pool’s start time — until then the
-            page shows a countdown.
+            Connect the wallet that holds your vesting allocation to see what has vested and claim
+            it. Claiming is a single transaction; there is nothing to sign otherwise.
           </p>
           <button className={classes.cta} type="button" onClick={() => open()}>
             Connect wallet

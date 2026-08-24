@@ -62,7 +62,7 @@ export function initAppKit(): void {
     networks,
     projectId,
     metadata: {
-      name: 'Igra PoolStakes',
+      name: 'Igra Vesting',
       description: 'Claim your vested Igra allocation.',
       url: 'https://igralabs.com',
       icons: ['https://igralabs.com/favicon.ico'],

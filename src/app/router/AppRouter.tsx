@@ -12,7 +12,7 @@ const TangemClaimPage = lazy(() =>
 
 // Same rationale as above: the PoolStakes vesting-claim dapp pulls in the
 // WalletConnect/AppKit + viem contract stack, so it is code-split behind its
-// own lazy route and downloaded only when /poolstakes is opened.
+// own lazy route and downloaded only when /igra-vesting is opened.
 const PoolStakesPage = lazy(() =>
   import('~/pages/PoolStakesPage').then((m) => ({ default: m.PoolStakesPage })),
 )
