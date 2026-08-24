@@ -8,7 +8,7 @@
  *               real is touched. See the fork runbook.
  *
  * Galleon addresses were verified live (chainId 38836). The fork's pool #7 clone
- * is the real mainnet investor distributor — a PoolStakes clone behind a
+ * is the real mainnet Round 1 (contributor) distributor — a PoolStakes clone behind a
  * VestingPoolSplitter, so its poolId() is the CHILD id (0) and its vestingPools()
  * is the splitter, not the real VestingPools (the schedule is read per-clone).
  */
@@ -65,7 +65,7 @@ const galleon: NetworkConfig = {
       poolId: 0,
       fromBlock: 17075306n,
       dynamic: false,
-      blurb: 'Early investors — contractual terms, frozen for the life of the vest.',
+      blurb: 'Early contributors — contractual terms, frozen for the life of the vest.',
     },
     {
       key: 'team',
@@ -102,12 +102,12 @@ const fork: NetworkConfig = {
   clones: [
     {
       key: 'round1',
-      name: 'Round 1 (investors)',
-      address: '0xf8A15e869F8327fe7af0538F5fB07312CF37DDCf', // pool #7 investor distributor (behind the splitter)
+      name: 'Round 1 (contributors)',
+      address: '0xf8A15e869F8327fe7af0538F5fB07312CF37DDCf', // pool #7 Round 1 distributor (behind the splitter)
       poolId: 0, // CHILD id, not pool #7
       fromBlock: 0n,
       dynamic: false,
-      blurb: 'Round 1 investors — vesting distributor for pool #7.',
+      blurb: 'Round 1 contributors — vesting distributor for pool #7.',
     },
   ],
 }
