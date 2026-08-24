@@ -32,6 +32,8 @@ class To {
   media = () => `/${Routes.media}`
 
   tangemClaim = () => `/${Routes.tangemClaim}`
+
+  poolStakes = () => `/${Routes.poolStakes}`
 }
 
 export const to = new To()
