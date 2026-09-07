@@ -29,7 +29,7 @@ const REPRODUCE_URL =
 const ROUND2_AUDIT_URL: string = ''
 const CONTACT_EMAIL = 'giveaway@igra.network'
 
-/** ISO → "7 September 2026, 18:00 UTC" (always UTC). */
+/** ISO → "14 September 2026, 18:00 UTC" (always UTC). */
 function formatDeadline(iso: string | null): string {
   if (!iso) return ''
   const d = new Date(iso)
@@ -365,7 +365,7 @@ export const WinnerFlow: FC = () => {
 
         {closed ? (
           <p className={classes.closedNotice}>
-            The initial claim period closed on {formatDeadline(status.claimDeadlineAt)}.
+            The claim period closed on {formatDeadline(status.claimDeadlineAt)}.
           </p>
         ) : (
           <>
