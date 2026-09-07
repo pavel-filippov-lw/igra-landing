@@ -663,6 +663,83 @@
     }
   }
 
+  // "N of 10 prizes claimed" progress line above the grouped winners.
+  .winnersProgress {
+    font-family: $font;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 20px;
+
+    strong {
+      color: #6BD1C3;
+      font-weight: 700;
+    }
+  }
+
+  // Claimed / Round 2 selected groups.
+  .winnerGroup {
+    margin-bottom: 20px;
+  }
+
+  .winnerGroupLabel {
+    font-family: $font;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 10px;
+  }
+
+  // Collapsed "Previous round" (expired reserves) — custom caret, no default marker.
+  .previousRound {
+    margin-top: 6px;
+
+    summary {
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      font-family: $font;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::before {
+        content: '▸';
+        display: inline-block;
+        margin-right: 8px;
+        transition: transform 0.15s ease;
+      }
+
+      &:hover {
+        color: #FFFFFF;
+      }
+    }
+
+    &[open] summary {
+      margin-bottom: 12px;
+
+      &::before {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  // Verify + audit links stacked under the winners list.
+  .verifyLinks {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    .verifyLink {
+      margin-top: 0;
+    }
+  }
+
   // Metadata list (you-won / success / returning screens).
   .meta {
     margin: 4px 0 0;
