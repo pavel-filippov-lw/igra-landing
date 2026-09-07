@@ -258,7 +258,7 @@ export const ShippingForm: FC<{
         </label>
 
         {closed && (
-          <p className={classes.closedNotice}>The initial claim period closed on {deadlineLabel}.</p>
+          <p className={classes.closedNotice}>The claim period closed on {deadlineLabel}.</p>
         )}
         {error && <p className={classes.error}>{error}</p>}
 
@@ -286,7 +286,7 @@ export const ShippingForm: FC<{
       <h2 className={classes.formHeading}>Claim your Tangem Wallet</h2>
       <p className={classes.deadline}>Submit your delivery details before {deadlineLabel}.</p>
 
-      {closed && <p className={classes.closedNotice}>The initial claim period closed on {deadlineLabel}.</p>}
+      {closed && <p className={classes.closedNotice}>The claim period closed on {deadlineLabel}.</p>}
 
       <label className={classes.field}>
         <span className={classes.label}>Full legal name <span className={classes.req}>*</span></span>

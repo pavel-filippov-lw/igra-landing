@@ -24,9 +24,12 @@ import { fetchWinners, Winner } from './winners'
 
 const REPRODUCE_URL =
   'https://github.com/IgraLabs/tangem-zap-giveaway-2026/blob/draw-v1.2/REPRODUCE.md'
+// Round 2 audit record — set to the published URL when available; the link is
+// hidden while this is empty.
+const ROUND2_AUDIT_URL: string = ''
 const CONTACT_EMAIL = 'giveaway@igra.network'
 
-/** ISO → "7 September 2026, 18:00 UTC" (always UTC). */
+/** ISO → "14 September 2026, 18:00 UTC" (always UTC). */
 function formatDeadline(iso: string | null): string {
   if (!iso) return ''
   const d = new Date(iso)
@@ -49,6 +52,18 @@ function formatTimestamp(iso: string): string {
   if (isNaN(d.getTime())) return iso
   return d.toISOString().replace('T', ' ').replace(/\.\d+Z$/, '') + ' UTC'
 }
+
+/** A rank + shortened-address row list, reused across the winner groups. */
+const WinnerRows: FC<{ rows: Winner[] }> = ({ rows }) => (
+  <ul className={classes.winnersList}>
+    {rows.map((w) => (
+      <li key={w.rank}>
+        <span className={classes.winnerRank}>#{w.rank}</span>
+        <code>{w.short}</code>
+      </li>
+    ))}
+  </ul>
+)
 
 /** Interactive winners' claim flow. Uses wagmi/AppKit hooks — must be inside providers. */
 export const WinnerFlow: FC = () => {
@@ -185,21 +200,28 @@ export const WinnerFlow: FC = () => {
 
   const shortWallet = address ? shortAddress(address) : ''
 
+  // Winners grouped for the connect screen. Derived from the API (round + status)
+  // so the groups and the progress count stay correct as Round 2 wallets claim.
+  const claimedWinners = winners.filter((w) => w.status === 'claimed')
+  const roundTwoWinners = winners.filter((w) => w.round === 2 && w.status !== 'claimed')
+  const expiredWinners = winners.filter((w) => w.round === 1 && w.status === 'expired')
+  const totalPrizes = winners.filter((w) => w.round === 1).length || 10
+
   // ---- Screen selection ----
   let body: ReactNode
 
   if (!isConnected || !address) {
     body = (
       <>
-        <p className={classes.drawHeadline}>The draw is complete</p>
+        <p className={classes.drawHeadline}>Round 2 claims are open</p>
         <p className={classes.drawText}>
           10 winning wallets were selected from 346 eligible ZAP wallets. Connect the wallet you
           used during ZAP to check and claim.
         </p>
-        <p className={classes.drawDeadline}>Claims close 7 September 2026, 18:00 UTC</p>
+        <p className={classes.drawDeadline}>Claims close 14 September 2026, 18:00 UTC</p>
 
         <Button variant="primary" onClick={handleConnect} className={classes.cta}>
-          Connect wallet to check
+          Connect wallet to check and claim
         </Button>
         <p className={classes.securityLine}>
           Checking and claiming require only a gas-free signature. No transaction, approval or
@@ -209,17 +231,43 @@ export const WinnerFlow: FC = () => {
 
         <div className={classes.winners}>
           <h3 className={classes.winnersTitle}>Winning wallets</h3>
-          <ul className={classes.winnersList}>
-            {winners.map((w) => (
-              <li key={w.rank}>
-                <span className={classes.winnerRank}>#{w.rank}</span>
-                <code>{w.short}</code>
-              </li>
-            ))}
-          </ul>
-          <a className={classes.verifyLink} href={REPRODUCE_URL} target="_blank" rel="noopener noreferrer">
-            Verify the draw →
-          </a>
+          {winners.length > 0 && (
+            <p className={classes.winnersProgress}>
+              <strong>{claimedWinners.length}</strong> of {totalPrizes} prizes claimed
+            </p>
+          )}
+
+          {claimedWinners.length > 0 && (
+            <div className={classes.winnerGroup}>
+              <p className={classes.winnerGroupLabel}>Claimed</p>
+              <WinnerRows rows={claimedWinners} />
+            </div>
+          )}
+
+          {roundTwoWinners.length > 0 && (
+            <div className={classes.winnerGroup}>
+              <p className={classes.winnerGroupLabel}>Round 2 selected</p>
+              <WinnerRows rows={roundTwoWinners} />
+            </div>
+          )}
+
+          {expiredWinners.length > 0 && (
+            <details className={classes.previousRound}>
+              <summary>Previous round ({expiredWinners.length})</summary>
+              <WinnerRows rows={expiredWinners} />
+            </details>
+          )}
+
+          <div className={classes.verifyLinks}>
+            <a className={classes.verifyLink} href={REPRODUCE_URL} target="_blank" rel="noopener noreferrer">
+              Verify draw and reserve order →
+            </a>
+            {ROUND2_AUDIT_URL && (
+              <a className={classes.verifyLink} href={ROUND2_AUDIT_URL} target="_blank" rel="noopener noreferrer">
+                View Round 2 audit record →
+              </a>
+            )}
+          </div>
         </div>
       </>
     )
@@ -317,7 +365,7 @@ export const WinnerFlow: FC = () => {
 
         {closed ? (
           <p className={classes.closedNotice}>
-            The initial claim period closed on {formatDeadline(status.claimDeadlineAt)}.
+            The claim period closed on {formatDeadline(status.claimDeadlineAt)}.
           </p>
         ) : (
           <>
