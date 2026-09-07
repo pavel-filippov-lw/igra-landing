@@ -1,0 +1,173 @@
+.root {
+  width: 100%;
+}
+
+/* ---- Hero ---- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 560px;
+  // No bottom gap: the first feature card tucks up under the hero so the
+  // robot art / grid / radial glow spills down over its top edge (see Figma).
+  margin-bottom: 0;
+}
+
+.heroTitle {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 620px;
+  font-family: $font-secondary;
+  font-weight: 600;
+  font-size: clamp(38px, 5.6vw, 84px);
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+// Bleeds up and to the right, behind the heading — its own glow/transparency
+// makes the overlap read as intentional (matches the Figma).
+.heroArt {
+  position: absolute;
+  z-index: 0;
+  top: -20px;
+  right: -40px;
+  // Enlarged so the art (and its lower glow/grid) reaches further down over the
+  // first card — adds overlap on the right without pulling the card up into the
+  // heading on the left.
+  width: 62%;
+  max-width: 900px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* ---- Feature rows ---- */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  // Pulls the stack up so the first card overlaps the hero art's lower glow.
+  // The art is positioned (z-index), the cards are in-flow blocks, so the art
+  // paints over the overlap — no z-index needed here (adding one would flip it).
+  margin-top: -90px;
+}
+
+.featureRow {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  min-height: 200px;
+  padding: 24px 44px;
+  background: rgba(63, 63, 63, 0.4);
+  border-radius: 11px;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  width: 200px;
+  height: 139px;
+  object-fit: contain;
+}
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featureTitle {
+  margin: 0;
+  font-family: $font-secondary;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.featureDesc {
+  margin: 0;
+  max-width: 900px;
+  font-family: $font;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: #ffffff;
+}
+
+/* ---- Latest News spacing ---- */
+.news {
+  margin-top: 40px;
+}
+
+/* ---- Responsive ---- */
+@media screen and (max-width: $laptop) {
+  .hero {
+    min-height: 460px;
+  }
+
+  .heroArt {
+    top: 0;
+    right: -30px;
+    width: 52%;
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .heroTitle {
+    max-width: none;
+    font-size: clamp(34px, 9vw, 56px);
+  }
+
+  .heroArt {
+    position: relative;
+    top: auto;
+    right: auto;
+    align-self: center;
+    width: 100%;
+    max-width: 440px;
+  }
+
+  // Art is an in-flow block above the cards here — drop the desktop overlap.
+  .features {
+    margin-top: 8px;
+  }
+
+  .featureRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    min-height: 0;
+    padding: 24px 22px;
+  }
+
+  .featureIcon {
+    width: 160px;
+    height: 111px;
+  }
+
+  .featureTitle {
+    font-size: 18px;
+  }
+
+  .featureDesc {
+    font-size: 17px;
+    line-height: 26px;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .heroTitle {
+    font-size: clamp(30px, 10vw, 40px);
+  }
+}

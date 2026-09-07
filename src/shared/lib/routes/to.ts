@@ -34,6 +34,8 @@ class To {
   tangemClaim = () => `/${Routes.tangemClaim}`
 
   poolStakes = () => `/${Routes.poolStakes}`
+
+  aiAgents = () => `/${Routes.aiAgents}`
 }
 
 export const to = new To()

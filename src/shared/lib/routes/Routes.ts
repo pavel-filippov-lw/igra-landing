@@ -16,4 +16,5 @@ export const Routes = {
   media: 'media',
   tangemClaim: 'tangem-claim',
   poolStakes: 'igra-vesting',
+  aiAgents: 'ai-agents',
 }

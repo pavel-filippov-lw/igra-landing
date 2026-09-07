@@ -1,7 +1,7 @@
 import { FC, lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Outlet, Route, Routes as ReactRoutes } from 'react-router-dom'
 
-import { IgraTokenPage, /* BenefitsPage, BenefitsPage2, */ EcosystemPage, HeroPage, ManifestoPage, MediaPage, MultitudePage, NewsPage, NodesPage, PrivacyPage, PublicAuctionPage, TeamPage, TermsPage, VisionPage } from '~/pages'
+import { AiAgentsPage, IgraTokenPage, /* BenefitsPage, BenefitsPage2, */ EcosystemPage, HeroPage, ManifestoPage, MediaPage, MultitudePage, NewsPage, NodesPage, PrivacyPage, PublicAuctionPage, TeamPage, TermsPage, VisionPage } from '~/pages'
 import { Routes, to } from '~/shared/lib'
 
 // Lazy-loaded so the heavy WalletConnect/AppKit stack it pulls in is code-split
@@ -38,6 +38,7 @@ export const AppRouter: FC = () => {
           <Route path={Routes.nodes} element={<NodesPage />} />
           <Route path={Routes.multitude} element={<MultitudePage />} />
           <Route path={Routes.media} element={<MediaPage />} />
+          <Route path={Routes.aiAgents} element={<AiAgentsPage />} />
           <Route
             path={Routes.tangemClaim}
             element={
