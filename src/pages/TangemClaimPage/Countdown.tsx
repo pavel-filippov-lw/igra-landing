@@ -11,7 +11,9 @@ export const Countdown: FC<{
   deadlineIso: string
   serverTimeIso: string
   onExpire?: () => void
-}> = ({ deadlineIso, serverTimeIso, onExpire }) => {
+  /** Text once the deadline has passed. */
+  expiredLabel?: string
+}> = ({ deadlineIso, serverTimeIso, onExpire, expiredLabel = 'Claim period closed' }) => {
   const deadline = Date.parse(deadlineIso)
   // Offset between the server clock and this browser, captured once at mount.
   const offsetRef = useRef(Date.parse(serverTimeIso) - Date.now())
@@ -35,7 +37,7 @@ export const Countdown: FC<{
   }, [deadline])
 
   if (isNaN(deadline)) return null
-  if (remaining <= 0) return <span className={classes.countdown}>Claim period closed</span>
+  if (remaining <= 0) return <span className={classes.countdown}>{expiredLabel}</span>
 
   const total = Math.floor(remaining / 1000)
   const days = Math.floor(total / 86_400)

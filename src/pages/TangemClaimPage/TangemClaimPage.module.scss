@@ -727,7 +727,7 @@
     }
   }
 
-  // Verify + audit links stacked under the winners list.
+  // Landing links stacked under the winners list (rules modal, draw record, support).
   .verifyLinks {
     margin-top: 22px;
     display: flex;
@@ -737,6 +737,15 @@
 
     .verifyLink {
       margin-top: 0;
+    }
+
+    // A <button> styled as one of the links (opens the in-page Rules modal).
+    button.verifyLink {
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
     }
   }
 

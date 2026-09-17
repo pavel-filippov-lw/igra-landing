@@ -206,3 +206,30 @@ Minimal stub to unblock a demo (remember CORS + `OPTIONS` for `http://localhost:
 
 With `VITE_GIVEAWAY_MOCK=1`, the frontend mocks only the OTP endpoints (code
 `123456`); eligibility + verify still call the stub/real API.
+
+**Final reserve window stub** (covers all of §6 below; no signature check; dev only):
+```
+node scripts/tangem-reserve-stub.mjs        # WINDOW=open|scheduled|closed|finalized|none  STATUS=reserve|reserve-submitted|reserve-notselected|winner|expired|claimed|round3|notindraw
+VITE_GIVEAWAY_API_URL=http://localhost:8787 VITE_GIVEAWAY_MOCK=1 yarn dev --port 5174
+```
+
+---
+
+## 6. Final reserve claim window (September 2026)
+
+Authoritative spec: `igra-apis/docs/FRONTEND-BRIEF-final-reserve-window.md`. The
+frontend (`claim.ts` + `reserve.ts`) is built against these shapes. Same base URL,
+CORS and rate-limit rules as above; error bodies are `{ "error": "<message>" }`.
+
+| Endpoint | Body in | Body out | Notes |
+| --- | --- | --- | --- |
+| `GET {BASE}/reserve-window` | — | `{state, opensAt, closesAt, serverTime, prizesRemaining}` | Landing hero + countdown. `state ∈ scheduled \| open \| closed \| finalized`. **`404` until the operator creates the window row** → the page shows the between-rounds hero. `prizesRemaining` is live (10 − claimed) and read from here, never assumed. |
+| `POST {BASE}/winner-status` | `{address}` | as before, **plus** `inDraw` (non-winners) and `round` (winners) | `selected:false, inDraw:true` = on the reserve list → client then calls `reserve-status`. `round === 3` = selected in the final window. `claimStatus` may also be `expired` / `invalidated` (client shows "previous claim window has closed", not a false success). |
+| `POST {BASE}/reserve-status` | `{address}` | `{inDraw, rank, window:{state,opensAt,closesAt,serverTime}, submission \| null, outcome \| null, nonce?, registeredEmail?}` | Only after `inDraw:true`. `nonce` present only while `open` (absent = no signing offered). `submission` = `{reference, submittedAt, updatedAt}`, never delivery data. `outcome ∈ selected \| not_selected` once `finalized`. |
+| `POST {BASE}/verify` | as §3, statement = `RESERVE_SIWE_STATEMENT` | `{claimToken}` | Same mechanics; nonce from `reserve-status`. |
+| `POST {BASE}/reserve-submit` | the `/claim` body **+ `noGuaranteeAccepted: true`** | `{ok, reference, submittedAt, updatedAt}` | Upsert: re-submitting while open overwrites the previous submission (same `reference`) — no `409`. `401` → sign again; `403` → show `error` (window not open / not a reserve / email unverified); `400` → show `error`. |
+
+Frontend mapping: `reserve.ts` (parsers + the §4.3 screen table, unit-tested in
+`reserve.test.ts` — `yarn test`), `WinnerFlow.tsx` (screens), `ShippingForm`
+reused via `heading` / `extraConfirmation` / `submit`. The shareable link
+`/tangem-claim?rules=final-window` opens the Rules modal at the addendum.

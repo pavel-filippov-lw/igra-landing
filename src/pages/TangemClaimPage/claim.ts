@@ -1,6 +1,7 @@
 import { getAddress, type Address } from 'viem'
 
 import { isMockEnabled, mockConfirm, mockStart } from './mockApi'
+import { parseReserveStatus, parseReserveWindow, type ReserveStatus, type ReserveWindow } from './reserve'
 
 /**
  * Claim flow logic for the Igra × Tangem giveaway (API + SIWE message building).
@@ -247,15 +248,18 @@ export function maskEmail(email: string): string {
  *  (apis repo routes/giveaway.js @ main): winner-status + claim.     *
  * ------------------------------------------------------------------ */
 
-/** winner-status for a non-winning wallet. */
-interface NotSelected {
+/** winner-status for a non-winning wallet. `inDraw` = still on the reserve list (final window). */
+export interface NotSelected {
   selected: false
+  inDraw: boolean
 }
 
 /** winner-status for a winning wallet (unclaimed, or already claimed). */
 export interface WinnerSelected {
   selected: true
   rank: number
+  /** Draw round the wallet was assigned in: 1 original, 2 first reserves, 3 final window. */
+  round?: number
   /** Backend emits 'unclaimed' | 'claimed'; treat anything ≠ 'unclaimed' as a returning claim. */
   claimStatus: string
   /** ISO deadline for THIS wallet (per-wallet — reserves get their own). Null if unset. */
@@ -290,14 +294,20 @@ export async function fetchWinnerStatus(address: Address): Promise<WinnerStatus>
   if (!res.ok) {
     throw new ClaimError('The giveaway service returned an error. Please try again later.', 'server')
   }
-  const data = (await res.json()) as Partial<WinnerSelected> & { selected?: unknown }
-  if (data.selected !== true) return { selected: false }
+  return parseWinnerStatus(await res.json())
+}
+
+/** Pure parser for a winner-status body (unit-tested). Throws on an unusable winner shape. */
+export function parseWinnerStatus(raw: unknown): WinnerStatus {
+  const data = (raw ?? {}) as Partial<WinnerSelected> & { selected?: unknown; inDraw?: unknown }
+  if (data.selected !== true) return { selected: false, inDraw: data.inDraw === true }
   if (typeof data.rank !== 'number' || typeof data.claimStatus !== 'string') {
     throw new ClaimError('Unexpected response from the giveaway service.', 'server')
   }
   return {
     selected: true,
     rank: data.rank,
+    round: typeof data.round === 'number' ? data.round : undefined,
     claimStatus: data.claimStatus,
     claimDeadlineAt: typeof data.claimDeadlineAt === 'string' ? data.claimDeadlineAt : null,
     serverTime: typeof data.serverTime === 'string' ? data.serverTime : new Date().toISOString(),
@@ -332,6 +342,29 @@ async function errorMessage(res: Response, fallback: string): Promise<string> {
   return body && typeof body.error === 'string' && body.error ? body.error : fallback
 }
 
+/** The /claim request body; /reserve-submit sends the same plus `noGuaranteeAccepted`. */
+function claimBody(claimToken: string, details: ClaimDetails, useRegisteredEmail: boolean) {
+  return {
+    claimToken,
+    useRegisteredEmail,
+    fullName: details.fullName,
+    email: details.email,
+    country: details.country,
+    addressLine1: details.addressLine1,
+    addressLine2: details.addressLine2 ?? '',
+    city: details.city,
+    region: details.region ?? '',
+    postalCode: details.postalCode,
+    telephone: details.telephone ?? '',
+    // The five required confirmations — always true; the UI blocks submit until every box is ticked.
+    ageConfirmed: true,
+    lawfulReceiptConfirmed: true,
+    householdLimitConfirmed: true,
+    rulesAccepted: true,
+    privacyAccepted: true,
+  }
+}
+
 /**
  * POST /claim — submit delivery details for a verified winning wallet, authorised
  * by the `claimToken` from verifyClaim. The five required confirmations are always
@@ -353,24 +386,7 @@ export async function submitClaim(
     res = await fetch(`${base}/claim`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        claimToken,
-        useRegisteredEmail,
-        fullName: details.fullName,
-        email: details.email,
-        country: details.country,
-        addressLine1: details.addressLine1,
-        addressLine2: details.addressLine2 ?? '',
-        city: details.city,
-        region: details.region ?? '',
-        postalCode: details.postalCode,
-        telephone: details.telephone ?? '',
-        ageConfirmed: true,
-        lawfulReceiptConfirmed: true,
-        householdLimitConfirmed: true,
-        rulesAccepted: true,
-        privacyAccepted: true,
-      }),
+      body: JSON.stringify(claimBody(claimToken, details, useRegisteredEmail)),
     })
   } catch {
     throw new ClaimError('Could not reach the giveaway service. Check your connection and retry.', 'network')
@@ -395,5 +411,98 @@ export async function submitClaim(
   return {
     claimRef: data.claimRef,
     claimedAt: typeof data.claimedAt === 'string' ? data.claimedAt : new Date().toISOString(),
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Final reserve claim window (FRONTEND-BRIEF-final-reserve-window.md) *
+ *  Shapes + parsers live in reserve.ts; this section is transport.     *
+ * ------------------------------------------------------------------ */
+
+/** GET /reserve-window. Resolves null when no window row exists yet (404). */
+export async function fetchReserveWindow(): Promise<ReserveWindow | null> {
+  const base = requireApiUrl()
+  let res: Response
+  try {
+    res = await fetch(`${base}/reserve-window`, { method: 'GET' })
+  } catch {
+    throw new ClaimError('Could not reach the giveaway service. Check your connection and retry.', 'network')
+  }
+  if (res.status === 404) return null
+  if (!res.ok) {
+    throw new ClaimError('The giveaway service returned an error. Please try again later.', 'server')
+  }
+  const parsed = parseReserveWindow(await res.json())
+  if (!parsed) throw new ClaimError('Unexpected response from the giveaway service.', 'server')
+  return parsed
+}
+
+/** POST /reserve-status — only after winner-status returned selected:false, inDraw:true. */
+export async function fetchReserveStatus(address: Address): Promise<ReserveStatus> {
+  const base = requireApiUrl()
+  let res: Response
+  try {
+    res = await fetch(`${base}/reserve-status`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address }),
+    })
+  } catch {
+    throw new ClaimError('Could not reach the giveaway service. Check your connection and retry.', 'network')
+  }
+  if (!res.ok) {
+    throw new ClaimError('The giveaway service returned an error. Please try again later.', 'server')
+  }
+  const parsed = parseReserveStatus(await res.json())
+  if (!parsed) throw new ClaimError('Unexpected response from the giveaway service.', 'server')
+  return parsed
+}
+
+export interface ReserveSubmitResult extends ClaimResult {
+  /** Equals claimedAt on first submit; later on a re-submit (the server upserts). */
+  updatedAt: string
+}
+
+/**
+ * POST /reserve-submit — the /claim body plus `noGuaranteeAccepted`. Re-submitting
+ * while the window is open overwrites the previous submission (same reference);
+ * there is no 409 for reserves. Mapped onto ClaimResult so ShippingForm's
+ * onSubmitted works unchanged (claimRef = reference, claimedAt = submittedAt).
+ */
+export async function submitReserve(
+  claimToken: string,
+  details: ClaimDetails,
+  useRegisteredEmail = false,
+): Promise<ReserveSubmitResult> {
+  const base = requireApiUrl()
+  let res: Response
+  try {
+    res = await fetch(`${base}/reserve-submit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...claimBody(claimToken, details, useRegisteredEmail), noGuaranteeAccepted: true }),
+    })
+  } catch {
+    throw new ClaimError('Could not reach the giveaway service. Check your connection and retry.', 'network')
+  }
+  if (res.status === 401) {
+    throw new ClaimError('Your session expired. Please sign again to continue.', 'expired')
+  }
+  if (res.status === 403) {
+    // Window not open, wallet not a reserve, or email not verified — surface the server's message.
+    throw new ClaimError(await errorMessage(res, 'This submission can no longer be made.'), 'server')
+  }
+  if (!res.ok) {
+    throw new ClaimError(await errorMessage(res, 'Could not submit your details. Please check them and retry.'), 'server')
+  }
+  const data = (await res.json()) as { reference?: unknown; submittedAt?: unknown; updatedAt?: unknown }
+  if (typeof data.reference !== 'string' || !data.reference) {
+    throw new ClaimError('Unexpected response from the giveaway service.', 'server')
+  }
+  const submittedAt = typeof data.submittedAt === 'string' ? data.submittedAt : new Date().toISOString()
+  return {
+    claimRef: data.reference,
+    claimedAt: submittedAt,
+    updatedAt: typeof data.updatedAt === 'string' ? data.updatedAt : submittedAt,
   }
 }

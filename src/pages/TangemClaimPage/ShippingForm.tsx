@@ -19,7 +19,12 @@ const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/
 
 type EmailStage = 'idle' | 'sent' | 'verified'
 type Phase = 'form' | 'preview'
-type FieldErrors = Partial<Record<'fullName' | 'email' | 'country' | 'addressLine1' | 'city' | 'postalCode' | 'telephone' | 'confirmed', string>>
+type FieldErrors = Partial<
+  Record<
+    'fullName' | 'email' | 'country' | 'addressLine1' | 'city' | 'postalCode' | 'telephone' | 'confirmed' | 'extraConfirmed',
+    string
+  >
+>
 
 /**
  * Delivery-details form for a verified winning wallet. Two phases: fill the
@@ -27,6 +32,9 @@ type FieldErrors = Partial<Record<'fullName' | 'email' | 'country' | 'addressLin
  * shipping info, verifies the delivery email via OTP (reusing /email/*) or reuses
  * the registered email one-click, requires a single combined legal confirmation,
  * then POSTs /claim. Authorised by `claimToken`.
+ *
+ * Also reused by the final reserve window flow via `heading`, `extraConfirmation`
+ * and `submit` (POST /reserve-submit) — everything else is identical.
  */
 export const ShippingForm: FC<{
   claimToken: string
@@ -35,7 +43,29 @@ export const ShippingForm: FC<{
   closed: boolean
   onSubmitted: (result: ClaimResult, email: string) => void
   onSessionExpired: () => void
-}> = ({ claimToken, registeredEmail, deadlineLabel, closed, onSubmitted, onSessionExpired }) => {
+  /** Form heading; defaults to the winner claim heading. */
+  heading?: string
+  /** Extra required checkbox below the combined confirmation (reserve: "does not guarantee a prize"). */
+  extraConfirmation?: string
+  /** Submit call; defaults to POST /claim. The reserve flow passes submitReserve. */
+  submit?: (claimToken: string, details: ClaimDetails, useRegisteredEmail: boolean) => Promise<ClaimResult>
+  /** Primary button label on the review screen. */
+  submitLabel?: string
+  /** Hint under the deadline line, e.g. that re-submitting replaces previous details. */
+  note?: string
+}> = ({
+  claimToken,
+  registeredEmail,
+  deadlineLabel,
+  closed,
+  onSubmitted,
+  onSessionExpired,
+  heading = 'Claim your Tangem Wallet',
+  extraConfirmation,
+  submit = submitClaim,
+  submitLabel = 'Confirm & submit',
+  note,
+}) => {
   const [phase, setPhase] = useState<Phase>('form')
 
   const [fullName, setFullName] = useState('')
@@ -57,6 +87,8 @@ export const ShippingForm: FC<{
   const [confirmed, setConfirmed] = useState(false)
   // Address-preview confirmation (correct address + can receive parcels + customs).
   const [deliveryConfirmed, setDeliveryConfirmed] = useState(false)
+  // Optional extra confirmation (reserve flow: submitting does not guarantee a prize).
+  const [extraConfirmed, setExtraConfirmed] = useState(false)
 
   const [busy, setBusy] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -162,6 +194,7 @@ export const ShippingForm: FC<{
     if (!postalCode.trim()) errs.postalCode = 'Enter the postal code.'
     if (!telephone.trim()) errs.telephone = 'Enter a phone number.'
     if (!confirmed) errs.confirmed = 'Please tick the confirmation to continue.'
+    if (extraConfirmation && !extraConfirmed) errs.extraConfirmed = 'Please tick this confirmation to continue.'
     setFieldErrors(errs)
     return Object.keys(errs).length === 0
   }
@@ -211,7 +244,7 @@ export const ShippingForm: FC<{
         postalCode: postalCode.trim(),
         telephone: telephone.trim(),
       }
-      const result = await submitClaim(claimToken, details, useRegistered)
+      const result = await submit(claimToken, details, useRegistered)
       const displayEmail = useRegistered ? registeredEmail ?? '' : maskEmail(email.trim())
       onSubmitted(result, displayEmail)
     } catch (err) {
@@ -273,7 +306,7 @@ export const ShippingForm: FC<{
             onClick={() => void handleSubmit()}
             disabled={!deliveryConfirmed || submitting || closed}
           >
-            {submitting ? 'Submitting…' : 'Confirm & submit'}
+            {submitting ? 'Submitting…' : submitLabel}
           </Button>
         </div>
       </div>
@@ -283,8 +316,9 @@ export const ShippingForm: FC<{
   // ---- Details form ----
   return (
     <form className={classes.form} onSubmit={goToPreview}>
-      <h2 className={classes.formHeading}>Claim your Tangem Wallet</h2>
+      <h2 className={classes.formHeading}>{heading}</h2>
       <p className={classes.deadline}>Submit your delivery details before {deadlineLabel}.</p>
+      {note && <p className={classes.hint}>{note}</p>}
 
       {closed && <p className={classes.closedNotice}>The claim period closed on {deadlineLabel}.</p>}
 
@@ -516,6 +550,24 @@ export const ShippingForm: FC<{
         </span>
       </label>
       {fieldErrors.confirmed && <p className={classes.fieldError}>{fieldErrors.confirmed}</p>}
+
+      {extraConfirmation && (
+        <>
+          <label className={classes.check}>
+            <input
+              type="checkbox"
+              checked={extraConfirmed}
+              onChange={(e) => {
+                setExtraConfirmed(e.target.checked)
+                clearErr('extraConfirmed')
+              }}
+              disabled={closed}
+            />
+            <span>{extraConfirmation}</span>
+          </label>
+          {fieldErrors.extraConfirmed && <p className={classes.fieldError}>{fieldErrors.extraConfirmed}</p>}
+        </>
+      )}
 
       <Button type="submit" variant="primary" className={classes.cta} disabled={closed}>
         Review address

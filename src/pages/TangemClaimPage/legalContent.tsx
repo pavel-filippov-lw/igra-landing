@@ -22,6 +22,9 @@ const OrgAddress: FC = () => (
 /** ── Giveaway Rules ─────────────────────────────────────────────────── */
 export const GIVEAWAY_RULES_TITLE = 'Igra × Tangem ZAP Wallet Giveaway Rules'
 
+/** Element id of the final-window addendum; `?rules=final-window` opens the modal scrolled here. */
+export const FINAL_WINDOW_ANCHOR = 'final-window'
+
 export const GiveawayRules: FC = () => (
   <>
     <p className={classes.effective}>Effective date: 3 August 2026</p>
@@ -186,6 +189,54 @@ export const GiveawayRules: FC = () => (
     <p>
       Questions may be sent to <a href={`mailto:${CONTACT}`}>{CONTACT}</a>.
     </p>
+
+    {/*
+      PLACEHOLDER — final reserve window addendum. Structure follows the frontend
+      brief (§5); the definitive wording is to be supplied by the organizer and
+      should replace this section verbatim before the window opens.
+    */}
+    <h3 id={FINAL_WINDOW_ANCHOR}>10. Final reserve claim window (addendum)</h3>
+    <p className={classes.effective}>Addendum effective: September 2026 — wording to be confirmed by the Organizer</p>
+    <p>
+      Where prizes remain unclaimed after the claim periods in section 6, the Organizer may open a
+      single final reserve claim window instead of promoting reserves one at a time.
+    </p>
+    <ol>
+      <li>
+        <strong>Eligible reserves.</strong> Any wallet on the published reserve ranking that has not
+        previously been assigned a prize may submit delivery details during the window. Winners
+        whose own claim period is still open keep their direct claim and rank above every reserve.
+      </li>
+      <li>
+        <strong>Selection by original rank.</strong> After the window closes, prizes not claimed by
+        higher-ranked winners pass to the highest-ranked valid submissions in the original draw
+        order, up to the number of prizes remaining. Selection is not first-come-first-served, and
+        submitting does not guarantee a prize.
+      </li>
+      <li>
+        <strong>Deadline.</strong> The window opens and closes at the times published on the claim
+        page (UTC). Late submissions are not considered and the window is not extended.
+      </li>
+      <li>
+        <strong>Eligibility and one-prize checks.</strong> Sections 3 and 4 apply to every
+        submission, including the one-prize-per-person-or-household limit, before any prize is
+        assigned.
+      </li>
+      <li>
+        <strong>Delivery details before selection.</strong> Delivery details are collected from all
+        applicants before selection and may be updated until the window closes; the most recent
+        submission replaces any earlier one.
+      </li>
+      <li>
+        <strong>Non-responders.</strong> Reserves who do not submit during the window are passed
+        over; no further individual notification period applies.
+      </li>
+      <li>
+        <strong>Fewer valid submissions than prizes.</strong> If fewer valid submissions are
+        received than prizes remain, the Organizer will decide whether and how any remaining prize
+        is awarded, and will publish that decision.
+      </li>
+    </ol>
   </>
 )
 
@@ -212,6 +263,11 @@ export const PrivacyNotice: FC = () => (
     <p>
       For provisional winners, the Organizer also collects the name, delivery address, telephone
       number where required by the carrier, and other information needed to deliver the prize.
+    </p>
+    <p>
+      Delivery details are also collected from reserve applicants in the final reserve claim
+      window, who may not win; they are deleted within 30 days of the window’s final closure
+      unless a dispute or legal requirement applies.
     </p>
     <p>The Organizer never requests private keys or seed phrases.</p>
 
