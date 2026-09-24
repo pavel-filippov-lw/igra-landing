@@ -10,13 +10,14 @@
  *
  * All addresses were verified live. Round 1 (pool #7) is a PoolStakes clone behind
  * a VestingPoolSplitter, so its poolId() is the CHILD id (0) and its vestingPools()
- * is the splitter, not the real VestingPools — the schedule is read per-clone.
+ * is the splitter, not the real VestingPools — the schedule is read per-clone. The
+ * Ecosystem Grant clone is the same splitter's child #1.
  */
 
 export type Hex = `0x${string}`
 
 export interface CloneInfo {
-  key: 'round1' | 'team'
+  key: 'round1' | 'team' | 'ecosystemGrant'
   name: string
   /** The distributor clone the dapp reads/writes. */
   address: Hex
@@ -109,15 +110,26 @@ const fork: NetworkConfig = {
       dynamic: false,
       blurb: 'Round 1 contributors — vesting distributor for pool #7.',
     },
+    {
+      key: 'ecosystemGrant',
+      name: 'Ecosystem Grant',
+      address: '0x3Ab1d3dbB9aA4e2924D38B818DB3a065e841C403', // splitter child #1 clone (pool #7)
+      poolId: 1, // CHILD id under the pool #7 splitter
+      fromBlock: 0n,
+      dynamic: false,
+      blurb: 'Ecosystem grant allocation — same vesting schedule as Round 1.',
+    },
   ],
 }
 
 /**
  * Igra MAINNET — the production target. Real IGRA, real vesting.
  *
- * Only Round 1 (pool #7) is live: verified on-chain, `VestingPools.getWallet(7)`
- * is the VestingPoolSplitter and `splitter.getWallet(0)` is the clone below, with
- * real stakes loaded. Pool #5 (Team & Angels) is NOT deployed as a claim contract
+ * Pool #7 is live as two clones behind its VestingPoolSplitter (verified on-chain:
+ * `VestingPools.getWallet(7)` is the splitter): `splitter.getWallet(0)` is Round 1
+ * and `splitter.getWallet(1)` is the Ecosystem Grant clone (added Sep 2026, owned
+ * by the same admin Safe, same 540-day schedule). Both have real stakes loaded.
+ * Pool #5 (Team & Angels) is NOT deployed as a claim contract
  * yet — `getWallet(5)` still returns the Team Safe — so it is intentionally absent.
  * When Team is handed over, add a second clone entry (its address is
  * `VestingPools.getWallet(5)` once the wallet handover lands).
@@ -146,6 +158,15 @@ const mainnet: NetworkConfig = {
       fromBlock: 0n,
       dynamic: false,
       blurb: 'Early contributors — contractual terms, frozen for the life of the vest.',
+    },
+    {
+      key: 'ecosystemGrant',
+      name: 'Ecosystem Grant',
+      address: '0x3Ab1d3dbB9aA4e2924D38B818DB3a065e841C403', // splitter child #1 clone (pool #7)
+      poolId: 1, // CHILD id under the pool #7 splitter — schedule read via the clone's own vestingPools()
+      fromBlock: 0n,
+      dynamic: false,
+      blurb: 'Ecosystem grant allocation — same vesting schedule as Round 1.',
     },
   ],
 }
