@@ -390,6 +390,39 @@ export const WinnerFlow: FC = () => {
         {error && <p className={classes.error}>{error}</p>}
       </>
     )
+  } else if (status && (status.claimStatus === 'expired' || status.claimStatus === 'invalidated')) {
+    // Claim window over (or the assignment was invalidated). Must come before the
+    // returning-winner fallback below, which would otherwise show a false
+    // "Claim received — under review".
+    body = (
+      <>
+        <h2 className={classes.screenTitle}>Your claim window has closed</h2>
+        <dl className={classes.meta}>
+          <div className={classes.metaRow}>
+            <dt>Draw rank</dt>
+            <dd>#{status.rank}</dd>
+          </div>
+          <div className={classes.metaRow}>
+            <dt>Wallet</dt>
+            <dd className={classes.address}>{shortWallet}</dd>
+          </div>
+          {status.claimDeadlineAt && (
+            <div className={classes.metaRow}>
+              <dt>Claim deadline</dt>
+              <dd>{formatDeadline(status.claimDeadlineAt)}</dd>
+            </div>
+          )}
+        </dl>
+        <p className={classes.contact}>
+          Questions? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </p>
+        <p className={classes.connectedRow}>
+          <button type="button" className={classes.linkInline} onClick={() => void checkAnother()}>
+            Use a different wallet
+          </button>
+        </p>
+      </>
+    )
   } else if (status) {
     // Already claimed (returning winner).
     body = (
