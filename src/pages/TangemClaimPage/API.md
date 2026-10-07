@@ -206,3 +206,14 @@ Minimal stub to unblock a demo (remember CORS + `OPTIONS` for `http://localhost:
 
 With `VITE_GIVEAWAY_MOCK=1`, the frontend mocks only the OTP endpoints (code
 `123456`); eligibility + verify still call the stub/real API.
+
+---
+
+## 6. Round state — `GET {BASE}/rounds` (Oct 2026)
+
+Public. Drives the whole claim-page landing (spec: `igra-apis/docs/FRONTEND-BRIEF-round-state.md`):
+`{ prizeTarget, claimedCount, allClaimed, serverTime, currentRound: {id, deadline, state: open|closed} | null, winners: [{rank, address, round, status, deadline}] }`.
+`status` is the server's *effective* status (`claimed` | `active` | `expired` | `invalidated`). The frontend
+(`rounds.ts`, unit-tested in `rounds.test.ts` — `yarn test`) derives the headline/deadline/countdown and groups
+winners **by status** (Claimed · `Round {id} selected` · collapsed Expired) — no round numbers in the source.
+`GET /winners` is no longer used by the page.

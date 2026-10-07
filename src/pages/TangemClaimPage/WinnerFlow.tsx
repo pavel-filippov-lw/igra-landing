@@ -20,13 +20,10 @@ import { ClaimFrame } from './ClaimFrame'
 import { Countdown } from './Countdown'
 import { ShippingForm } from './ShippingForm'
 import classes from './TangemClaimPage.module.scss'
-import { fetchWinners, Winner } from './winners'
+import { fetchRounds, groupWinners, resolveHeadline, RoundsView, RoundWinner } from './rounds'
 
 const REPRODUCE_URL =
   'https://github.com/IgraLabs/tangem-zap-giveaway-2026/blob/draw-v1.2/REPRODUCE.md'
-// Round 2 audit record — set to the published URL when available; the link is
-// hidden while this is empty.
-const ROUND2_AUDIT_URL: string = ''
 const CONTACT_EMAIL = 'giveaway@igra.network'
 
 /** ISO → "14 September 2026, 18:00 UTC" (always UTC). */
@@ -54,7 +51,7 @@ function formatTimestamp(iso: string): string {
 }
 
 /** A rank + shortened-address row list, reused across the winner groups. */
-const WinnerRows: FC<{ rows: Winner[] }> = ({ rows }) => (
+const WinnerRows: FC<{ rows: RoundWinner[] }> = ({ rows }) => (
   <ul className={classes.winnersList}>
     {rows.map((w) => (
       <li key={w.rank}>
@@ -73,7 +70,8 @@ export const WinnerFlow: FC = () => {
   const { signMessageAsync } = useSignMessage()
   const { open } = useAppKit()
 
-  const [winners, setWinners] = useState<Winner[]>([])
+  // undefined = loading; null = /rounds unavailable (neutral landing).
+  const [rounds, setRounds] = useState<RoundsView | null | undefined>(undefined)
   const [status, setStatus] = useState<WinnerSelected | null>(null)
   const [notSelected, setNotSelected] = useState(false)
   const [checking, setChecking] = useState(false)
@@ -85,7 +83,7 @@ export const WinnerFlow: FC = () => {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    void fetchWinners().then(setWinners)
+    void fetchRounds().then(setRounds)
   }, [])
 
   const loadStatus = useCallback(async (addr: Address) => {
@@ -200,12 +198,9 @@ export const WinnerFlow: FC = () => {
 
   const shortWallet = address ? shortAddress(address) : ''
 
-  // Winners grouped for the connect screen. Derived from the API (round + status)
-  // so the groups and the progress count stay correct as Round 2 wallets claim.
-  const claimedWinners = winners.filter((w) => w.status === 'claimed')
-  const roundTwoWinners = winners.filter((w) => w.round === 2 && w.status !== 'claimed')
-  const expiredWinners = winners.filter((w) => w.round === 1 && w.status === 'expired')
-  const totalPrizes = winners.filter((w) => w.round === 1).length || 10
+  // Landing state from GET /giveaway/rounds — nothing round-specific in the source.
+  const headline = rounds ? resolveHeadline(rounds) : null
+  const groups = rounds ? groupWinners(rounds) : null
 
   // ---- Screen selection ----
   let body: ReactNode
@@ -213,12 +208,20 @@ export const WinnerFlow: FC = () => {
   if (!isConnected || !address) {
     body = (
       <>
-        <p className={classes.drawHeadline}>Round 2 claims are open</p>
+        <p className={classes.drawHeadline}>
+          {headline ? headline.title : rounds === undefined ? 'Checking the current round…' : 'Igra × Tangem giveaway'}
+        </p>
         <p className={classes.drawText}>
           10 winning wallets were selected from 346 eligible ZAP wallets. Connect the wallet you
           used during ZAP to check and claim.
         </p>
-        <p className={classes.drawDeadline}>Claims close 14 September 2026, 18:00 UTC</p>
+        {headline?.kind === 'open' && rounds && (
+          <p className={classes.drawDeadline}>
+            Claims close {formatDeadline(headline.deadline)} ·{' '}
+            <Countdown deadlineIso={headline.deadline} serverTimeIso={rounds.serverTime} />
+          </p>
+        )}
+        {headline?.kind === 'closed' && <p className={classes.drawDeadline}>{headline.note}</p>}
 
         <Button variant="primary" onClick={handleConnect} className={classes.cta}>
           Connect wallet to check and claim
@@ -231,30 +234,30 @@ export const WinnerFlow: FC = () => {
 
         <div className={classes.winners}>
           <h3 className={classes.winnersTitle}>Winning wallets</h3>
-          {winners.length > 0 && (
+          {rounds && (
             <p className={classes.winnersProgress}>
-              <strong>{claimedWinners.length}</strong> of {totalPrizes} prizes claimed
+              <strong>{rounds.claimedCount}</strong> of {rounds.prizeTarget} prizes claimed
             </p>
           )}
 
-          {claimedWinners.length > 0 && (
+          {groups && groups.claimed.length > 0 && (
             <div className={classes.winnerGroup}>
               <p className={classes.winnerGroupLabel}>Claimed</p>
-              <WinnerRows rows={claimedWinners} />
+              <WinnerRows rows={groups.claimed} />
             </div>
           )}
 
-          {roundTwoWinners.length > 0 && (
+          {groups && groups.current.length > 0 && (
             <div className={classes.winnerGroup}>
-              <p className={classes.winnerGroupLabel}>Round 2 selected</p>
-              <WinnerRows rows={roundTwoWinners} />
+              <p className={classes.winnerGroupLabel}>{groups.currentLabel}</p>
+              <WinnerRows rows={groups.current} />
             </div>
           )}
 
-          {expiredWinners.length > 0 && (
+          {groups && groups.expired.length > 0 && (
             <details className={classes.previousRound}>
-              <summary>Previous round ({expiredWinners.length})</summary>
-              <WinnerRows rows={expiredWinners} />
+              <summary>Expired ({groups.expired.length})</summary>
+              <WinnerRows rows={groups.expired} />
             </details>
           )}
 
@@ -262,11 +265,6 @@ export const WinnerFlow: FC = () => {
             <a className={classes.verifyLink} href={REPRODUCE_URL} target="_blank" rel="noopener noreferrer">
               Verify draw and reserve order →
             </a>
-            {ROUND2_AUDIT_URL && (
-              <a className={classes.verifyLink} href={ROUND2_AUDIT_URL} target="_blank" rel="noopener noreferrer">
-                View Round 2 audit record →
-              </a>
-            )}
           </div>
         </div>
       </>
