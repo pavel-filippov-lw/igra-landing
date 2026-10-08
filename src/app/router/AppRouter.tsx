@@ -3,18 +3,24 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes as ReactRoutes } from 'r
 
 import { IgraTokenPage, /* BenefitsPage, BenefitsPage2, */ EcosystemPage, HeroPage, ManifestoPage, MediaPage, MultitudePage, NewsPage, NodesPage, PrivacyPage, PublicAuctionPage, TeamPage, TermsPage, VisionPage } from '~/pages'
 import { Routes, to } from '~/shared/lib'
+import { ensureIndexedDB } from '~/shared/lib/ensureIndexedDB'
 
 // Lazy-loaded so the heavy WalletConnect/AppKit stack it pulls in is code-split
 // out of the main landing bundle — downloaded only when /tangem-claim is opened.
+// ensureIndexedDB() runs first: WalletConnect hangs in browsers without IndexedDB.
 const TangemClaimPage = lazy(() =>
-  import('~/pages/TangemClaimPage').then((m) => ({ default: m.TangemClaimPage })),
+  ensureIndexedDB()
+    .then(() => import('~/pages/TangemClaimPage'))
+    .then((m) => ({ default: m.TangemClaimPage })),
 )
 
 // Same rationale as above: the PoolStakes vesting-claim dapp pulls in the
 // WalletConnect/AppKit + viem contract stack, so it is code-split behind its
 // own lazy route and downloaded only when /igra-vesting is opened.
 const PoolStakesPage = lazy(() =>
-  import('~/pages/PoolStakesPage').then((m) => ({ default: m.PoolStakesPage })),
+  ensureIndexedDB()
+    .then(() => import('~/pages/PoolStakesPage'))
+    .then((m) => ({ default: m.PoolStakesPage })),
 )
 
 export const AppRouter: FC = () => {
