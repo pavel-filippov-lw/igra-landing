@@ -255,7 +255,6 @@ export const PublicAuctionPage: FC = () => {
                       <p style={{ marginBottom: 4 }}><strong>Fiat on-ramp services:</strong></p>
                       <ul className={classes.guideList} style={{ marginTop: 0 }}>
                         <li><a href="https://guardarian.com/buy-kas" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Guardarian</a></li>
-                        <li><a href="https://topper.money" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Topper</a></li>
                       </ul>
                       <p style={{ marginBottom: 4 }}><strong>Wallet with built-in KAS purchase:</strong></p>
                       <ul className={classes.guideList} style={{ marginTop: 0 }}>
@@ -454,7 +453,7 @@ export const PublicAuctionPage: FC = () => {
                     <ul className={classes.guideList} style={{ margin: '0 0 11px' }}>
                       <li><a href="https://docs.hyperlane.xyz/docs/reference/addresses/deployments/mailbox" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Hyperlane official integration</a> with warp routes for stablecoins and blue-chip tokens</li>
                       <li><a href="https://x.com/Igra_Labs/status/2037186175673188854" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Multiple wallets supported</a>, including Ledger and Tangem</li>
-                      <li>$KAS collateralization via partner lending protocols: <a href="https://testnet.kaskad.live/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Kaskad</a>, <a href="https://defi.kaspa.com/lending/dashboard" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Kaspacom</a>, <a href="https://www.fervent.finance/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Fervent Finance</a></li>
+                      <li>$KAS collateralization via partner lending protocols: <a href="https://testnet.kaskad.live/" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Kaskad</a>, <a href="https://defi.kaspa.com/lending/dashboard" target="_blank" rel="noopener noreferrer" className={classes.whiteLink}>Kaspacom</a></li>
                     </ul>
                     <ul className={classes.guideList} style={{ margin: '0 0 11px' }}>
                       <li>IgReth: custom EVM client with DAG reorg support.</li>
@@ -518,7 +517,7 @@ export const PublicAuctionPage: FC = () => {
                 <details className={classes.faqItem}>
                   <summary className={classes.faqQuestion}>How do I add Igra Network to my wallet?</summary>
                   <div className={classes.faqAnswer}>
-                    <p>Network details (chain ID, RPC, explorer) are on the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Network Info</a> page. You can add it manually or via ChainList. Prefer interacting via agent? Use the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/igra-network-ai-skill" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Network AI skill</a>.</p>
+                    <p>Network details (chain ID, RPC, explorer) are on the <a href="https://igra-labs.gitbook.io/igralabs-docs/quickstart/network-info" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Network Info</a> page. You can add it manually or via ChainList. Prefer interacting via agent? Use the <a href="https://igralabs.com/skills/igra-network/igra-network.md" target="_blank" rel="noopener noreferrer" className={classes.factLink}>Igra Network AI skill</a>.</p>
                   </div>
                 </details>
                 <details className={classes.faqItem}>

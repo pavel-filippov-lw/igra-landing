@@ -17,9 +17,7 @@ import kasware from './assets/kasware.png'
 import katalliance from './assets/katbridge.png'
 import katbridgeapp from './assets/katbridgeapp.png'
 import knexous from './assets/knexous.png'
-import kyo from './assets/kyo.png'
 import lynx from './assets/lynx.png'
-import moonbound from './assets/moonbound.png'
 import nacho from './assets/nacho.png'
 import quex from './assets/quex.png'
 import kaspagent from './assets/kaspagent.png'
@@ -157,15 +155,6 @@ const projects: Project[] = [
   },
 
   {
-    logoUrl: moonbound,
-    name: 'Moonbound',
-    description: 'Next-gen token launchpad on Igra Network. Fair bonding curves, automatic DEX graduation, TradingView-grade charts. Launch, trade, and earn.',
-    to: 'https://moonbound.gg/',
-    type: 'Token Launchpad',
-    badge: 'testnet',
-  },
-
-  {
     logoUrl: katalliance,
     name: 'KAT Alliance',
     description: 'Kaspa Alliance for Transparency - community organization advocating for transparency, accountability, and decentralization across the Kaspa ecosystem.',
@@ -198,15 +187,6 @@ const projects: Project[] = [
     to: 'https://www.dagscan.xyz/',
     type: 'Blockchain Explorer',
     badge: 'mainnet',
-  },
-
-  {
-    logoUrl: kyo,
-    name: 'Kyo',
-    description: 'KYO (Keep Your Ownership) gives you the freedom to pay and borrow in crypto without ever giving up what\'s yours. With a simple wallet and card, you can spend instantly, take small loans when needed, and avoid hidden fees - all while keeping full ownership of your assets.',
-    to: 'https://kyocard.app/',
-    type: 'DeFi, Lending protocol, Card',
-    badge: 'testnet',
   },
 
   {
