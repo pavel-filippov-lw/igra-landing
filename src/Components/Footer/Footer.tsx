@@ -25,7 +25,7 @@ const links: Record<string, Link[]> = {
   ],
   '  ': [
     { label: 'X.com', to: 'https://x.com/igra_labs' },
-    { label: 'Discord', to: 'https://discord.com/invite/igra' },
+    { label: 'Discord', to: 'https://discord.com/invite/igralabs' },
     { label: 'Github', to: 'https://github.com/igralabs' },
   ],
 }

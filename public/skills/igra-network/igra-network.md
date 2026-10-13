@@ -137,7 +137,6 @@ Options:
 - **Faucet**: https://faucet.igralabs.com (testnet iKAS directly)
 - **Kaspa Testnet Faucet**: https://faucet-tn10.kaspanet.io (get tKAS first)
 - **Kasperia Wallet**: Bridge tKAS to iKAS
-- **KatBridge**: https://galleon-tn-kas.katbridge.com
 - **Direct Entry** to: `kaspatest:qqmstl2znv9tsfgcmj9shme82my867tapz7pdu4ztwdn6sm9452jj5mm0sxzw`
 
 ### Entry Transaction Protocol
