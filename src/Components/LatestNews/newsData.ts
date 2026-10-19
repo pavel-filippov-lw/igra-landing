@@ -1,5 +1,7 @@
 import news25Image from './assets/news25.jpg'
 import news26Image from './assets/news26.jpg'
+import news27Image from './assets/news27.jpg'
+import news28Image from './assets/news28.jpg'
 import news23Image from './assets/news23.jpg'
 import news24Image from './assets/news24.jpg'
 import news18Image from './assets/news18.jpg'
@@ -35,6 +37,29 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news27Image,
+    tag: "Ecosystem",
+    title: "Get your Igra Wallet with Tangem's technology",
+    description: "The Igra × Tangem edition is now available to order: a tap-to-use hardware wallet in Igra branding.",
+    link: "https://igra.tangem.com/",
+    imagePosition: 'center',
+  },
+  {
+    image: news28Image,
+    tag: "Update",
+    title: "Igra dev update",
+    description: "October 8–15: Kaspa 2.1 merged into Igra's node with a staged rollout planned, all three mainnet execution nodes healthy on Reth 2.5.1, archives in sync, Galleon testnet restored, and every transaction in the explorer now shows its originating Kaspa L1 transaction.",
+    link: "https://x.com/Igra_Labs/status/2111759292806185003",
+    imagePosition: 'center',
+  },
+  {
+    image: news8Image,
+    tag: "Update",
+    title: "Hyperlane bridge is back!",
+    description: "All 10 asset routes are open again: iKAS, USDC, USDT, WETH, cbBTC, SOL, TIBBIR, USDS, USDe and wstETH. Routes now screen outbound transfers against an on-chain registry of incident-linked addresses; balances on Igra are not frozen.",
+    link: "https://x.com/Igra_Labs/status/2109942069007421669",
+  },
   {
     image: news26Image,
     tag: "Ecosystem",
