@@ -63,20 +63,21 @@ const PositionCard: FC<{
   claim: ClaimState
   onClaim: (position: Position) => void
 }> = ({ position, claim, onClaim }) => {
-  const { clone, allocated, released, claimable, notStarted, vestedFraction } = position
+  const { grant, allocated, released, claimable, notStarted, vestedFraction } = position
   const withdrawnPct = allocated === 0n ? 0 : Number((released * 10_000n) / allocated) / 100
   const busy = claim.status === 'submitting' || claim.status === 'pending'
   const canClaim = !notStarted && claimable > 0n && !busy
+  const adjustable = grant.kind === 'poolStakes' && grant.dynamic
 
   return (
     <div className={classes.card}>
       <div className={classes.cardHead}>
-        <h2 className={classes.cardTitle}>{clone.name}</h2>
-        <span className={`${classes.badge} ${clone.dynamic ? classes.badgeDynamic : classes.badgeStatic}`}>
-          {clone.dynamic ? 'Adjustable' : 'Fixed terms'}
+        <h2 className={classes.cardTitle}>{grant.name}</h2>
+        <span className={`${classes.badge} ${adjustable ? classes.badgeDynamic : classes.badgeStatic}`}>
+          {grant.kind === 'vestingWallet' ? 'DAO grant' : adjustable ? 'Adjustable' : 'Fixed terms'}
         </span>
       </div>
-      <p className={classes.cardBlurb}>{clone.blurb}</p>
+      <p className={classes.cardBlurb}>{grant.blurb}</p>
 
       <div className={classes.claimable}>
         <span className={classes.claimableLabel}>Claimable now</span>
@@ -221,7 +222,7 @@ const ConnectedApp: FC = () => {
 
   const onClaim = useCallback(
     async (position: Position) => {
-      const key = position.clone.key
+      const key = position.grant.key
       if (!walletClient) {
         open()
         return
@@ -229,7 +230,7 @@ const ConnectedApp: FC = () => {
       track(VestingEvent.ClaimStart, { pool: key })
       setClaim(key, { status: 'submitting' })
       try {
-        const hash = await claimAndWithdraw(walletClient, position.clone)
+        const hash = await claimAndWithdraw(walletClient, position.grant)
         track(VestingEvent.ClaimSubmitted, { pool: key })
         setClaim(key, { status: 'pending', hash })
         await waitForClaim(hash)
@@ -325,9 +326,9 @@ const ConnectedApp: FC = () => {
             <div className={classes.cards}>
               {positions.map((p) => (
                 <PositionCard
-                  key={p.clone.key}
+                  key={p.grant.key}
                   position={p}
-                  claim={claims[p.clone.key] ?? { status: 'idle' }}
+                  claim={claims[p.grant.key] ?? { status: 'idle' }}
                   onClaim={onClaim}
                 />
               ))}

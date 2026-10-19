@@ -8,6 +8,7 @@
 import {
   createPublicClient,
   defineChain,
+  erc20Abi,
   formatUnits,
   getAddress,
   http,
@@ -17,16 +18,22 @@ import {
 
 import { poolStakesAbi } from './abi/poolStakes'
 import { vestingPoolsAbi } from './abi/vestingPools'
+import { vestingWalletAbi } from './abi/vestingWallet'
 import {
   CHAIN,
   CLONES,
   MIN_GAS_BALANCE,
   REVERT_MESSAGES,
+  TOKEN,
   TX_GAS_LIMIT,
   TX_GAS_PRICE,
+  VESTING_WALLETS,
   type CloneInfo,
+  type GrantInfo,
   type Hex,
+  type VestingWalletInfo,
 } from './constants'
+import { scheduleProgress, vestingWalletStake } from './vesting'
 
 export const chain = defineChain({
   id: CHAIN.id,
@@ -43,7 +50,7 @@ export const publicClient = createPublicClient({
 })
 
 export interface Position {
-  clone: CloneInfo
+  grant: GrantInfo
   /** Total ever allocated to this holder (wei). */
   allocated: bigint
   /** Already withdrawn (wei). */
@@ -72,7 +79,7 @@ export interface Position {
  * (allocated == 0); a genuine read failure THROWS, so the caller can tell a real
  * error apart from "no stake".
  */
-export async function loadPosition(clone: CloneInfo, holder: Hex, now: number): Promise<Position | null> {
+export async function loadClonePosition(clone: CloneInfo, holder: Hex, now: number): Promise<Position | null> {
   const address = getAddress(clone.address)
   const account = getAddress(holder)
 
@@ -110,10 +117,9 @@ export async function loadPosition(clone: CloneInfo, holder: Hex, now: number): 
 
   const start = Number(pool.start)
   const end = start + Number(pool.vestingDays) * 86_400
-  const vestedFraction = end > start ? Math.min(1, Math.max(0, (now - start) / (end - start))) : 0
 
   return {
-    clone,
+    grant: clone,
     allocated,
     released,
     releasable,
@@ -121,21 +127,48 @@ export async function loadPosition(clone: CloneInfo, holder: Hex, now: number): 
     start,
     end,
     vestingDays: Number(pool.vestingDays),
-    notStarted: now < start,
-    vestedFraction,
+    ...scheduleProgress(start, end, now),
   }
 }
 
 /**
- * Resolve every clone the wallet belongs to. Uses one chain-time read for the
- * whole refresh (the vesting gate is block.timestamp). A genuine non-member
- * yields all-null with no error → []. If EVERY clone read fails, the error is
- * surfaced (so the UI shows a Retry) rather than masquerading as "no allocation";
- * a partial failure still returns whatever loaded (the rest reappear next poll).
+ * Read a VestingWallet grant. Null unless `holder` is its current beneficiary
+ * and it was funded; a genuine read failure THROWS, as for clones.
+ */
+export async function loadVestingWalletPosition(
+  wallet: VestingWalletInfo,
+  holder: Hex,
+  now: number,
+): Promise<Position | null> {
+  const address = getAddress(wallet.address)
+  const [owner, start, duration, released, releasable, balance] = await Promise.all([
+    publicClient.readContract({ address, abi: vestingWalletAbi, functionName: 'owner' }),
+    publicClient.readContract({ address, abi: vestingWalletAbi, functionName: 'start' }),
+    publicClient.readContract({ address, abi: vestingWalletAbi, functionName: 'duration' }),
+    publicClient.readContract({ address, abi: vestingWalletAbi, functionName: 'released', args: [TOKEN] }),
+    publicClient.readContract({ address, abi: vestingWalletAbi, functionName: 'releasable', args: [TOKEN] }),
+    publicClient.readContract({ address: TOKEN, abi: erc20Abi, functionName: 'balanceOf', args: [address] }),
+  ])
+
+  const stake = vestingWalletStake({ owner, start, duration, balance, released, releasable }, holder)
+  if (!stake) return null
+  return { grant: wallet, ...stake, ...scheduleProgress(stake.start, stake.end, now) }
+}
+
+/**
+ * Resolve every grant the wallet holds (clones + vesting wallets). Uses one
+ * chain-time read for the whole refresh (the vesting gate is block.timestamp).
+ * A genuine non-member yields all-null with no error → []. If EVERY read fails,
+ * the error is surfaced (so the UI shows a Retry) rather than masquerading as
+ * "no allocation"; a partial failure still returns whatever loaded (the rest
+ * reappear next poll).
  */
 export async function resolveMemberships(holder: Hex): Promise<Position[]> {
   const now = Number((await publicClient.getBlock()).timestamp)
-  const settled = await Promise.allSettled(CLONES.map((c) => loadPosition(c, holder, now)))
+  const settled = await Promise.allSettled([
+    ...CLONES.map((c) => loadClonePosition(c, holder, now)),
+    ...VESTING_WALLETS.map((w) => loadVestingWalletPosition(w, holder, now)),
+  ])
 
   const positions: Position[] = []
   let firstError: unknown = null
@@ -151,12 +184,13 @@ export async function resolveMemberships(holder: Hex): Promise<Position[]> {
 }
 
 /**
- * claimAndWithdraw() on one clone. Pulls newly vested tokens in and pays the
- * caller in a single legacy type-0 transaction (EIP-1559 fields are wrong on
- * Igra chains). Pre-checks the native balance so we never submit a transaction
- * that the RPC silently drops for insufficient gas.
+ * Claim one grant in a single legacy type-0 transaction (EIP-1559 fields are
+ * wrong on Igra chains): claimAndWithdraw() on a clone pulls newly vested tokens
+ * in and pays the caller; release(token) on a VestingWallet pays its beneficiary.
+ * Pre-checks the native balance so we never submit a transaction that the RPC
+ * silently drops for insufficient gas.
  */
-export async function claimAndWithdraw(wallet: WalletClient, clone: CloneInfo): Promise<Hash> {
+export async function claimAndWithdraw(wallet: WalletClient, grant: GrantInfo): Promise<Hash> {
   const account = wallet.account
   if (!account) throw new Error('Wallet is not connected.')
 
@@ -165,16 +199,10 @@ export async function claimAndWithdraw(wallet: WalletClient, clone: CloneInfo): 
     throw new Error('Not enough iKAS for gas — fund this wallet and try again.')
   }
 
-  return wallet.writeContract({
-    account,
-    chain,
-    address: getAddress(clone.address),
-    abi: poolStakesAbi,
-    functionName: 'claimAndWithdraw',
-    type: 'legacy',
-    gas: TX_GAS_LIMIT,
-    gasPrice: TX_GAS_PRICE,
-  })
+  const tx = { account, chain, address: getAddress(grant.address), type: 'legacy', gas: TX_GAS_LIMIT, gasPrice: TX_GAS_PRICE } as const
+  return grant.kind === 'vestingWallet'
+    ? wallet.writeContract({ ...tx, abi: vestingWalletAbi, functionName: 'release', args: [TOKEN] })
+    : wallet.writeContract({ ...tx, abi: poolStakesAbi, functionName: 'claimAndWithdraw' })
 }
 
 /**

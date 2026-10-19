@@ -12,11 +12,16 @@
  * a VestingPoolSplitter, so its poolId() is the CHILD id (0) and its vestingPools()
  * is the splitter, not the real VestingPools — the schedule is read per-clone. The
  * Ecosystem Grant clone is the same splitter's child #1.
+ *
+ * Grants can also live in an OpenZeppelin VestingWallet (`vestingWallets`): one
+ * beneficiary per wallet, so the card shows only to the current `owner()`. DAO
+ * grants use SuperOwnedVestingWallet, where the DAO can reassign the beneficiary.
  */
 
 export type Hex = `0x${string}`
 
 export interface CloneInfo {
+  kind: 'poolStakes'
   key: 'round1' | 'team' | 'ecosystemGrant'
   name: string
   /** The distributor clone the dapp reads/writes. */
@@ -33,6 +38,18 @@ export interface CloneInfo {
   blurb: string
 }
 
+/** An OpenZeppelin VestingWallet grant, claimed with `release(token)`. */
+export interface VestingWalletInfo {
+  kind: 'vestingWallet'
+  key: 'analystPilot'
+  name: string
+  address: Hex
+  blurb: string
+}
+
+/** Anything the dapp shows as a card. */
+export type GrantInfo = CloneInfo | VestingWalletInfo
+
 export interface NetworkConfig {
   id: number
   name: string
@@ -43,6 +60,7 @@ export interface NetworkConfig {
   tokenSymbol: string
   token: Hex
   clones: CloneInfo[]
+  vestingWallets: VestingWalletInfo[]
   testnet: boolean
   /** Legacy type-0 gas limit for a claim write (per network). */
   txGasLimit: bigint
@@ -60,6 +78,7 @@ const galleon: NetworkConfig = {
   txGasLimit: 300_000n,
   clones: [
     {
+      kind: 'poolStakes',
       key: 'round1',
       name: 'Round 1',
       address: '0xC0000B4fdc1e28d6faD4FEC21c8640449402c738',
@@ -69,6 +88,7 @@ const galleon: NetworkConfig = {
       blurb: 'Early contributors — contractual terms, frozen for the life of the vest.',
     },
     {
+      kind: 'poolStakes',
       key: 'team',
       name: 'Team & Angels',
       address: '0xF7bDeF593A8761C4f0c129Ab10812D6AE75321a3',
@@ -78,6 +98,7 @@ const galleon: NetworkConfig = {
       blurb: 'Contributors — allocations can be raised and new members added over time.',
     },
   ],
+  vestingWallets: [],
 }
 
 /**
@@ -102,6 +123,7 @@ const fork: NetworkConfig = {
   txGasLimit: 1_000_000n,
   clones: [
     {
+      kind: 'poolStakes',
       key: 'round1',
       name: 'Round 1 (contributors)',
       address: '0xf8A15e869F8327fe7af0538F5fB07312CF37DDCf', // pool #7 Round 1 distributor (behind the splitter)
@@ -111,6 +133,7 @@ const fork: NetworkConfig = {
       blurb: 'Round 1 contributors — vesting distributor for pool #7.',
     },
     {
+      kind: 'poolStakes',
       key: 'ecosystemGrant',
       name: 'Ecosystem Grant',
       address: '0x3Ab1d3dbB9aA4e2924D38B818DB3a065e841C403', // splitter child #1 clone (pool #7)
@@ -120,6 +143,7 @@ const fork: NetworkConfig = {
       blurb: 'Ecosystem grant allocation — same vesting schedule as Round 1.',
     },
   ],
+  vestingWallets: [],
 }
 
 /**
@@ -151,6 +175,7 @@ const mainnet: NetworkConfig = {
   txGasLimit: 400_000n,
   clones: [
     {
+      kind: 'poolStakes',
       key: 'round1',
       name: 'Round 1 (contributors)',
       address: '0xf8A15e869F8327fe7af0538F5fB07312CF37DDCf', // splitter child clone (pool #7)
@@ -160,6 +185,7 @@ const mainnet: NetworkConfig = {
       blurb: 'Early contributors — contractual terms, frozen for the life of the vest.',
     },
     {
+      kind: 'poolStakes',
       key: 'ecosystemGrant',
       name: 'Ecosystem Grant',
       address: '0x3Ab1d3dbB9aA4e2924D38B818DB3a065e841C403', // splitter child #1 clone (pool #7)
@@ -167,6 +193,16 @@ const mainnet: NetworkConfig = {
       fromBlock: 0n,
       dynamic: false,
       blurb: 'Ecosystem grant allocation — same vesting schedule as Round 1.',
+    },
+  ],
+  vestingWallets: [
+    {
+      kind: 'vestingWallet',
+      key: 'analystPilot',
+      name: 'Analyst Pilot (DAO grant)',
+      // SuperOwnedVestingWallet funded by DAO Proposal #17 (500,000 IGRA, 7 Oct 2026 → 7 Jan 2027)
+      address: '0xBd702Fa2732782318c8db0EB78bE077e9da48C13',
+      blurb: 'Incident Registry analyst pilot — approved by DAO Proposal #17; the DAO can reassign it by vote.',
     },
   ],
 }
@@ -193,6 +229,7 @@ export const CHAIN = {
 export const TOKEN: Hex = NETWORK.token
 export const TOKEN_SYMBOL = NETWORK.tokenSymbol
 export const CLONES: CloneInfo[] = NETWORK.clones
+export const VESTING_WALLETS: VestingWalletInfo[] = NETWORK.vestingWallets
 
 /**
  * Legacy type-0 gas price for Igra chains — the RPC's EIP-1559 fields are wrong
