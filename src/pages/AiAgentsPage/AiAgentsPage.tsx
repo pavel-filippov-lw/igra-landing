@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { LatestNews, PageLayout } from '~/Components'
 import { Icon } from '~/shared/ui'
@@ -80,50 +80,63 @@ const CopyBox: FC<{ text: string }> = ({ text }) => {
   }
   const label = copied ? 'Copied' : 'Copy the MCP server address'
   return (
-    <button type="button" className={classes.mcp} onClick={copy} aria-label={label} title={label}>
-      <code className={classes.mcpUrl}>{text}</code>
-      <span className={classes.copyIcon}>{copied ? <CheckIcon /> : <CopyIcon />}</span>
-    </button>
+      <button type="button" className={classes.mcp} onClick={copy} aria-label={label} title={label}>
+        <code className={classes.mcpUrl}>{text}</code>
+        <span className={classes.copyIcon}>{copied ? <CheckIcon /> : <CopyIcon />}</span>
+      </button>
+    )
+  }
+
+  // Matches the share tags written for this page at build time (vite.config.ts PAGE_META).
+  const PAGE_TITLE = 'AI Agents on Igra | Igra Labs'
+
+  export const AiAgentsPage: FC = () => {
+    useEffect(() => {
+      const previous = document.title
+      document.title = PAGE_TITLE
+      return () => {
+        document.title = previous
+      }
+    }, [])
+
+    return (
+    <PageLayout>
+      <div className={classes.root}>
+        <section className={classes.hero}>
+          <div className={classes.heroText}>
+            <h1 className={classes.heroTitle}>AI Agents on Igra</h1>
+            <p className={classes.heroLead}>
+              Building blocks for AI agents that transact on Igra. To give your agent the docs, add this MCP
+              server to any MCP client:
+            </p>
+            <CopyBox text={MCP_SERVER} />
+          </div>
+          <img src={heroAgents} alt="" aria-hidden="true" className={classes.heroArt} />
+        </section>
+
+        <div className={classes.features}>
+          {FEATURES.map((f) => (
+            <div key={f.title} className={classes.featureRow}>
+              <img src={f.icon} alt="" aria-hidden="true" className={classes.featureIcon} />
+              <div className={classes.featureText}>
+                <h2 className={classes.featureTitle}>{f.title}</h2>
+                <p className={classes.featureDesc}>{f.desc}</p>
+                <a href={f.link} target="_blank" rel="noopener noreferrer" className={classes.featureCta}>
+                  {f.cta}
+                  <Icon name='arrowTopRight' size={10} />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <a href={`${DOCS}/ai-agents`} target="_blank" rel="noopener noreferrer" className={classes.docsLink}>
+          All AI Agents guides
+          <Icon name='arrowTopRight' size={10} />
+        </a>
+
+        <LatestNews />
+      </div>
+    </PageLayout>
   )
 }
-
-export const AiAgentsPage: FC = () => (
-  <PageLayout>
-    <div className={classes.root}>
-      <section className={classes.hero}>
-        <div className={classes.heroText}>
-          <h1 className={classes.heroTitle}>AI Agents on Igra</h1>
-          <p className={classes.heroLead}>
-            Building blocks for AI agents that transact on Igra. To give your agent the docs, add this MCP
-            server to any MCP client:
-          </p>
-          <CopyBox text={MCP_SERVER} />
-        </div>
-        <img src={heroAgents} alt="" aria-hidden="true" className={classes.heroArt} />
-      </section>
-
-      <div className={classes.features}>
-        {FEATURES.map((f) => (
-          <div key={f.title} className={classes.featureRow}>
-            <img src={f.icon} alt="" aria-hidden="true" className={classes.featureIcon} />
-            <div className={classes.featureText}>
-              <h2 className={classes.featureTitle}>{f.title}</h2>
-              <p className={classes.featureDesc}>{f.desc}</p>
-              <a href={f.link} target="_blank" rel="noopener noreferrer" className={classes.featureCta}>
-                {f.cta}
-                <Icon name='arrowTopRight' size={10} />
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <a href={`${DOCS}/ai-agents`} target="_blank" rel="noopener noreferrer" className={classes.docsLink}>
-        All AI Agents guides
-        <Icon name='arrowTopRight' size={10} />
-      </a>
-
-      <LatestNews />
-    </div>
-  </PageLayout>
-)

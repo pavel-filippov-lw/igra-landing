@@ -20,6 +20,7 @@ import { ClaimFrame } from './ClaimFrame'
 import { Countdown } from './Countdown'
 import { ShippingForm } from './ShippingForm'
 import classes from './TangemClaimPage.module.scss'
+import { CLOSING_NOTICE_ID } from './legalContent'
 import { fetchRounds, groupWinners, resolveHeadline, RoundsView, RoundWinner } from './rounds'
 
 const REPRODUCE_URL =
@@ -201,6 +202,7 @@ export const WinnerFlow: FC = () => {
   // Landing state from GET /giveaway/rounds — nothing round-specific in the source.
   const headline = rounds ? resolveHeadline(rounds) : null
   const groups = rounds ? groupWinners(rounds) : null
+  const concluded = rounds?.concluded ?? false
 
   // ---- Screen selection ----
   let body: ReactNode
@@ -213,7 +215,7 @@ export const WinnerFlow: FC = () => {
         </p>
         <p className={classes.drawText}>
           10 winning wallets were selected from 346 eligible ZAP wallets. Connect the wallet you
-          used during ZAP to check and claim.
+          used during ZAP to {concluded ? 'view your claim' : 'check and claim'}.
         </p>
         {headline?.kind === 'open' && rounds && (
           <p className={classes.drawDeadline}>
@@ -221,20 +223,23 @@ export const WinnerFlow: FC = () => {
             <Countdown deadlineIso={headline.deadline} serverTimeIso={rounds.serverTime} />
           </p>
         )}
-        {headline?.kind === 'closed' && <p className={classes.drawDeadline}>{headline.note}</p>}
+        {(headline?.kind === 'closed' || headline?.kind === 'concluded') && (
+          <p className={classes.drawDeadline}>{headline.note}</p>
+        )}
 
         <Button variant="primary" onClick={handleConnect} className={classes.cta}>
-          Connect wallet to check and claim
+          {concluded ? 'Connect wallet to view your claim' : 'Connect wallet to check and claim'}
         </Button>
         <p className={classes.securityLine}>
-          Checking and claiming require only a gas-free signature. No transaction, approval or
-          payment is required.
+          {concluded
+            ? 'Viewing your claim requires no transaction, approval or payment.'
+            : 'Checking and claiming require only a gas-free signature. No transaction, approval or payment is required.'}
         </p>
         {error && <p className={classes.error}>{error}</p>}
 
         <div className={classes.winners}>
           <h3 className={classes.winnersTitle}>Winning wallets</h3>
-          {rounds && (
+          {rounds && !concluded && (
             <p className={classes.winnersProgress}>
               <strong>{rounds.claimedCount}</strong> of {rounds.prizeTarget} prizes claimed
             </p>
@@ -265,6 +270,11 @@ export const WinnerFlow: FC = () => {
             <a className={classes.verifyLink} href={REPRODUCE_URL} target="_blank" rel="noopener noreferrer">
               Verify draw and reserve order →
             </a>
+            {concluded && (
+              <a className={classes.verifyLink} href={`#${CLOSING_NOTICE_ID}`}>
+                Closing notice →
+              </a>
+            )}
           </div>
         </div>
       </>
@@ -502,5 +512,5 @@ export const WinnerFlow: FC = () => {
     )
   }
 
-  return <ClaimFrame>{body}</ClaimFrame>
+  return <ClaimFrame concluded={concluded}>{body}</ClaimFrame>
 }

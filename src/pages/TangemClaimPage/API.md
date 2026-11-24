@@ -217,3 +217,9 @@ Public. Drives the whole claim-page landing (spec: `igra-apis/docs/FRONTEND-BRIE
 (`rounds.ts`, unit-tested in `rounds.test.ts` — `yarn test`) derives the headline/deadline/countdown and groups
 winners **by status** (Claimed · `Round {id} selected` · collapsed Expired) — no round numbers in the source.
 `GET /winners` is no longer used by the page.
+
+**Giveaway ended (Nov 2026, `igra-apis/docs/FRONTEND-BRIEF-giveaway-concluded.md`):** optional
+`concluded: true` + `concludedAt` override every other state. The landing then reads "The Igra × Tangem giveaway
+has ended" with "{claimedCount} of {prizeTarget} prizes were claimed and shipped", the CTA "Connect wallet to view
+your claim", no countdown or progress line, and a "Closing notice" link. The Rules open with the closing notice,
+and `/tangem-claim#closing-notice` opens them at it. Absent or `false` → the page behaves as before.

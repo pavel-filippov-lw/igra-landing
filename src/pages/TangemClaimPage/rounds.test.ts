@@ -47,6 +47,12 @@ describe('parseRounds', () => {
   it('drops malformed winner rows instead of failing the page', () => {
     expect(parseRounds({ ...LIVE, winners: [...LIVE.winners, { rank: 'x' }] })!.winners).toHaveLength(18)
   })
+
+  it('reads the concluded flag, treating absent or non-boolean as not concluded', () => {
+    expect(parseRounds({ ...LIVE, concluded: true, concludedAt: '2026-11-24T10:31:00Z' })).toMatchObject({ concluded: true, concludedAt: '2026-11-24T10:31:00Z' })
+    expect(parseRounds(LIVE)).toMatchObject({ concluded: false, concludedAt: null })
+    expect(parseRounds({ ...LIVE, concluded: 'yes' })!.concluded).toBe(false)
+  })
 })
 
 describe('resolveHeadline — §3 table', () => {
@@ -66,6 +72,17 @@ describe('resolveHeadline — §3 table', () => {
   it('allClaimed wins over everything, using prizeTarget', () => {
     const h = resolveHeadline(view({ allClaimed: true, currentRound: { id: 4, deadline: '2026-11-01T18:00:00.000Z', state: 'open' } }))
     expect(h).toEqual({ kind: 'allClaimed', title: 'All 10 prizes have been claimed' })
+  })
+
+  it('concluded wins over allClaimed and any round state, with the claimed count', () => {
+    const ended = {
+      kind: 'concluded',
+      title: 'The Igra × Tangem giveaway has ended',
+      note: '9 of 10 prizes were claimed and shipped. Thank you to everyone who took part.',
+    }
+    expect(resolveHeadline(view({ concluded: true, claimedCount: 9 }))).toEqual(ended)
+    expect(resolveHeadline(view({ concluded: true, claimedCount: 9, allClaimed: true }))).toEqual(ended)
+    expect(resolveHeadline(view({ concluded: true, claimedCount: 9, currentRound: { id: 5, deadline: '2026-12-01T18:00:00.000Z', state: 'open' } }))).toEqual(ended)
   })
 })
 
