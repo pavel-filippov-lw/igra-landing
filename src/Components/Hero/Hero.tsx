@@ -16,7 +16,7 @@ export const Hero: FC = () => {
           FINANCE INFRASTRUCTURE THAT CANNOT BE OVERRIDDEN
         </h1>
         <div className={classes.info}>
-          <a href="https://igra.tangem.com/" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
+          <a href="https://x.com/Igra_Labs/status/2124890574365114619" target="_blank" rel="noopener noreferrer" className={classes.readMore}>
             <div className={classes.announcement}>
               <Icon
                 name='fire'
@@ -25,10 +25,10 @@ export const Hero: FC = () => {
                 className={classes.icon}
               />
               <div className={classes.content}>
-                <span className={classes.date}>19 OCT 2026</span>
+                <span className={classes.date}>23 NOV 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  Get your Igra Wallet with Tangem's technology
+                  What you can do on Igra today
                 </div>
                 <div className={classes.link}>
                   Read more

@@ -1,2 +1,3 @@
 $header_h: 85px;
-$banner_h: 36px;
+// Height of the top NewsBanner: 36px while <NewsBanner /> is shown in PageLayout, 0 while it's off.
+$banner_h: 0px;
