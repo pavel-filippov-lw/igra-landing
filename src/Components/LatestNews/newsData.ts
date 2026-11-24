@@ -2,6 +2,7 @@ import news25Image from './assets/news25.jpg'
 import news26Image from './assets/news26.jpg'
 import news27Image from './assets/news27.jpg'
 import news28Image from './assets/news28.jpg'
+import news29Image from './assets/news29.jpg'
 import news23Image from './assets/news23.jpg'
 import news24Image from './assets/news24.jpg'
 import news18Image from './assets/news18.jpg'
@@ -37,6 +38,22 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    image: news5Image,
+    tag: "Update",
+    title: "Igra Mainnet: 8 months recap",
+    description: "Igra mainnet has been live since February. A recap of what you can do on Igra today.",
+    link: "https://x.com/Igra_Labs/status/2124890574365114619",
+    imagePosition: 'center',
+  },
+  {
+    image: news29Image,
+    tag: "Update",
+    title: "Proposal #18 restarts attester rewards",
+    description: "Passed and executed: Proposal #18, filed by K.A.T., moves 16.2M already-minted IGRA from the DAO's Ecosystem & Rewards pool to the rewards contract. The rate stays at 15% a year, and attesters are paid for the days missed since 1 November.",
+    link: "https://x.com/Igra_Labs/status/2117915393868079583",
+    imagePosition: 'right',
+  },
   {
     image: news27Image,
     tag: "Ecosystem",
