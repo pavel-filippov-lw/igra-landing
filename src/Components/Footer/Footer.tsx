@@ -11,6 +11,7 @@ import classes from './Footer.module.scss'
 const links: Record<string, Link[]> = {
   '': [
     { label: 'Ecosystem', to: to.ecosystem(), isPage: true },
+    { label: 'AI Agents', to: to.aiAgents(), isPage: true },
     { label: 'Documentation', to: 'https://igra-labs.gitbook.io/' },
     { label: 'What is $IGRA', to: to.igraToken(), isPage: true },
     { label: 'Multitude', to: to.multitude(), isPage: true },
