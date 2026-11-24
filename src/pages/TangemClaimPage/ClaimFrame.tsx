@@ -1,7 +1,8 @@
-import { FC, ReactNode, useState } from 'react'
+import { FC, ReactNode, useEffect, useState } from 'react'
 
 import heroImg from './assets/hero-tight.png'
 import {
+  CLOSING_NOTICE_ID,
   GIVEAWAY_RULES_TITLE,
   GiveawayRules,
   PRIVACY_NOTICE_TITLE,
@@ -17,9 +18,34 @@ const ELIGIBILITY_SNAPSHOT_URL = 'https://github.com/IgraLabs/tangem-zap-giveawa
  * hero illustration on the right, document links in the footer (Rules/Privacy
  * open in-page modals). Renders no wagmi hooks, so it is safe with or without a
  * wallet connection. The card content is passed as children.
+ *
+ * Once the giveaway has `concluded`, the Rules start with the closing notice and
+ * `#closing-notice` in the URL (a shared link or the landing's link) opens them there.
  */
-export const ClaimFrame: FC<{ children: ReactNode }> = ({ children }) => {
+export const ClaimFrame: FC<{ children: ReactNode; concluded?: boolean }> = ({ children, concluded = false }) => {
   const [openDoc, setOpenDoc] = useState<'rules' | 'privacy' | null>(null)
+  const [scrollTo, setScrollTo] = useState<string | undefined>(undefined)
+
+  useEffect(() => {
+    if (!concluded) return
+    const openNotice = () => {
+      if (window.location.hash !== `#${CLOSING_NOTICE_ID}`) return
+      setScrollTo(CLOSING_NOTICE_ID)
+      setOpenDoc('rules')
+    }
+    openNotice()
+    window.addEventListener('hashchange', openNotice)
+    return () => window.removeEventListener('hashchange', openNotice)
+  }, [concluded])
+
+  const closeDoc = () => {
+    setOpenDoc(null)
+    setScrollTo(undefined)
+    // Drop the anchor so the same link opens the notice again next time.
+    if (window.location.hash === `#${CLOSING_NOTICE_ID}`) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
+  }
   return (
     <div className={classes.root}>
       <div className={classes.layout}>
@@ -49,12 +75,12 @@ export const ClaimFrame: FC<{ children: ReactNode }> = ({ children }) => {
       </div>
 
       {openDoc === 'rules' && (
-        <LegalModal title={GIVEAWAY_RULES_TITLE} onClose={() => setOpenDoc(null)}>
-          <GiveawayRules />
+        <LegalModal title={GIVEAWAY_RULES_TITLE} onClose={closeDoc} scrollTo={scrollTo}>
+          <GiveawayRules closingNotice={concluded} />
         </LegalModal>
       )}
       {openDoc === 'privacy' && (
-        <LegalModal title={PRIVACY_NOTICE_TITLE} onClose={() => setOpenDoc(null)}>
+        <LegalModal title={PRIVACY_NOTICE_TITLE} onClose={closeDoc}>
           <PrivacyNotice />
         </LegalModal>
       )}

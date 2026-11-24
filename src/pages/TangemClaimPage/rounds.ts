@@ -30,6 +30,9 @@ export interface RoundsView {
   prizeTarget: number
   claimedCount: number
   allClaimed: boolean
+  /** The giveaway is over: no more rounds. Absent from older payloads → false. */
+  concluded: boolean
+  concludedAt: string | null
   /** Server clock — anchor countdowns to this, never the browser clock. */
   serverTime: string
   /** null when no round exists yet. */
@@ -69,6 +72,8 @@ export function parseRounds(raw: unknown): RoundsView | null {
     prizeTarget,
     claimedCount,
     allClaimed,
+    concluded: raw.concluded === true,
+    concludedAt: typeof raw.concludedAt === 'string' ? raw.concludedAt : null,
     serverTime: typeof serverTime === 'string' ? serverTime : new Date().toISOString(),
     currentRound,
     winners,
@@ -76,13 +81,24 @@ export function parseRounds(raw: unknown): RoundsView | null {
 }
 
 export type Headline =
+  | { kind: 'concluded'; title: string; note: string }
   | { kind: 'allClaimed'; title: string }
   | { kind: 'open'; title: string; deadline: string }
   | { kind: 'closed'; title: string; note: string }
   | { kind: 'none'; title: string }
 
-/** §3 headline table. allClaimed takes precedence over any round state. */
+/**
+ * §3 headline table. `concluded` (FRONTEND-BRIEF-giveaway-concluded) takes
+ * precedence over everything, then allClaimed, then the round state.
+ */
 export function resolveHeadline(v: RoundsView): Headline {
+  if (v.concluded) {
+    return {
+      kind: 'concluded',
+      title: 'The Igra × Tangem giveaway has ended',
+      note: `${v.claimedCount} of ${v.prizeTarget} prizes were claimed and shipped. Thank you to everyone who took part.`,
+    }
+  }
   if (v.allClaimed) return { kind: 'allClaimed', title: `All ${v.prizeTarget} prizes have been claimed` }
   if (!v.currentRound) return { kind: 'none', title: 'The draw is complete' }
   if (v.currentRound.state === 'open') {

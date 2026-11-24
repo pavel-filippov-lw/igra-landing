@@ -8,11 +8,17 @@ import classes from './LegalModal.module.scss'
  * Long content scrolls inside the modal body; a fixed header keeps the title +
  * close button visible. Closes on backdrop click, the ✕ button, or Escape.
  */
-export const LegalModal: FC<{ title: string; onClose: () => void; children: ReactNode }> = ({
+export const LegalModal: FC<{ title: string; onClose: () => void; children: ReactNode; scrollTo?: string }> = ({
   title,
   onClose,
   children,
+  scrollTo,
 }) => {
+  // Open at a section (e.g. the closing notice) when asked.
+  useEffect(() => {
+    if (scrollTo) document.getElementById(scrollTo)?.scrollIntoView({ block: 'start' })
+  }, [scrollTo])
+
   // Close on Escape, and lock body scroll while open.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

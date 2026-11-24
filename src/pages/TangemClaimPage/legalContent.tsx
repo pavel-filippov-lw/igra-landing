@@ -22,8 +22,30 @@ const OrgAddress: FC = () => (
 /** ── Giveaway Rules ─────────────────────────────────────────────────── */
 export const GIVEAWAY_RULES_TITLE = 'Igra × Tangem ZAP Wallet Giveaway Rules'
 
-export const GiveawayRules: FC = () => (
+/** Anchor of the closing notice; `/tangem-claim#closing-notice` opens the Rules at it. */
+export const CLOSING_NOTICE_ID = 'closing-notice'
+
+/**
+ * The §8 publication of the giveaway's end (FRONTEND-BRIEF-giveaway-concluded §3).
+ * Shown at the top of the Rules once /rounds reports `concluded`.
+ */
+const ClosingNotice: FC = () => (
+  <section id={CLOSING_NOTICE_ID}>
+    <h3>Update, 24 November 2026: the giveaway has closed</h3>
+    <p>
+      Over four claim rounds, 23 wallets from the published draw order were invited to claim, and
+      every invited wallet with an email on file was notified. Nine of the ten prizes were claimed
+      and shipped. Rather than continue rounds indefinitely, the giveaway is now closed and no
+      further reserves will be invited. The tenth prize will be given away to a community
+      participant.
+    </p>
+    <p>The draw and the full reserve order remain publicly verifiable.</p>
+  </section>
+)
+
+export const GiveawayRules: FC<{ closingNotice?: boolean }> = ({ closingNotice = false }) => (
   <>
+    {closingNotice && <ClosingNotice />}
     <p className={classes.effective}>Effective date: 3 August 2026</p>
 
     <h3>1. Organizer and purpose</h3>
