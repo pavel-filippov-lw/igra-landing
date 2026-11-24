@@ -39,6 +39,14 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    image: news28Image,
+    tag: "Update",
+    title: "Igra dev update",
+    description: "29 October–24 November: Kaspa 2.1 and the crash-recovery node update are running on the Galleon testnet, an external re-audit confirmed recent security fixes, and posting Igra state roots to Kaspa L1 is in review.",
+    link: "https://x.com/Igra_Labs/status/2125205424110489670",
+    imagePosition: 'center',
+  },
+  {
     image: news5Image,
     tag: "Update",
     title: "Igra Mainnet: 8 months recap",
