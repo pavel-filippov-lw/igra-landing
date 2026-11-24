@@ -41,7 +41,7 @@ export const newsItems: NewsItem[] = [
   {
     image: news5Image,
     tag: "Update",
-    title: "What you can do on Igra today",
+    title: "Igra Mainnet: 8 months recap",
     description: "Igra mainnet has been live since February. A recap of what you can do on Igra today.",
     link: "https://x.com/Igra_Labs/status/2124890574365114619",
     imagePosition: 'center',

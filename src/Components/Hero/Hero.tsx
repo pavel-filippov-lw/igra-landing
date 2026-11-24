@@ -28,7 +28,7 @@ export const Hero: FC = () => {
                 <span className={classes.date}>23 NOV 2026</span>
                 <span className={classes.divider}>|</span>
                 <div className={classes.text}>
-                  What you can do on Igra today
+                  Igra Mainnet: 8 months recap
                 </div>
                 <div className={classes.link}>
                   Read more
