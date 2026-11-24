@@ -5,10 +5,10 @@
   "type": "module",
   "homepage": "/",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "vite --config vite.config.ts",
+    "build": "tsc -b && vite build --config vite.config.ts",
     "lint": "eslint --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
+    "preview": "vite preview --config vite.config.ts",
     "test": "vitest run"
   },
   "dependencies": {
