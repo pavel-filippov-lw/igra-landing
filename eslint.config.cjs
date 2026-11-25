@@ -8,7 +8,7 @@ const reactPlugin = require('eslint-plugin-react');
 
 module.exports = [{
   files: ['**/*.ts','**/*.tsx'],
-  ignores: ['dist', 'scripts/*', '*.cjs', '*.d.ts', '*.mjs', 'vite.config.ts', 'lingui.config.ts', '.storybook/*'],
+  ignores: ['dist', 'scripts/*', '*.cjs', '*.d.ts', '*.mjs', 'vite.config.ts', 'page-meta.test.ts', 'lingui.config.ts', '.storybook/*'],
   languageOptions: {
     parser: tsParser,
     parserOptions: {
